@@ -31,8 +31,8 @@ media-monitoring/
 │   ├── outlet/            ← the media outlets that published coverage
 │   ├── people/            ← named individuals mentioned in coverage
 │   ├── organisations/     ← agencies, companies, units, and other bodies
-│   ├── appointments/      ← named offices/appointments (CDF, PS, CNV…) keyed by acronym, with
-│   │                         dated holders — resolves a role-acronym to the person of the day
+│   ├── appointments/      ← named offices and appointments, with dated holders — resolves an
+│   │                         office title to the person who held it on the relevant date
 │   ├── place/             ← specific locations (camps, bases, buildings, districts)
 │   ├── country/           ← countries referenced across coverage
 │   ├── topic/             ← recurring themes and named exercises/events
@@ -110,7 +110,7 @@ Each subfolder under `entities/` is a **knowledge domain**. Every domain holds a
 - **outlet** — the "who published it" record for each media outlet, with country, media category, and a running count of articles.
 - **people**, **organisations**, **place**, **country** — the entities that articles mention. Each note carries a short summary plus a Coverage list linking back to the articles it appears in.
 - **topic** — recurring themes and named events/exercises (e.g. exercises, policy debates) used to group related coverage.
-- **appointments** — named offices/appointments that coverage cites by role-acronym (CDF, PS, CNV, COA, CAF, CDI, plus the political and Permanent Secretary posts). Each note is keyed by its acronym and is *stable over time*; the holder is a dated `[[wikilink]]` in the body, so a bare "CDF" or "PS" in an article resolves to whoever held the office **at that article's date**, not whoever holds it now. Not populated by cascade — holder facts come from official reference pages. Authorized by the [[add-appointments-domain]] decision.
+- **appointments** — named offices and appointments that coverage cites by title. Each note is keyed by its office title and is *stable over time*; the holder is a dated `[[wikilink]]` in the body, so an office reference in an article resolves to whoever held the office **at that article's date**, not whoever holds it now. Not populated by cascade — holder facts come from official reference pages. Authorized by the [[add-appointments-domain]] decision.
 - **issues** — the early-warning watchlist. Where a topic note *classifies* coverage, an issue note records a live *assessment* of a rising risk: its status (`watch`/`warm`/`hot`/`dismissed`/`closed`), radar score, judged ramification, the signals that fired, known future catalysts (court dates, sittings, visits — each cited to an article), and a recommended posture. Populated only via `scripts/issue_radar_procedure.md`, never by the article cascade. Dismissed flags are kept as calibration data. Authorized by the [[add-issues-domain]] decision.
 - **search** — saved natural-language questions and the answers the vault produced, so past queries are reusable.
 - **decisions** — the vault's amendment log. Because schemas and rules are *frozen*, any change to how the vault works is recorded here first, with its reasoning, before being applied.
