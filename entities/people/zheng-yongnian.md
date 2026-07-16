@@ -1,0 +1,22 @@
+---
+personId: zheng-yongnian
+displayName: Zheng Yongnian
+role: Political scientist; dean of the school of public policy, Chinese University of Hong Kong, Shenzhen
+affiliation: Chinese University of Hong Kong, Shenzhen
+country: China
+aliases: [Zheng Yongnian]
+mentionCount: 1
+tags: []
+---
+
+## Summary
+Chinese political scientist who warned ASEAN countries against exploiting China-US tensions for short-term gains.
+
+## Coverage
+- [[1036338-asean-countries-warned-against-exploiting-us-china|ASEAN countries warned against exploiting US-China tensions for short-term gain]]
+
+## Related Entities
+[[china|China]] · [[hong-kong|Hong Kong]]
+
+## AI Context
+

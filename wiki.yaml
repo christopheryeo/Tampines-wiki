@@ -1,0 +1,3 @@
+name: media-monitoring
+description: SAF/MINDEF media coverage monitoring (Nov 2025 - Mar 2026 feeds + crawled articles)
+entities: [article, outlet]

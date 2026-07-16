@@ -1,0 +1,927 @@
+[
+  {
+    "domain": "country",
+    "entity": "pakistan",
+    "links": 1,
+    "targets": [
+      "singapore-airlines"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "laos",
+    "links": 1,
+    "targets": [
+      "acamm"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "south-korea",
+    "links": 1,
+    "targets": [
+      "lee-jae-myung"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "belgium",
+    "links": 1,
+    "targets": [
+      "nato"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "united-arab-emirates",
+    "links": 1,
+    "targets": [
+      "abu-dhabi"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "brunei",
+    "links": 1,
+    "targets": [
+      "acamm"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "sri-lanka",
+    "links": 2,
+    "targets": [
+      "rsaf",
+      "saudi-arabia"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "marshall-islands",
+    "links": 1,
+    "targets": [
+      "strait-of-hormuz"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "bahrain",
+    "links": 1,
+    "targets": [
+      "us-navy"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "oman",
+    "links": 1,
+    "targets": [
+      "united-arab-emirates"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "ghana",
+    "links": 1,
+    "targets": [
+      "unifil"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "japan",
+    "links": 2,
+    "targets": [
+      "the-japan-times",
+      "min-aung-hlaing"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "iran",
+    "links": 3,
+    "targets": [
+      "operation-epic-fury",
+      "ayatollah-ali-khamenei",
+      "mfa"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "thailand",
+    "links": 4,
+    "targets": [
+      "chief-of-army",
+      "acamm",
+      "ex-cope-tiger",
+      "korat-air-base"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "vietnam",
+    "links": 2,
+    "targets": [
+      "asean",
+      "rsaf"
+    ]
+  },
+  {
+    "domain": "country",
+    "entity": "lebanon",
+    "links": 1,
+    "targets": [
+      "faishal-ibrahim"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "fincantieri",
+    "links": 1,
+    "targets": [
+      "tkms"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "raid",
+    "links": 1,
+    "targets": [
+      "rsaf"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "malaysian-foreign-ministry",
+    "links": 1,
+    "targets": [
+      "royal-malaysian-navy"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "nexus",
+    "links": 3,
+    "targets": [
+      "saf",
+      "mindef",
+      "sg-defence-volunteer-network"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "atdio",
+    "links": 2,
+    "targets": [
+      "peh-ee-sang",
+      "poh-beng-san"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "ast-spacemobile",
+    "links": 1,
+    "targets": [
+      "dsta"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "vem-technologies",
+    "links": 2,
+    "targets": [
+      "tkms",
+      "indian-navy"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "wah-loon-engineering",
+    "links": 2,
+    "targets": [
+      "jason-chua-aik-leng",
+      "poh-beng-san"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "shanghai-chong-kee-furniture-construction",
+    "links": 2,
+    "targets": [
+      "william-teo",
+      "poh-beng-san"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "philippine-navy",
+    "links": 2,
+    "targets": [
+      "south-china-sea",
+      "tkms"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "dso",
+    "links": 3,
+    "targets": [
+      "mindef",
+      "defence",
+      "poh-beng-san"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "fire-mech-engineering",
+    "links": 1,
+    "targets": [
+      "alex-lee-yew-huat"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "mazagon-dock-shipbuilders",
+    "links": 1,
+    "targets": [
+      "tkms"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "sectoral-cyber-defence-team",
+    "links": 1,
+    "targets": [
+      "mindef"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "saf-medical-corps",
+    "links": 2,
+    "targets": [
+      "saf",
+      "shalini-arulanandam"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "northrop-grumman",
+    "links": 2,
+    "targets": [
+      "lockheed-martin",
+      "rtx"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "quahe-woo-palmer",
+    "links": 1,
+    "targets": [
+      "edmond-yao"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "joint-council-for-bilateral-cooperation",
+    "links": 1,
+    "targets": [
+      "gan-kim-yong"
+    ]
+  },
+  {
+    "domain": "organisations",
+    "entity": "defence-collective-singapore",
+    "links": 3,
+    "targets": [
+      "singapore-discovery-centre",
+      "singapore-navy-museum",
+      "singapore-air-force-museum"
+    ]
+  },
+  {
+    "domain": "outlet",
+    "entity": "declassified-uk",
+    "links": 1,
+    "targets": [
+      "idf"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "miyazaki",
+    "links": 1,
+    "targets": [
+      "camp-ebino"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "national-university-of-singapore",
+    "links": 1,
+    "targets": [
+      "glenn-kweh"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "fujian-province",
+    "links": 1,
+    "targets": [
+      "taiwan-strait"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "aomori-prefecture",
+    "links": 1,
+    "targets": [
+      "misawa-air-base"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "tayasir",
+    "links": 3,
+    "targets": [
+      "west-bank",
+      "idf",
+      "cnn"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "bab-el-mandeb-strait",
+    "links": 1,
+    "targets": [
+      "red-sea"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "tanjung-priok-port",
+    "links": 1,
+    "targets": [
+      "indonesian-navy"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "guangdong-province",
+    "links": 1,
+    "targets": [
+      "taiwan-strait"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "siem-reap-angkor-international-airport",
+    "links": 2,
+    "targets": [
+      "siem-reap",
+      "asean-observer-team"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "haifa",
+    "links": 1,
+    "targets": [
+      "oil-refineries-bazan"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "adchit-al-qusayr",
+    "links": 1,
+    "targets": [
+      "unifil"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "quanzhou",
+    "links": 2,
+    "targets": [
+      "fujian-province",
+      "south-china-sea"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "fort-bragg",
+    "links": 2,
+    "targets": [
+      "us-army",
+      "82nd-airborne-division"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "siem-reap",
+    "links": 2,
+    "targets": [
+      "siem-reap-angkor-international-airport",
+      "asean-observer-team"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "victoria-junior-college",
+    "links": 1,
+    "targets": [
+      "glenn-kweh"
+    ]
+  },
+  {
+    "domain": "place",
+    "entity": "hokkaido",
+    "links": 1,
+    "targets": [
+      "camp-kamifurano"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "ex-panzer-strike",
+    "links": 3,
+    "targets": [
+      "singapore-army",
+      "bundeswehr",
+      "oberlausitz"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "national-service-in-foreign-countries-israel-extends-mandatory-military-service-to-address-idf-shortage",
+    "links": 1,
+    "targets": [
+      "idf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-kuwait-airport-hit-by-drones",
+    "links": 1,
+    "targets": [
+      "kuwait-international-airport"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "indonesia-coordinates-for-safety-of-its-vessels-in-strait-of-hormuz",
+    "links": 1,
+    "targets": [
+      "strait-of-hormuz"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-trump-warns-of-strikes-on-iran-oil-sites",
+    "links": 1,
+    "targets": [
+      "kharg-island"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "south-china-sea-scarborough-shoal-patrols",
+    "links": 2,
+    "targets": [
+      "scarborough-shoal",
+      "south-china-sea"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "asean-observers-expand-presence-saf-mention",
+    "links": 2,
+    "targets": [
+      "asean-observer-team",
+      "saf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "feature-on-winger-footballer-glenn-kweh",
+    "links": 1,
+    "targets": [
+      "glenn-kweh"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "first-us-f-35a-stealth-fighters-arrive-at-japan-misawa-base",
+    "links": 2,
+    "targets": [
+      "misawa-air-base",
+      "aomori-prefecture"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "col-dr-shalini-honoured-in-singapore-womens-hall-of-fame-saf-mention",
+    "links": 2,
+    "targets": [
+      "shalini-arulanandam",
+      "saf-medical-corps"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "rsaf-repatriation-operations",
+    "links": 1,
+    "targets": [
+      "rsaf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "foreign-military-activities-in-the-indo-pacific-myanmar-junta-chief-nominated-for-presidency-vote",
+    "links": 2,
+    "targets": [
+      "tatmadaw",
+      "min-aung-hlaing"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "foreign-military-activities-in-the-indo-pacific-myanmars-former-intelligence-chief-ye-win-oo-appointed-military-leader",
+    "links": 1,
+    "targets": [
+      "ye-win-oo"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-pakistan-to-host-talks-on-iran-war-with-saudi-arabia-turkey-and-egypt",
+    "links": 1,
+    "targets": [
+      "saudi-arabia"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-us-may-reassess-nato-after-iran-war-snub",
+    "links": 1,
+    "targets": [
+      "nato"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "indonesian-un-peacekeeper-killed-in-lebanon",
+    "links": 1,
+    "targets": [
+      "unifil"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "asean-countries-warned-against-exploiting-us-china-tensions-singapore-strait-mention",
+    "links": 2,
+    "targets": [
+      "asean",
+      "singapore-strait"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-marines-stationed-in-japan-deployed-to-middle-east-singapore-mention",
+    "links": 1,
+    "targets": [
+      "singapore-strait"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "missile-hits-fuel-tanker-at-israels-oil-refineries",
+    "links": 1,
+    "targets": [
+      "oil-refineries-bazan"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "pakistan-leads-diplomatic-talks-on-middle-east-war",
+    "links": 2,
+    "targets": [
+      "saudi-arabia",
+      "strait-of-hormuz"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "key-statement-by-global-leaders-german-defence-minister-concludes-singapore-japan-and-australia-visit",
+    "links": 2,
+    "targets": [
+      "minister-for-defence",
+      "boris-pistorius"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "world-water-day-2026",
+    "links": 3,
+    "targets": [
+      "pub",
+      "chan-chun-sing",
+      "grace-fu"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "strait-of-hormuz-oil-crisis",
+    "links": 1,
+    "targets": [
+      "strait-of-hormuz"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "singapore-and-germany-to-step-up-defence-cooperation",
+    "links": 4,
+    "targets": [
+      "minister-for-defence",
+      "boris-pistorius",
+      "tkms",
+      "st-engineering"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "joint-drills-between-russia-and-indonesia-navy",
+    "links": 2,
+    "targets": [
+      "indonesian-navy",
+      "tni"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "pofma",
+    "links": 5,
+    "targets": [
+      "mha",
+      "the-online-citizen",
+      "terry-xu",
+      "k-shanmugam",
+      "idf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-war-effects-on-shipping",
+    "links": 2,
+    "targets": [
+      "red-sea",
+      "bab-el-mandeb-strait"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "israel-hamas-conflict-israel-pulls-out-army-from-west-bank",
+    "links": 2,
+    "targets": [
+      "west-bank",
+      "cnn"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "former-rsaf-chief-ng-chee-khern-to-helm-iseas-yusof-ishak-institute",
+    "links": 4,
+    "targets": [
+      "rsaf",
+      "ng-chee-khern",
+      "iseas-yusof-ishak-institute",
+      "choi-shing-kwok"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "festival-of-innovation-2026",
+    "links": 1,
+    "targets": [
+      "rsaf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "operation-thunderbolt",
+    "links": 3,
+    "targets": [
+      "saf",
+      "singapore-airlines",
+      "changi-airport"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-irans-missile-strikes-causes-loss-of-valuable-e-3-jet",
+    "links": 2,
+    "targets": [
+      "prince-sultan-air-base",
+      "saudi-arabia"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "pm-wong-visit-to-china-asean-countries-not-choosing-sides",
+    "links": 2,
+    "targets": [
+      "lawrence-wong",
+      "asean"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "anwar-ibrahim-to-chair-national-economic-action-council-meeting",
+    "links": 1,
+    "targets": [
+      "national-economic-action-council"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-iran-allows-20-ships-through-strait-of-hormuz",
+    "links": 1,
+    "targets": [
+      "strait-of-hormuz"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "south-china-sea-china-philippines-agree-to-properly-manage-situation-in-the-south-china-sea",
+    "links": 1,
+    "targets": [
+      "south-china-sea"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-japan-boosts-efforts-for-multination-coalition-to-ensure-safety-in-strait-of-hormuz",
+    "links": 1,
+    "targets": [
+      "strait-of-hormuz"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "thales-rolls-out-hybird-mine-warfare-system-rsn-mention",
+    "links": 1,
+    "targets": [
+      "rsn"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "toc-publishes-second-correction-notice-on-alleged-singaporeans-fighting-in-idf",
+    "links": 3,
+    "targets": [
+      "the-online-citizen",
+      "pofma",
+      "idf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "scarborough-shoal-patrols",
+    "links": 2,
+    "targets": [
+      "scarborough-shoal",
+      "south-china-sea"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "water-efficiency-fund",
+    "links": 1,
+    "targets": [
+      "pub"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "taiwan-strait-china-stationing-drones-at-taiwan-strait",
+    "links": 1,
+    "targets": [
+      "taiwan-strait"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "mindef-statement-on-sg-regularly-facilitating-us-forces-access-to-its-facilities",
+    "links": 3,
+    "targets": [
+      "mindef",
+      "us-navy",
+      "singapore-strait"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-launches-missile-motor-production-programme-with-japan-sld-2025-mention",
+    "links": 1,
+    "targets": [
+      "shangri-la-dialogue"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "taiwans-mac-tells-kmt-chair-to-take-ccp-threats-seriously",
+    "links": 2,
+    "targets": [
+      "mainland-affairs-council",
+      "cheng-li-wun"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "sms-zaqys-speech-enhancing-volunteerism-to-allow-more-segments-of-society-to-contribute-to-defence",
+    "links": 2,
+    "targets": [
+      "zaqy-mohamad",
+      "sg-defence-volunteer-network"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "us-iran-iran-confirms-death-of-revolutionary-guards-navy-commander",
+    "links": 2,
+    "targets": [
+      "islamic-revolutionary-guard-corps",
+      "alireza-tangsiri"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "behind-the-scenes-feature-on-rsaf-repatriation-operations",
+    "links": 2,
+    "targets": [
+      "berita-harian",
+      "rsaf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "key-developments-relating-to-regional-security-groupings-nato-nations-participated-in-cold-response-26",
+    "links": 2,
+    "targets": [
+      "nato",
+      "cold-response"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "korean-peninsula-kim-inspects-solid-fuel-engine-new-tank",
+    "links": 2,
+    "targets": [
+      "kim-jong-un",
+      "north-korea"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "ex-cope-tiger",
+    "links": 4,
+    "targets": [
+      "korat-air-base",
+      "rsaf",
+      "rtaf",
+      "usaf"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "ns-allowance-debate",
+    "links": 6,
+    "targets": [
+      "mindef",
+      "kenneth-tiong",
+      "minister-for-defence",
+      "chan-chun-sing",
+      "rsaf",
+      "jonathan-tee"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "exploring-the-singapore-navy-museum",
+    "links": 3,
+    "targets": [
+      "singapore-navy-museum",
+      "changi-naval-base",
+      "rsn"
+    ]
+  },
+  {
+    "domain": "topic",
+    "entity": "singapore-and-japan-upgrade-ties-to-strategic-partnership-total-defence-mention",
+    "links": 1,
+    "targets": [
+      "total-defence-day"
+    ]
+  }
+]

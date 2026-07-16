@@ -1,0 +1,40 @@
+# macOS / Dropbox local metadata
+.DS_Store
+**/.DS_Store
+.dropbox*
+
+# Python runtime and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Local agent/editor state
+.claude/settings.local.json
+.obsidian/workspace.json
+.obsidian/plugins/
+
+# Generated query/index artifacts
+index/*.db
+index/*.db-*
+index/*.sqlite
+index/*.sqlite-*
+
+# Large/source-data vault areas kept outside Git
+Inputs/
+raw/
+entities/article/
+entities/articles/
+
+# Temporary run/debug output
+tmp/
+*.tmp
+*.log

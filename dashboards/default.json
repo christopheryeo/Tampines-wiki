@@ -1,0 +1,152 @@
+{
+ "id": "default",
+ "name": "Coverage Overview",
+ "tiles": [
+  {
+   "id": "t-volume",
+   "title": "Articles per month",
+   "nl_query": "article count by month",
+   "entity": "article",
+   "sql": "SELECT substr(publishedDate,1,7) AS x, COUNT(*) AS y FROM article GROUP BY 1 ORDER BY 1",
+   "chart": {
+    "type": "line",
+    "x": "x",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300
+  },
+  {
+   "id": "t-sentiment",
+   "title": "Sentiment by month",
+   "nl_query": "monthly count split by sentiment",
+   "entity": "article",
+   "sql": "SELECT substr(publishedDate,1,7) AS x, toneSentiment AS s, COUNT(*) AS y FROM article WHERE toneSentiment IS NOT NULL GROUP BY 1,2 ORDER BY 1",
+   "chart": {
+    "type": "bar",
+    "stacked": true,
+    "x": "x",
+    "series": "s",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300
+  },
+  {
+   "id": "t-outlets",
+   "title": "Top 10 outlets",
+   "nl_query": "top 10 outlets by article count",
+   "entity": "article",
+   "sql": "SELECT json_each.value AS x, COUNT(*) AS y FROM article, json_each(article.\"outlets\") GROUP BY 1 ORDER BY y DESC LIMIT 10",
+   "chart": {
+    "type": "bar",
+    "x": "x",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300
+  },
+  {
+   "id": "t-category",
+   "title": "Category breakdown",
+   "nl_query": "share of articles by category",
+   "entity": "article",
+   "sql": "WITH CategoryRanks AS (SELECT category, COUNT(*) AS count, RANK() OVER (ORDER BY COUNT(*) DESC) AS r FROM article GROUP BY 1) SELECT CASE WHEN r <= 5 THEN category ELSE 'Others' END AS x, SUM(count) AS y FROM CategoryRanks GROUP BY 1 ORDER BY y DESC",
+   "chart": {
+    "type": "pie",
+    "x": "x",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300,
+   "chat": [
+    {
+     "role": "user",
+     "content": "share of articles by category",
+     "ts": 0
+    },
+    {
+     "role": "assistant",
+     "ts": 0,
+     "sql": "SELECT category AS x, COUNT(*) AS y FROM article GROUP BY 1 ORDER BY y DESC LIMIT 12",
+     "content": "Created “Category breakdown”."
+    },
+    {
+     "role": "user",
+     "content": "can you change this to be a pie chart, with only top 5 individual category and remaining all grouped as others?",
+     "ts": 1783310015
+    },
+    {
+     "role": "assistant",
+     "ts": 1783310015,
+     "sql": "WITH CategoryRanks AS (SELECT category, COUNT(*) AS count, RANK() OVER (ORDER BY COUNT(*) DESC) AS r FROM article GROUP BY 1) SELECT CASE WHEN r <= 5 THEN category ELSE 'Others' END AS x, SUM(count) AS y FROM CategoryRanks GROUP BY 1 ORDER BY y DESC",
+     "content": "I updated the query to show the top 5 categories and grouped the rest into an 'Others' category."
+    }
+   ]
+  },
+  {
+   "id": "f5335af3",
+   "title": "Top 5 countries by article count",
+   "nl_query": "top 5 countries by article count",
+   "entity": "article",
+   "sql": "SELECT json_each.value AS x, COUNT(*) AS y FROM article, json_each(article.\"countries\") GROUP BY 1 ORDER BY y DESC LIMIT 5",
+   "chart": {
+    "type": "bar",
+    "x": "x",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300
+  },
+  {
+   "id": "9cae658c",
+   "title": "Article Count by Outlet Media Category",
+   "nl_query": "article count by outlet media category",
+   "entity": "article",
+   "sql": "SELECT o.mediaCategory AS x, COUNT(a.articleId) AS y FROM article AS a, json_each(a.outlets) AS j JOIN outlet AS o ON o.outletId = j.value GROUP BY x ORDER BY y DESC",
+   "chart": {
+    "type": "bar",
+    "x": "x",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300
+  },
+  {
+   "id": "f7e14744",
+   "title": "Top 10 Topics",
+   "nl_query": "top 10 topics",
+   "entity": "article",
+   "sql": "SELECT topic AS x, COUNT(*) AS y FROM article GROUP BY 1 ORDER BY 2 DESC LIMIT 10",
+   "chart": {
+    "type": "bar",
+    "x": "x",
+    "y": "y"
+   },
+   "layout": {
+    "w": 6,
+    "h": 4
+   },
+   "refresh_sec": 300
+  }
+ ],
+ "updated_at": 1783310025
+}

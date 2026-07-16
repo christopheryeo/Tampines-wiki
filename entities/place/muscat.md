@@ -1,0 +1,95 @@
+---
+placeId: muscat
+displayName: Muscat
+placeType: Landmark/Venue
+country: oman
+aliases: []
+mentionCount: 71
+tags: []
+---
+
+## Summary
+Capital of Oman and departure point for Singapore's earliest March 2026 repatriation flights (7-8 Mar) evacuating citizens from the Middle East conflict; UAE-based Singaporeans were coached to Muscat to join the flights.
+
+## Coverage- [[1005164-singapore-arranges-two-military-flights-to-riyadh|Singapore's MFA and MINDEF announced on 9 March 2026 that the RSAF would deploy an Airb...]]
+
+[[999558-s-pore-to-mount-repatriation-flights-on-march-7-8|S'pore to mount repatriation flights from Muscat, Oman]]
+[[999560-singapore-arranges-two-charter-flights-to-repatria|Singapore arranges two charter flights from Oman]]
+[[999562-s-pore-prepares-2-flights-to-bring-citizens-back-f|S'pore prepares 2 flights to bring citizens back from Oman]]
+[[1001857-singapore-planning-repatriation-flight-for-citizen|Singapore planning repatriation flight from Saudi Arabia]]
+[[1002378-pm-wong-speaks-with-uae-president-thanks-him-for-a|PM Wong speaks with UAE president]]
+[[1004460-gan-siow-huang-authorities-dispatch-additional-rep|Gan Siow Huang: authorities dispatch additional repatriation flights]]
+
+## Located In
+[[oman|Oman]]
+
+## AI Context
+Not #saf-flagged.
+
+## Coverage
+- [[1011851-our-duty-to-bring-them-home-ica-adjusts-deployment|AsiaOne reported ICA redeployed officers at Changi Airport to streamline immigration cl...]]
+- [[1015475-mfa-officers-face-challenges-safely-evacuate-singa|Berita Harian Online profiled MFA consular officers who coordinated the evacuation of S...]]
+- [[1017257-mfa-officers-face-challenges-to-evacuate-s-poreans|Berita Harian profiled MFA consular officers who coordinated the evacuation of Singapor...]]
+- [[999562-s-pore-prepares-2-flights-to-bring-citizens-back-f|coverage]]
+- [[1005164-singapore-arranges-two-military-flights-to-riyadh|coverage]]
+- [[1011669-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1011661-war-in-the-middle-east-42-singaporean-students-in|coverage]]
+- [[1008054-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1011817-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1008919-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1011275-second-rsaf-evacuation-flight-from-saudi-arabia-ar|coverage]]
+- [[1009662-s-poreans-return-home-safely-on-special-rsaf-fligh|coverage]]
+- [[999560-singapore-arranges-two-charter-flights-to-repatria|coverage]]
+- [[1007726-a330-mrtt-deployed-for-repatriation-of-singaporean|coverage]]
+- [[1008064-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1006105-nearly-200-singaporeans-were-helped-to-move-from-d|coverage]]
+- [[1009658-rsaf-plane-returns-from-middle-east-with-largest-g|coverage]]
+- [[1009660-first-evacuation-military-flight-from-the-middle-e|coverage]]
+- [[1007243-singapore-military-aircraft-brings-home-citizens-s|coverage]]
+- [[1012393-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1007734-once-in-a-lifetime-rsaf-plane-returns-with-largest|coverage]]
+- [[1014542-bh-editorial-people-s-trust-strengthened-as-a-resu|coverage]]
+- [[1006759-a330-mrtt-deployed-for-repatriation-of-singaporean|coverage]]
+- [[1011041-zb-editorial-evacuation-by-military-aircraft-shows|coverage]]
+- [[1008556-singaporeans-return-home-safely-on-special-rsaf-fl|coverage]]
+- [[1011663-us-israel-and-iran-war-second-rsaf-flight-brings-b|coverage]]
+- [[1002378-pm-wong-speaks-with-uae-president-thanks-him-for-a|coverage]]
+- [[1013415-faishal-muis-continues-to-support-singaporean-stud|coverage]]
+- [[1014923-bh-online-editorial-people-s-trust-strengthened-as|coverage]]
+- [[1008915-this-marks-the-first-time-rsaf-aircraft-have-appea|coverage]]
+- [[1005922-rsaf-aircraft-departs-for-riyadh-to-evacuate-singa|coverage]]
+- [[999558-s-pore-to-mount-repatriation-flights-on-march-7-8|coverage]]
+- [[1009608-once-in-a-lifetime-rsaf-plane-returns-with-largest|coverage]]
+- [[1011673-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1012395-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1008923-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1008917-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1006107-rsaf-aircraft-en-route-to-riyadh-to-bring-back-sin|coverage]]
+- [[1007463-singaporeans-return-from-saudi-arabia-on-special-a|coverage]]
+- [[1008921-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1001857-singapore-planning-repatriation-flight-for-citizen|coverage]]
+- [[1008062-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1011665-from-sirens-to-safety-2nd-rsaf-flight-returns-from|coverage]]
+- [[1012389-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1009666-more-singaporeans-return-home-on-special-repatriat|coverage]]
+- [[1010247-once-in-a-lifetime-rsaf-plane-returns-with-largest|coverage]]
+- [[1017059-those-who-arrive-in-singapore-via-air-force-s-spec|coverage]]
+- [[1012391-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1013160-second-rsaf-flight-returns-from-saudi-arabia-with|coverage]]
+- [[1007056-the-first-military-charter-plane-is-expected-to-ar|coverage]]
+- [[1011671-second-rsaf-evacuation-flight-brings-singaporeans|coverage]]
+- [[1006075-rsaf-plane-to-evacuate-s-poreans-departs-changi-ai|coverage]]
+- [[1007245-nearly-200-singaporeans-were-helped-to-move-from-d|coverage]]
+- [[1008060-rsaf-brings-218-singapore-citizens-home-amid-regio|coverage]]
+- [[1036501-operation-full-of-challenges-to-bring-back-singapo|Operation full of challenges to bring back Singaporeans from Middle East]]
+- [[1024154-officials-overcome-barriers-to-reunite-singaporean|Tamil Murasu Online (20 Mar) reported on how MFA and embassy officers helped reunite Singaporeans stranded ...]]
+- [[1024369-officials-overcome-barriers-to-reunite-singaporean|Tamil Murasu (print, Pg 4) reported on how MFA and embassy officers helped reunite Singaporeans stranded in...]]
+- [[1035819-spotting-a-distant-projectile-rsaf-pilots-worked-t|The Straits Times Online reported that RSAF pilots flying a repatriation mission over the Middle East spott...]]
+- [[1035834-projectile-sighting-in-flight-meals-for-kids-crew|AsiaOne News reported in-depth on the RSAF's two Middle East repatriation flights, including pilot CPT Gera...]]
+- [[1035844-challenging-operation-to-bring-back-singaporeans-f|Berita Harian Online reported in detail on the RSAF's challenging operation to repatriate Singaporeans from...]]
+- [[1035846-spotting-a-distant-projectile-rsaf-pilots-worked-t|Yahoo! News Hong Kong reported (syndicated from Straits Times Online) that as RSAF pilots navigated the Mid...]]
+- [[1035847-spotting-a-distant-projectile-rsaf-pilots-worked-t|Yahoo! News Malaysia reported (syndicated from Straits Times Online) that as RSAF pilots navigated the Midd...]]
+- [[1035848-spotting-a-distant-projectile-rsaf-pilots-worked-t|Yahoo! News Singapore reported (syndicated from Straits Times Online) that as RSAF pilots navigated the Mid...]]
+- [[1035849-spotting-a-distant-projectile-rsaf-pilots-worked-t|Yahoo! News Taiwan reported (syndicated from Straits Times Online) that as RSAF pilots navigated the Middle...]]
+
+Related topic: [[defence]]

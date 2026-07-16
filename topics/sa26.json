@@ -1,0 +1,36 @@
+{
+ "id": "sa26",
+ "name": "Singapore Airshow 2026",
+ "keywords": [
+  "Singapore Airshow",
+  "SA26"
+ ],
+ "sources": [
+  {
+   "type": "news_search",
+   "languages": [
+    "en"
+   ],
+   "max_items": 30
+  }
+ ],
+ "schedule": "0 */6 * * *",
+ "lookback_hours": 24,
+ "enabled": true,
+ "last_run": {
+  "id": null,
+  "topic_id": "sa26",
+  "trigger": "scheduled",
+  "started_at": 1783071612,
+  "duration_sec": 0.2,
+  "status": "ok",
+  "error": null,
+  "found": 5,
+  "new": 5,
+  "duplicates": 0,
+  "rejected": 0,
+  "mock": true,
+  "updated_at": 1783071612
+ },
+ "updated_at": 1783071612
+}

@@ -1,0 +1,15 @@
+{
+ "id": null,
+ "topic_id": "sa26",
+ "trigger": "scheduled",
+ "started_at": 1783071612,
+ "duration_sec": 0.2,
+ "status": "ok",
+ "error": null,
+ "found": 5,
+ "new": 5,
+ "duplicates": 0,
+ "rejected": 0,
+ "mock": true,
+ "updated_at": 1783071612
+}
