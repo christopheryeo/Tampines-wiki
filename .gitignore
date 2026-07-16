@@ -33,6 +33,7 @@ Inputs/
 raw/
 entities/article/
 entities/articles/
+entities/appointments/
 
 # Temporary run/debug output
 tmp/
