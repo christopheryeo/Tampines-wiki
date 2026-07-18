@@ -253,9 +253,20 @@ def main() -> None:
     ]
     entity_total = sum(counts.values())
     link_total = sum(links_by_domain.values())
+    # Keep the generated artifact stable when the Markdown source has not changed.
+    # The newest article timestamp is both source-derived and meaningful to readers
+    # as the snapshot's coverage boundary.
+    generated_at = (
+        max(item[0] for item in dated_articles)
+        .astimezone(timezone.utc)
+        .isoformat(timespec="seconds")
+        .replace("+00:00", "Z")
+        if dated_articles
+        else "1970-01-01T00:00:00Z"
+    )
 
     data = {
-        "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "generatedAt": generated_at,
         "coverage": {
             "from": month_rows[0]["label"] if month_rows else "—",
             "to": month_rows[-1]["label"] if month_rows else "—",
