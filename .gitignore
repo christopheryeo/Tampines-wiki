@@ -27,6 +27,7 @@ index/*.db
 index/*.db-*
 index/*.sqlite
 index/*.sqlite-*
+entities/**/catalog.md
 
 # Large/source-data vault areas kept outside Git
 Inputs/
