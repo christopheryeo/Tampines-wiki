@@ -2,14 +2,14 @@
 type: procedure
 name: issue-radar
 status: active
-last_updated: 2026-07-08
+last_updated: 2026-07-23
 ---
 
 # Issue Radar Procedure
 
 Turns deterministic radar flags into filed, cited issue assessments in `entities/issues/`. The
-split follows the vault's core division of labour: `scripts/issue_radar.py` does the counting
-(velocity, breadth, institutional attachment, recurrence — mechanical, hindsight-free); this
+split follows the vault's core division of labour: `scripts/issue_radar.py` does the counting from
+read-only canonical product tables (velocity, breadth, institutional attachment, recurrence — mechanical, hindsight-free); this
 procedure does the judgment (clustering, ramification, catalysts, posture). Neither replaces the
 other: the radar over-generates by design (~20x at tag level), and the judgment pass must never
 invent signals the radar did not report.
@@ -24,8 +24,12 @@ values beginning with `#`; append-only logs.
 
 ## Step 1 — Run the signal layer (mechanical)
 
-1. `python3 scripts/issue_radar.py` (optionally `--asof <date>` for reconstruction). Capture every
-   flag at WARM or above; WATCH flags are optional at analyst discretion.
+1. Run against UAT while developing or validating:
+   `python3 scripts/issue_radar.py --source uat --defaults-file <read-only-client.cnf>`.
+   Run against production only with an approved read-only account (preferably a replica):
+   `python3 scripts/issue_radar.py --source production --defaults-file <read-only-client.cnf>`.
+   Add `--asof <date>` for reconstruction. Capture every flag at WARM or above; WATCH flags are
+   optional at analyst discretion. The script never writes to either database.
 2. Do not edit, reweight, or suppress the script's output by hand. If the thresholds seem wrong,
    that is a Decision-note conversation, not an in-pass adjustment.
 

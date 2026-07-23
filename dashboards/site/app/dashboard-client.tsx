@@ -65,7 +65,9 @@ export default function Dashboard() {
           </div>
           <div className="header-meta">
             <span className="live-dot" aria-hidden="true" />
-            Snapshot refreshed {formatGenerated(data.generatedAt)} SGT
+            <span>Dashboard rebuilt {formatGenerated(data.refreshedAt)} SGT</span>
+            <span aria-hidden="true">·</span>
+            <span>Latest coverage {formatGenerated(data.latestCoverageAt)} SGT</span>
           </div>
         </div>
 
@@ -299,7 +301,7 @@ export default function Dashboard() {
 
         <footer>
           <div className="brand-lockup footer-brand"><span className="brand-orbit" aria-hidden="true"><span /></span><span className="brand-words"><strong>Sentient.io</strong></span></div>
-          <p>Media Intelligence · Deterministic dashboard · Snapshot {formatGenerated(data.generatedAt)} SGT</p>
+          <p>Media Intelligence · Rebuilt {formatGenerated(data.refreshedAt)} SGT · Latest coverage {formatGenerated(data.latestCoverageAt)} SGT</p>
         </footer>
       </div>
     </main>

@@ -47,12 +47,20 @@ media-monitoring/
 │
 ├── scripts/               ← maintenance tooling and the written procedures agents follow
 │   ├── generate_catalog.py        ← rebuilds every domain's catalog.md
+│   ├── raw_feed_to_inputs.py      ← derives preserved raw feeds into Inputs/articles/
+│   ├── ingest_cascade.py          ← timed raw-input compile + entity cascade runner
+│   ├── article_quality.py         ← article schema check + source-backed safe repair
+│   ├── stage_mysql_feeds.py       ← deterministic raw-feed to isolated UAT staging bundle
 │   ├── check_links.py             ← vault-wide [[wikilink]] integrity checker (report-only)
 │   ├── fix_links.py               ← vault-wide [[wikilink]] lint + auto-fix (run regularly)
+│   ├── regenerate_coverage_labels.py
+│   │                            ← repairs malformed entity Coverage labels from article summaries
+│   ├── link_orphan_entity_bodies.py
+│   │                            ← conservatively links orphan entity body mentions to peer entities
 │   ├── patch_coverage.py          ← safely updates an entity's Coverage list + counts
 │   ├── people_country_inference.py← proposes missing person-country fills for review
 │   ├── run_logger.py              ← writes canonical run receipts and throughput metrics
-│   ├── issue_radar.py             ← early-warning signal layer (read-only over wiki.db)
+│   ├── issue_radar.py             ← early-warning signal layer (read-only over product tables)
 │   ├── entity_cascade_procedure.md← how a raw item becomes notes + cascaded links
 │   ├── query_procedure.md         ← how to answer questions against the vault
 │   ├── people_country_inference_procedure.md
@@ -175,21 +183,76 @@ So the folder holds two kinds of things: **Python programs** that perform mechan
 
 ### Python scripts
 
-#### `generate_catalog.py` — rebuild a domain's `catalog.md`
-Regenerates one domain's `catalog.md` from the frontmatter of its notes, so the catalog is always an exhaustive, up-to-date mirror of what is actually in the folder. Run it as `python3 scripts/generate_catalog.py <domain>` (e.g. `article`, `outlet`, `people`). It reads every note in the domain, pulls the relevant fields, sorts them (articles by date newest-first; entities alphabetically), and **overwrites** `catalog.md` wholesale — first run creates the file, every run after replaces it, which is why the catalog must never be hand-edited.
+The Python scripts are grouped by broad operating function. They should stay deterministic and source-backed: scripts do mechanical work, while procedure documents cover judgment-heavy steps.
 
-The `article` and `outlet` domains have hand-tuned column sets (they predate the others and carry schema-migration fallbacks). Every other domain is handled generically: the script reads that domain's column list straight out of its own `index.md` "YAML registry" table, so a brand-new domain works the moment its `index.md` exists — no code change needed here. It is meant to run as part of the nightly routine after ingest, not ad hoc mid-task.
+#### Intake and source staging
 
-#### `patch_coverage.py` — safely update an entity's Coverage list and counts
-Handles the mechanical "bookkeeping" half of linking an existing entity to newly-ingested articles: incrementing the entity's mention/article count by *exactly* the number of genuinely-new `(entity, article)` pairs and appending the matching `- [[article|label]]` lines to its `## Coverage` section. It deliberately does **not** decide which entities are new, write summary prose, or touch related-entity links — those are judgment calls that stay manual. It exists because doing this counting by hand caused real overcount and double-counting bugs.
+##### `raw_feed_to_inputs.py` — preserved feed export to raw intake notes
+Derives JSON-style source exports from `raw/feed data/` into Markdown intake notes under `Inputs/articles/YYYY-MM/`. It writes the raw intake schema only: frontmatter plus source narrative body, no wikilinks, no compiled article sections, and no entity cascade. Default mode is a dry run; pass `--write` to create files. It checks both `Inputs/articles/` and `entities/article/` targets so reruns stay idempotent after later ingest moves files onward.
 
-It takes a JSON file listing update objects (`domain`, `id`, `article`, an optional display `label`, and an optional `alias`), grouping multiple rows for the same entity automatically so a whole batch runs in one pass. It is **idempotent** — an article already present in a Coverage block is silently skipped, never re-added or re-counted — so it is safe to re-run after an interrupted batch. Run `python3 scripts/patch_coverage.py updates.json`, or add `--dry-run` to preview changes without writing. The script writes a `cascade` receipt through `run_logger.py` by default; add `--no-run-log` only for tests or debugging runs that should not count toward throughput. The `outlet` domain is special-cased: its `articleCount` is a pre-computed corpus-wide total and is never incremented — only Coverage lines (and a missing `aliases` field) are added.
+Common use:
 
-#### `people_country_inference.py` — propose missing person-country fills
-Builds the review table described in `people_country_inference_procedure.md`. By default it is read-only and vault-grounded: it scans `entities/people/catalog.md` for blank `country` fields, inspects person notes and bounded Coverage article summaries for direct country/title evidence, and emits CSV or Markdown rows with evidence and recommended action. With `--internet-confirm`, it adds a Wikipedia API confirmation pass and records the external source URL plus fetch timestamp, but still writes only a review table; note edits remain a separate approved follow-up. Example: `python3 scripts/people_country_inference.py --internet-confirm --limit 50 --format markdown --summary`.
+```bash
+python3 scripts/raw_feed_to_inputs.py --month 2026-05
+python3 scripts/raw_feed_to_inputs.py --all --write
+```
 
-#### `run_logger.py` — canonical operation receipts
-Creates and validates structured run receipts under `runs/YYYY-MM-DD/`. Use it for every raw-to-inputs, ingest, cascade, lint, and query operation where throughput matters. Receipts follow `run-log.v1` and must capture `operation`, `startedAt`, `endedAt`, `durationSec`, `articleMetrics.processedCount`, `articleMetrics.avgSecPerArticle`, and any `stageMetrics[]` for sub-steps such as `ingest`, `cascade`, or `lint`.
+##### `stage_mysql_feeds.py` — deterministic UAT staging bundle
+Validates preserved monthly feed exports against the approved source-to-UAT mapping, reconfirms expected file hashes, and writes escaped UTF-8 TSV files plus explicit MySQL `LOAD DATA LOCAL INFILE` and validation SQL. It writes no database data itself and never edits `raw/`. Staged records retain source file, source row, raw article ID, canonical raw JSON, and SHA-256 record hashes; known identity and quality exceptions are routed into `UAT_stg_quarantine` rather than corrected, truncated, merged, or discarded. `verify-bundle` recomputes generated file hashes, row counts, and per-source record-hash chains before or after database execution.
+
+#### Ingest, cascade, and catalogs
+
+##### `ingest_cascade.py` — timed raw-input compile + cascade runner
+Runs the full batch process for a month of intake files. It counts `Inputs/articles/YYYY-MM/*.md`, compiles each raw item into `entities/article/YYYY-MM/`, moves raw files out of `Inputs/`, creates missing outlet/country/topic notes, updates entity Coverage backlinks, rebuilds affected catalogs, runs focused hard-error validation over touched notes, updates the article-domain cascade status table, and writes a timed `ingest_cascade` receipt through `run_logger.py`.
+
+Use it for month batches that are already staged in `Inputs/articles/YYYY-MM/`:
+
+```bash
+python3 scripts/ingest_cascade.py --month 2026-07
+python3 scripts/ingest_cascade.py --input-dir Inputs/articles/2026-07
+python3 scripts/ingest_cascade.py --month 2026-07 --dry-run
+```
+
+Important boundaries: `--dry-run` previews without writing; outlets, countries, and topics can be created from raw metadata; people, organisations, and places are only linked when already present because creating them still requires judgment. The timer covers the full operation through validation and receipt writing, and each real run should report elapsed time, processed article count, and average seconds per article.
+
+##### `patch_coverage.py` — safely update entity Coverage lists and counts
+Handles the mechanical bookkeeping half of linking existing entities to newly-ingested articles. It increments mention/article counts by exactly the number of genuinely new `(entity, article)` pairs and appends matching `- [[article|label]]` lines to `## Coverage`. It does not decide which entities are new, write summaries, or touch related-entity prose.
+
+Input is a JSON list of update objects with `domain`, `id`, `article`, optional `label`, and optional `alias`. Rows are grouped by entity automatically, and the script is idempotent: article links already present in Coverage are skipped, not re-added or re-counted. `outlet` is special-cased: `articleCount` is a pre-computed corpus-wide total and is never incremented.
+
+##### `generate_catalog.py` — rebuild a domain's `catalog.md`
+Regenerates one domain catalog from note frontmatter. `catalog.md` is always fully rewritten, so it must never be hand-edited. `article` and `outlet` use hand-tuned column sets; other domains read their column list from their own `index.md` YAML registry table. Run it after any ingest or entity update that changes a domain folder:
+
+```bash
+python3 scripts/generate_catalog.py people
+```
+
+#### Validation, linting, and safe repair
+
+##### `article_quality.py` — compiled article metadata validation + safe repair
+Validates compiled article notes against the frozen article registry: required fields, types and enums, native `sourceId` agreement with the filename, unique IDs, publication-month placement, and core compiled sections. `--check` is read-only and is a post-compile/pre-cascade or nightly gate. `--fix-safe` repairs only provenance-backed ID/source-type defects confirmed by preserved raw exports or URL-backed crawl provenance; reviewed sentiment corrections must be supplied explicitly with `--sentiment-overrides <json>`. Applied repairs keep body and filename unchanged, append the article audit log, and write a timed lint receipt.
+
+##### `check_links.py` — vault-wide wikilink integrity check
+Scans Markdown notes for `[[wikilink]]` references and reports hard failures and warnings: broken targets, target-embedded nested links, unbalanced links, alias-only links, YAML errors, and unlinked entity mentions in article prose. By default it skips documentation/template noise and always excludes `Inputs/`. It writes a `lint` receipt by default. Exit code is `1` for hard failures such as broken links, target-corrupting nested links, or YAML errors; advisory findings do not fail on their own.
+
+##### `fix_links.py` — lint + mechanical wikilink repair
+Runs the same detection as `check_links.py`, then applies safe repairs: normalize target-embedded nested links and isolated single-bracket closes; rewrite alias-only links to canonical piped links; relocate compiled-but-unmoved article notes from `Inputs/articles/<month>/` into `entities/article/<month>/`; repair known YAML corruption patterns; regenerate malformed Coverage labels; and connect otherwise-orphaned entity notes to explicitly named peer entities in prose. Article prose link backfill is opt-in with `--link-entities`. Anything still ambiguous is reported, never guessed. It writes a `lint` receipt by default and is intended for regular post-ingest or scheduled maintenance.
+
+##### `regenerate_coverage_labels.py` — repair malformed Coverage display labels
+Repairs entity Coverage lines whose display label contains an embedded wikilink. The outer article target is preserved exactly; only the display label is replaced, and the replacement is derived from the cited article's own `## Summary`. Use `--dry-run` to preview and `--log` to append one audit entry per changed entity note. This utility is also called through `fix_links.py`'s Coverage-label pass.
+
+##### `link_orphan_entity_bodies.py` — add conservative peer links to orphan entity notes
+Finds entity notes with no outgoing entity links and scans their body prose for explicit peer-entity names. YAML, Coverage, Source, AI Context, resolver notes, template comments, existing links, and the note's own name are excluded. Only unambiguous multiword names and uppercase acronyms are linked, so it is conservative enough for mechanical repair. Use `--dry-run` to preview, `--log` to append audit entries, and `--report <path>` for the full change list. This utility is also called through `fix_links.py`'s orphan-body pass.
+
+#### Entity review and inference
+
+##### `people_country_inference.py` — propose missing person-country fills
+Builds the review table described in `people_country_inference_procedure.md`. Default mode is read-only and vault-grounded: it scans `entities/people/catalog.md` for blank `country` fields, inspects person notes and bounded Coverage article summaries for direct country/title evidence, and emits CSV or Markdown rows with evidence and recommended action. With `--internet-confirm`, it adds a Wikipedia API confirmation pass and records the external source URL plus fetch timestamp, but still writes only a review table; note edits remain a separate approved follow-up.
+
+#### Operations and run receipts
+
+##### `run_logger.py` — canonical operation receipts
+Creates and validates structured run receipts under `runs/YYYY-MM-DD/`. Use it for raw-to-inputs, ingest, cascade, lint, and query operations where throughput matters. Receipts follow `run-log.v1` and capture `operation`, `startedAt`, `endedAt`, `durationSec`, article/file metrics, and stage metrics. It can be imported as `RunLogger` by scripts or used directly for ad hoc measured runs.
 
 Canonical receipts are named `YYYYMMDDTHHMMSS-<operation>-<short-id>.json` and live directly under the date folder. Non-receipt JSON — patch inputs, orphan-link previews, dry-run outputs, or temporary diagnostics — belongs in `runs/YYYY-MM-DD/artifacts/` so throughput dashboards can safely read only the date-folder receipts.
 
@@ -217,20 +280,12 @@ Run `python3 scripts/run_logger.py sample` to inspect a valid example receipt, o
 
 The caller should be the operation runner, not the person reviewing the vault. Today, `patch_coverage.py`, `check_links.py`, and `fix_links.py` call `RunLogger` themselves. Raw-to-inputs, ingest, and query runs should be wrapped by the script or agent procedure that actually executes those steps, using the import pattern above so the measured time starts before work begins and ends after validation/bookkeeping.
 
-#### `check_links.py` — vault-wide wikilink integrity check
-Scans every Markdown note for `[[wikilink]]` references and reports three classes of problem: **BROKEN** (target matches no filename and no alias — always a bug), **ALIAS-ONLY** (resolves only via a note's `aliases:` frontmatter, which is fragile in this vault — prefer the piped `[[real-filename|Display Name]]` form), and **YAML ERROR** (a note's frontmatter fails to parse, which silently drops every field and is usually the root cause behind the other two). By default it skips documentation and template files (`index.md`, `catalog.md`, `log.md`, templates, `scripts/*.md`, and the decisions log) where placeholder examples are expected to "fail".
+#### Issue radar and signal analysis
 
-Run `python3 scripts/check_links.py` to check the live data notes, `--include-docs` to check everything with no exclusions, or `--domain <name>` to restrict the scan to one domain. It writes a `lint` receipt by default, including notes scanned, article notes scanned, hard failures, and warning counts; add `--no-run-log` only for tests or debugging runs. It exits with code `1` if any broken link or YAML error is found (useful for wiring into a check gate); alias-only warnings never fail the exit code on their own. It requires PyYAML.
+##### `issue_radar.py` — early-warning signal layer
+Scores every candidate issue weekly on six structural signals read directly from the canonical MySQL product tables: `articles`, `article_tags`, and `article_coverage` (or their `UAT_`-prefixed equivalents). Signals are computed strictly from data on or before the evaluation date: acceleration (articles in the last 28 days vs the prior 28), breadth expansion (never-before-seen outlets and countries), institutional attachment (share of recent coverage in government, parliamentary, or policy categories, and its rise), recurrence (distinct coverage waves separated by silent weeks), unfacilitated share, and opinionated share. Flags come out tiered — **HOT**, **WARM**, **WATCH** — and every flag carries plain-language reasons ("27 never-seen outlets", "institutional share rose 0%→91%"), so nothing is a mystery score.
 
-#### `fix_links.py` — lint + auto-fix wikilinks
-Runs the same detection as `check_links.py`, then mechanically repairs the three classes of problem that don't require judgment: (1) rewrites ALIAS-ONLY links to the canonical piped `[[real-filename|Display]]` form, preserving whatever text was displayed before; (2) relocates BROKEN article links whose target is already a fully-compiled note sitting in `Inputs/articles/<month>/` (frontmatter starting `type: source`, a `sourceId` field, a `## Summary` section) into `entities/article/<month>/`, regenerating `catalog.md` and appending one backfilled `log.md` entry per article — repeating to a fixed point, since relocating one article can surface more of the same via its own body links; (3) repairs two known YAML frontmatter corruption patterns (an unquoted `#` starting a flow-list item; a backslash-escaped apostrophe inside a single-quoted scalar), only keeping the fix if it actually makes the frontmatter parse under PyYAML. Anything left — a BROKEN link with no match anywhere, or a YAML error that doesn't match either known pattern — needs a judgment call and is only reported, never guessed at (a missing entity still has to be created via `entity_cascade_procedure.md`).
-
-Run `python3 scripts/fix_links.py` to scan, fix, and report; add `--dry-run` to preview without writing, `--domain <name>` to restrict entity-local passes to one domain (article relocation is always vault-wide), or `--skip-relocate`/`--skip-alias`/`--skip-yaml`/`--skip-coverage-labels`/`--skip-entity-body-links` to disable an individual pass. It writes a `lint` receipt by default, including scan size, changed files, safe fixes applied, and remaining manual-attention counts; add `--no-run-log` only for tests or debugging runs. In addition to structural, alias, YAML, and article-relocation repairs, it regenerates malformed Coverage labels from the cited article's own `## Summary` and connects otherwise-orphaned entity notes to explicitly named peer entities in their prose. Both passes preserve existing targets and log every changed entity. Exit code `1` if anything is left needing manual attention, `0` if clean. Meant to be run regularly — after any ingest/cascade batch, or on a schedule — so link rot never has a chance to accumulate. Requires PyYAML.
-
-#### `issue_radar.py` — early-warning signal layer
-Scores every candidate issue weekly on six structural signals, computed strictly from data on or before the evaluation date (so historical runs are hindsight-free): acceleration (articles in the last 28 days vs the prior 28), breadth expansion (never-before-seen outlets and countries), institutional attachment (share of recent coverage in government, parliamentary, or policy categories, and its rise), recurrence (distinct coverage waves separated by silent weeks), unfacilitated share, and opinionated share. Flags come out tiered — **HOT**, **WARM**, **WATCH** — and every flag carries plain-language reasons ("27 never-seen outlets", "institutional share rose 0%→91%"), so nothing is a mystery score.
-
-Run `python3 scripts/issue_radar.py` for the current state, `--asof YYYY-MM-DD` for a historical reconstruction (this is how the backtest was done), `--issue "<tag>"` for one issue's weekly series, or `--top N --min-tier WARM` to control the report. It is **read-only** — it never writes to the vault; filing its output is the judgment layer's job, per `issue_radar_procedure.md`. Candidates are tag-level in this prototype and deliberately over-generate (~20x); clustering them into real issues is judgment, not counting, which is why it lives in the procedure. Stdlib only, no dependencies.
+UAT is the safe default: run `python3 scripts/issue_radar.py --source uat --defaults-file <read-only-client.cnf>`. Production must be selected explicitly with `--source production` and should use a SELECT-only account or read replica. Add `--asof YYYY-MM-DD` for historical reconstruction, `--issue "<tag>"` for one issue's weekly series, or `--top N --min-tier WARM` to control the report. It is **read-only** — it never writes to MySQL or the vault; filing its output is the judgment layer's job, per `issue_radar_procedure.md`. Candidates are tag-level and deliberately over-generate (~20x); clustering them into real issues is judgment, not counting. The Python code remains stdlib-only and invokes the installed MySQL client for authenticated access. `index/wiki.db` is not used by the radar.
 
 ### Procedure documents
 

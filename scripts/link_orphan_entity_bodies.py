@@ -23,6 +23,12 @@ LINK = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]*)?\]\]")
 
 
 def split_frontmatter(text):
+    """Return parsed frontmatter plus body text without mutating the note.
+
+    Invalid or absent frontmatter is treated as empty metadata because this
+    script only needs display surfaces from well-formed peer notes; malformed
+    files are better surfaced by check_links.py/fix_links.py.
+    """
     if not text.startswith("---"):
         return {}, text
     end = text.find("\n---", 3)
@@ -33,6 +39,7 @@ def split_frontmatter(text):
 
 
 def entity_files():
+    """Map every entity slug in the editable domains to its domain and path."""
     files = {}
     for domain in ENTITY_DOMAINS:
         for path in (ROOT / "entities" / domain).glob("*.md"):
@@ -42,12 +49,19 @@ def entity_files():
 
 
 def is_matchable(surface):
+    """Keep only high-signal names safe enough for mechanical body linking."""
     return (
         len(surface) >= 5 and " " in surface
     ) or (len(surface) >= 3 and surface.isupper())
 
 
 def entity_surfaces(files):
+    """Build an unambiguous surface-name index for peer-entity matching.
+
+    A display name or alias is usable only if it points to exactly one slug.
+    Ambiguous names are deliberately dropped rather than guessed, because this
+    pass writes links into prose.
+    """
     candidates = {}
     for slug, (_domain, path) in files.items():
         data, _body = split_frontmatter(path.read_text(encoding="utf-8"))
@@ -63,6 +77,12 @@ def entity_surfaces(files):
 
 
 def section_spans(body):
+    """Return body ranges where relationship links may be added.
+
+    Coverage, provenance, resolver, and AI-context sections are excluded
+    because they either contain generated backlinks or operational notes rather
+    than narrative evidence of a peer relationship.
+    """
     headers = [(match.group(1).strip(), match.start(), match.end())
                for match in re.finditer(r"^##\s+(.+)$", body, re.MULTILINE)]
     spans = []
@@ -74,6 +94,7 @@ def section_spans(body):
 
 
 def linked_entity_targets(body, files, own_slug):
+    """Return existing outgoing entity links, excluding self-links."""
     targets = set()
     for match in LINK.finditer(body):
         target = match.group(1).strip()
@@ -83,6 +104,12 @@ def linked_entity_targets(body, files, own_slug):
 
 
 def link_orphan_body(body, own_slug, files, surface_map, surface_pattern):
+    """Link explicit peer-entity mentions only when the note is an orphan.
+
+    The function works against masked text so HTML template comments and
+    existing wikilinks cannot trigger new links. Insertions are applied from the
+    end of the body backward to keep earlier offsets stable.
+    """
     if linked_entity_targets(body, files, own_slug):
         return body, []
 
@@ -97,6 +124,9 @@ def link_orphan_body(body, own_slug, files, surface_map, surface_pattern):
             slug = surface_map[surface]
             if slug == own_slug or slug in accepted_slugs:
                 continue
+            if (match.start() > 0 and body[match.start() - 1] == "[") or \
+               (match.end() < len(body) and body[match.end()] == "]"):
+                continue
             if any(match.start() < used_end and used_start < match.end() for used_start, used_end in occupied):
                 continue
             accepted.append((match.start(), match.end(), slug, surface))
@@ -109,6 +139,7 @@ def link_orphan_body(body, own_slug, files, surface_map, surface_pattern):
 
 
 def link_orphans(dry_run=False, log=False, domains=None):
+    """Apply orphan-body linking across selected domains and return changes."""
     files = entity_files()
     surface_map, surface_pattern = entity_surfaces(files)
     active_domains = ENTITY_DOMAINS if domains is None else tuple(
