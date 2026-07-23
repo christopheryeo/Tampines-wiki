@@ -5,7 +5,7 @@ role: Patron
 affiliation: Singapore Council of Women's Organisations
 country: Singapore
 aliases: []
-mentionCount: 2
+mentionCount: 11
 tags: []
 ---
 
@@ -22,3 +22,13 @@ Patron of the Singapore Council of Women's Organisations; presented the 2026 Sin
 Content sourced solely from the citing article(s) above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-05/1119420-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore|1119420-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore]]
+- [[article/2026-05/1119421-vietnamese-president-to-lam-in-singapore-for-four-day-state|1119421-vietnamese-president-to-lam-in-singapore-for-four-day-state]]
+- [[article/2026-05/1119429-vietnam-president-to-lam-to-meet-singapore-leaders-during-st|1119429-vietnam-president-to-lam-to-meet-singapore-leaders-during-st]]
+- [[article/2026-05/1119729-vietnamese-president-to-lam-in-singapore-for-four-day-state|1119729-vietnamese-president-to-lam-in-singapore-for-four-day-state]]
+- [[article/2026-05/1119730-vietnamese-president-to-lam-in-singapore-for-four-day-state|1119730-vietnamese-president-to-lam-in-singapore-for-four-day-state]]
+- [[article/2026-05/1119731-vietnamese-president-to-lam-in-singapore-for-four-day-state|1119731-vietnamese-president-to-lam-in-singapore-for-four-day-state]]
+- [[article/2026-05/1119732-vietnamese-president-to-lam-in-singapore-for-four-day-state|1119732-vietnamese-president-to-lam-in-singapore-for-four-day-state]]
+- [[article/2026-05/1120298-vietnamese-president-to-lam-in-singapore-for-four-day-state|1120298-vietnamese-president-to-lam-in-singapore-for-four-day-state]]
+- [[article/2026-05/1120300-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore|1120300-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore]]
+

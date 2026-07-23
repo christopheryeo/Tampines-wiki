@@ -4,7 +4,7 @@ displayName: Yarmouk University
 orgType: Other
 country: Jordan
 aliases: []
-mentionCount: 3
+mentionCount: 4
 tags: []
 ---
 
@@ -23,3 +23,5 @@ Jordanian university attended by some of the 42 Singaporean students repatriated
 Not #saf-flagged.
 
 Related topic: [[defence]]
+- [[article/2025-11/784608-sg-jordan-strengthen-cooperation-in-islamic-education-community-develo|SG, Jordan Strengthen Cooperation In Islamic Education, Community Development And Humanitarianism (SG, Jordan Perkukuh Kerjasama Dalam Pendidikan Islam, Pembangunan Masyarakat Dan Kemanusiaan)]]
+

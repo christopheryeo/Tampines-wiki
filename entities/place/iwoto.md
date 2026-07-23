@@ -4,7 +4,7 @@ displayName: Iwoto
 placeType: Island
 country: Japan
 aliases: [Iwoto]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Remote Japanese island (formerly Iwo Jima) some 1,200 km south of Tokyo in the P
 
 
 Related topic: [[defence]]
+- [[article/2026-04/1047706-japan-to-strengthen-pacific-ocean-defense-system|Japan To Strengthen Pacific Ocean Defense System]]
+

@@ -3,7 +3,7 @@ countryId: egypt
 displayName: Egypt
 region: Middle East
 iso2: EG
-mentionCount: 10
+mentionCount: 16
 aliases: []
 ---
 
@@ -21,6 +21,12 @@ aliases: []
 Host country for some of the ~40 Singaporean students pursuing higher Islamic studies overseas, confirmed safe amid the March 2026 Middle East conflict.
 
 ## Coverage
+- [[1133651-international-feature-awakened-by-the-iranian-war-the-us-umb|International Feature: Awakened By The Iranian War, The US Umbrella May Become A Depend...]]
+- [[1131288-india-willing-to-share-defense-technology-with-friendly-coun|India Willing To Share Defense Technology With Friendly Countries, Chinese Media Highli...]]
+- [[1131082-indonesia-seven-nations-condemn-israeli-settler-attack-on-al|Indonesia, Seven Nations Condemn Israeli Settler Attack On Al-Aqsa]]
+- [[1158337-trump-s-board-of-peace-planning-pilot-humanitarian-zone-in-s|Trump’s Board Of Peace Planning Pilot ‘Humanitarian Zone’ In South Gaza, Says Official]]
+- [[1158044-gaza-s-future-still-unclear-after-hamas-dissolves-governing|Gaza’s Future Still Unclear After Hamas Dissolves Governing Body]]
+- [[1151973-singapore-expands-hellfire-missile-arsenal-after-us-approves|Singapore Expands Hellfire Missile Arsenal After US Approves $22.3 Million Deal]]
 - [[1037513-pakistan-hosts-regional-powers-for-iran-talks-with|Pakistan hosts regional powers for Iran talks on Hormuz proposals]]
 - [[1037374-pakistan-hosts-saudi-t-rkiye-egypt-for-talks-on-mi|Pakistan hosts Saudi, Türkiye, Egypt for talks on Mideast war]]
 - [[1037336-iran-warns-us-over-ground-attack-as-regional-power|Iran warns US over ground attack as regional powers meet in Pakistan]]

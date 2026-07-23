@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,3 +19,5 @@ Jeffrey Sachs — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-01/908474-trump-s-foreign-policy-called-imperialist-by-experts|Trump's Foreign Policy Called Imperialist By Experts]]
+

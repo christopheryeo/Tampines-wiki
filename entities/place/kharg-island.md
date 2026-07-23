@@ -4,7 +4,7 @@ displayName: Kharg Island
 placeType: Other
 country:
 aliases: []
-mentionCount: 12
+mentionCount: 18
 tags: []
 ---
 
@@ -31,3 +31,10 @@ Kharg Island — place referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1041363-us-deploys-third-aircraft-carrier-to-middle-east-as-iran-war-continues|US Deploys Third Aircraft Carrier To Middle East As Iran War Continues]]
+- [[article/2026-04/1044285-how-to-take-down-a-us-f-35-over-iran-chinese-engineers-prophetic-tutor|How To Take Down A US F-35 Over Iran? Chinese Engineer’S Prophetic Tutorial Goes Viral]]
+- [[article/2026-04/1050508-iran-defiant-on-eve-of-trump-s-ceasefire-deadline|Iran Defiant On Eve Of Trump's Ceasefire Deadline]]
+- [[article/2026-04/1050516-trump-agrees-to-suspend-attack-on-iran-by-2-weeks-tehran-says-peace-ta|Trump Agrees To Suspend Attack On Iran By 2 Weeks; Tehran Says Peace Talks Will Begin On April 10]]
+- [[article/2026-04/1057571-st-online-commentary-us-iran-talks-in-islamabad-yield-no-conclusion-wi|ST Online Commentary: "US-Iran Talks In Islamabad Yield No Conclusion. Will The War Resume?"]]
+- [[article/2026-04/1063761-iran-s-shadow-oil-trade-endures-near-singapore-despite-war|Iran's Shadow Oil Trade Endures Near Singapore Despite War]]
+

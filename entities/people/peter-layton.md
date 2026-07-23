@@ -5,7 +5,7 @@ role: Visiting fellow, Griffith Asia Institute (former RAAF officer)
 affiliation: Griffith Asia Institute
 country: Australia
 aliases: [Peter Layton]
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -20,4 +20,5 @@ Former Royal Australian Air Force officer and Griffith Asia Institute visiting f
 [[raaf|Royal Australian Air Force]] · [[griffith-asia-institute|Griffith Asia Institute]]
 
 ## AI Context
+- [[article/2026-02/986510-former-us-f-35-instructor-charged-with-conspiring-to-train-chinese-mil|Former US F-35 Instructor Charged With Conspiring To Train Chinese Military]]
 

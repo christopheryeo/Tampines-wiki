@@ -4,7 +4,7 @@ displayName: Changi Air Base
 placeType: Camp/Training Ground
 country: Singapore
 aliases: [Changi Air Base]
-mentionCount: 49
+mentionCount: 83
 tags: ['#saf']
 ---
 
@@ -68,3 +68,39 @@ tags: ['#saf']
 Deny-listed entity (military installation) — tagged `#saf`; excluded from any external/demo export per §10. Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-04/1053043-malaysia-armed-forces-chief-in-singapore-for-introductory-visit|Malaysia Armed Forces Chief In Singapore For Introductory Visit]]
+- [[article/2026-04/1053046-malaysian-armed-forces-chief-of-defence-forces-makes-intro-visit-to-si|Malaysian Armed Forces Chief Of Defence Forces Makes Intro Visit To Singapore]]
+- [[article/2026-04/1053047-malaysian-armed-forces-chief-of-defence-forces-makes-intro-visit-to-si|Malaysian Armed Forces Chief Of Defence Forces Makes Intro Visit To Singapore]]
+- [[article/2026-04/1053268-singapore-malaysia-reaffirm-defence-ties-close-cooperation|Singapore, Malaysia Reaffirm Defence Ties, Close Cooperation]]
+- [[article/2026-04/1053269-the-malaysian-armed-forces-chief-visited-singapore-and-reaffirmed-the-|The Malaysian Armed Forces Chief Visited Singapore And Reaffirmed The Strong Defence Relationship Between The Two Countries With Chan Chun Sing (马国武装部队总司令访新 与陈振声重申新马防务关系稳固)]]
+- [[article/2026-04/1053270-singapore-malaysia-reaffirm-defence-ties-close-cooperation|Singapore, Malaysia Reaffirm Defence Ties, Close Cooperation]]
+- [[article/2026-04/1053273-the-visit-of-malaysian-armed-forces-chief-highlights-the-friendly-defe|The Visit Of Malaysian Armed Forces Chief Highlights The Friendly Defence Relations Between Singapore And Malaysia (马国武装部队总司令到访 凸显新马友好防务关系)]]
+- [[article/2026-04/1053708-malaysian-armed-forces-chief-of-defence-forces-makes-intro-visit-to-si|Malaysian Armed Forces Chief Of Defence Forces Makes Intro Visit To Singapore]]
+- [[article/2026-04/1053898-malaysia-singapore-strengthen-defense-ties-focus-on-regional-security-|Malaysia-Singapore Strengthen Defense Ties | Focus On Regional Security & Stability (Malaysia-Singapura Teguh Hubungan Pertahanan | Fokus Keselamatan & Kestabilan Serantau)]]
+- [[article/2026-04/1053956-singapore-malaysia-reaffirm-defence-ties-stress-regional-stability-coo|Singapore, Malaysia Reaffirm Defence Ties, Stress Regional Stability Cooperation]]
+- [[article/2026-04/1054307-singapore-malaysia-strengthen-defence-ties-singapura-malaysia-tegas-hu|Singapore, Malaysia Strengthen Defence Ties (Singapura, Malaysia Tegas Hubungan Pertahanan)]]
+- [[article/2026-04/1055097-s-pore-m-sia-strengthens-defence-relations-s-pura-m-sia-perkukuh-hubun|S'pore, M'sia Strengthens Defence Relations (S'pura, M'sia Perkukuh Hubungan Pertahanan)]]
+- [[article/2026-02/935690-with-dazzling-flares-and-special-effects-the-apache-helicopter-showcas|With Dazzling Flares And "Special Effects," The Apache Helicopter Showcases Its New Charm (绚烂干扰弹加“特技” 阿帕奇首展新魅力)]]
+- [[article/2026-02/938700-while-you-were-sleeping-he-towed-an-f-15sg-to-singapore-airshow-2026|While You Were Sleeping, He Towed An F-15SG To Singapore Airshow 2026]]
+- [[article/2026-02/951381-singapore-defence-minister-personally-greets-indonesian-air-forces-jup|Singapore Defence Minister Personally Greets Indonesian Air Force’s Jupiter Aerobatic Team, Star of Singapore Airshow 2026 (Menhan Singapura Turun Gunung Salami JAT Tim Aerobatik TNI AU Bintang Utama Pameran Singapore Air Show 2026)]]
+- [[article/2026-02/952230-prime-minister-lawrence-wong-singapore-airshow-promoted-professional-e|Prime Minister Lawrence Wong: Singapore Airshow Promoted Professional Exchange And Strengthened The Nation’s Position As An Aviation Hub (黄循财总理：新加坡航空展促专业交流 巩固我国航空枢纽地位)]]
+- [[article/2026-02/952706-prime-minister-wong-hopes-the-airshow-will-deepen-professional-underst|Prime Minister Wong: Hopes The Airshow Will Deepen Professional Understanding Among Countries And Strengthen Singapore’s Position As A Global Aviation Hub (黄总理：盼航空展增进多国专业理解 巩固我国全球航空枢纽地位)]]
+- [[article/2026-02/954839-tni-au-s-jat-aerobatic-team-s-attractive-manoeuvers-and-acrobatics-ama|TNI AU's JAT Aerobatic Team's Attractive Manoeuvers And Acrobatics Amaze Thousands Of Spectators At Singapore Air Show 2026 (Rangkaian Manuver Dan Akrobatik Atraktif Tim Aerobatik JAT TNI AU Sukses Bikin Terpana Ribuan Penonton Padati Singapore Air Show 2026)]]
+- [[article/2026-02/955319-jupiter-aerobatic-team-receives-visit-from-singapore-pm-lawrence-wong-|Jupiter Aerobatic Team Receives Visit From Singapore PM Lawrence Wong At Singapore Airshow 2026 (Jupiter Aerobatic Team Dapat Kunjungan PM Singapura Lawrence Wong Di Singapore Airshow 2026
+)]]
+- [[article/2026-02/959214-singapore-s-f-35b-the-world-s-first-stealth-jet-to-operate-from-land-n|Singapore's F-35B, The World's First Stealth Jet To Operate From Land, Not From An Aircraft Carrier (F-35B Singapura, Jet Stealth Pertama Di Dunia Yang Operasi Dari Darat, Bukan Dari Kapal Induk)]]
+- [[article/2026-01/905034-chan-chun-sing-s-pore-air-bases-being-upgraded-to-deal-with-emerging-d|Chan Chun Sing: S'pore Air Bases Being Upgraded To Deal With Emerging Drone Threats]]
+- [[article/2026-01/933376-while-you-were-sleeping-rsaf-works-the-night-shift-for-singapore-airsh|While You Were Sleeping – RSAF Works The Night Shift For Singapore Airshow 2026]]
+- [[article/2026-01/934844-f-16c-and-apache-make-appearances-at-the-singapore-airshow-putting-on-|F-16C And Apache Make Appearances At The Singapore Airshow, Putting On Spectacular Flight Performances (F-16C与阿帕奇亮相新加坡航空展 上演精彩飞行表演)]]
+- [[article/2026-01/935237-f-16c-and-apache-make-appearance-at-singapore-airshow-stage-thrilling-|F-16C and Apache Make Appearance at Singapore Airshow, Stage Thrilling Aerial Showdown (F-16C和阿帕奇亮相新加坡航空展 上演精彩对决)]]
+- [[article/2025-12/836090-chinese-troops-participating-in-the-china-singapore-cooperation-2025-j|Chinese Troops Participating In The China-Singapore "Cooperation-2025" Joint Army Training Exercise Arrive In Singapore (中新“合作-2025”陆军联合训练中方参训部队抵新)]]
+- [[article/2025-12/836092-chinese-troops-participating-in-the-china-singapore-cooperation-2025-j|Chinese Troops Participating In The China-Singapore "Cooperation-2025" Joint Army Training Exercise Arrive In Singapore. (中新“合作-2025”陆军联合训练中方参训部队抵新)]]
+- [[article/2025-12/836437-chinese-troops-arrive-in-singapore-for-exercise-cooperation-2025-joint|Chinese Troops Arrive In Singapore For Exercise Cooperation-2025 Joint Army Training]]
+- [[article/2025-12/836439-chinese-troops-arrive-in-singapore-for-exercise-cooperation-2025-joint|Chinese Troops Arrive In Singapore For Exercise Cooperation-2025 Joint Army Training]]
+- [[article/2025-12/837343-chinese-troops-arrive-in-singapore-for-chinasingapore-exercise-coopera|Chinese Troops Arrive in Singapore for China–Singapore “Exercise Cooperation-2025” Joint Army Training (中新“合作-2025”陆军联合训练中方参训部队抵新)]]
+- [[article/2025-12/837347-chinese-troops-participating-in-the-china-singapore-cooperation-2025-j|Chinese Troops Participating In The China-Singapore "Cooperation-2025" Joint Army Training Exercise Arrive In Singapore -- International -- People's Daily Online (中新“合作-2025”陆军联合训练中方参训部队抵新--国际--人民网)]]
+- [[article/2025-12/837417-chinese-troops-arrive-in-singapore-for-chinasingapore-exercise-coopera|Chinese Troops Arrive in Singapore for China–Singapore “Exercise Cooperation-2025” Joint Army Training (中新“合作-2025”陆军联合训练中方参训部队抵新)]]
+- [[article/2025-12/837942-chinese-troops-arrive-in-singapore-for-chinasingapore-exercise-coopera|Chinese Troops Arrive in Singapore for China–Singapore “Exercise Cooperation-2025” Joint Army Training (中新“合作-2025”陆军联合训练中方参训部队抵新)]]
+- [[article/2025-12/846075-china-steps-up-military-presence-north-of-australia-with-warships-nort|China Steps Up Military Presence North Of Australia With Warships North Of PNG And Singapore Exercises]]
+- [[article/2025-12/847609-concerns-about-taiwan-regarding-the-china-singapore-cooperation-2025-j|Concerns About Taiwan Regarding The China-Singapore "Cooperation-2025" Joint Military Exercise (中新「合作-2025」聯合演訓對臺之隱憂)]]
+

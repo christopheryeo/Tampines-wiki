@@ -5,7 +5,7 @@ role: Acting Minister-in-charge of Muslim Affairs; SMS for Home Affairs
 affiliation: MHA
 country: Singapore
 aliases: [Faishal Ibrahim, Dr Faishal Ibrahim]
-mentionCount: 29
+mentionCount: 77
 tags: []
 ---
 
@@ -13,6 +13,7 @@ tags: []
 Acting Minister-in-charge of Muslim Affairs and Senior Minister of State for Home Affairs. Said Singapore was "deeply concerned" following the US-Israel strikes on Iran and Tehran's retaliation in late Feb 2026, as [[mfa|MFA]] issued a statement urging all parties back to the negotiating table.
 
 ## Coverage
+- [[1144755-faishal-a-safe-environment-must-be-created-to-assist-individ|Faishal: A Safe Environment Must Be Created To Assist Individuals Struggling On The Ver...]]
 - [[992119-us-israel-bomb-iran-tehran-strikes-civilian-sites|US-Israel bomb Iran, Singapore tightens transport security]]
 - [[992121-us-israel-bomb-iran-tehran-strikes-civilian-sites|US-Israel bomb Iran, Tehran strikes civilian sites]]
 - [[997561-iran-war-can-accentuate-existing-divisions-test-so|Iran war can test Singapore's social cohesion]]
@@ -47,3 +48,51 @@ Acting Minister-in-charge of Muslim Affairs and Senior Minister of State for Hom
 
 ## AI Context
 Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
+- [[article/2026-02/980602-shanmugam-strict-action-against-singaporeans-involved-in-conflicts-abr|Shanmugam: Strict Action Against Singaporeans Involved In Conflicts Abroad (Shanmugam: Tindakan Tegas Terhadap Rakyat S’Pura Sertai Konflik Di Luar Negara)]]
+- [[article/2025-12/863127-faisal-deeply-concerned-about-the-suspicious-items-at-st-joseph-s-chur|Faisal: Deeply Concerned About The Suspicious Items At St. Joseph's Church, Urge People To Transcend Religious Boundaries And Support One Another (费绍尔：对圣若瑟堂可疑物件事件深感担忧 吁人们跨越信仰界限互相照应)]]
+- [[article/2025-12/863404-suspicious-items-at-st-joseph-s-church-upper-bukit-timah-spf-arrives-a|Suspicious Items At St. Joseph's Church, Upper Bukit Timah, SPF Arrives At Scene For Investigation (武吉知马上段 圣若瑟堂现可疑物件 警到场调查)]]
+- [[article/2025-12/863408-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-dr-faishal-ibr|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Dr Faishal Ibrahim Comments On Racial Relations Following St. Joseph's Church Incident)]]
+- [[article/2025-12/863416-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-item-found-not|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Item Found Not Dangerous)]]
+- [[article/2025-12/863418-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-item-found-not|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Item Found Not Dangerous)]]
+- [[article/2025-12/863420-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-item-found-not|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Item Found Not Dangerous)]]
+- [[article/2025-12/863422-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863424-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863440-st-joseph-s-church-volunteer-used-wires-cardboard-rolls-for-fake-impro|St Joseph's Church Volunteer Used Wires, Cardboard Rolls For Fake Improvised Explosive Device: Police]]
+- [[article/2025-12/863569-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-final-update|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Final Update)]]
+- [[article/2025-12/863571-26-year-old-church-volunteer-arrested-after-suspicious-item-found-at-s|26-Year-Old Church Volunteer Arrested After Suspicious Item Found At St Joseph's Church In Bukit Timah]]
+- [[article/2025-12/863575-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863583-st-joseph-s-church-issue-is-worrying-senior-deputy-minister-faisal-ibr|"St. Joseph's Church Issue Is Worrying": Senior Deputy Minister Faisal Ibrahim ("செயிண்ட் ஜோசப் தேவாலய விவகாரம் கவலையளிக்கிறது": மூத்த துணையமைச்சர் ஃபைஷல் இப்ராஹிம்)]]
+- [[article/2025-12/863584-man-arrested-under-anti-terrorism-laws-after-suspicious-item-found-in-|Man Arrested Under Anti-Terrorism Laws After Suspicious Item Found In St Joseph’S Church In Bukit Timah]]
+- [[article/2025-12/863824-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863828-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863830-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-final-update|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Final Update)]]
+- [[article/2025-12/863834-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-final-update|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Final Update)]]
+- [[article/2025-12/863838-david-neo-multiracial-community-is-singapore-s-valuable-asset-david-ne|David Neo: Multiracial Community Is Singapore's Valuable Asset (David Neo: Masyarakat Berbilang Kaum Aset Berharga S’Pura)]]
+- [[article/2025-12/863842-man-arrested-under-anti-terrorism-laws-after-suspicious-item-found-in-|Man Arrested Under Anti-Terrorism Laws After Suspicious Item Found In St Joseph’S Church In Singapore's Bukit Timah]]
+- [[article/2025-12/863844-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-final-update|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Final Update)]]
+- [[article/2025-12/863846-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-final-update|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Final Update)]]
+- [[article/2025-12/863848-man-arrested-after-suspicious-items-found-at-st-joseph-s-church-in-buk|Man Arrested After Suspicious Items Found At St Joseph's Church In Bukit Timah (Lelaki Diberkas Susulan Barang Mencurigakan Ditemui Di Gereja St Joseph Di Bukit Timah)]]
+- [[article/2025-12/863855-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-final-update|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Final Update)]]
+- [[article/2025-12/863859-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863863-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863867-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-ministers-comm|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Ministers' Comments)]]
+- [[article/2025-12/863873-unity-must-be-strengthened-in-a-threatening-environment-dr-faishal|Unity Must Be Strengthened In A Threatening Environment: Dr. Faishal (அச்சுறுத்தலான சூழலில் ஒற்றுமையை வலுப்படுத்தவேண்டும்: டாக்டர் ‌ஃபை‌‌‌ஷால்)]]
+- [[article/2025-12/864083-the-case-of-suspicious-items-at-st-joseph-s-church-has-taken-a-dramati|The Case Of Suspicious Items At St. Joseph's Church Has Taken A Dramatic Turn; The Male Volunteer Who Initially Discovered The Items Has Been Arrested And Is Assisting In The Investigation. (圣若瑟堂可疑物品案峰回路转 最初发现物品男义工被捕协查)]]
+- [[article/2025-12/864107-church-volunteer-arrested-in-singapore-after-allegedly-making-false-te|Church Volunteer Arrested In Singapore After Allegedly Making False Terrorist Threats (Relawan Gereja Di Singapura Ditangkap Polisi Setelah Diduga Membuat Ancaman Teroris Palsu)]]
+- [[article/2025-12/864258-david-neo-multiracial-community-is-singapore-s-valuable-asset-david-ne|David Neo: Multiracial Community Is Singapore's Valuable Asset (David Neo: Masyarakat Berbilang Kaum Aset Berharga S’Pura)]]
+- [[article/2025-12/864262-man-held-under-anti-terror-laws-after-suspicious-item-found-at-st-jose|Man Held Under Anti-Terror Laws After Suspicious Item Found At St Joseph’s Church]]
+- [[article/2025-12/864264-suspicious-object-found-at-st-joseph-s-church-a-male-volunteer-arreste|Suspicious Object Found At St Joseph's Church, A Male Volunteer Arrested To Assist In Investigation, The Object Was Confirmed To Contain No Explosives  (圣若瑟堂发现可疑物 男义工被捕助查, 物品经证实不含爆炸物成分)]]
+- [[article/2025-12/864266-man-arrested-after-suspicious-items-found-at-st-joseph-s-church-in-buk|Man Arrested After Suspicious Items Found At St Joseph's Church In Bukit Timah (Lelaki Diberkas Susulan Barang Mencurigakan Ditemui Di Gereja St Joseph Di Bukit Timah)]]
+- [[article/2025-12/864272-dr-faishal-ibrahim-regarding-the-st-joseph-church-incident-we-must-str|Dr Faishal Ibrahim Regarding The St. Joseph Church Incident; We Must Strengthen Our Unity In A Threat Scenario (செயின்ட் ஜோசஃப் தேவாலய சம்பவம் குறித்து டாக்டர் ஃபைஷால் இப்ராஹிம்; அச்சுறுத்தலான சூழலில் நமது ஒற்றுமையை வலுப்படுத்தவேண்டும்)]]
+- [[article/2025-12/864704-man-arrested-after-suspicious-item-found-at-church|Man Arrested After Suspicious Item Found At Church]]
+- [[article/2025-11/780316-singapore-donates-prosthetic-limbs-to-jordan-to-help-palestinian-amput|Singapore Donates Prosthetic Limbs To Jordan To Help Palestinian Amputees In Gaza (新加坡向约旦捐赠义肢 助加沙巴勒斯坦截肢者)]]
+- [[article/2025-11/780498-spore-donates-250-000-worth-of-prosthetic-products|S’pore Donates $250,000 Worth Of Prosthetic Products]]
+- [[article/2025-11/780500-singapore-donates-prosthetic-limbs-to-jordan-to-help-palestinian-amput|Singapore Donates Prosthetic Limbs To Jordan To Help Palestinian Amputees From Gaza (新加坡向约旦捐赠义肢 助加沙巴勒斯坦截肢者)]]
+- [[article/2025-11/780502-prosthetic-arms-legs-for-palestinians-who-lost-thier-limbs|Prosthetic Arms, Legs For Palestinians Who Lost Thier Limbs (உடல் உறுப்பு இழந்த பாலஸ்தீனர்களுக்குச் செயற்கை கை, கால்)]]
+- [[article/2025-11/780544-singapore-donates-250-000-worth-of-prosthetic-products-to-palestinian-|Singapore Donates $250,000 Worth Of Prosthetic Products To Palestinian Amputees]]
+- [[article/2025-11/784608-sg-jordan-strengthen-cooperation-in-islamic-education-community-develo|SG, Jordan Strengthen Cooperation In Islamic Education, Community Development And Humanitarianism (SG, Jordan Perkukuh Kerjasama Dalam Pendidikan Islam, Pembangunan Masyarakat Dan Kemanusiaan)]]
+- [[article/2025-11/814128-singapore-is-tough-on-divisive-foreign-preachers-says-minister-singapu|Singapore Is Tough On Divisive Foreign Preachers, Says Minister (Singapura Tegas Terhadap Pendakwah Asing Memecahbelahkan, Kata Menteri)]]
+- [[article/2025-11/814130-singapore-wont-tolerate-divisive-foreign-preachers-says-minister|Singapore Won’t Tolerate Divisive Foreign Preachers, Says Minister]]
+- [[article/2025-11/816392-singapore-minister-josephine-teo-visits-1-3-singapore-scans-400-000-we|[Singapore Minister Josephine Teo Visits 1/3] Singapore Scans 400,000 Websites Daily To Combat Online Fraud, Using Technology To Protect Victims. (【新国部长杨莉明访问1/3】狮城每日扫描40万网站打击网诈　用科技保护受害者)]]
+- [[article/2025-11/816649-2025-injects-reforms-in-efforts-to-strengthen-the-malay-muslim-communi|2025 Injects Reforms In Efforts To Strengthen The Malay/Muslim Community (2025 Suntik Pembaharuan Dalam Usaha Memperkukuh Masyarakat Melayu/Islam)]]
+

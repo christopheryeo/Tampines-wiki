@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,3 +19,5 @@ Martin Pfister — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1041733-switzerland-says-cancelling-u-s-patriot-missile-system-order-an-option|Switzerland Says Cancelling U.S. Patriot Missile System Order An Option]]
+

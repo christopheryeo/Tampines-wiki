@@ -4,7 +4,7 @@ displayName: Sar-El Volunteer Corps
 orgType: Other
 country: Israel
 aliases: [Sar-El, Sar-El Volunteer Corps]
-mentionCount: 2
+mentionCount: 8
 tags: []
 ---
 
@@ -22,3 +22,10 @@ Israeli volunteer organisation. Two Singaporeans (a father and son, unnamed) vol
 Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-04/1040716-singapore-takes-no-action-against-two-citizens-reportedly-joining-isra|Singapore Takes No Action Against Two Citizens Reportedly Joining Israeli Army (Singapura Tak Ambil Tindakan Dua Warganya Disebut Gabung Tentara Israel)]]
+- [[article/2026-04/1051235-government-refuses-to-reveal-extensive-list-of-foreign-organisations-p|Government Refuses To Reveal Extensive List Of Foreign Organisations Posing Security Threats (Pemerintah Enggan Dedah Senarai Luas Organisasi Asing Ancam Keselamatan)]]
+- [[article/2026-04/1051239-government-will-not-reveal-extensive-list-of-foreign-bodies-threatenin|Government Will Not Reveal Extensive List Of Foreign Bodies Threatening Singapore's Security (Pemerintah Tidak Akan Dedah Senarai Luas Badan Asing Ancam Keselamatan S’pura)]]
+- [[article/2026-04/1051448-list-of-foreign-companies-that-pose-a-threat-to-national-security-will|List Of Foreign Companies That Pose A Threat To National Security Will Not Be Published: Sim Ann (தேசியப் பாதுகாப்புக்கு மிரட்டல் விடுக்கும் வெளிநாட்டு நிறுவனங்களின் பட்டியல் வெளியிடப்படாது: சிம் ஆன்)]]
+- [[article/2026-04/1051864-government-will-not-reveal-extensive-list-of-foreign-bodies-threatenin|Government Will Not Reveal Extensive List Of Foreign Bodies Threatening S'pore's Security (Pemerintah Tidak Akan Dedah Senarai Luas Badan Asing Ancam Keselamatan S'pura)]]
+- [[article/2026-04/1051865-list-of-foreign-companies-that-pose-a-threat-to-national-security-will|List Of Foreign Companies That Pose A Threat To National Security Will Not Be Published: Sim Ann (தேசியப் பாதுகாப்புக்கு மிரட்டல் விடுக்கும் வெளிநாட்டு நிறுவனங்களின் பட்டியல் வெளியிடப்படாது: சிம் ஆன்)]]
+

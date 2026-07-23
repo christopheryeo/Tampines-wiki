@@ -5,7 +5,7 @@ role: Reporter
 affiliation: CNA938
 country: Singapore
 aliases: [Aslam Shah]
-mentionCount: 4
+mentionCount: 8
 tags: []
 ---
 
@@ -22,4 +22,8 @@ CNA938 reporter who covered the behind-the-scenes feature on the RSAF A330 MRTT 
 [[cna938|CNA938]]
 
 ## AI Context
+- [[article/2026-04/1043603-saf-eod-team-disposed-250kg-wwii-bomb-relic-at-changi-east|SAF EOD Team Disposed 250kg WWII Bomb Relic At Changi East]]
+- [[article/2026-04/1043974-saf-eod-team-disposed-250kg-wwii-bomb-relic-at-changi-east|SAF EOD Team Disposed 250kg WWII Bomb Relic At Changi East]]
+- [[article/2026-04/1043983-saf-eod-team-disposed-250kg-wwii-bomb-relic-at-changi-east|SAF EOD Team Disposed 250kg WWII Bomb Relic At Changi East]]
+- [[article/2026-04/1043984-saf-eod-team-disposed-250kg-wwii-bomb-relic-at-changi-east|SAF EOD Team Disposed 250kg WWII Bomb Relic At Changi East]]
 

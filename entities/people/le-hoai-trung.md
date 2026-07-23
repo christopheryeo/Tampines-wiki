@@ -3,9 +3,9 @@ personId: le-hoai-trung
 displayName: Le Hoai Trung
 role:
 affiliation:
-country:
+country: Vietnam
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -13,6 +13,7 @@ tags: []
 Le Hoai Trung — person referenced in March 2026 general-news coverage.
 
 ## Coverage
+- [[1129317-top-leader-s-trip-to-thailand-singapore-philippines-particip|Top Leader's Trip To Thailand, Singapore, Philippines, Participation In Shangri-La Dial...]]
 - [[1017471-during-the-china-vietnam-strategic-dialogue-china|Lianhe Zaobao reported China and Vietnam held the first ministerial-level '3+3' strateg...]]
 
 ## Related Entities

@@ -5,7 +5,7 @@ role: Foreign Minister
 affiliation: Egyptian Foreign Ministry
 country: Egypt
 aliases: [Badr Abdelatty]
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -19,4 +19,6 @@ Egypt's foreign minister, who arrived in Islamabad for four-way talks on the Mid
 [[egypt|Egypt]]
 
 ## AI Context
+- [[article/2026-01/904320-gaza-truce-plan-entering-phase-two-as-governance-body-formed|Gaza Truce Plan Entering Phase Two As Governance Body Formed]]
+- [[article/2026-01/904322-gaza-truce-plan-entering-phase-two-as-governance-body-formed-us-says|Gaza Truce Plan Entering Phase Two As Governance Body Formed, US Says]]
 

@@ -5,7 +5,7 @@ role: Chief Executive Officer
 affiliation: TKMS (thyssenkrupp Marine Systems)
 country: Germany
 aliases: []
-mentionCount: 4
+mentionCount: 5
 tags: ['#saf']
 ---
 
@@ -24,3 +24,5 @@ CEO of TKMS; signed the 26 Mar 2026 MoU with ST Engineering to explore a joint s
 Deny-listed entity — tagged `#saf`; excluded from any external/demo export per §10. Content sourced solely from the citing article(s) above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-02/959791-submarine-maker-tkms-hits-record-22-billion-order-backlog-raises-sales|Submarine Maker TKMS Hits Record $22 Billion Order Backlog, Raises Sales Outlook]]
+

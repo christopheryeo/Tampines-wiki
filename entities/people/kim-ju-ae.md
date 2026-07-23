@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -20,3 +20,6 @@ Kim Ju Ae — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1067968-north-korea-again-tests-cluster-munitions-in-a-launch-observed-by-kim-|North Korea Again Tests Cluster Munitions In A Launch Observed By Kim And His Daughter]]
+- [[article/2026-02/965835-north-korea-s-kim-to-tout-power-and-military-gains-at-party-congress|North Korea's Kim To Tout Power And Military Gains At Party Congress]]
+

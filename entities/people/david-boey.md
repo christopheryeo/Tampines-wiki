@@ -5,7 +5,7 @@ role: Former defence journalist; former member, MINDEF Advisory Council on Commu
 affiliation: 
 country: Singapore
 aliases: []
-mentionCount: 1
+mentionCount: 4
 tags: ['#saf']
 ---
 
@@ -21,3 +21,7 @@ Former defence journalist and former member of MINDEF's Advisory Council on Comm
 Deny-listed entity — tagged `#saf`; excluded from any external/demo export per §10. Content sourced solely from the citing article(s) above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-04/1077846-defence-experts-warn-of-fitness-tracker-risks-in-singapore-military-ba|Defence Experts Warn Of Fitness Tracker Risks In Singapore Military Bases Amid Global Strava Breaches]]
+- [[article/2026-04/1078186-singapores-mindef-reviews-security-amid-risks-posed-by-fitness-tracker|Singapore’s MINDEF Reviews Security Amid Risks Posed By Fitness Trackers In Military Bases]]
+- [[article/2026-04/1079325-defence-experts-warn-of-fitness-tracker-risks-in-singapore-military-ba|Defence Experts Warn Of Fitness Tracker Risks In Singapore Military Bases Amid Global Strava Breaches]]
+

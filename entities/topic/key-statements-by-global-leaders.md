@@ -3,7 +3,7 @@ topicId: key-statements-by-global-leaders
 displayName: Key Statements by Global Leaders
 category: Regional News
 aliases: []
-articleCount: 4
+articleCount: 5
 ---
 
 ## Definition
@@ -16,4 +16,5 @@ Coverage of notable statements and announcements by global political and defence
 - [[1037641-netanyahu-orders-expansion-of-security-buffer-zone|Netanyahu orders expansion of security buffer zone in southern Lebanon]]
 
 ## Notes
+- [[article/2026-04/1071002-military-planners-to-discuss-hormuz-reopening-in-london|Military Planners To Discuss Hormuz Reopening In London]]
 

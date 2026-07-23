@@ -1,0 +1,113 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: Foreign Affairs
+aliases:
+  - Foreign Affairs
+owner: Alex
+created: 2026-07-18T02:12:50
+last_updated: 2026-07-18T13:17:41
+category: "Imported article topic"
+articleCount: 92
+tags:
+  - "#topic"
+---
+
+# Foreign Affairs
+
+## Coverage
+- [[article/2026-05/1085514-cambodia-voices-concern-over-thailand-s-possible-termination|1085514-cambodia-voices-concern-over-thailand-s-possible-termination]]
+- [[article/2026-05/1090482-hormuz-strait-areas-of-cooperation-discussed-in-vivian-balak|1090482-hormuz-strait-areas-of-cooperation-discussed-in-vivian-balak]]
+- [[article/2026-05/1090612-vivian-s-visit-to-four-middle-eastern-countries-touches-on-t|1090612-vivian-s-visit-to-four-middle-eastern-countries-touches-on-t]]
+- [[article/2026-05/1090614-vivian-balakrishnan-stresses-importance-of-free-transit-thro|1090614-vivian-balakrishnan-stresses-importance-of-free-transit-thro]]
+- [[article/2026-05/1090945-discussion-on-cooperation-during-minister-vivian-s-middle-ea|1090945-discussion-on-cooperation-during-minister-vivian-s-middle-ea]]
+- [[article/2026-05/1090955-strait-of-hormuz-areas-of-cooperation-discussed-in-vivian-ba|1090955-strait-of-hormuz-areas-of-cooperation-discussed-in-vivian-ba]]
+- [[article/2026-05/1091385-strait-of-hormuz-among-topics-discussed-in-vivian-s-visit-to|1091385-strait-of-hormuz-among-topics-discussed-in-vivian-s-visit-to]]
+- [[article/2026-05/1091387-vivian-visits-middle-east-discuss-strait-of-hormuz-issue-viv|1091387-vivian-visits-middle-east-discuss-strait-of-hormuz-issue-viv]]
+- [[article/2026-05/1091388-foreign-affairs-minister-vivian-travels-to-middle-eastern-co|1091388-foreign-affairs-minister-vivian-travels-to-middle-eastern-co]]
+- [[article/2026-05/1098348-singapore-indonesia-seek-for-stronger-sijori-partnership-wit|1098348-singapore-indonesia-seek-for-stronger-sijori-partnership-wit]]
+- [[article/2026-05/1099374-deep-appreciation-for-indonesian-search-rescue-efforts-on-mt|1099374-deep-appreciation-for-indonesian-search-rescue-efforts-on-mt]]
+- [[article/2026-05/1113747-journey-of-9-indonesian-citizens-from-global-sumud-flotilla|1113747-journey-of-9-indonesian-citizens-from-global-sumud-flotilla]]
+- [[article/2026-05/1115024-foreign-affairs-commentary-japan-s-point-of-no-return|1115024-foreign-affairs-commentary-japan-s-point-of-no-return]]
+- [[article/2026-05/1115747-vietnam-singapore-strengthen-political-trust-and-strategic-c|1115747-vietnam-singapore-strengthen-political-trust-and-strategic-c]]
+- [[article/2026-05/1120049-north-korea-not-ready-to-talk-to-us-or-south-korea-singapore|1120049-north-korea-not-ready-to-talk-to-us-or-south-korea-singapore]]
+- [[article/2026-05/1122718-deputy-prime-minister-meets-singapore-foreign-minister-on-th|1122718-deputy-prime-minister-meets-singapore-foreign-minister-on-th]]
+- [[article/2026-04/1049941-ministerial-committee-examines-various-issues-ready-to-face-global-cri|Ministerial Committee Examines Various Issues, Ready To Face Global Crisis (Jawatankuasa Peringkat Menteri Teliti Pelbagai Isu, Siap Siaga Hadapi Krisis Sejagat)]]
+- [[article/2026-04/1052598-why-malaysia-philippines-thailand-negotiated-for-safe-passage-through-|Why Malaysia, Philippines, Thailand Negotiated For Safe Passage Through Strait Of Hormuz, But Singapore Won’T]]
+- [[article/2026-04/1060225-china-dismisses-vice-minister-of-foreign-affairs-sun-weidong|China Dismisses Vice Minister Of Foreign Affairs Sun Weidong]]
+- [[article/2026-04/1070260-amid-geopolitical-and-tech-shifts-countries-must-rethink-national-secu|Amid Geopolitical And Tech Shifts, Countries Must Rethink National Security: Vivian Balakrishnan]]
+- [[article/2026-04/1071981-talks-for-pertamina-ship-release-becoming-more-complex-minister|Talks For Pertamina Ship Release Becoming More Complex: Minister]]
+- [[article/2026-04/1078185-tung-chen-yuan-singapore-rejected-paying-strait-of-hormuz-transit-fees|Tung Chen-Yuan: Singapore Rejected Paying Strait Of Hormuz Transit Fees, Small-State Credibility Is The Foundation Of Security (童振源：新加坡拒付荷莫茲海峽通行費 小國信譽是安全基石)]]
+- [[article/2026-02/954463-ukraine-urges-acceleration-of-peace-talks-says-only-trump-can-broker-d|Ukraine Urges Acceleration Of Peace Talks, Says Only Trump Can Broker Deal]]
+- [[article/2026-02/961326-philippines-urges-china-to-keep-tone-calm-as-rhetoric-heats-up|Philippines Urges China To Keep Tone 'Calm' As Rhetoric Heats Up]]
+- [[article/2026-02/963299-corporate-tax-drives-15-1-billion-surplus-last-financial-year-more-tha|Corporate Tax Drives $15.1 Billion Surplus Last Financial Year, More Than Doubling Year On Year (公司税推动下 上财年盈余151亿元 增幅逾一倍)]]
+- [[article/2026-02/963619-driven-by-corporate-tax-singapore-s-surplus-surged-to-15-1-billion-yua|Driven By Corporate Tax, Singapore's Surplus Surged To 15.1 Billion Yuan In The Last Fiscal Year (公司税推动下 我国上财年盈余大增至151亿元)]]
+- [[article/2026-02/979574-palestinian-authority-minister-of-finance-and-planning-in-singapore-fo|Palestinian Authority Minister Of Finance And Planning In Singapore For Four-Day Official Visit]]
+- [[article/2026-02/979580-palestinian-authority-minister-visits-spore-menteri-penguasa-palestin-|Palestinian Authority Minister Visits S’pore (Menteri Penguasa Palestin Lawat S’pura)]]
+- [[article/2026-02/979590-palestinian-authority-minister-dr-estephan-salameh-makes-4-day-officia|Palestinian Authority Minister, Dr Estephan Salameh, Makes 4-Day Official Visit To SG (Menteri Penguasa Palestin, Dr Estephan Salameh, Lakukan Lawatan Rasmi 4 Hari Ke SG)]]
+- [[article/2026-02/986720-singapore-must-retain-ability-to-say-no-even-if-it-means-paying-a-pric|Singapore Must Retain Ability To Say 'No' Even If It Means Paying A Price: Vivian Balakrishnan]]
+- [[article/2026-02/986722-s-pore-must-be-able-to-say-no-to-protect-long-term-national-interests-|S'pore Must Be Able To Say 'No' To Protect Long-Term National Interests, Even If It Doesn't Align With Others: Vivian Balakrishnan]]
+- [[article/2026-02/986726-singapore-must-chart-own-path-in-a-more-dangerous-world-vivian|Singapore Must 'Chart Own Path' In A 'More Dangerous World': Vivian]]
+- [[article/2026-02/986963-sg-akan-perkukuh-perkongsian-dengan-kuasa-pertengahan-blok-serantau-di|SG Akan Perkukuh Perkongsian Dengan Kuasa Pertengahan, Blok Serantau Di Tengah 'Rekahan Plat Tektonik Geostrategik']]
+- [[article/2026-02/986989-spore-cannot-let-foreign-actors-exploit-differences-public-must-be-vig|S’Pore Cannot Let Foreign Actors Exploit Differences, Public Must Be Vigilant And Discerning: MFA]]
+- [[article/2026-02/987031-spore-cannot-let-foreign-actors-exploit-differences-public-must-be-vig|S’Pore Cannot Let Foreign Actors Exploit Differences, Public Must Be Vigilant And Discerning: MFA]]
+- [[article/2026-02/987033-spore-cannot-let-foreign-actors-exploit-differences-public-must-be-vig|S’Pore Cannot Let Foreign Actors Exploit Differences, Public Must Be Vigilant And Discerning: MFA]]
+- [[article/2026-02/987035-spore-cannot-let-foreign-actors-exploit-differences-public-must-be-vig|S’Pore Cannot Let Foreign Actors Exploit Differences, Public Must Be Vigilant And Discerning: MFA]]
+- [[article/2026-02/987037-spore-cannot-let-foreign-actors-exploit-differences-public-must-be-vig|S’Pore Cannot Let Foreign Actors Exploit Differences, Public Must Be Vigilant And Discerning: MFA]]
+- [[article/2026-02/987087-sg-must-hold-on-to-the-ability-to-say-no-even-if-it-means-facing-the-c|SG Must Hold On To The Ability To Say 'No' Even If It Means Facing The Consequences (SG Mesti Berpegang Pada Keupayaan Untuk Berkata 'Tidak' Meski Perlu Hadapi Akibatnya)]]
+- [[article/2026-02/988032-refusing-to-be-a-vassal-of-powerful-nations-singapore-s-foreign-minist|Refusing To Be A Vassal Of Powerful Nations! Singapore's Foreign Minister: The Lion City Will Never Take Sides And Will Uphold The Principle Of "Daring To Say No." (拒當強權附庸！新加坡外長：獅城絕不選邊站，堅守「敢於說不」原則)]]
+- [[article/2026-02/989048-singapore-needs-to-maintain-the-ability-to-refuse|Singapore Needs To Maintain The Ability To Refuse (மறுக்கும் ஆற்றலைச் சிங்கப்பூர் கட்டிக்காப்பது அவசியம்)]]
+- [[article/2026-02/989056-spore-cannot-let-foreign-actors-exploit-differences-public-must-be-vig|S’pore Cannot Let Foreign Actors Exploit Differences; Public Must Be Vigilant: MFA]]
+- [[article/2026-02/989062-republic-still-assessing-us-invitation-to-join-board-of-peace|Republic Still Assessing US Invitation To Join Board Of Peace]]
+- [[article/2026-02/989962-pm-anthony-albanese-condemns-iranian-regime-backs-us-action-amid-middl|PM Anthony Albanese Condemns Iranian Regime, Backs US Action Amid Middle East Escalation]]
+- [[article/2026-01/890677-china-reportedly-hacked-the-email-systems-of-staff-members-of-several-|China Reportedly Hacked The Email Systems Of Staff Members Of Several Key Committees Of The U.S. House Of Representatives. (中国据报入侵美众院多个重要委员会工作人员电邮系统)]]
+- [[article/2026-01/902198-foreign-affairs-commentary-why-putin-still-prefers-war|Foreign Affairs Commentary: "Why Putin Still Prefers War"]]
+- [[article/2026-01/911599-taiwan-s-new-military-procurement-list-includes-the-purchase-of-200-00|Taiwan's New Military Procurement List Includes The Purchase Of 200,000 Drones And 1,000 Unmanned Surface Vessels. (台湾新军购清单 包括采购20万架无人机和千艘无人艇)]]
+- [[article/2026-01/924837-philippines-lodges-firm-representations-to-chinese-embassy-over-escala|Philippines Lodges 'Firm Representations' To Chinese Embassy Over 'Escalating' War Of Words On South China Sea]]
+- [[article/2026-01/924839-philippines-lodges-firm-representations-to-chinese-embassy-over-escala|Philippines Lodges 'Firm Representations' To Chinese Embassy Over 'Escalating' War Of Words On South China Sea]]
+- [[article/2026-01/925083-philippines-tells-beijing-it-is-alarmed-over-escalating-verbal-tussle-|Philippines Tells Beijing It Is Alarmed Over Escalating Verbal Tussle In South China Sea Dispute]]
+- [[article/2026-01/934850-the-unsettling-implications-of-xis-military-purge|The Unsettling Implications Of Xi’s Military Purge]]
+- [[article/2025-12/817198-knesset-panel-to-begin-discussing-bismuths-draft-exemption-bill-this-w|Knesset Panel To Begin Discussing Bismuth’S Draft Exemption Bill This Week]]
+- [[article/2025-12/819947-over-60-heads-of-local-authorities-haredi-conscription-bill-presents-d|Over 60 Heads Of Local Authorities: Haredi Conscription Bill Presents ‘Danger’ To Society]]
+- [[article/2025-12/825454-ultra-orthodox-leaders-push-back-after-netanyahu-cancels-draft-law-add|Ultra-Orthodox Leaders Push Back After Netanyahu Cancels Draft Law Address]]
+- [[article/2025-12/828188-germany-allocates-200-million-for-ukraine-s-new-arms-package-jerman-si|Germany Allocates $200 Million For Ukraine's New Arms Package (Jerman Siapkan 200 Juta Dolar AS Untuk Paket Senjata Baru Ukraina)]]
+- [[article/2025-12/834140-what-if-singapore-and-malaysia-had-not-separated|What If Singapore and Malaysia Had Not Separated… (如果新马不分家……)]]
+- [[article/2025-12/834188-commentary-the-story-of-how-singapore-separated-from-malaysia-in-1965-|Commentary: The Story Of How Singapore Separated From Malaysia In 1965 Is One Of Many Intriguing Ifs]]
+- [[article/2025-12/843708-a-specialist-officer-takes-on-a-new-responsibility-with-dreams|A Specialist Officer Takes On A New Responsibility With Dreams (கனவுகளுடன் புதிய பொறுப்பை ஏற்ற சிறப்புப் படை அதிகாரி)]]
+- [[article/2025-12/847348-gan-kim-yong-will-pay-an-official-visit-to-chongqing-china-next-monday|Gan Kim Yong Will Pay An Official Visit To Chongqing, China Next Monday (颜金勇下周一将赴中国重庆展开正式访问)]]
+- [[article/2025-12/863416-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-item-found-not|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Item Found Not Dangerous)]]
+- [[article/2025-12/863418-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-item-found-not|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Item Found Not Dangerous)]]
+- [[article/2025-12/863420-saf-cbre-dg-supports-spf-in-st-josephs-church-operation-item-found-not|SAF CBRE DG Supports SPF In St Joseph’s Church Operation (Item Found Not Dangerous)]]
+- [[article/2025-12/864276-st-josephs-church-bomb-hoax-how-it-unfolded|St Joseph’s Church Bomb Hoax: How It Unfolded]]
+- [[article/2025-12/864704-man-arrested-after-suspicious-item-found-at-church|Man Arrested After Suspicious Item Found At Church]]
+- [[article/2025-12/866332-a-singaporean-priest-was-assassinated-in-a-church-allegedly-attacked-b|A Singaporean Priest Was Assassinated In A Church Allegedly Attacked By Terrorists! The Perpetrator Cried Foul, Calling The Police Himself. (新加坡神父遇刺教堂遭“恐袭”！贼喊抓贼，嫌犯自己报的警)]]
+- [[article/2025-12/874676-idf-admits-draft-law-does-not-meet-idf-needs|IDF Admits: Draft Law Does Not Meet IDF Needs]]
+- [[article/2025-11/760964-zaqy-mohamad-countries-must-cooperate-to-ensure-maritime-security-and-|Zaqy Mohamad: Countries Must Cooperate To Ensure Maritime Security And Stability (扎吉哈：各国须合作确保海上安全与稳定)]]
+- [[article/2025-11/761469-manama-dialogue-2025-sms-zaqy|Manama Dialogue 2025 (SMS Zaqy)]]
+- [[article/2025-11/762663-vivian-balakrishnan-visits-palestinian-territories-and-israel-for-four|Vivian Balakrishnan Visits Palestinian Territories And Israel For Four Days (维文访问巴勒斯坦地区和以色列四天)]]
+- [[article/2025-11/762665-vivian-balakrishnan-begins-a-four-day-visit-to-palestine-and-israel-to|Vivian Balakrishnan Begins A Four-Day Visit To Palestine And Israel Today. (维文今天起到巴勒斯坦和以色列 进行为期四天访问)]]
+- [[article/2025-11/762667-vivian-balakrishnan-to-make-working-visit-to-palestinian-territories-a|Vivian Balakrishnan To Make Working Visit To Palestinian Territories And Israel Following Ceasefire Agreement]]
+- [[article/2025-11/762671-vivian-balakrishnan-to-make-working-visit-to-palestinian-territories-a|Vivian Balakrishnan To Make Working Visit To Palestinian Territories And Israel Following Ceasefire Agreement (Vivian Balakrishnan Akan Lakukan Lawatan Kerja Ke Wilayah Palestin, Israel Susuli Perjanjian Gencatan Senjata)]]
+- [[article/2025-11/763080-vivian-stresses-importance-of-aid-flow-to-gaza-as-long-as-ceasefire-re|Vivian Stresses Importance Of Aid Flow To Gaza As Long As Ceasefire Remains (Vivian Tekan Kepentingan Salur Bantuan Kepada Gaza Selagi Gencatan Senjata Kekal)]]
+- [[article/2025-11/763092-vivian-balakrishnan-spent-four-days-visiting-the-palestinian-territori|Vivian Balakrishnan Spent Four Days Visiting The Palestinian Territories And Israel To Support Humanitarian Aid In Gaza. (维文访问巴勒斯坦地区和以色列四天 助力加沙人道援助)]]
+- [[article/2025-11/763426-vivian-balakrishnan-spent-four-days-visiting-the-palestinian-territori|Vivian Balakrishnan Spent Four Days Visiting The Palestinian Territories And Israel To Support Humanitarian Aid In Gaza. (维文访问巴勒斯坦地区和以色列四天 助力加沙人道援助)]]
+- [[article/2025-11/763692-anti-terrorism-simulation-exercises|Anti-Terrorism Simulation Exercises (பயங்கரவாதத்திற்கு எதிரான பாவனைப் பயிற்சிகள்)]]
+- [[article/2025-11/763698-vivian-balakrishnan-spent-four-days-visiting-the-palestinian-territori|Vivian Balakrishnan Spent Four Days Visiting The Palestinian Territories And Israel To Support Humanitarian Aid In Gaza (维文工作访问以巴四天 重申我国致力援助加沙)]]
+- [[article/2025-11/763700-vivian-stresses-importance-of-aid-flow-to-gaza-as-long-as-ceasefire-re|Vivian Stresses Importance Of Aid Flow To Gaza As Long As Ceasefire Remains (Vivian Tekan Kepentingan Salur Bantuan Kepada Gaza Selagi Gencatan Senjata Kekal)]]
+- [[article/2025-11/766458-s-pore-donates-s-652-600-to-world-food-programme-to-support-humanitari|S'pore Donates S$652,600 To World Food Programme To Support Humanitarian Aid For Palestinians In Gaza]]
+- [[article/2025-11/767070-suffering-in-gaza-gone-on-far-too-long-says-vivian-balakrishnan-as-sin|Suffering In Gaza 'Gone On Far Too Long', Says Vivian Balakrishnan As Singapore Donates $652K Towards Food Aid]]
+- [[article/2025-11/767310-pm-wong-invites-palestinian-authority-pm-to-officially-visit-singapore|PM Wong Invites Palestinian Authority PM To Officially Visit Singapore (PM Wong Undang PM Penguasa Palestin Ziarah S’Pura Secara Rasmi)]]
+- [[article/2025-11/769686-singapore-cannot-alter-course-of-israel-hamas-war-but-can-help-in-tang|Singapore Cannot Alter Course Of Israel-Hamas War, But Can Help In Tangible Ways: Vivian Balakrishnan]]
+- [[article/2025-11/769879-vivian-singapore-s-aid-to-gaza-is-not-merely-symbolic-vivian-bantuan-s|Vivian: Singapore's Aid To Gaza Is Not Merely Symbolic (Vivian: Bantuan S’Pura Untuk Gaza Bukan Simbolik Semata-Mata)]]
+- [[article/2025-11/769881-vivian-strong-ties-with-palestine-israel-opens-space-for-singapore-to-|Vivian: Strong Ties With Palestine, Israel Opens Space For Singapore To Continue Helping (Vivian: Hubungan Kukuh Dengan Palestin, Israel Buka Ruang S’Pura Terus Membantu)]]
+- [[article/2025-11/770184-explore-collaboration-between-singaporean-youth-and-youth-in-jerusalem|Explore Collaboration Between Singaporean Youth And Youth In Jerusalem, Ramallah To Help Gaza (Teroka Kerjasama Antara Belia S’Pura Dengan Belia Di Baitulmakdis, Ramallah Bantu Gaza)]]
+- [[article/2025-11/770188-singapore-cannot-alter-course-of-israel-hamas-war-but-can-help-in-tang|Singapore Cannot Alter Course Of Israel-Hamas War, But Can Help In Tangible Ways: Vivian Balakrishnan (SG Tidak Boleh Ubah Haluan Perang Israel-Hamas, Tetapi Boleh Bantu Melalui Cara Yang Ketara: Dr Vivian)]]
+- [[article/2025-11/770210-vivian-strong-ties-with-palestine-israel-opens-space-for-singapore-to-|Vivian: Strong Ties With Palestine, Israel Opens Space For Singapore To Continue Helping (Vivian: Hubungan Kukuh Dengan Palestin, Israel Buka Ruang S’Pura Terus Membantu)]]
+- [[article/2025-11/794435-m-sia-to-step-up-south-china-sea-patrols-vows-no-compromise-on-soverei|M'sia To Step Up South China Sea Patrols, Vows No Compromise On Sovereignty]]
+- [[article/2025-11/806374-turkey-egypt-qatar-discuss-second-phase-of-gaza-ceasefire-deal-turkish|Turkey, Egypt, Qatar Discuss Second Phase Of Gaza Ceasefire Deal, Turkish Source Says]]
+- [[article/2025-11/812267-singapore-minister-confirms-ongoing-talks-with-malaysia-on-1962-water-|Singapore Minister Confirms Ongoing Talks With Malaysia On 1962 Water Agreement, Johor River Supply]]
+- [[article/2025-11/813118-discussions-on-1962-water-pact-ongoing-singapore-fm-confirms|Discussions On 1962 Water Pact Ongoing - Singapore FM Confirms]]
+- [[article/2025-11/814898-discussions-on-1962-water-pact-with-malaysia-are-ongoing-confirms-sing|Discussions On 1962 Water Pact With Malaysia Are Ongoing, Confirms Singapore Finance Minister]]
+

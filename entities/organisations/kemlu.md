@@ -4,7 +4,7 @@ displayName: Kemlu (Indonesian Ministry of Foreign Affairs)
 orgType:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -19,3 +19,5 @@ Kemlu (Indonesian Ministry of Foreign Affairs) — organisation referenced in Ma
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2025-11/792350-the-ministry-of-foreign-affairs-supports-the-ratification-of-the-un-re|The Ministry Of Foreign Affairs Supports The Ratification Of The UN Resolution On International Forces In Gaza (Kemlu Dukung Pengesahan Resolusi PBB Soal Pasukan Internasional Di Gaza)]]
+

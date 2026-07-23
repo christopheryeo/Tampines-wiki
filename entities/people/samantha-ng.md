@@ -5,7 +5,7 @@ role: Total Defence Champion & National Education Ambassador; former SAFVC volun
 affiliation: 
 country: Singapore
 aliases: []
-mentionCount: 7
+mentionCount: 8
 tags: ['#saf']
 ---
 
@@ -27,3 +27,5 @@ Samantha Ng, 36 — private-sector defence volunteer of over 10 years, Total Def
 Deny-listed entity — tagged `#saf`; excluded from any external/demo export per §10. Content sourced solely from the citing article(s) above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-02/990226-sms-zaqy-s-speech-enhancing-volunteerism-to-allow-more-segments-of-soc|SMS Zaqy's Speech: Enhancing Volunteerism To Allow More Segments Of Society To Contribute To Defence]]
+

@@ -4,7 +4,7 @@ displayName: Foundation for Defense of Democracies
 orgType:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -21,3 +21,6 @@ Foundation for Defense of Democracies — organisation referenced in March 2026 
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2025-12/859586-how-trump-s-venezuela-embargo-could-put-taiwan-at-risk|How Trump's Venezuela Embargo Could Put Taiwan At Risk]]
+- [[article/2025-12/867273-the-pentagon-and-a-i-giants-have-a-weakness-both-need-chinas-batteries|The Pentagon And A.I. Giants Have A Weakness. Both Need China’s Batteries, Badly]]
+

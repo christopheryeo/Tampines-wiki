@@ -4,7 +4,7 @@ displayName: Dubai International Airport
 placeType: Other
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,3 +18,5 @@ Dubai International Airport — place referenced in March 2026 general-news cove
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1048027-st-commentary-the-gulf-crisis-is-a-warning-singapore-should-heed-its-l|ST Commentary: "The Gulf Crisis Is A Warning. Singapore Should Heed Its Lessons"]]
+

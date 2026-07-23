@@ -4,7 +4,7 @@ displayName: ICA
 orgType:
 country:
 aliases: []
-mentionCount: 28
+mentionCount: 37
 tags: []
 ---
 
@@ -12,6 +12,15 @@ tags: []
 ICA — organisation referenced in March 2026 general-news coverage.
 
 ## Coverage
+- [[1148459-a-singapore-pr-who-returned-to-china-during-the-pandemic-and|A Singapore PR Who Returned To China During The Pandemic And Did Not Serve In The Natio...]]
+- [[1148454-former-singapore-pr-fined-s-9-000-after-remaining-overseas-a|Former Singapore PR Fined S$9,000 After Remaining Overseas And Failing To Register For NS]]
+- [[1147160-a-singaporean-permanent-resident-of-chinese-descent-claimed|A Singaporean Permanent Resident Of Chinese Descent Claimed As Going To China To Study...]]
+- [[1146054-a-former-permanent-resident-who-returned-to-singapore-during|A Former Permanent Resident Who Returned To Singapore During The Peak Of The Pandemic A...]]
+- [[1145891-ndp-2026-ketengah-1-200-peserta-awam-jumlah-terbesar-dalam-s|NDP 2026 ketengah 1,200 peserta awam, jumlah terbesar dalam sedekad]]
+- [[1145792-china-born-former-singapore-pr-fined-s-9-000-after-admitting|China-Born Former Singapore PR Fined S$9,000 After Admitting National Service Default D...]]
+- [[1145765-man-defaulted-on-national-service-loses-pr-status-and-gets-f|Man Defaulted On National Service, Loses PR Status And Gets Fined]]
+- [[1127274-do-singapore-permanent-residents-need-to-serve-in-the-milita|Do Singapore Permanent Residents Need To Serve In The Military? (新加坡PR需要服兵役吗？)]]
+- [[1126917-do-singapore-permanent-residents-need-to-serve-national-serv|Do Singapore Permanent Residents Need To Serve National Service? (新加坡PR需要服兵役吗？)]]
 - [[1004201-singapore-to-deploy-rsaf-aircraft-to-evacuate-sing|Duplicate wire coverage of the same event as Singapore Arranges Two Military Flights To Riyadh.]]
 - [[1004215-mfa-to-deploy-rsaf-aircraft-to-riyadh-saudi-arabia|Duplicate wire coverage of the same event as Singapore Arranges Two Military Flights To Riyadh.]]
 - [[1004454-us-israel-and-iran-war-singapore-to-deploy-rsaf-ai|Duplicate wire coverage of the same event as Singapore Arranges Two Military Flights To Riyadh.]]

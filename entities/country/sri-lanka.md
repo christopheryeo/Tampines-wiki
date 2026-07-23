@@ -3,7 +3,7 @@ countryId: sri-lanka
 displayName: Sri Lanka
 region: South Asia
 iso2: LK
-mentionCount: 50
+mentionCount: 65
 aliases: []
 ---
 
@@ -18,6 +18,21 @@ aliases: []
 Sri Lankan nationals were among the foreign nationals given spare seats on Singapore's [[rsaf|RSAF]] repatriation flight from [[saudi-arabia|Saudi Arabia]] in March 2026.
 
 ## Coverage
+- [[1149617-indonesian-marines-join-rimpac-drills-in-hawaii|Indonesian Marines Join RIMPAC Drills In Hawaii]]
+- [[1148638-nikkei-asian-review-commentary-will-vietnam-s-asia-pivot-pay|Nikkei Asian Review Commentary: "Will Vietnam's Asia Pivot Pay Off?"]]
+- [[1148458-the-2026-rimpac-has-commenced-singaporean-frigates-will-part|The 2026 RIMPAC Has Commenced! Singaporean Frigates Will Participate. (2026环太平洋军演启动！新加坡...]]
+- [[1145682-warships-from-many-nations-arrive-in-hawaii-as-rimpac-exerci|Warships From Many Nations Arrive In Hawaii As RIMPAC Exercise Begins]]
+- [[1140769-fiji-philippines-sri-lanka-enlist-drones-to-strengthen-marit|Fiji, Philippines, Sri Lanka Enlist Drones To Strengthen Maritime Security (Fiji, Phili...]]
+- [[1140768-fiji-philippines-sri-lanka-enlist-drones-to-strengthen-marit|Fiji, Philippines, Sri Lanka Enlist Drones To Strengthen Maritime Security]]
+- [[1131985-st-commentary-japan-charts-the-course-as-the-us-rows-back-on|ST Commentary: "Japan Charts The Course As The US Rows Back On Indo-Pacific"]]
+- [[1131557-st-online-commentary-as-the-us-rows-back-on-indo-pacific-jap|ST Online Commentary: "As The US Rows Back On Indo-Pacific, Japan Steps Up To The Plate"]]
+- [[1131488-the-philippines-has-made-significant-gains-in-secondhand-mil|The Philippines Has Made Significant Gains In Secondhand Military Equipment! Japan Plan...]]
+- [[1131487-the-philippines-has-made-significant-gains-in-secondhand-mil|The Philippines Has Made Significant Gains In Secondhand Military Equipment! Japan Plan...]]
+- [[1128837-preparing-side-by-side|Preparing Side By Side (并肩准备)]]
+- [[1128836-join-hands-and-grow-stronger|Join Hands And Grow Stronger (攜手共進 茁壯強大)]]
+- [[1156254-pals-hailed-as-a-key-action-set-has-attracted-25-countries-t|PALS, Hailed As A “Key Action Set,” Has Attracted 25 Countries To Participate In Cooper...]]
+- [[1156236-pals-attracted-25-countries-to-discuss-cooperation-and-coord|PALS Attracted 25 Countries To Discuss Cooperation And Coordination (PALS 吸引 25 國討論合作與協調)]]
+- [[1155711-pals-critical-gathering-for-action-draws-25-nations-for-coop|PALS, ‘Critical Gathering For Action,’ Draws 25 Nations For Cooperation, Coordination]]
 - [[1013409-assisting-81-singaporeans-and-their-families-to-ev|Lianhe Zaobao Online's fullest account of the second RSAF A330 MRTT repatriation flight...]]
 - [[1013793-iran-allows-two-indian-gas-tankers-through-hormuz|CNA reports Iran allowed two Indian-flagged LPG tankers (Shivalik, escorted by the Indi...]]
 - [[1011287-the-second-evacuation-flight-of-the-air-force-land|coverage]]

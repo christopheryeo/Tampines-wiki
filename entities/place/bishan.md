@@ -4,7 +4,7 @@ displayName: Bishan
 placeType: Neighbourhood
 country: singapore
 aliases: []
-mentionCount: 4
+mentionCount: 7
 tags: []
 ---
 
@@ -24,3 +24,7 @@ Residential town in Singapore; Junction 8 mall there hosted the launch of MHA's 
 Not #saf-flagged.
 
 Related topic: [[defence]]
+- [[article/2026-05/1119420-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore|1119420-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore]]
+- [[article/2026-05/1119739-vietnam-s-president-to-lam-to-make-4-day-state-visit-to-sing|1119739-vietnam-s-president-to-lam-to-make-4-day-state-visit-to-sing]]
+- [[article/2026-05/1120300-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore|1120300-vietnam-s-top-leader-to-lam-to-make-state-visit-to-singapore]]
+

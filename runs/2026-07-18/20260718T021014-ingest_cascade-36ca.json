@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260718T021014-ingest_cascade-36ca",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-07-18T02:10:14+08:00",
+  "endedAt": "2026-07-18T02:31:08+08:00",
+  "durationSec": 1254.0,
+  "articleMetrics": {
+    "inputCount": 3366,
+    "processedCount": 3366,
+    "createdCount": 3366,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.372549
+  },
+  "fileMetrics": {
+    "scannedCount": 8394,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.149392
+  },
+  "stageMetrics": [],
+  "outputs": {},
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2026-05. Focused validation passed after YAML tag/document-marker normalization: 8,394 touched notes scanned, 163,653 wikilinks checked, zero hard errors. Full check_links was interrupted during advisory unlinked-entity scan due runtime.",
+  "metadata": {
+    "month": "2026-05"
+  }
+}

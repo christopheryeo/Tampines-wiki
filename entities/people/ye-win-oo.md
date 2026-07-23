@@ -5,7 +5,7 @@ role: Commander-in-chief, Myanmar armed forces (from 30 Mar 2026)
 affiliation: Tatmadaw
 country: Myanmar
 aliases: [Ye Win Oo]
-mentionCount: 6
+mentionCount: 8
 tags: []
 ---
 
@@ -27,3 +27,6 @@ Veteran officer who received the commander-in-chief position of Myanmar's armed 
 Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-05/1110140-defence-services-c-in-c-attends-23rd-asean-defence-chiefs-me|1110140-defence-services-c-in-c-attends-23rd-asean-defence-chiefs-me]]
+- [[article/2026-05/1115025-myanmar-military-steps-up-fight-for-rare-earth-area-and-bord|1115025-myanmar-military-steps-up-fight-for-rare-earth-area-and-bord]]
+

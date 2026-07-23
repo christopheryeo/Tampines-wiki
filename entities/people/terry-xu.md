@@ -5,7 +5,7 @@ role: Chief Editor, The Online Citizen
 affiliation:
 country: Singapore
 aliases: [Terry Xu]
-mentionCount: 3
+mentionCount: 5
 tags: []
 ---
 
@@ -24,3 +24,6 @@ Chief editor of [[the-online-citizen|The Online Citizen]]. He and the outlet rec
 `affiliation` left blank — The Online Citizen is an `outlet`-domain entity, not an `organisations`-domain one, so it's linked in Related Entities instead. Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-04/1040499-the-online-citizen-was-ordered-to-publish-a-correction-notice-in-the-s|“The Online Citizen” Was Ordered To Publish A Correction Notice In The Straits Times For The Second Time Within A Week (“网络公民”被令在《海峡时报》一星期内第二次刊登更正信息)]]
+- [[article/2026-02/982328-if-education-is-national-defense-why-are-we-penny-pinching-on-class-si|If Education Is National Defense, Why Are We Penny-Pinching On Class Sizes?]]
+

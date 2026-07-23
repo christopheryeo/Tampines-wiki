@@ -4,7 +4,7 @@ displayName: Muwaffaq Salti Air Base
 placeType: Other
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -19,3 +19,6 @@ Muwaffaq Salti Air Base — place referenced in March 2026 general-news coverage
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-05/1096214-iran-has-hit-far-more-u-s-military-assets-than-reported-sate|1096214-iran-has-hit-far-more-u-s-military-assets-than-reported-sate]]
+- [[article/2026-04/1061530-iran-used-chinese-spy-satellite-to-target-us-bases|Iran Used Chinese Spy Satellite To Target US Bases]]
+

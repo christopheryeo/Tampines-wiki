@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Radoslaw Sikorski — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-02/964916-europe-mulls-its-own-nuclear-options-as-trump-rattles-alliance|Europe Mulls Its Own Nuclear Options As Trump Rattles Alliance]]
+

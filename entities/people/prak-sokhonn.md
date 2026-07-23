@@ -5,7 +5,7 @@ role: Deputy Prime Minister and Minister of Foreign Affairs and International Co
 affiliation:
 country: Cambodia
 aliases: []
-mentionCount: 2
+mentionCount: 6
 tags: []
 ---
 
@@ -23,3 +23,8 @@ Cambodia's Deputy Prime Minister and Minister of Foreign Affairs and Internation
 Not #saf-flagged.
 
 Related topic: [[defence]]
+- [[article/2026-05/1085514-cambodia-voices-concern-over-thailand-s-possible-termination|1085514-cambodia-voices-concern-over-thailand-s-possible-termination]]
+- [[article/2026-04/1072637-china-and-cambodia-hold-first-2-2-strategic-dialogue-between-foreign-a|China And Cambodia Hold First “2+2” Strategic Dialogue Between Foreign And Defence Ministers (中柬举行外长防长2+2战略对话机制首次会议)]]
+- [[article/2026-01/904497-cambodia-says-thai-troops-still-occupy-civilian-areas-testing-december|Cambodia Says Thai Troops Still Occupy Civilian Areas, Testing December Truce]]
+- [[article/2025-12/874094-thai-and-cambodian-top-diplomats-meet-in-china-to-solidify-ceasefire|Thai And Cambodian Top Diplomats Meet In China To Solidify Ceasefire]]
+

@@ -3,11 +3,21 @@ countryId: saudi-arabia
 displayName: Saudi Arabia
 region:
 iso2:
-mentionCount: 300
+mentionCount: 313
 aliases: [Saudi Arabia]
 ---
 
 ## Coverage
+- [[1133651-international-feature-awakened-by-the-iranian-war-the-us-umb|International Feature: Awakened By The Iranian War, The US Umbrella May Become A Depend...]]
+- [[1131288-india-willing-to-share-defense-technology-with-friendly-coun|India Willing To Share Defense Technology With Friendly Countries, Chinese Media Highli...]]
+- [[1131082-indonesia-seven-nations-condemn-israeli-settler-attack-on-al|Indonesia, Seven Nations Condemn Israeli Settler Attack On Al-Aqsa]]
+- [[1128209-iranian-attacks-damaged-20-us-military-sites-since-war-began|Iranian Attacks Damaged 20 US Military Sites Since War Began]]
+- [[1162626-yemen-s-houthis-strike-saudi-arabia-s-abha-airport-with-miss|Yemen’s Houthis Strike Saudi Arabia’S Abha Airport With Missiles And Drones In A Sharp...]]
+- [[1161962-houthis-accuse-saudi-arabia-of-striking-yemen-s-sanaa-airpor|Houthis Accuse Saudi Arabia Of Striking Yemen's Sanaa Airport, Vow Retaliation]]
+- [[1159929-israel-s-pivot-to-asia|Israel’s Pivot To Asia]]
+- [[1153027-japan-s-trilateral-fighter-jet-program-locked-in-following-u|Japan’s Trilateral Fighter Jet Program Locked In Following U.K. Funding Commitment]]
+- [[1152868-why-disruption-in-hormuz-has-put-the-strait-of-malacca-in-th|Why Disruption In Hormuz Has Put The Strait Of Malacca In The Spotlight]]
+- [[1151973-singapore-expands-hellfire-missile-arsenal-after-us-approves|Singapore Expands Hellfire Missile Arsenal After US Approves $22.3 Million Deal]]
 - [[1004432-singapore-deploys-rsaf-a330-mrtt-to-support-repatr|RSAF A330 MRTT repatriation coverage]]
 - [[990573-singapore-regrets-failure-of-negotiations-that-led|MFA regrets failure of negotiations]]
 - [[990579-no-reports-of-singaporean-casualties-in-middle-eas|No reports of Singaporean casualties]]
@@ -312,3 +322,7 @@ aliases: [Saudi Arabia]
 
 ## Notes
 Singaporeans in the capital [[riyadh|Riyadh]] were repatriated via RSAF aircraft in Mar 2026 amid urgent need to leave the Gulf region with limited commercial options. `region`/`iso2` intentionally left blank — not stated by the citing article, per this domain's "no live web enrichment" rule (index.md).
+- [[article/2026-04/1079316-thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-s|Thailand Touts $31 Billion ‘Land Bridge’ Plan Amid Hormuz Crisis, Courts Singapore]]
+- [[article/2026-02/941046-germany-eyes-lasers-spy-satellites-in-military-space-spending-splurge|Germany Eyes Lasers, Spy Satellites In Military Space Spending Splurge]]
+- [[article/2025-11/797398-singapore-imposes-sanctions-entry-bans-on-four-israeli-west-bank-settl|Singapore Imposes Sanctions, Entry Bans On Four Israeli West Bank Settlers]]
+

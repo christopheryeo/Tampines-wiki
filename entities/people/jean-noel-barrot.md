@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -21,3 +21,6 @@ Jean-Noël Barrot — person referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1097136-eu-sanctions-hamas-leaders-and-israeli-settlers-but-shelves|1097136-eu-sanctions-hamas-leaders-and-israeli-settlers-but-shelves]]
+- [[article/2025-12/854436-china-japan-spat-morphs-into-info-war-as-both-sides-woo-europe-us|China-Japan Spat Morphs Into Info War As Both Sides Woo Europe, US]]
+

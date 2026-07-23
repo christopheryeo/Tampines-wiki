@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260718T130025-ingest_cascade-b61a",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-07-18T13:00:25+08:00",
+  "endedAt": "2026-07-18T13:05:29+08:00",
+  "durationSec": 304.0,
+  "articleMetrics": {
+    "inputCount": 1556,
+    "processedCount": 1556,
+    "createdCount": 1556,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.195373
+  },
+  "fileMetrics": {
+    "scannedCount": 10407,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.029211
+  },
+  "stageMetrics": [],
+  "outputs": {},
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2025-12. Focused validation passed: 10,407 touched notes scanned, 256,804 wikilinks checked, zero hard errors.",
+  "metadata": {
+    "month": "2025-12"
+  }
+}

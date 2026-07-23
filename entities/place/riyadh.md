@@ -4,7 +4,7 @@ displayName: Riyadh
 placeType: Other
 country: Saudi Arabia
 aliases: [Riyadh]
-mentionCount: 260
+mentionCount: 305
 tags: []
 ---
 
@@ -279,3 +279,49 @@ Capital of Saudi Arabia. Singaporeans there were repatriated via an RSAF A330 MR
 `placeType: Other` used deliberately — the registry enum has no City/Capital option (same gap noted for `kuala-lumpur`). Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-05/1084587-singapore-pm-moved-to-tears-by-letter-from-repatriated-citiz|1084587-singapore-pm-moved-to-tears-by-letter-from-repatriated-citiz]]
+- [[article/2026-05/1084659-the-moment-pm-wong-was-moved-to-tears-detik-pm-wong-berlinan|1084659-the-moment-pm-wong-was-moved-to-tears-detik-pm-wong-berlinan]]
+- [[article/2026-05/1085333-the-moment-pm-wong-was-moved-to-tears-detik-pm-wong-berlinan|1085333-the-moment-pm-wong-was-moved-to-tears-detik-pm-wong-berlinan]]
+- [[article/2026-05/1086022-letter-moves-prime-minister-wong-to-tears-author-says-it-is|1086022-letter-moves-prime-minister-wong-to-tears-author-says-it-is]]
+- [[article/2026-05/1090482-hormuz-strait-areas-of-cooperation-discussed-in-vivian-balak|1090482-hormuz-strait-areas-of-cooperation-discussed-in-vivian-balak]]
+- [[article/2026-05/1090612-vivian-s-visit-to-four-middle-eastern-countries-touches-on-t|1090612-vivian-s-visit-to-four-middle-eastern-countries-touches-on-t]]
+- [[article/2026-05/1090614-vivian-balakrishnan-stresses-importance-of-free-transit-thro|1090614-vivian-balakrishnan-stresses-importance-of-free-transit-thro]]
+- [[article/2026-05/1090620-foreign-minister-dr-vivian-balakrishnan-concludes-visit-to-f|1090620-foreign-minister-dr-vivian-balakrishnan-concludes-visit-to-f]]
+- [[article/2026-05/1090621-vivian-balakrishnan-concludes-visit-to-four-middle-eastern-c|1090621-vivian-balakrishnan-concludes-visit-to-four-middle-eastern-c]]
+- [[article/2026-05/1090942-vivian-concludes-four-country-middle-east-visit-expresses-th|1090942-vivian-concludes-four-country-middle-east-visit-expresses-th]]
+- [[article/2026-05/1090945-discussion-on-cooperation-during-minister-vivian-s-middle-ea|1090945-discussion-on-cooperation-during-minister-vivian-s-middle-ea]]
+- [[article/2026-05/1090955-strait-of-hormuz-areas-of-cooperation-discussed-in-vivian-ba|1090955-strait-of-hormuz-areas-of-cooperation-discussed-in-vivian-ba]]
+- [[article/2026-05/1091385-strait-of-hormuz-among-topics-discussed-in-vivian-s-visit-to|1091385-strait-of-hormuz-among-topics-discussed-in-vivian-s-visit-to]]
+- [[article/2026-05/1091386-vivian-concludes-visit-to-four-middle-eastern-nations-thanks|1091386-vivian-concludes-visit-to-four-middle-eastern-nations-thanks]]
+- [[article/2026-05/1091387-vivian-visits-middle-east-discuss-strait-of-hormuz-issue-viv|1091387-vivian-visits-middle-east-discuss-strait-of-hormuz-issue-viv]]
+- [[article/2026-05/1091388-foreign-affairs-minister-vivian-travels-to-middle-eastern-co|1091388-foreign-affairs-minister-vivian-travels-to-middle-eastern-co]]
+- [[article/2026-05/1098497-exclusive-saudi-arabia-launched-covert-attacks-on-iran-as-re|1098497-exclusive-saudi-arabia-launched-covert-attacks-on-iran-as-re]]
+- [[article/2026-04/1045684-let-s-explore-bh-s-digital-content-yuk-teroka-kandungan-digital-bh|Let's Explore BH's Digital Content (Yuk Teroka Kandungan Digital BH!)]]
+- [[article/2026-04/1049866-mr-chan-on-recognising-contributions-of-saf-personnel-involved-in-midd|Mr Chan On Recognising Contributions Of SAF Personnel Involved In Middle East Repatriation Flights]]
+- [[article/2026-04/1049875-chan-chun-sing-those-who-participated-in-the-middle-east-evacuation-op|Chan Chun Sing: Those Who Participated In The Middle East Evacuation Operation Will Be Recognized. (陈振声：参与中东撤侨行动人员将获肯定 )]]
+- [[article/2026-04/1050482-chan-chun-sing-those-who-participated-in-the-middle-east-evacuation-op|Chan Chun Sing: Those Who Participated In The Middle East Evacuation Operation Will Be Recognized. (陈振声：参与中东撤侨行动人员将获肯定 )]]
+- [[article/2026-04/1056177-pakistan-deploys-fighter-jets-to-saudi-arabia-under-defence-pact|Pakistan Deploys Fighter Jets To Saudi Arabia Under Defence Pact]]
+- [[article/2026-04/1057191-more-than-2-000-singaporeans-remain-in-the-middle-east-the-ministry-of|More Than 2,000 Singaporeans Remain In The Middle East. The Ministry Of Foreign Affairs Stated That It Is Maintaining Close Contact And Has No Plans To Evacuate Citizens At This Time (逾2000国人仍留中东 外交部：保持密切联系 暂无撤侨计划)]]
+- [[article/2026-04/1057440-mfa-more-than-2-000-citizens-remain-in-the-middle-east-no-evacuation-p|MFA: More Than 2,000 Citizens Remain In The Middle East; No Evacuation Plans At Present (外交部：逾2000国人仍留中东　暂无撤侨计划)]]
+- [[article/2026-04/1062581-arab-gulf-states-consider-plan-b-as-iran-war-batters-us-based-security|Arab Gulf States Consider Plan B As Iran War Batters US-Based Security Strategy]]
+- [[article/2026-04/1075245-zelenskiy-seeks-to-develop-security-co-operation-after-saudi-visit|Zelenskiy Seeks To Develop Security Co-Operation After Saudi Visit]]
+- [[article/2026-02/941058-singapore-air-show-kicks-off-amid-supply-chain-strains-regional-demand|Singapore Air Show Kicks Off Amid Supply Chain Strains, Regional Demand Surge]]
+- [[article/2026-02/941064-singapore-air-show-kicks-off-amid-supply-chain-strains-regional-demand|Singapore Air Show Kicks Off Amid Supply Chain Strains, Regional Demand Surge]]
+- [[article/2026-02/941114-singapore-air-show-kicks-off-amid-supply-chain-strains-regional-demand|Singapore Air Show Kicks Off Amid Supply Chain Strains, Regional Demand Surge]]
+- [[article/2026-02/941329-singapore-air-show-kicks-off-amid-supply-chain-strains-regional-demand|Singapore Air Show Kicks Off Amid Supply Chain Strains, Regional Demand Surge]]
+- [[article/2026-02/958699-china-lifts-veil-on-secretive-underwater-combat-vehicle-at-saudi-arabi|China Lifts Veil On Secretive Underwater Combat Vehicle At Saudi Arabia Defence Show]]
+- [[article/2026-02/959881-wds-2026-russia-unveils-new-weapons-in-middle-east|WDS 2026: Russia Unveils New Weapons In Middle East]]
+- [[article/2026-02/985091-rare-singaporean-rhino-appears-in-the-desert|Rare Singaporean Rhino Appears In The Desert]]
+- [[article/2026-02/989116-saudi-arabia-qatar-attempting-to-de-escalate-afghanistan-pakistan-conf|Saudi Arabia, Qatar Attempting To De-Escalate Afghanistan-Pakistan Conflict]]
+- [[article/2026-01/902222-pakistan-and-indonesia-closing-in-on-jets-and-drones-defence-deal-sour|Pakistan And Indonesia Closing In On Jets And Drones Defence Deal, Sources Say]]
+- [[article/2026-01/917567-indonesia-accepts-trump-board-of-peace-invite|Indonesia Accepts Trump 'Board Of Peace' Invite]]
+- [[article/2026-01/917577-saudi-arabia-qatar-six-others-accept-trump-board-of-peace-invite|Saudi Arabia, Qatar, six others accept Trump 'Board of Peace' invite]]
+- [[article/2025-12/876972-saudi-arabia-bombs-yemeni-port-city-over-weapons-shipment-from-u-a-e|Saudi Arabia Bombs Yemeni Port City Over Weapons Shipment From U.A.E.]]
+- [[article/2025-12/878125-uae-to-pull-forces-out-of-yemen-as-24-hour-deadline-set-amid-crisis-wi|UAE To Pull Forces Out Of Yemen As 24-Hour Deadline Set Amid Crisis With Saudi Arabia]]
+- [[article/2025-11/768618-saudi-arabia-wants-to-buy-us-f-35-stealth-jets-posing-a-threat-to-isra|Saudi Arabia Wants To Buy US F-35 Stealth Jets, Posing A Threat to Israel (Saudi Mau Borong Jet Siluman F-35 AS, Jadi Ancaman Bagi Israel)]]
+- [[article/2025-11/785269-trump-likely-to-sell-f-35-fighters-to-saudis-us-official-says|Trump Likely To Sell F-35 Fighters To Saudis, US Official Says]]
+- [[article/2025-11/789321-trump-says-us-plans-to-sell-f-35-jets-to-saudi-arabia|Trump Says US Plans To Sell F-35 Jets To Saudi Arabia]]
+- [[article/2025-11/789323-trump-says-us-will-sell-f-35-aircraft-to-saudi-arabia|Trump Says US Will Sell F-35 Aircraft To Saudi Arabia]]
+- [[article/2025-11/789335-trump-says-u-s-will-sell-f-35s-to-saudis-despite-pentagon-concerns|Trump Says U.S. Will Sell F-35s To Saudis, Despite Pentagon Concerns]]
+- [[article/2025-11/792368-getting-to-know-f-35-stealth-jet-a-sophisticated-weapon-targeted-by-sa|Getting To Know F-35 Stealth Jet, A Sophisticated Weapon Targeted By Saudi Arabia (Mengenal Jet Siluman F-35, Senjata Canggih Yang Diincar Arab Saudi)]]
+

@@ -4,7 +4,7 @@ displayName: Maersk
 orgType: Other
 country: Denmark
 aliases: [Maersk]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,4 +18,5 @@ Danish container shipping group that temporarily halted operations at Oman's Sal
 [[oman|Oman]] · [[salalah|Salalah]]
 
 ## AI Context
+- [[article/2026-05/1115186-st-commentary-why-can-t-singapore-nurture-its-own-samsung|1115186-st-commentary-why-can-t-singapore-nurture-its-own-samsung]]
 

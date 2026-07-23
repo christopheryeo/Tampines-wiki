@@ -5,7 +5,7 @@ role: Energy Minister
 affiliation: Israeli Government
 country: Israel
 aliases: [Eli Cohen]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,4 +19,5 @@ Israeli Energy Minister who said there was no damage to production facilities an
 [[israel|Israel]]
 
 ## AI Context
+- [[article/2025-11/768292-israel-attacks-southern-gaza-again-launches-building-demolition-operat|Israel Attacks Southern Gaza Again, Launches Building Demolition Operation (Israel Kembali Serang Selatan Gaza, Lancar Operasi Robohkan Bangunan)]]
 

@@ -1,0 +1,110 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: offences
+aliases:
+  - offences
+owner: Alex
+created: 2026-07-18T02:12:50
+last_updated: 2026-07-18T13:17:41
+category: "Imported article topic"
+articleCount: 89
+tags:
+  - "#topic"
+---
+
+# offences
+
+## Coverage
+- [[article/2026-05/1093379-jail-for-ex-saf-captain-who-set-up-a-heist-to-steal-s-2-3-mi|1093379-jail-for-ex-saf-captain-who-set-up-a-heist-to-steal-s-2-3-mi]]
+- [[article/2026-05/1093535-former-captain-sentenced-to-6-years-and-10-months-jail-for-s|1093535-former-captain-sentenced-to-6-years-and-10-months-jail-for-s]]
+- [[article/2026-05/1093542-former-captain-sentenced-to-6-years-and-10-months-jail-for-s|1093542-former-captain-sentenced-to-6-years-and-10-months-jail-for-s]]
+- [[article/2026-05/1093543-former-captain-sentenced-to-6-years-and-10-months-jail-for-s|1093543-former-captain-sentenced-to-6-years-and-10-months-jail-for-s]]
+- [[article/2026-05/1093545-former-captain-sentenced-to-6-years-and-10-months-jail-for-s|1093545-former-captain-sentenced-to-6-years-and-10-months-jail-for-s]]
+- [[article/2026-05/1093689-former-s-pore-navy-captain-gets-6-years-10-months-jail-after|1093689-former-s-pore-navy-captain-gets-6-years-10-months-jail-after]]
+- [[article/2026-05/1093946-a-woman-obsessed-with-3d-printed-guns-and-ammunition-was-sen|1093946-a-woman-obsessed-with-3d-printed-guns-and-ammunition-was-sen]]
+- [[article/2026-05/1094137-former-military-officer-steals-from-friend-s-e-wallet|1094137-former-military-officer-steals-from-friend-s-e-wallet]]
+- [[article/2026-05/1094339-former-military-officer-steals-from-friend-s-e-wallet|1094339-former-military-officer-steals-from-friend-s-e-wallet]]
+- [[article/2026-05/1094342-female-weapons-enthusiast-jailed-four-months-and-fined-s-1-0|1094342-female-weapons-enthusiast-jailed-four-months-and-fined-s-1-0]]
+- [[article/2026-05/1095783-jail-for-ex-saf-captain-for-breaking-into-an-acquaintance-s|1095783-jail-for-ex-saf-captain-for-breaking-into-an-acquaintance-s]]
+- [[article/2026-05/1099080-woman-and-boy-injured-after-being-hit-while-crossing-the-roa|1099080-woman-and-boy-injured-after-being-hit-while-crossing-the-roa]]
+- [[article/2026-05/1099085-former-air-force-chief-of-staff-charged-in-court-for-alleged|1099085-former-air-force-chief-of-staff-charged-in-court-for-alleged]]
+- [[article/2026-05/1099184-former-singapore-air-force-chief-charged-with-injury-to-woma|1099184-former-singapore-air-force-chief-charged-with-injury-to-woma]]
+- [[article/2026-05/1099823-former-air-force-chief-accused-of-traffic-offences-allowed-t|1099823-former-air-force-chief-accused-of-traffic-offences-allowed-t]]
+- [[article/2026-05/1099827-former-air-force-chief-accused-of-causing-injuries-in-crash|1099827-former-air-force-chief-accused-of-causing-injuries-in-crash]]
+- [[article/2026-05/1115924-singaporean-man-with-indonesian-citizenship-gets-maximum-3-y|1115924-singaporean-man-with-indonesian-citizenship-gets-maximum-3-y]]
+- [[article/2026-05/1116123-s-pore-man-47-who-holds-indonesian-citizenship-gets-record-3|1116123-s-pore-man-47-who-holds-indonesian-citizenship-gets-record-3]]
+- [[article/2026-04/1048736-singapores-shanmugam-on-deported-blogger-amos-yee-i-wish-the-americans|Singapore’S Shanmugam On Deported Blogger Amos Yee: ‘I Wish The Americans Had Kept Him’]]
+- [[article/2026-04/1049201-shanmugam-reaffirms-singapores-zero-tolerance-for-hate-speech-slams-am|Shanmugam Reaffirms Singapore’s Zero Tolerance For Hate Speech, Slams Amos Yee Supporters As Hypocritical (尚穆根重申我国对仇恨言论零容忍 批余澎杉支持者虚伪)]]
+- [[article/2026-04/1049213-shanmugam-reiterated-singapore-s-zero-tolerance-policy-for-hate-speech|Shanmugam Reiterated Singapore's Zero-Tolerance Policy For Hate Speech And Criticises Amos Yee's Supporters As Tremendously Hypocritical (尚穆根重申新加坡对仇恨言论零容忍 批余澎杉支持者极虚伪)]]
+- [[article/2026-04/1049842-shanmugam-reiterates-singapores-zero-tolerance-policy-towards-hate-spe|Shanmugam Reiterates Singapore’s Zero-Tolerance Policy Towards Hate Speech And Criticises The Hypocrisy Of Amos Yee’s Supporters (重申我国对仇恨言论零容忍 尚穆根批余澎杉支持者虚伪)]]
+- [[article/2026-04/1049978-a-singaporean-minister-harshly-criticized-western-hypocrisy-they-stron|A Singaporean Minister Harshly Criticized Western Hypocrisy: They Strongly Supported Amos Yee Back Then, But Now They're Sending Him Back, "Hoping They'll Keep Him." (新加坡部长狠批西方虚伪：当年力挺余澎杉，现在把人送回来，“希望他们留着”)]]
+- [[article/2026-04/1049984-a-singaporean-minister-harshly-criticised-western-hypocrisy-they-stron|A Singaporean Minister Harshly Criticised Western Hypocrisy: They Strongly Supported Amos Yee Back Then, But Now They're Sending Him Back, "Hoping They'll Keep Him." (新加坡部长狠批西方虚伪：当年力挺余澎杉，现在把人送回来，“希望他们留着”)]]
+- [[article/2026-04/1050001-m-sian-immigration-officers-to-be-given-authority-by-s-pore-s-rts-link|M'sian Immigration Officers To Be Given Authority By S'pore's RTS Link Station (Pegawai Imigresen M'sia Bakal Diberi Kuasa Stesen RTS Link S'pura)]]
+- [[article/2026-04/1050851-a-singaporean-minister-harshly-criticized-western-hypocrisy-they-stron|A Singaporean Minister Harshly Criticized Western Hypocrisy: They Strongly Supported Amos Yee Back Then, But Now They're Sending Him Back, "Hoping They'll Keep Him." (新加坡部长狠批西方虚伪：当年力挺余澎杉，现在把人送回来，“希望他们留着”)]]
+- [[article/2026-04/1052561-worst-of-the-worst-will-amos-yee-be-prosecuted-in-s-pore-for-his-crime|Worst Of The Worst': Will Amos Yee Be Prosecuted In S'pore For His Crimes In The US?]]
+- [[article/2026-04/1054305-ex-saf-captain-accused-of-cheating-also-allegedly-distributed-vape-ite|Ex-SAF Captain Accused Of Cheating Also Allegedly Distributed Vape Items At Nee Soon Camp]]
+- [[article/2026-04/1054306-ex-saf-captain-accused-of-cheating-also-allegedly-distributed-vape-ite|Ex-SAF Captain Accused Of Cheating Also Allegedly Distributed Vape Items At Nee Soon Camp]]
+- [[article/2026-04/1054309-former-armed-forces-soldier-charged-with-distributing-e-cigarettes|Former Armed Forces Soldier Charged With Distributing E-Cigarettes (மின்சிகரெட் விநியோகித்ததாக முன்னாள் ஆயுதப்படை வீரர்மீது குற்றச்சாட்டு)]]
+- [[article/2026-04/1054320-ex-saf-captain-accused-of-distributing-vape-items-on-top-of-cheating-c|Ex-SAF Captain Accused Of Distributing Vape Items On Top Of Cheating Charges]]
+- [[article/2026-04/1054321-ex-saf-captain-accused-of-distributing-vape-items-on-top-of-cheating-c|Ex-SAF Captain Accused Of Distributing Vape Items On Top Of Cheating Charges]]
+- [[article/2026-04/1055584-ex-saf-captain-38-accused-of-cheating-people-of-over-s-145-000-also-di|Ex-SAF Captain, 38, Accused Of Cheating People Of Over S$145,000 Also Distributed Vapes In Camp]]
+- [[article/2026-04/1057871-ex-saf-captain-accused-of-cheating-also-allegedly-distributed-vape-ite|Ex-SAF Captain Accused Of Cheating Also Allegedly Distributed Vape Items At Nee Soon Camp]]
+- [[article/2026-04/1060727-man-sentenced-to-six-months-and-two-weeks-jail-for-conspiring-to-set-u|Man Sentenced To Six Months And Two Weeks’ Jail For Conspiring To Set Up An Investment Scam (男子串谋设投资骗局判监六月两周)]]
+- [[article/2026-04/1061360-a-singaporean-man-ran-a-ponzi-scheme-promising-a-140-per-cent-return-o|A Singaporean Man Ran A Ponzi Scheme Promising A 140 Per Cent Return On A Fabricated "American Tycoon" Scheme, Resulting In A Six-Month And Two-Weeks Jail Sentence (虚构“美国富豪”与140%高回报 狮城男设庞氏骗局监6月两周)]]
+- [[article/2026-04/1061362-man-jailed-for-running-a-ponzi-scheme-fabricating-a-american-tycoon-pe|Man Jailed For Running A Ponzi Scheme, Fabricating A "American Tycoon" Persona And Claiming 140 Per Cent Returns. (虚构“美国富豪”人设谎称获140%高回酬　男子设庞氏骗局入狱)]]
+- [[article/2026-04/1061365-man-jailed-for-running-a-ponzi-scheme-fabricating-a-american-tycoon-pe|Man Jailed For Running A Ponzi Scheme, Fabricating A "American Tycoon" Persona And Claiming 140 Per Cent Returns (虚构“美国富豪”人设谎称获140%高回酬　男子设庞氏骗局入狱)]]
+- [[article/2026-04/1061537-claims-40-high-returns-cites-us-boss-as-backing-man-who-set-up-ponzi-s|Claims 40% High Returns, Cites “US Boss” As Backing; Man Who Set Up Ponzi Scheme With Accomplices Jailed 6 Months And 2 Weeks (称有40%高回报‘美国老板’当后台 与同谋设庞氏骗局 男子监6月又2周)]]
+- [[article/2026-04/1074842-nsf-under-investigation-after-being-caught-for-vape-related-offences-o|NSF Under Investigation After Being Caught For Vape-Related Offences Outside Sengkang HDB Flat]]
+- [[article/2026-04/1074843-nsf-under-investigation-after-being-caught-for-vape-related-offences-o|NSF Under Investigation After Being Caught For Vape-Related Offences Outside Sengkang HDB Flat]]
+- [[article/2026-04/1074844-nsf-under-investigation-after-being-caught-for-vape-related-offences-o|NSF Under Investigation After Being Caught For Vape-Related Offences Outside Sengkang HDB Flat]]
+- [[article/2026-04/1074845-nsf-under-investigation-after-being-caught-for-vape-related-offences-o|NSF Under Investigation After Being Caught For Vape-Related Offences Outside Sengkang HDB Flat]]
+- [[article/2026-04/1074846-nsf-under-investigation-after-being-caught-for-vape-related-offences-o|NSF Under Investigation After Being Caught For Vape-Related Offences Outside Sengkang HDB Flat]]
+- [[article/2026-04/1075019-updated-nsf-under-probe-for-vape-related-offences-in-sengkang|[Updated] [[nsf|NSF]] Under Probe For Vape-Related Offences In Sengkang]]
+- [[article/2026-04/1075020-saf-investigation-on-nsf-who-vaped-and-tried-to-enter-wrong-flat|SAF Investigation On NSF Who Vaped And Tried To Enter Wrong Flat]]
+- [[article/2026-04/1075021-saf-investigation-on-nsf-who-vaped-and-tried-to-enter-wrong-flat|SAF Investigation On NSF Who Vaped And Tried To Enter Wrong Flat]]
+- [[article/2026-04/1075022-saf-investigation-on-nsf-who-vaped-and-tried-to-enter-wrong-flat|SAF Investigation On NSF Who Vaped And Tried To Enter Wrong Flat]]
+- [[article/2026-04/1081313-a-man-who-has-not-served-in-the-military-for-nearly-30-years-is-facing|A Man Who Has Not Served In The Military For Nearly 30 Years Is Facing A Maximum Sentence Of Three Years In Prison, According To The Prosecution (男子未服兵役近30年 控方要求判监三年最高刑罚)]]
+- [[article/2026-02/946219-amos-yee-27-addresses-s-pore-govt-in-new-blog-post-you-shouldn-t-let-m|Amos Yee, 27, Addresses S'pore Govt In New Blog Post: 'You Shouldn't Let Me Back']]
+- [[article/2026-01/898170-teen-given-21-months-probation-after-deceiving-peer-into-performing-de|Teen Given 21 Months' Probation After Deceiving Peer Into Performing Degrading Acts]]
+- [[article/2026-01/898386-singapore-teen-who-made-peer-soak-genitals-in-chilli-oil-drink-urine-g|Singapore Teen Who Made Peer Soak Genitals In Chilli Oil, Drink Urine, Given Probation]]
+- [[article/2026-01/909511-lin-chenyou-a-news-anchor-at-cti-news-was-responsible-for-paying-milit|Lin Chenyou, A News Anchor At CTi News, Was Responsible For Paying Military Personnel To Provide Classified Information To The Chinese Side (利誘軍人提供機密給中方 中天主播林宸佑負責給錢)]]
+- [[article/2026-01/911601-its-not-illegal-how-prescription-drugs-are-filling-the-void-left-by-kp|‘It’s Not Illegal’: How Prescription Drugs Are Filling The Void Left By Kpods]]
+- [[article/2026-01/919540-malaysia-s-former-armed-forces-chief-charged-with-abuse-of-power-misap|Malaysia's Former Armed Forces Chief Charged With Abuse Of Power, Misappropriating Welfare Fund]]
+- [[article/2025-12/858701-man-took-advantage-of-elderly-businessman-s-delirium-to-steal-s-1-27-m|Man Took Advantage Of Elderly Businessman's Delirium To Steal S$1.27 Million From Company, Gets Jail]]
+- [[article/2025-12/858731-a-man-who-mortgaged-his-property-to-secure-a-loan-while-his-70-year-ol|A Man Who Mortgaged His Property To Secure A Loan While His 70-Year-Old Director Was Hospitalized Was Imprisoned Along With His Mother For Defaulting On Over 1.26 Million Dollars (趁七旬董事入院抵押他房产贷款 男子失信逾126万元与母同坐牢)]]
+- [[article/2025-12/860219-a-director-in-his-seventies-was-hospitalised-with-delirium-a-young-man|A Director In His Seventies Was Hospitalised With Delirium; A Young Man Took Advantage Of The Situation To Mortgage Property And Obtain Loans, Embezzling S$126,000 To Buy Property And Luxury Cars (七旬董事住院患谵妄症 青年趁势抵押房产借贷  私吞126万置产买名车)]]
+- [[article/2025-12/862579-man-jailed-eight-years-and-four-months-for-breaching-trust-of-more-tha|Man Jailed Eight Years And Four Months For Breaching Trust Of More Than S$1.26 Million After Mortgaging Elderly Director’s Property While He Was Hospitalised (趁老董事入院抵押房产 男子失信逾126万元判监八年四个月)]]
+- [[article/2025-11/765422-caning-for-fraudsters-syndicates-recruiters-money-mules-approved-hukum|Caning For Fraudsters, Syndicates, Recruiters, Money Mules Approved (Hukum Sebat Bagi Penipu, Sindiket, Perekrut, Keldai Wang Dilulus)]]
+- [[article/2025-11/776020-a-former-saf-captain-accused-of-defrauding-16-people-of-over-140-000-h|A Former SAF Captain Accused Of Defrauding 16 People Of Over $140,000 Has Been Charged With 18 Counts Of Deception (武装部队前上尉涉诈骗16人逾14万元 被控18项欺骗罪)]]
+- [[article/2025-11/776263-ex-saf-captain-allegedly-cheated-16-people-of-over-145k-including-for-|Ex-SAF Captain Allegedly Cheated 16 People Of Over $145k, Including For ‘Mother’s Medical Bills’]]
+- [[article/2025-11/776268-former-saf-captain-charged-with-cheating-people-into-giving-him-over-s|Former SAF Captain Charged With Cheating People Into Giving Him Over S$145,000]]
+- [[article/2025-11/776271-ex-saf-officer-charged-over-145k-alleged-scam-involving-16-victims|Ex-SAF Officer Charged Over $145k Alleged Scam Involving 16 Victims]]
+- [[article/2025-11/776539-former-saf-captain-charged-with-18-counts-of-deception-non-mindef-stat|Former SAF Captain Charged With 18 Counts Of Deception (Non-MINDEF Statement)]]
+- [[article/2025-11/776540-former-saf-captain-charged-with-18-counts-of-deception-non-mindef-stat|Former SAF Captain Charged With 18 Counts Of Deception (Non-MINDEF Statement)]]
+- [[article/2025-11/776543-former-saf-captain-charged-with-18-counts-of-deception-non-mindef-stat|Former SAF Captain Charged With 18 Counts Of Deception (Non-MINDEF Statement)]]
+- [[article/2025-11/776547-risking-over-a-hundred-years-in-prison-singapore-military-officer-alle|Risking Over a Hundred Years in Prison! Singapore Military Officer Allegedly Cheated 16 People of NT3.46 Million, Faced 18 Counts of Fraud (恐監禁逾百年！ 新加坡軍官狂詐16人、346萬元 被控18項詐欺罪)]]
+- [[article/2025-11/776550-fraud-145-000-loss-former-military-officer-charged-145-000|Fraud - $145,000 Loss, Former Military Officer Charged (மோசடி - $145,000 இழப்பு, முன்னாள் ராணுவ அதிகாரி மீது குற்றச்சாட்டு)]]
+- [[article/2025-11/776552-former-military-officer-believed-to-have-embezzled-145-250-145-250|Former Military Officer Believed To Have Embezzled $145,250 (ஏமாற்றி $145,250 பறித்ததாக நம்பப்படும் முன்னாள் ராணுவ அதிகாரி)]]
+- [[article/2025-11/776561-ex-saf-captain-37-allegedly-cheated-people-of-over-s-145-000-claiming-|Ex-SAF Captain, 37, Allegedly Cheated People Of Over S$145,000, Claiming 'Investments' & Mum's 'Medical Bills']]
+- [[article/2025-11/776634-former-saf-captain-involved-in-fraud-of-over-s-140-000-against-16-peop|Former SAF Captain Involved In Fraud Of Over S$140,000 Against 16 People (武装部队前上尉 涉诈骗16人逾14万元)]]
+- [[article/2025-11/777543-former-saf-captain-charged-over-s-140-000-fraud-involving-16-victims-1|Former SAF Captain Charged Over S$140,000 Fraud Involving 16 Victims (涉诈骗16人逾14万元 武装部队前上尉被控)]]
+- [[article/2025-11/777546-former-army-officer-charged-with-145-250-fraud-145-250|Former Army Officer Charged With $145,250 Fraud ($145,250 மோசடி; முன்னாள் ராணுவ அதிகாரிமீது வழக்கு)]]
+- [[article/2025-11/778749-ex-saf-captain-charged-for-cheating-others-out-of-s-145k-said-money-wa|Ex-SAF captain charged for cheating others out of S$145K, said money was for mother’s medical bills, investments]]
+- [[article/2025-11/785708-ex-saf-captain-charged-with-cheating-victims-into-giving-him-over-s-14|Ex-SAF Captain Charged With Cheating Victims Into Giving Him Over S$140k, Claimed It Was For His Mother]]
+- [[article/2025-11/796451-st-online-morning-news-brief-for-21-nov|ST Online Morning News Brief For 21 Nov]]
+- [[article/2025-11/797401-after-serving-six-years-in-prison-in-the-us-amos-yee-was-granted-parol|After Serving Six Years In Prison In The US, Amos Yee Was Granted Parole; His Asylum Status May Be Revoked And He Could Face Deportation (在美服刑六年后获假释 余澎杉庇护身份或被撤销遭遣返)]]
+- [[article/2025-11/797490-after-serving-six-years-in-prison-in-the-us-amos-yee-was-granted-parol|After Serving Six Years In Prison In The US, Amos Yee Was Granted Parole; His Asylum Status May Be Revoked And He Could Face Deportation (在美服刑六年后获假释 余澎杉庇护身份或被撤销遭遣返)]]
+- [[article/2025-11/797494-amos-yee-released-from-prison-and-may-face-deportation-with-mindef-s-s|Amos Yee Released From Prison And May Face Deportation (With MINDEF's Statement)]]
+- [[article/2025-11/797496-amos-yee-s-asylum-status-in-the-us-may-be-revoked-if-he-is-deported-to|Amos Yee's Asylum Status In The US May Be Revoked; If He Is Deported To Singapore, He Will Be Charged. (美国庇护身分或被撤销 余澎杉若遣返新加坡将被控)]]
+- [[article/2025-11/797759-amos-yee-s-asylum-status-may-be-revoked-and-he-may-be-deported-to-sing|Amos Yee's Asylum Status May Be Revoked And He May Be Deported To Singapore. (余澎杉庇护身分 或被撤遭遣新国)]]
+- [[article/2025-11/797761-amos-yee-s-asylum-status-in-the-us-may-be-revoked-if-he-is-extradited-|Amos Yee's Asylum Status In The US May Be Revoked; If He Is Extradited To Singapore, He Will Be Charged (美庇护身分或被撤销 余澎杉若遣返回新将被控)]]
+- [[article/2025-11/798444-yahoo-news-singapore-evening-news-brief-for-21-nov|Yahoo! News Singapore Evening News Brief For 21 Nov]]
+- [[article/2025-11/798777-amos-yee-faces-deportation-from-us-after-parole-from-child-sex-offence|Amos Yee Faces Deportation From US After Parole From Child Sex Offences Sentence]]
+- [[article/2025-11/803223-amos-yee-detained-in-ice-facility-mindef-statement|Amos Yee Detained In ICE Facility (MINDEF Statement)]]
+- [[article/2025-11/803528-have-singapore-and-the-us-discussed-the-repatriation-of-amos-yee-singa|Have Singapore And The US Discussed The Repatriation Of Amos Yee? Singapore's Ministry Of Defence: No Comment. (新美是否讨论遣返余澎杉？　新加坡国防部：不予置评)]]
+- [[article/2025-11/803916-amos-yee-in-detention-again|Amos Yee In Detention Again (மீண்டும் தடுப்புக்காவலில் ஏமஸ் யீ)]]
+- [[article/2025-11/804279-amos-yee-in-detention-again|Amos Yee In Detention Again (மீண்டும் தடுப்புக்காவலில் ஏமஸ் யீ)]]
+

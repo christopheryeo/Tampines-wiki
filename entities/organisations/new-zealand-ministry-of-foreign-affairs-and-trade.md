@@ -4,7 +4,7 @@ displayName: New Zealand Ministry of Foreign Affairs and Trade
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -20,3 +20,5 @@ New Zealand Ministry of Foreign Affairs and Trade — organisation referenced in
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1086880-new-zealand-pm-christopher-luxon-to-make-three-day-official|1086880-new-zealand-pm-christopher-luxon-to-make-three-day-official]]
+

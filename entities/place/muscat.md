@@ -4,7 +4,7 @@ displayName: Muscat
 placeType: Landmark/Venue
 country: oman
 aliases: []
-mentionCount: 71
+mentionCount: 86
 tags: []
 ---
 
@@ -93,3 +93,19 @@ Not #saf-flagged.
 - [[1035849-spotting-a-distant-projectile-rsaf-pilots-worked-t|Yahoo! News Taiwan reported (syndicated from Straits Times Online) that as RSAF pilots navigated the Middle...]]
 
 Related topic: [[defence]]
+- [[article/2026-05/1090482-hormuz-strait-areas-of-cooperation-discussed-in-vivian-balak|1090482-hormuz-strait-areas-of-cooperation-discussed-in-vivian-balak]]
+- [[article/2026-05/1090612-vivian-s-visit-to-four-middle-eastern-countries-touches-on-t|1090612-vivian-s-visit-to-four-middle-eastern-countries-touches-on-t]]
+- [[article/2026-05/1090614-vivian-balakrishnan-stresses-importance-of-free-transit-thro|1090614-vivian-balakrishnan-stresses-importance-of-free-transit-thro]]
+- [[article/2026-05/1090621-vivian-balakrishnan-concludes-visit-to-four-middle-eastern-c|1090621-vivian-balakrishnan-concludes-visit-to-four-middle-eastern-c]]
+- [[article/2026-05/1090942-vivian-concludes-four-country-middle-east-visit-expresses-th|1090942-vivian-concludes-four-country-middle-east-visit-expresses-th]]
+- [[article/2026-05/1090945-discussion-on-cooperation-during-minister-vivian-s-middle-ea|1090945-discussion-on-cooperation-during-minister-vivian-s-middle-ea]]
+- [[article/2026-05/1090955-strait-of-hormuz-areas-of-cooperation-discussed-in-vivian-ba|1090955-strait-of-hormuz-areas-of-cooperation-discussed-in-vivian-ba]]
+- [[article/2026-05/1091385-strait-of-hormuz-among-topics-discussed-in-vivian-s-visit-to|1091385-strait-of-hormuz-among-topics-discussed-in-vivian-s-visit-to]]
+- [[article/2026-05/1091386-vivian-concludes-visit-to-four-middle-eastern-nations-thanks|1091386-vivian-concludes-visit-to-four-middle-eastern-nations-thanks]]
+- [[article/2026-05/1091387-vivian-visits-middle-east-discuss-strait-of-hormuz-issue-viv|1091387-vivian-visits-middle-east-discuss-strait-of-hormuz-issue-viv]]
+- [[article/2026-05/1091388-foreign-affairs-minister-vivian-travels-to-middle-eastern-co|1091388-foreign-affairs-minister-vivian-travels-to-middle-eastern-co]]
+- [[article/2026-04/1057191-more-than-2-000-singaporeans-remain-in-the-middle-east-the-ministry-of|More Than 2,000 Singaporeans Remain In The Middle East. The Ministry Of Foreign Affairs Stated That It Is Maintaining Close Contact And Has No Plans To Evacuate Citizens At This Time (逾2000国人仍留中东 外交部：保持密切联系 暂无撤侨计划)]]
+- [[article/2026-04/1057440-mfa-more-than-2-000-citizens-remain-in-the-middle-east-no-evacuation-p|MFA: More Than 2,000 Citizens Remain In The Middle East; No Evacuation Plans At Present (外交部：逾2000国人仍留中东　暂无撤侨计划)]]
+- [[article/2026-02/950815-iran-us-to-negotiate-in-oman-amid-deep-rifts-and-mounting-war-fears|Iran, US To Negotiate In Oman Amid Deep Rifts And Mounting War Fears]]
+- [[article/2026-02/952905-israel-s-netanyahu-expected-to-meet-trump-in-us-on-wednesday-and-discu|Israel's Netanyahu Expected To Meet Trump In US On Wednesday And Discuss Iran]]
+

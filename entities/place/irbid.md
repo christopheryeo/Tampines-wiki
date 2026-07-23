@@ -4,7 +4,7 @@ displayName: Irbid
 placeType: Other
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 4
 tags: []
 ---
 
@@ -18,3 +18,7 @@ Irbid — place referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2025-11/784299-singapore-jordan-discuss-deepening-cooperation-in-education-vocational|Singapore, Jordan Discuss Deepening Cooperation In Education, Vocational Training, Investment Promotion, Green Energy (S’Pura, Jordan Bincang Perdalam Kerjasama Dalam Pendidikan, Latihan Vokasional, Promosi Pelaburan, Tenaga Hijau)]]
+- [[article/2025-11/784592-singapore-jordan-discuss-deepening-cooperation-in-education-vocational|Singapore, Jordan Discuss Deepening Cooperation In Education, Vocational Training, Investment Promotion, Green Energy (S’Pura, Jordan Bincang Perdalam Kerjasama Dalam Pendidikan, Latihan Vokasional, Promosi Pelaburan, Tenaga Hijau)]]
+- [[article/2025-11/784848-s-pore-jordan-discuss-enhancing-multi-faceted-cooperation-spura-jordan|S'pore, Jordan Discuss Enhancing Multi-Faceted Cooperation (S’pura, Jordan Bincang Pertingkat Kerjasama Pelbagai Bidang)]]
+

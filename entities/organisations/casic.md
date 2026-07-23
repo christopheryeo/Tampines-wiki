@@ -4,7 +4,7 @@ displayName: China Aerospace Science and Industry Corporation (CASIC)
 orgType:
 country:
 aliases: []
-mentionCount: 3
+mentionCount: 4
 tags: []
 ---
 
@@ -20,3 +20,5 @@ China Aerospace Science and Industry Corporation (CASIC) — organisation refere
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2025-11/775742-a-new-arms-race-satellite-images-maps-and-records-reveal-huge-surge-in|‘A New Arms Race’: Satellite Images, Maps And Records Reveal Huge Surge In China’s Missile Production Sites]]
+

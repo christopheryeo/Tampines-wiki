@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Rogelio Villanueva — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-02/961326-philippines-urges-china-to-keep-tone-calm-as-rhetoric-heats-up|Philippines Urges China To Keep Tone 'Calm' As Rhetoric Heats Up]]
+

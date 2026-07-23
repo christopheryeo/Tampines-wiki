@@ -1,0 +1,110 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: Strait of Malacca
+aliases:
+  - Strait of Malacca
+owner: Alex
+created: 2026-07-18T02:12:50
+last_updated: 2026-07-18T13:17:41
+category: "Imported article topic"
+articleCount: 89
+tags:
+  - "#topic"
+---
+
+# Strait of Malacca
+
+## Coverage
+- [[article/2026-05/1087759-blockade-alert-blockade-of-the-straits-energy-alarm-alert-us|1087759-blockade-alert-blockade-of-the-straits-energy-alarm-alert-us]]
+- [[article/2026-05/1088084-thailand-seizes-on-hormuz-fears-to-push-land-bridge-dream|1088084-thailand-seizes-on-hormuz-fears-to-push-land-bridge-dream]]
+- [[article/2026-05/1089644-why-thailand-s-land-bridge-project-is-going-nowhere|1089644-why-thailand-s-land-bridge-project-is-going-nowhere]]
+- [[article/2026-05/1093377-the-strait-of-malacca-does-not-need-to-become-the-strait-of|1093377-the-strait-of-malacca-does-not-need-to-become-the-strait-of]]
+- [[article/2026-05/1095010-piracy-incidents-in-the-straits-of-malacca-and-singapore-rea|1095010-piracy-incidents-in-the-straits-of-malacca-and-singapore-rea]]
+- [[article/2026-05/1097467-indonesia-deploys-turkish-anka-drones-in-strait-of-malacca-c|1097467-indonesia-deploys-turkish-anka-drones-in-strait-of-malacca-c]]
+- [[article/2026-05/1098948-indonesia-builds-anka-combat-drone-base-in-tanjungpinang-mal|1098948-indonesia-builds-anka-combat-drone-base-in-tanjungpinang-mal]]
+- [[article/2026-05/1108469-us-warship-in-malacca-strait-as-trump-calls-off-massive-atta|1108469-us-warship-in-malacca-strait-as-trump-calls-off-massive-atta]]
+- [[article/2026-05/1109379-chan-chun-sing-at-41st-singapore-business-awards|1109379-chan-chun-sing-at-41st-singapore-business-awards]]
+- [[article/2026-05/1109380-chan-chun-sing-at-41st-singapore-business-awards|1109380-chan-chun-sing-at-41st-singapore-business-awards]]
+- [[article/2026-05/1109430-chan-chun-sing-countries-and-businesses-should-avoid-getting|1109430-chan-chun-sing-countries-and-businesses-should-avoid-getting]]
+- [[article/2026-05/1109433-chan-chun-sing-nations-and-businesses-must-not-focus-solely|1109433-chan-chun-sing-nations-and-businesses-must-not-focus-solely]]
+- [[article/2026-05/1110901-foreign-affairs-commentary-the-coming-contest-for-asia-s-wat|1110901-foreign-affairs-commentary-the-coming-contest-for-asia-s-wat]]
+- [[article/2026-05/1114245-regional-stewardship-key-to-strait-of-malacca-safety-and-sta|1114245-regional-stewardship-key-to-strait-of-malacca-safety-and-sta]]
+- [[article/2026-05/1118896-international-institute-for-strategic-studies-strategic-comp|1118896-international-institute-for-strategic-studies-strategic-comp]]
+- [[article/2026-05/1119270-malay-mail-online-commentary-strait-of-malacca-stability-sov|1119270-malay-mail-online-commentary-strait-of-malacca-stability-sov]]
+- [[article/2026-05/1119425-the-diplomat-commentary-the-strategic-corridor-turning-singa|1119425-the-diplomat-commentary-the-strategic-corridor-turning-singa]]
+- [[article/2026-05/1120304-international-institute-for-strategic-studies-world-on-brink|1120304-international-institute-for-strategic-studies-world-on-brink]]
+- [[article/2026-05/1120503-indonesia-and-malaysia-build-integrated-security-framework-f|1120503-indonesia-and-malaysia-build-integrated-security-framework-f]]
+- [[article/2026-05/1120509-indonesia-and-malaysia-are-building-an-integrated-security-f|1120509-indonesia-and-malaysia-are-building-an-integrated-security-f]]
+- [[article/2026-05/1120510-indonesia-and-malaysia-are-building-an-integrated-security-f|1120510-indonesia-and-malaysia-are-building-an-integrated-security-f]]
+- [[article/2026-05/1123536-malaysia-won-t-rush-defense-spending-eyes-asymmetric-warfare|1123536-malaysia-won-t-rush-defense-spending-eyes-asymmetric-warfare]]
+- [[article/2026-05/1124166-nr-9-asean-defence-ministers-emphasise-importance-of-free-an|1124166-nr-9-asean-defence-ministers-emphasise-importance-of-free-an]]
+- [[article/2026-05/1124633-nr-9-asean-defence-ministers-emphasise-importance-of-free-an|1124633-nr-9-asean-defence-ministers-emphasise-importance-of-free-an]]
+- [[article/2026-05/1124656-defence-minister-no-rush-to-increase-military-spending-malay|1124656-defence-minister-no-rush-to-increase-military-spending-malay]]
+- [[article/2026-05/1125166-to-attract-investment-and-create-good-employment-opportuniti|1125166-to-attract-investment-and-create-good-employment-opportuniti]]
+- [[article/2026-05/1125456-eight-asean-countries-reach-consensus-to-implement-internati|1125456-eight-asean-countries-reach-consensus-to-implement-internati]]
+- [[article/2026-04/1048482-hang-nadim-air-force-base-in-batam-strengthens-air-defenses-in-the-bus|Hang Nadim Air Force Base In Batam Strengthens Air Defenses In The Busy Malacca Strait (Lanud Hang Nadim Batam Perkuat Pertahanan Udara Di Jalur Sibuk Selat Malaka)]]
+- [[article/2026-04/1053290-malaysia-furious-at-singapore-s-bringing-up-malacca-straits-over-iran-|Malaysia Furious At Singapore's Bringing Up Malacca Straits Over Iran's Closure Of The Strait Of Hormuz (Malaysia Geram Singapura Bawa-Bawa Selat Malaka Soal Penutupan Selat Hormuz Oleh Iran)]]
+- [[article/2026-04/1056320-singapores-third-invincible-class-submarine-returns-home-giving-singap|Singapore’s Third Invincible-Class Submarine Returns Home, Giving Singapore the Most Advanced Undersea Fleet in Southeast Asia]]
+- [[article/2026-04/1056451-rss-illustrious-submarine-arrives-in-singapore-changes-balance-of-unde|RSS Illustrious Submarine Arrives In Singapore, Changes Balance Of Undersea Power In Strait Of Malacca And South China Sea (Kapal Selam RSS Illustrious Tiba Di Singapura, Ubah Keseimbangan Kuasa Bawah Laut Di Selat Melaka Dan Laut China Selatan)]]
+- [[article/2026-04/1059875-india-today-commentary-amid-hormuz-war-is-us-now-eyeing-key-strait-vit|India Today Commentary: "Amid Hormuz War, Is US Now Eyeing Key Strait Vital To India?"]]
+- [[article/2026-04/1060252-netral-news-commentary-us-aircraft-are-indeed-free-to-fly-over-indones|Netral News Commentary: "US Aircraft Are Indeed Free To Fly Over Indonesian Airspace. (Pesawat AS Memang Bebas Melintas Di Wilayah Udara RI)"]]
+- [[article/2026-04/1060255-besides-hormuz-these-are-the-straits-that-control-the-flow-of-global-o|Besides Hormuz, These Are The Straits That Control The Flow Of Global Oil Distribution. (Selain Hormuz, Ini Deretan Selat Yang Kuasai Aliran Distribusi Minyak Dunia)]]
+- [[article/2026-04/1061953-observer-net-commentary-yan-mo-imperialism-at-ones-doorstep-the-shadow|Observer Net Commentary: "Yan Mo: Imperialism at One’s Doorstep, the Shadow of War Behind Peace (雁默：家门口的帝国主义，和平身后的战争阴霾)"]]
+- [[article/2026-04/1062592-viva-news-commentary-the-us-is-allegedly-targeting-the-strait-of-malac|VIVA News Commentary: "The US Is Allegedly Targeting The Strait Of Malacca. What Are The Implications For Southeast Asia?" (AS Diduga Bidik Selat Malaka, Apa Dampaknya Bagi Asia Tenggara?)]]
+- [[article/2026-04/1063762-the-economist-commentary-singapore-and-malaysia-knock-heads-over-the-w|The Economist Commentary: "Singapore And Malaysia Knock Heads Over The War In Iran"]]
+- [[article/2026-04/1064870-the-strait-of-malacca-why-another-choke-point-of-global-trade-is-raisi|The Strait Of Malacca: Why Another "Choke Point" Of Global Trade Is Raising Concerns (马六甲海峡：为何全球贸易的另一个“咽喉要道”正引发担忧)]]
+- [[article/2026-04/1064871-the-strait-of-malacca-why-another-choke-point-of-global-trade-is-raisi|The Strait Of Malacca: Why Another "Choke Point" Of Global Trade Is Raising Concerns (马六甲海峡：为何全球贸易的另一个「咽喉要道」正引发担忧)]]
+- [[article/2026-04/1064872-the-strait-of-malacca-why-another-choke-point-of-global-trade-is-raisi|The Strait Of Malacca: Why Another "Choke Point" Of Global Trade Is Raising Concerns (马六甲海峡：为何全球贸易的另一个「咽喉要道」正引发担忧)]]
+- [[article/2026-04/1064873-sudden-closure-of-the-strait-of-hormuz-has-created-a-tense-and-uneasy-|Sudden Closure Of The Strait Of Hormuz Has Created A Tense And Uneasy Atmosphere In The Strait Of Malacca (霍爾木茲驟然被封 馬六甲海峽的氣氛也變得焦躁不安)]]
+- [[article/2026-04/1064874-the-sudden-closure-of-the-strait-of-hormuz-has-created-a-tense-and-une|The Sudden Closure Of The Strait Of Hormuz Has Created A Tense And Uneasy Atmosphere In The Strait Of Malacca (霍峡骤然被封 马六甲海峡气氛也变得焦躁不安)]]
+- [[article/2026-04/1065102-the-vulnerability-of-the-strait-of-malacca-has-once-again-come-under-s|The Vulnerability Of The Strait Of Malacca Has Once Again Come Under Scrutiny Due To The Strait Of Hormuz Crisis (因霍尔木兹海峡危机 马六甲海峡脆弱性再受关注)]]
+- [[article/2026-04/1065108-a-dangerous-precedent-the-atmosphere-in-the-waterway-is-tense-after-th|A Dangerous Precedent? The Atmosphere In The Waterway Is Tense After The Sudden Closure Of The Strait Of Hormuz. (危險先例？荷莫茲海峽驟然被封後 這條水道氣氛也焦躁不安)]]
+- [[article/2026-04/1065534-the-atmosphere-in-the-strait-of-malacca-is-eerie|The Atmosphere In The Strait Of Malacca Is Eerie (麻六甲海峽 氣氛詭譎)]]
+- [[article/2026-04/1065535-tensions-rise-in-the-gulf-region-atmosphere-in-the-strait-of-malacca-b|Tensions Rise In The Gulf Region; Atmosphere In The Strait Of Malacca Becomes Unpredictable (波灣局勢升溫 麻六甲海峽氣氛詭譎)]]
+- [[article/2026-04/1065536-hormuz-strait-crisis-sparks-concerns-over-geopolitical-vulnerability-o|Hormuz Strait Crisis Sparks Concerns Over Geopolitical Vulnerability Of The Malacca Strait (霍尔木兹海峡危机 引发对马六甲海峡地缘脆弱性关注)]]
+- [[article/2026-04/1069730-gan-kim-yong-singapore-and-all-parties-ensure-unimpeded-navigation-in-|Gan Kim Yong: Singapore And All Parties Ensure Unimpeded Navigation In The Strait Of Malacca; The Principle Of Freedom Of Navigation Is Not Open To Negotiation (颜金勇：新加坡与各方确保马六甲海峡畅通 自由航行原则不容谈判)]]
+- [[article/2026-04/1070259-technology-is-essential-to-keep-the-air-and-sea-areas-stable|"Technology Is Essential To Keep The Air And Sea Areas Stable" ("வான்வெளியையும் கடல்வெளியையும் சீராக வைத்திருக்கத் தொழில்நுட்பம் அவசியம்")]]
+- [[article/2026-04/1070261-chan-chun-sing-attended-19th-dsa-and-8th-putrajaya-forum|Chan Chun Sing Attended 19th DSA And 8th Putrajaya Forum]]
+- [[article/2026-04/1070271-chan-chun-sing-asean-must-implement-the-principle-of-airspace-and-wate|Chan Chun Sing: ASEAN Must Implement The Principle Of Airspace And Waterway Passage By Making Good Use Of Technology To Safeguard Openness. (陈振声：善用科技保开放 亚细安须落实空域水道通行原则 )]]
+- [[article/2026-04/1070752-attending-the-8th-putrajaya-forum-chan-chun-sing-asean-must-implement-|Attending The 8th Putrajaya Forum, Chan Chun Sing: ASEAN Must Implement The Principle Of Airspace And Waterway Passage By Making Good Use Of Technology To Safeguard Openness (出席第八届布城论坛 陈振声：善用科技保开放　亚细安须落实空域水道通行原则)]]
+- [[article/2026-04/1070755-gan-kim-yong-singapore-has-long-worked-with-all-parties-to-ensure-the-|Gan Kim Yong: Singapore Has Long Worked With All Parties To Ensure The Security And Smooth Flow Of The Strait Of Malacca And Singapore Strait (颜金勇：我国与各方长期合作以确保 马六甲新加坡海峡安全畅通)]]
+- [[article/2026-04/1072638-indonesia-finance-minister-floats-then-backs-off-on-strait-of-malacca-|Indonesia Finance Minister Floats, Then Backs Off On Strait Of Malacca Levy]]
+- [[article/2026-04/1072772-vivian-balakrishnan-if-us-china-relations-break-down-the-situation-in-|Vivian Balakrishnan: If US-China Relations Break Down, The Situation In The Strait Of Hormuz May Just Be A "Prelude". (维文：中美关系若破裂 霍尔木兹海峡局势恐“只是预演”)]]
+- [[article/2026-04/1072850-iran-has-set-a-bad-precedent-indonesia-is-calling-for-a-fee-on-the-str|Iran Has Set A Bad Precedent, Indonesia Is Calling For A Fee On The Strait Of Malacca, And China Is Expected To Pay Hundreds Of Billions Of Dollars More? (伊朗开了个坏头，印尼呼吁对马六甲收费，中国要多付千亿美元？)]]
+- [[article/2026-04/1073003-indonesia-wants-to-charge-a-fee-on-the-strait-of-malacca-both-countrie|Indonesia Wants To Charge A Fee On The Strait Of Malacca! Both Countries Immediately Oppose It. Is This A Viable Option? (印尼想對馬六甲海峽收費！這兩國立刻反對　這條路走得通嗎？)]]
+- [[article/2026-04/1073151-the-malacca-strait-in-the-shadow-of-global-conflict-a-strong-signal-fr|The Malacca Strait In The Shadow Of Global Conflict: A Strong Signal From Singapore (Selat Malaka Di Tengah Bayang-Bayang Konflik Global, Sinyal Keras Dari Singapura)]]
+- [[article/2026-04/1073179-indonesia-s-finance-minister-envisioned-emulating-iran-s-practice-of-c|Indonesia's Finance Minister Envisioned Emulating Iran's Practice Of Collecting "Tolls" In The Strait Of Malacca, But His Proposal Was Immediately Rejected By Singapore And Malaysia. (印尼财长畅想学伊朗在马六甲收“过路费”，一开口就被新加坡和马来西亚否了)]]
+- [[article/2026-04/1073182-indonesia-s-finance-minister-wanted-to-emulate-iran-by-collecting-toll|Indonesia's Finance Minister Wanted To Emulate Iran By Collecting Tolls On The Malacca Strait, But Singapore And Malaysia Refused, Effectively Cutting Ties With The Plan. (印尼財長想學伊朗收麻六甲過路費　慘遭新加坡、馬來西亞切割說不)]]
+- [[article/2026-04/1073350-indonesia-s-finance-minister-wanted-to-emulate-iran-by-collecting-toll|Indonesia's Finance Minister Wanted To Emulate Iran By Collecting Tolls On The Malacca Strait, But Was Met With Opposition From Singapore And Malaysia. (印尼財長想學伊朗收麻六甲過路費 慘遭新加坡、馬來西亞切割說不)]]
+- [[article/2026-04/1073351-indonesia-s-finance-minister-wanted-to-emulate-iran-by-collecting-toll|Indonesia's Finance Minister Wanted To Emulate Iran By Collecting Tolls On The Malacca Strait, But Was Met With Opposition From Singapore And Malaysia. (印尼財長想學伊朗收麻六甲過路費 慘遭新加坡、馬來西亞切割說不)]]
+- [[article/2026-04/1073353-dr-bernard-loo-interview-on-japan-opening-door-to-global-arms-market-s|Dr Bernard Loo Interview On Japan Opening Door To Global Arms Market (SAF/Defence/CNB Mention)]]
+- [[article/2026-04/1073611-hormuz-crisis-throws-spotlight-on-malacca-strait-as-worlds-largest-cho|Hormuz Crisis Throws Spotlight On Malacca Strait As World’S Largest ‘Choke Point’]]
+- [[article/2026-04/1073871-indonesia-will-not-impose-tariffs-on-malacca-strait-shipping-says-fore|Indonesia Will Not Impose Tariffs On Malacca Strait Shipping, Says Foreign Minister]]
+- [[article/2026-04/1074709-singapore-acting-as-troublemaker-maliciously-hyping-up-the-conflict-be|Singapore Acting As Troublemaker, Maliciously Hyping Up The Conflict Between China And US, Falsely Claimin Strait Of Hormuz Is Just A Prelude (新加坡充当搅屎棍，恶意炒作中美冲突，妄称霍尔木兹海峡只是预演)]]
+- [[article/2026-04/1074848-st-online-commentary-malacca-strait-levy-ministers-controversial-remar|ST Online Commentary: "Malacca Strait Levy? Minister’s Controversial Remark Causes Confusion Across Indonesia"]]
+- [[article/2026-04/1075696-st-online-commentary-malacca-strait-levy-ministers-controversial-remar|ST Online Commentary: "Malacca Strait Levy? Minister’s Controversial Remark Causes Confusion Across Indonesia"]]
+- [[article/2026-04/1075703-st-commentary-indonesian-minister-floated-idea-of-levy-on-malacca-stra|ST Commentary: "Indonesian Minister Floated Idea Of Levy On Malacca Strait; It Sank Within 24 Hours"]]
+- [[article/2026-04/1078332-will-the-strait-of-malacca-become-the-next-shipping-bottleneck-after-t|Will The Strait Of Malacca Become The Next Shipping Bottleneck After The Strait Of Hormuz? (继霍尔木兹海峡之后，马六甲海峡会成为下一个运输瓶颈吗？)]]
+- [[article/2026-04/1078751-thailand-prepares-to-compete-with-the-strait-of-malacca-boosts-ocean-s|Thailand Prepares To Compete With The Strait Of Malacca, Boosts Ocean Shortcut Megaproject (Thailand Siapkan Pesaing Selat Malaka, Genjot Megaproyek Jalur Pintas Samudra)]]
+- [[article/2026-04/1078927-thailand-accelerates-idr-532-trillion-land-bridge-project-preparing-to|Thailand Accelerates IDR 532 Trillion Land Bridge Project, Preparing To Compete With The Strait Of Malacca (Thailand Genjot Proyek Land Bridge Rp532 Triliun, Disiapkan Jadi Pesaing Selat Malaka )]]
+- [[article/2026-04/1079993-over-rm1bil-spent-on-mmea-s-robust-asset-expansion-with-new-ships-heli|Over RM1bil Spent On MMEA's 'Robust' Asset Expansion With New Ships, Helicopters]]
+- [[article/2026-04/1080266-https-theindependent-sg-singapore-shows-interest-in-thailand-s-land-br|Https://Theindependent.Sg/Singapore-Shows-Interest-In-Thailand-S-Land-Bridge-Project/]]
+- [[article/2026-04/1080528-singapore-shows-interest-in-thailands-land-bridge-project|Singapore shows interest in Thailand’s land bridge project]]
+- [[article/2026-04/1080529-singapore-shows-interest-in-thailands-land-bridge-project|Singapore Shows Interest In Thailand’s Land Bridge Project]]
+- [[article/2026-04/1080530-singapore-shows-interest-in-thailands-land-bridge-project|Singapore Shows Interest In Thailand’s Land Bridge Project]]
+- [[article/2026-04/1080531-singapore-shows-interest-in-thailands-land-bridge-project|Singapore Shows Interest In Thailand’s Land Bridge Project]]
+- [[article/2026-04/1080532-singapore-shows-interest-in-thailands-land-bridge-project|Singapore Shows Interest In Thailand’s Land Bridge Project]]
+- [[article/2026-04/1080940-shocking-strait-of-malacca-threatened-with-desolation-thailand-dares-t|Shocking! Strait Of Malacca Threatened With Desolation? Thailand Dares To Build A Rp480 Trillion Project! (Geger! Selat Malaka Terancam Sepi? Thailand Nekat Bangun Proyek Rp480 Triliun!)]]
+- [[article/2026-02/966267-asean-must-take-the-lead-in-addressing-maritime-threats|"ASEAN Must Take The Lead In Addressing Maritime Threats" ("கடல்துறை மிரட்டல்களை எதிர்கொள்வதில் ஆசியான் முன்னணி வகிக்கவேண்டும்")]]
+- [[article/2026-02/971326-defeating-china-without-firing-a-single-shot-the-us-threatens-to-block|Defeating China Without Firing A Single Shot? The US Threatens To Blockade The Strait Of Malacca With Three Warships, Which Would Starve 700 Million People. (不费一枪一弹打败中国？美方扬言3艘军舰封锁马六甲，将饿死7亿人)]]
+- [[article/2026-01/893896-observer-net-commentary-what-is-lee-hsien-loong-afraid-of-given-the-si|Observer Net Commentary: "What Is Lee Hsien Loong Afraid Of, Given The Situation In Venezuela?" (看到委内瑞拉的情况，李显龙在怕什么？)]]
+- [[article/2026-01/893904-recaap-warns-that-seaborne-robbery-cases-remain-a-concern-mindef-state|ReCAAP Warns That Seaborne Robbery Cases Remain A Concern (MINDEF Statement)]]
+- [[article/2026-01/893906-recaap-warns-that-seaborne-robbery-cases-remain-a-concern-mindef-state|ReCAAP Warns That Seaborne Robbery Cases Remain A Concern (MINDEF Statement)]]
+- [[article/2026-01/894285-piracy-incidents-in-the-straits-of-malacca-and-singapore-reached-a-rec|Piracy Incidents In The Straits Of Malacca And Singapore Reached A Record High Last Year; MINDEF: These Did Not Occur In Singapore Waters (马六甲与新加坡海峡去年海盗事故创新高 国防部：并非发生在我国水域)]]
+- [[article/2025-11/768620-5-asean-countries-with-the-fastest-military-expansion-who-s-the-champi|5 ASEAN Countries With The Fastest Military Expansion: Who's The Champion? (5 ASEAN Countries With The Fastest Military Expansion: Who's The Champion?)]]
+- [[article/2025-11/768621-5-asean-countries-with-the-fastest-military-expansion-who-s-the-champi|5 ASEAN Countries With The Fastest Military Expansion: Who's The Champion? (5 Negara ASEAN Dengan Pertumbuhan Militer Paling Cepat, Siapa Juaranya?)]]
+- [[article/2025-11/803526-observer-net-commentary-military-cooperation-between-singapore-and-the|Observer Net Commentary: "Military Cooperation Between Singapore And The United States Poses A Threat To China's Overseas Shipping" (新加坡与美国的军事合作，对中国对外航运的威胁)]]
+

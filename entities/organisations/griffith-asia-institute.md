@@ -4,7 +4,7 @@ displayName: Griffith Asia Institute
 orgType: Other
 country: Australia
 aliases: [Griffith Asia Institute]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,4 +18,5 @@ Australian research institute; Peter Layton is a visiting fellow.
 [[peter-layton|Peter Layton]]
 
 ## AI Context
+- [[article/2026-02/986510-former-us-f-35-instructor-charged-with-conspiring-to-train-chinese-mil|Former US F-35 Instructor Charged With Conspiring To Train Chinese Military]]
 

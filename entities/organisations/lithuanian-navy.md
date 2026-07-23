@@ -4,7 +4,7 @@ displayName: Lithuanian Navy
 orgType: Military
 country: Lithuania
 aliases: [Lithuanian Navy]
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -22,3 +22,6 @@ Lithuania's naval force; partnered in a demonstration of Thales' Expeditionary P
 
 
 Related topic: [[defence]]
+- [[article/2026-01/885726-exail-wins-new-order-for-several-hundred-k-ster-underwater-drones|Exail Wins New Order For Several Hundred K-STER Underwater Drones]]
+- [[article/2026-01/903366-henriksen-to-supply-hemlis-minesweeping-system-to-indonesian-navy|Henriksen To Supply HEMLIS Minesweeping System To Indonesian Navy]]
+

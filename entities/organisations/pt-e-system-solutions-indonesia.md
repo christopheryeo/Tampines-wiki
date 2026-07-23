@@ -4,7 +4,7 @@ displayName: PT E-System Solutions Indonesia
 orgType: Defence Industry
 country: Indonesia
 aliases: [PT E-System Solutions Indonesia]
-mentionCount: 1
+mentionCount: 5
 tags: []
 ---
 
@@ -21,3 +21,8 @@ Intermediary company that signed the 12-aircraft PC-24 procurement contract betw
 
 
 Related topic: [[defence]]
+- [[article/2026-04/1045203-indonesia-orders-pilatus-pc-24-aircraft-for-multiple-roles|Indonesia Orders Pilatus PC-24 Aircraft For Multiple Roles]]
+- [[article/2026-02/954647-indonesia-set-to-boost-air-power-with-italian-trainer-jets-aggressor-s|Indonesia Set To Boost Air Power With Italian Trainer Jets, Aggressor Squadron]]
+- [[article/2026-02/957503-indonesia-signs-lois-to-acquire-italian-m-346-trainers-and-russian-mig|Indonesia Signs LoIs To Acquire Italian M-346 Trainers And Russian MiG-29 Fighters]]
+- [[article/2026-02/959497-indonesia-set-to-boost-air-power-with-italian-trainer-jets-russian-jet|Indonesia Set To Boost Air Power With Italian Trainer Jets, Russian Jet Fighters]]
+

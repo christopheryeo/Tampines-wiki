@@ -16,6 +16,7 @@ htmlcov/
 .venv/
 venv/
 env/
+.env.local
 
 # Local agent/editor state
 .claude/settings.local.json

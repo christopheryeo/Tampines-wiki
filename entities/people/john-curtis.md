@@ -5,7 +5,7 @@ role: US Senator (Republican, Utah)
 affiliation: United States Senate
 country: United States
 aliases: [John Curtis]
-mentionCount: 6
+mentionCount: 9
 tags: []
 ---
 
@@ -27,3 +27,7 @@ US senator who co-led the bipartisan congressional delegation to Taiwan.
 
 
 Related topic: [[defence]]
+- [[article/2026-04/1042593-us-senators-seek-to-calm-asian-nerves-on-taiwan-japan-south-korea-tour|US Senators Seek To Calm Asian Nerves On Taiwan-Japan-South Korea Tour]]
+- [[article/2026-04/1044291-south-koreas-lee-urges-us-visa-reforms-raises-defence-role-in-talks-wi|South Korea’s Lee Urges US Visa Reforms, Raises Defence Role In Talks With Senators]]
+- [[article/2026-04/1064202-us-senators-reassure-taiwan-on-weapons-approvals-in-coming-weeks|US Senators Reassure Taiwan On Weapons Approvals In Coming Weeks]]
+

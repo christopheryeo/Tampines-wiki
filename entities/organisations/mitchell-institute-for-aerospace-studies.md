@@ -4,7 +4,7 @@ displayName: Mitchell Institute for Aerospace Studies
 orgType: Other
 country: United States
 aliases: [Mitchell Institute for Aerospace Studies]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,4 +18,5 @@ US aerospace think tank whose report documented China's deployment of J-6 jets-t
 [[united-states|United States]] · [[j-michael-dahm|J. Michael Dahm]]
 
 ## AI Context
+- [[article/2026-02/967218-the-us-air-force-needs-to-buy-hundreds-of-sixth-gen-fighters-and-bombe|The US Air Force Needs To Buy Hundreds Of Sixth-Gen Fighters And Bombers To Be Ready For A China Fight, Airpower Experts Say]]
 

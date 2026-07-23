@@ -3,7 +3,7 @@ countryId: united-arab-emirates
 displayName: United Arab Emirates
 region: Middle East
 iso2: AE
-mentionCount: 85
+mentionCount: 114
 aliases: ['UAE']
 ---
 
@@ -24,6 +24,31 @@ aliases: ['UAE']
 Gulf state hosting US military assets; Dubai and [[abu-dhabi|Abu Dhabi]] were struck by missile/drone attacks in the March 2026 Iran-Israel-US conflict, affecting resident Singaporeans.
 
 ## Coverage
+- [[1147864-rsis-commentary-ip26073-considerations-for-the-evolution-of|RSIS Commentary: "IP26073 | Considerations For The Evolution Of Singapore’s Defence Ind...]]
+- [[1137987-bt-online-commentary-why-iran-s-threat-against-undersea-cabl|BT Online Commentary: "Why Iran’s Threat Against Undersea Cables Could Be A Bigger Weap...]]
+- [[1137465-st-commentary-why-iran-s-threat-against-undersea-cables-coul|ST Commentary: "Why Iran’s Threat Against Undersea Cables Could Be A Bigger Weapon Than...]]
+- [[1136555-st-online-commentary-why-iran-s-threat-against-undersea-cabl|ST Online Commentary: "Why Iran’s Threat Against Undersea Cables Could Be A Bigger Weap...]]
+- [[1136552-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136551-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136550-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136549-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136548-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136547-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136434-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1136433-an-ah-64-apache-attack-helicopter-went-down-near-iran-take-a|An AH-64 Apache Attack Helicopter Went Down Near Iran. Take A Closer Look At Its Weapon...]]
+- [[1134816-trump-says-pilots-are-fine-after-us-helicopter-crashes-near|Trump Says Pilots Are Fine After US Helicopter Crashes Near Strait Of Hormuz]]
+- [[1133651-international-feature-awakened-by-the-iranian-war-the-us-umb|International Feature: Awakened By The Iranian War, The US Umbrella May Become A Depend...]]
+- [[1133092-israel-sent-troops-to-azerbaijan-during-iran-war-as-part-of|Israel Sent Troops To Azerbaijan During Iran War As Part Of Secret Network Across Regio...]]
+- [[1131288-india-willing-to-share-defense-technology-with-friendly-coun|India Willing To Share Defense Technology With Friendly Countries, Chinese Media Highli...]]
+- [[1131082-indonesia-seven-nations-condemn-israeli-settler-attack-on-al|Indonesia, Seven Nations Condemn Israeli Settler Attack On Al-Aqsa]]
+- [[1128209-iranian-attacks-damaged-20-us-military-sites-since-war-began|Iranian Attacks Damaged 20 US Military Sites Since War Began]]
+- [[1161055-iran-attacks-neighbours-as-us-promises-tehran-will-pay-and-w|Iran Attacks Neighbours As US Promises Tehran Will ‘Pay’ And War In The Middle East Res...]]
+- [[1161051-iran-attacked-gulf-neighbours-in-retaliation-for-us-air-stri|Iran Attacked Gulf Neighbours In Retaliation For US Air Strikes (伊朗袭击波斯湾邻国 报复美国空袭)]]
+- [[1160992-iran-strikes-gulf-neighbors-after-new-us-attacks|Iran Strikes Gulf Neighbors After New US Attacks]]
+- [[1160946-iran-strikes-gulf-neighbours-after-new-us-attacks|Iran Strikes Gulf Neighbours After New US Attacks]]
+- [[1158292-us-launches-massive-air-strikes-against-iran-after-new-strai|US Launches Massive Air Strikes Against Iran After New Strait Of Hormuz Tanker Attacks.]]
+- [[1157210-indonesia-to-buy-brahmos-missiles-indian-govt-official-says|Indonesia To Buy BrahMos Missiles, Indian Govt Official Says]]
+- [[1151973-singapore-expands-hellfire-missile-arsenal-after-us-approves|Singapore Expands Hellfire Missile Arsenal After US Approves $22.3 Million Deal]]
 - [[1005164-singapore-arranges-two-military-flights-to-riyadh|Singapore's MFA and MINDEF announced on 9 March 2026 that the RSAF would deploy an Airb...]]
 - [[1002700-government-considering-request-for-military-assist|Australia's government is weighing a request for military assistance from Gulf states h...]]
 - [[1002382-pm-wong-holds-talks-with-the-uae-president|Prime Minister Lawrence Wong held a phone call with UAE President Sheikh Mohamed bin Za...]]
@@ -100,3 +125,8 @@ Gulf state hosting US military assets; Dubai and [[abu-dhabi|Abu Dhabi]] were st
 - [[1039100-ukraine-s-zelenskiy-says-middle-east-visit-a-succe|Ukraine's Zelenskiy says Middle East visit a success, announces accords]]
 - [[1037343-what-the-iran-war-teaches-america-s-adversaries|What the Iran war teaches America's adversaries]]
 - [[1021884-singapore-regularly-facilitates-us-forces-access-t|The Online Citizen (19 Mar) carried a blog post on MINDEF's statement that Singapore regularly facilitates ...]]
+- [[article/2026-05/1124172-pentagon-chief-says-us-ready-to-restart-strikes-on-iran-if-n|1124172-pentagon-chief-says-us-ready-to-restart-strikes-on-iran-if-n]]
+- [[article/2026-02/939332-singapore-to-launch-space-agency-in-response-to-global-investment-surg|Singapore To Launch Space Agency In Response To Global Investment Surge]]
+- [[article/2026-02/943114-singapore-looking-forward-to-f-35|Singapore Looking Forward To F-35]]
+- [[article/2026-01/888934-pakistan-eyes-defence-pact-with-bangladesh-sale-of-jf-17-jets|Pakistan Eyes Defence Pact With Bangladesh, Sale Of JF-17 Jets]]
+

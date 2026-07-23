@@ -4,7 +4,7 @@ displayName: Camp Kengun
 placeType: Other
 country:
 aliases: []
-mentionCount: 3
+mentionCount: 7
 tags: []
 ---
 
@@ -20,3 +20,8 @@ Camp Kengun — place referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1040281-japan-deploys-its-first-long-range-missiles|Japan Deploys Its First Long-Range Missiles]]
+- [[article/2026-04/1045295-japans-counterstrike-move-reflects-rising-regional-challenges|Japan’S Counterstrike Move Reflects Rising Regional Challenges]]
+- [[article/2025-12/871703-japan-accelerates-defense-buildup-with-record-budget-and-expanded-unma|Japan Accelerates Defense Buildup With Record Budget And Expanded Unmanned Capabilities]]
+- [[article/2025-11/767024-japan-to-deploy-ground-based-long-range-missiles-at-four-sites|Japan To Deploy Ground-Based Long-Range Missiles At Four Sites]]
+

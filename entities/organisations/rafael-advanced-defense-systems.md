@@ -4,7 +4,7 @@ displayName: Rafael Advanced Defense Systems
 orgType:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 7
 tags: []
 ---
 
@@ -21,3 +21,9 @@ Rafael Advanced Defense Systems — organisation referenced in March 2026 genera
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1084473-israel-rushed-laser-system-to-uae-to-fend-off-iran-s-missile|1084473-israel-rushed-laser-system-to-uae-to-fend-off-iran-s-missile]]
+- [[article/2026-05/1087371-arms-review-new-zealand-s-hmnzs-aotearoa-replenishment-vesse|1087371-arms-review-new-zealand-s-hmnzs-aotearoa-replenishment-vesse]]
+- [[article/2026-05/1087372-arms-review-new-zealand-s-hmnzs-aotearoa-replenishment-vesse|1087372-arms-review-new-zealand-s-hmnzs-aotearoa-replenishment-vesse]]
+- [[article/2026-05/1087492-arms-review-new-zealand-s-hmnzs-aotearoa-replenishment-vesse|1087492-arms-review-new-zealand-s-hmnzs-aotearoa-replenishment-vesse]]
+- [[article/2026-01/930994-israel-signs-183m-deal-with-elbit-for-air-munitions|Israel Signs $183M Deal With Elbit For Air Munitions]]
+

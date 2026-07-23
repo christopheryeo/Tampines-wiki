@@ -4,7 +4,7 @@ displayName: RAF Fairford
 placeType: Other
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -20,3 +20,6 @@ RAF Fairford — place referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1110991-uk-defence-show-riat-cancelled-because-of-iran-war|1110991-uk-defence-show-riat-cancelled-because-of-iran-war]]
+- [[article/2026-04/1049981-britain-reinforces-that-u-s-cannot-use-british-bases-for-attacks-on-ir|Britain Reinforces That U.S. Cannot Use British Bases For Attacks On Iran]]
+

@@ -1,0 +1,59 @@
+{
+  "operation": "uat_held_record_remediation",
+  "database": "MSM_dataset_UAT",
+  "executed_at_local_date": "2026-07-23",
+  "source_batch_id": "c53d2b3f-6d07-534c-abb2-00011d79d67a",
+  "transform_id": "f53cc692-85b8-11f1-ba76-42010a512009",
+  "transaction_result": "committed",
+  "preflight": {
+    "selected_articles": 75,
+    "existing_article_collisions": 0,
+    "overlength_after_repair": 0
+  },
+  "inserted": {
+    "articles": 75,
+    "coverage": 75,
+    "media": 4,
+    "tags": 2192,
+    "user_groups": 75
+  },
+  "remediation_policy": {
+    "review_holds": "Loaded as approved source records.",
+    "nonconforming_or_blank_tone_sentiment": "Loaded as null.",
+    "empty_category": "Loaded as null.",
+    "article_1126968": "Loaded with vendor_article_id null and a source-backed shortened article_title/content_title; full source text preserved in content_description."
+  },
+  "validation": {
+    "field_mismatch_after_insert": 0,
+    "held_ids_now_loaded": 75,
+    "final_failure_count": 0,
+    "raw_feed_reconciliation": {
+      "2026-04": {
+        "raw_feed_records": 1661,
+        "represented_in_uat": 1661,
+        "missing_from_uat": 0
+      },
+      "2026-05": {
+        "raw_feed_records": 3366,
+        "represented_in_uat": 3366,
+        "missing_from_uat": 0
+      },
+      "2026-06": {
+        "raw_feed_records": 2220,
+        "represented_in_uat": 2220,
+        "missing_from_uat": 0
+      },
+      "2026-07": {
+        "raw_feed_records": 968,
+        "represented_in_uat": 968,
+        "missing_from_uat": 0
+      }
+    },
+    "uat_articles_total_after_commit": 22004,
+    "tone_sentiment_distribution_after_commit": {
+      "Neutral": 13461,
+      "Positive": 8536,
+      "NULL": 7
+    }
+  }
+}

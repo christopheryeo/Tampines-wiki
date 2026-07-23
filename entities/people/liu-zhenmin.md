@@ -5,7 +5,7 @@ role: China's climate change envoy; former vice-minister for foreign affairs
 affiliation: Government of China
 country: China
 aliases: [Liu Zhenmin]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,4 +19,5 @@ Chinese climate envoy who stressed keeping South China Sea shipping lanes, inclu
 [[china|China]] · [[united-nations|UN]]
 
 ## AI Context
+- [[article/2025-12/825536-strange-remarks-by-singaporean-official-luo-hanzhou|Strange Remarks By Singaporean Official/ Luo Hanzhou (狮城高官的奇怪言论/罗汉洲)]]
 

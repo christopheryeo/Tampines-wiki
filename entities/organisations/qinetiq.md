@@ -4,7 +4,7 @@ displayName: Qinetiq
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Qinetiq — organisation referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1117799-qinetiq-expands-testing-capacity-for-uncrewed-minehunting-sy|1117799-qinetiq-expands-testing-capacity-for-uncrewed-minehunting-sy]]
+

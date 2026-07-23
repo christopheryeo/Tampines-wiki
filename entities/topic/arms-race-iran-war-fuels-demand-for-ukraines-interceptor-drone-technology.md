@@ -7,7 +7,7 @@ articleCount: 1
 ---
 
 ## Definition
-Coverage of Ukraine seeking to export its interceptor-drone technology amid Gulf-state demand driven by Iranian drone attacks.
+Coverage of Ukraine seeking to export its interceptor-[[drone-technology|drone technology]] amid Gulf-state demand driven by Iranian drone attacks.
 
 ## Coverage
 - [[1038401-ukraine-s-drone-masters-eye-iran-war-to-kickstart|Ukraine's drone masters eye Iran war to kickstart export ambitions]]

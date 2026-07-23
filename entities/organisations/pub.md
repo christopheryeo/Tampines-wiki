@@ -4,7 +4,7 @@ displayName: PUB
 orgType: Government
 country: Singapore
 aliases: [PUB]
-mentionCount: 30
+mentionCount: 35
 tags: []
 ---
 
@@ -12,6 +12,11 @@ tags: []
 Singapore's national water agency. Launched a Mar 2026 programme targeting excessive water use in one- to three-room flats, expected to help ~1,500 households in its first two years; part of the Singapore Water Saver Programme discussed by [[chan-chun-sing|Chan Chun Sing]] in his Coordinating Minister for Public Services capacity.
 
 ## Coverage
+- [[1141111-new-guide-for-flood-protection-for-homes-and-businesses|New Guide For Flood Protection For Homes And Businesses (வீடுகள், நிறுவனங்களின் வெள்ளப்...]]
+- [[1141109-pub-launches-guidebook-for-building-owners-developers-to-hel|PUB Launches Guidebook For Building Owners, Developers To Help Make Their Premises Floo...]]
+- [[1141108-pub-launches-flood-resilience-development-guidelines-to-help|PUB Launches Flood Resilience Development Guidelines To Help Owners Manage Flood Risks...]]
+- [[1141107-the-first-flood-resistant-resilience-development-guideline-h|The First Flood-Resistant Resilience Development Guideline Has Been Released To Help Ho...]]
+- [[1141106-manual-released-to-help-prevent-floods|Manual Released To Help Prevent Floods (வெள்ளத்தைத் தடுக்க உதவும் கையேடு வெளியீடு)]]
 - [[1018160-mr-chan-s-speech-at-singapore-world-water-day-2026|Mr Chan's World Water Day 2026 speech coverage]]
 - [[1017590-household-water-consumption-per-person-dips-by-one|PUB launched its annual World Water Day conservation campaign on 17 March 2026, reporti...]]
 - [[1017597-household-water-consumption-per-person-dips-by-one|coverage]]

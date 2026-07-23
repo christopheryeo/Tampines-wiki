@@ -40,7 +40,7 @@ values beginning with `#`; append-only logs.
    is the exception. (Backtest reference: `amos yee`, `enlistment act`, `cmpb`, `deportation`,
    `fines`, `chicago` were six flags but one issue.)
 4. To test whether two flags are one issue, open a sample of each flag's recent citing articles
-   (via `wiki.db` or the article catalog) and check overlap of articles and entities — shared
+   (via the shared article database or the article catalog) and check overlap of articles and entities — shared
    articles means same issue. Never cluster on tag-name similarity alone.
 5. Name the issue by its risk, not its keyword (`ns-enforcement-enlistment-act`, not `amos-yee` —
    people are carriers of issues, not issues).

@@ -4,7 +4,7 @@ displayName: Defence Investment Agency
 orgType: Defence Agency
 country: Canada
 aliases: [Defence Investment Agency]
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -21,3 +21,6 @@ Canadian agency that announced the MDA space-surveillance contract for the Surve
 
 
 Related topic: [[defence]]
+- [[article/2025-12/838952-canada-taps-its-top-space-firms-for-arctic-military-satellites|Canada Taps Its Top Space Firms For Arctic Military Satellites]]
+- [[article/2025-12/847372-canadas-air-force-buys-six-bombardier-jets-for-547-million|Canada’S Air Force Buys Six Bombardier Jets For $547 Million]]
+

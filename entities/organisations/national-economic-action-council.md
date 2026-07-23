@@ -4,7 +4,7 @@ displayName: National Economic Action Council
 orgType: Government
 country: Malaysia
 aliases: [National Economic Action Council]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,4 +18,5 @@ Malaysian economic policy council (MTEN) convened to address the impact of the M
 [[malaysia|Malaysia]]
 
 ## AI Context
+- [[article/2026-04/1042563-govt-sets-up-communications-command-centre-to-coordinate-response-to-e|Govt Sets Up Communications Command Centre To Coordinate Response To Energy Crisis - Fahmi]]
 

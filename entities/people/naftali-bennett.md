@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -22,3 +22,5 @@ Naftali Bennett — person referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2025-12/874096-iranian-hacking-group-claims-to-seize-damning-info-from-phone-of-pms-c|Iranian Hacking Group Claims To Seize Damning Info From Phone Of PM’S Chief Of Staff]]
+

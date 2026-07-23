@@ -4,7 +4,7 @@ displayName: Tesla
 orgType: Other
 country: 
 aliases: []
-mentionCount: 5
+mentionCount: 7
 tags: []
 ---
 
@@ -23,3 +23,6 @@ Organisation named in five July 2026 reports as another Elon Musk company presen
 
 ## AI Context
 Content sourced solely from the citing articles; no external enrichment performed.
+- [[article/2026-05/1099938-xi-jinping-warns-donald-trump-that-taiwan-tensions-could-lea|1099938-xi-jinping-warns-donald-trump-that-taiwan-tensions-could-lea]]
+- [[article/2026-05/1102284-cna-online-commentary-decoding-what-was-said-and-achieved-or|1102284-cna-online-commentary-decoding-what-was-said-and-achieved-or]]
+

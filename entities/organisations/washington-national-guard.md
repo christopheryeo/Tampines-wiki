@@ -4,7 +4,7 @@ displayName: Washington National Guard
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 4
 tags: []
 ---
 
@@ -18,3 +18,7 @@ Washington National Guard — organisation referenced in March 2026 general-news
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-05/1094336-us-singapore-tiger-balm-military-exercise-verifies-joint-def|1094336-us-singapore-tiger-balm-military-exercise-verifies-joint-def]]
+- [[article/2026-05/1094337-us-singapore-tiger-balm-military-exercise-verifies-joint-def|1094337-us-singapore-tiger-balm-military-exercise-verifies-joint-def]]
+- [[article/2026-05/1094530-us-singapore-tiger-balm-military-exercise-verifies-joint-def|1094530-us-singapore-tiger-balm-military-exercise-verifies-joint-def]]
+

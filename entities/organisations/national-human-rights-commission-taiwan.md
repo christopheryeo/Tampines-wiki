@@ -4,7 +4,7 @@ displayName: National Human Rights Commission
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -12,6 +12,7 @@ tags: []
 National Human Rights Commission — organisation referenced in March 2026 general-news coverage.
 
 ## Coverage
+- [[1145438-the-absurd-project-of-the-red-and-white-cooperative-proyek-a|The Absurd Project Of The Red And White Cooperative (Proyek Absurd Koperasi Merah Putih)]]
 - [[1009430-support-for-transgender-conscripts-to-be-improved|Taiwan's Ministry of the Interior said a proposed revision reclassifying transgender co...]]
 
 ## Related Entities

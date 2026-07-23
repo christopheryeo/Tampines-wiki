@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -22,3 +22,6 @@ LG Christian Freuding — person referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1116629-from-tanks-to-drones-ukraine-s-drone-war-is-redefining-germa|1116629-from-tanks-to-drones-ukraine-s-drone-war-is-redefining-germa]]
+- [[article/2026-04/1054880-a-glass-like-battlefield-german-army-chief-on-the-future-of-warfare|A 'Glass-Like' Battlefield: German Army Chief On The Future Of Warfare]]
+

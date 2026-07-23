@@ -3,11 +3,52 @@ countryId: bahrain
 displayName: Bahrain
 region:
 iso2:
-mentionCount: 73
+mentionCount: 117
 aliases: [Bahrain]
 ---
 
 ## Coverage
+- [[1148960-iran-and-us-step-up-attacks-and-threaten-to-escalate|Iran And US Step Up Attacks And Threaten To Escalate]]
+- [[1148959-iran-and-us-step-up-attacks-and-threaten-to-escalate|Iran And US Step Up Attacks And Threaten To Escalate]]
+- [[1148812-iran-and-us-step-up-attacks-and-threaten-to-escalate|Iran And US Step Up Attacks And Threaten To Escalate]]
+- [[1146446-un-pauses-strait-of-hormuz-evacuation-plan-after-cargo-ship|UN Pauses Strait Of Hormuz Evacuation Plan After Cargo Ship Attacked]]
+- [[1135563-us-media-reports-that-iran-fired-missiles-at-us-military-bas|US Media Reports That Iran Fired Missiles At US Military Bases In The Middle East; Five...]]
+- [[1135562-iran-launched-at-least-four-missiles-at-a-us-military-base-k|Iran Launched At Least Four Missiles At A US Military Base; Kuwait Says It Is Intercept...]]
+- [[1135560-iran-targets-us-bases-in-jordan-and-the-gulf-after-trump-ord|Iran Targets US Bases In Jordan And The Gulf After Trump Orders Strikes Near Hormuz]]
+- [[1135559-iran-targets-us-bases-in-jordan-and-the-gulf-after-trump-ord|Iran Targets US Bases In Jordan And The Gulf After Trump Orders Strikes Near Hormuz]]
+- [[1134033-iran-rejects-idea-of-using-its-assets-to-pay-damages-to-us-a|Iran Rejects Idea Of Using Its Assets To Pay Damages To US Allies]]
+- [[1134031-iran-rejects-idea-of-using-its-assets-to-pay-damages-to-us-a|Iran Rejects Idea Of Using Its Assets To Pay Damages To US Allies]]
+- [[1133651-international-feature-awakened-by-the-iranian-war-the-us-umb|International Feature: Awakened By The Iranian War, The US Umbrella May Become A Depend...]]
+- [[1133474-us-strikes-iranian-sites-after-iran-launches-drones-in-lates|US Strikes Iranian Sites After Iran Launches Drones, In Latest Gulf Flare-Up]]
+- [[1133462-us-intercepts-fresh-iranian-attacks-on-kuwait-bahrain-hormuz|US Intercepts Fresh Iranian Attacks On Kuwait, Bahrain, Hormuz]]
+- [[1133460-iran-targets-bahrain-and-kuwait-after-renewed-us-strikes|Iran Targets Bahrain And Kuwait After Renewed US Strikes]]
+- [[1133456-iran-launched-missile-strikes-against-us-military-facilities|Iran Launched Missile Strikes Against US Military Facilities In Kuwait And Bahrain (伊朗导...]]
+- [[1133336-us-and-iran-trade-strikes-in-latest-gulf-flare-up-us-and-ira|US And Iran Trade Strikes In Latest Gulf Flare-Up (US And Iran Trade Strikes In Latest...]]
+- [[1133305-iran-strikes-us-bases-in-kuwait-bahrain-after-drone-attacks|Iran Strikes US Bases In Kuwait, Bahrain After Drone Attacks On Iran Territory]]
+- [[1133304-iran-strikes-us-bases-in-kuwait-bahrain-after-attacks-on-ira|Iran Strikes US Bases In Kuwait, Bahrain After Attacks On Iranian Territory]]
+- [[1130945-us-hits-qeshm-island-while-iran-strikes-kuwait-and-bahrain|US Hits Qeshm Island While Iran Strikes Kuwait And Bahrain]]
+- [[1130829-gulf-tensions-escalate-as-iran-hits-kuwait-us-strikes-near-h|Gulf Tensions Escalate As Iran Hits Kuwait, US Strikes Near Hormuz]]
+- [[1130828-gulf-tensions-escalate-as-iran-hits-kuwait-us-strikes-near-h|Gulf Tensions Escalate As Iran Hits Kuwait, US Strikes Near Hormuz]]
+- [[1130827-gulf-tensions-escalate-as-iran-hits-kuwait-us-strikes-near-h|Gulf Tensions Escalate As Iran Hits Kuwait, US Strikes Near Hormuz]]
+- [[1130679-gulf-tensions-escalate-as-iran-hits-kuwait-us-strikes-near-h|Gulf Tensions Escalate As Iran Hits Kuwait, US Strikes Near Hormuz]]
+- [[1130678-gulf-tensions-escalate-as-iran-hits-kuwait-us-strikes-near-h|Gulf Tensions Escalate As Iran Hits Kuwait, US Strikes Near Hormuz]]
+- [[1130677-gulf-tensions-escalate-as-iran-hits-kuwait-us-strikes-near-h|Gulf Tensions Escalate As Iran Hits Kuwait, US Strikes Near Hormuz]]
+- [[1130266-hostilities-flare-again-in-iran-war-talks-at-a-stalemate|Hostilities Flare Again In Iran War, Talks At A Stalemate]]
+- [[1130265-us-and-iran-exchange-new-attacks-as-sides-locked-in-stalemat|US And Iran Exchange New Attacks As Sides Locked In Stalemate]]
+- [[1128837-preparing-side-by-side|Preparing Side By Side (并肩准备)]]
+- [[1128836-join-hands-and-grow-stronger|Join Hands And Grow Stronger (攜手共進 茁壯強大)]]
+- [[1128209-iranian-attacks-damaged-20-us-military-sites-since-war-began|Iranian Attacks Damaged 20 US Military Sites Since War Began]]
+- [[1162625-iran-escalates-attacks-on-us-bases-in-gulf-states-warns-of-m|Iran Escalates Attacks On US Bases In Gulf States, Warns Of More 'Incidents' In Strait]]
+- [[1161051-iran-attacked-gulf-neighbours-in-retaliation-for-us-air-stri|Iran Attacked Gulf Neighbours In Retaliation For US Air Strikes (伊朗袭击波斯湾邻国 报复美国空袭)]]
+- [[1160992-iran-strikes-gulf-neighbors-after-new-us-attacks|Iran Strikes Gulf Neighbors After New US Attacks]]
+- [[1160946-iran-strikes-gulf-neighbours-after-new-us-attacks|Iran Strikes Gulf Neighbours After New US Attacks]]
+- [[1160941-iran-retaliates-by-striking-us-targets-in-the-middle-east-as|Iran Retaliates By Striking US Targets In The Middle East As Air Raid Sirens Sound In J...]]
+- [[1158926-us-and-iran-exchange-attacks-for-two-consecutive-days-trump|US And Iran Exchange Attacks For Two Consecutive Days | Trump Threatens 20-Fold Retalia...]]
+- [[1158563-u-s-launches-new-strikes-on-iran-after-trump-declares-ceasef|U.S. Launches New Strikes On Iran After Trump Declares Ceasefire Over]]
+- [[1158562-us-military-launches-strikes-on-iran-for-second-straight-day|US Military Launches Strikes On Iran For Second Straight Day]]
+- [[1158292-us-launches-massive-air-strikes-against-iran-after-new-strai|US Launches Massive Air Strikes Against Iran After New Strait Of Hormuz Tanker Attacks.]]
+- [[1158080-us-strikes-iran-and-blocks-oil-sales-in-new-test-of-ceasefir|US Strikes Iran And Blocks Oil Sales In New Test Of Ceasefire]]
+- [[1158042-iran-targets-sites-in-bahrain-kuwait-after-wave-of-us-strike|Iran Targets Sites In Bahrain, Kuwait After Wave Of US Strikes]]
 - [[1021882-s-pore-regularly-facilitates-us-forces-access-to-i|MINDEF statement on US forces facility access coverage]]
 - [[990573-singapore-regrets-failure-of-negotiations-that-led|MFA regrets failure of negotiations]]
 - [[990579-no-reports-of-singaporean-casualties-in-middle-eas|No reports of Singaporean casualties]]
@@ -85,3 +126,7 @@ aliases: [Bahrain]
 
 ## Notes
 Home port for the [[us-navy|US Navy]]'s Bahrain-based littoral combat ships (USS Tulsa, USS Santa Barbara, USS Canberra) that rotate through Singapore for maintenance/logistics stops. `region`/`iso2` intentionally left blank — not stated by the citing article, per this domain's "no live web enrichment" rule (index.md).
+- [[article/2026-05/1112600-us-secretary-of-war-to-address-the-23rd-iiss-shangri-la-dial|1112600-us-secretary-of-war-to-address-the-23rd-iiss-shangri-la-dial]]
+- [[article/2025-11/762096-defence-affairs-minister-receives-singapores-senior-minister-of-state-|Defence Affairs Minister Receives Singapore’S Senior Minister Of State For Defence]]
+- [[article/2025-11/762098-commander-in-chief-receives-singapores-senior-minister-of-state-for-de|Commander-In-Chief Receives Singapore’S Senior Minister Of State For Defence]]
+

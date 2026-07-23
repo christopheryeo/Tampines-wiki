@@ -3,7 +3,7 @@ topicId: singapore-and-germany-to-step-up-defence-cooperation
 displayName: Singapore And Germany To Step Up Defence Cooperation
 category: Defence Policy
 aliases: []
-articleCount: 10
+articleCount: 12
 ---
 
 ## Definition
@@ -22,3 +22,6 @@ March 2026 deepening of Singapore-Germany defence ties: German [[minister-for-de
 - [[1031298-germany-to-open-submarine-service-in-singapore-jer|Deutsche Welle (25 Mar) reported that Kiel-based military shipbuilder TKMS signed an MOU with local partner...]]
 
 ## Notes
+- [[article/2026-04/1040719-huang-mengmeng-why-is-germany-focusing-its-military-and-diplomatic-eff|Huang Mengmeng: Why Is Germany Focusing Its Military And Diplomatic Efforts On The Asia-Pacific Region? (黄萌萌：德国军事外交为何向亚太发力？)]]
+- [[article/2026-04/1042291-singapore-will-be-a-service-center-for-german-submarines-singapura-aka|Singapore Will Be a Service Center for German Submarines (Singapura Akan Jadi Pusat Servis Kapal Selam Jerman)]]
+

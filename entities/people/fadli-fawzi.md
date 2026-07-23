@@ -5,7 +5,7 @@ role: Workers' Party MP (Aljunied)
 affiliation: Workers' Party
 country: Singapore
 aliases: []
-mentionCount: 3
+mentionCount: 5
 tags: []
 ---
 
@@ -23,3 +23,6 @@ Workers' Party Member of Parliament for Aljunied who questioned Minister K. Shan
 Not #saf-flagged.
 
 Related topic: [[defence]]
+- [[article/2026-04/1052598-why-malaysia-philippines-thailand-negotiated-for-safe-passage-through-|Why Malaysia, Philippines, Thailand Negotiated For Safe Passage Through Strait Of Hormuz, But Singapore Won’T]]
+- [[article/2026-04/1053478-observers-international-maritime-law-must-be-upheld-critical-for-singa|Observers: International Maritime Law Must Be Upheld, Critical For Singapore's Open Economy (Pemerhati: Undang-Undang Perairan Antarabangsa Mesti Dipertahan, Kritikal Bagi Ekon Terbuka S’Pura)]]
+

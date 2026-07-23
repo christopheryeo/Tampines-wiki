@@ -5,7 +5,7 @@ role: Senior Fellow, ISEAS-Yusof Ishak Institute
 affiliation:
 country: Singapore
 aliases: []
-mentionCount: 1
+mentionCount: 4
 tags: []
 ---
 
@@ -22,3 +22,7 @@ Senior fellow and coordinator of the ASEAN Studies Centre at ISEAS-Yusof Ishak I
 Not #saf-flagged.
 
 Related topic: [[defence]]
+- [[article/2026-05/1125068-sustained-security-can-t-come-from-barrel-of-a-gun-east-timo|1125068-sustained-security-can-t-come-from-barrel-of-a-gun-east-timo]]
+- [[article/2026-04/1042594-energy-security-versus-geopolitics-asean-states-face-tough-choices-ove|Energy Security Versus Geopolitics: ASEAN States Face Tough Choices Over Iran’S Strait Of Hormuz Passage]]
+- [[article/2026-04/1062366-st-commentary-when-singapore-starts-to-worry-about-washington|ST Commentary: “When Singapore Starts To Worry About Washington”]]
+

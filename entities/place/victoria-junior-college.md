@@ -4,7 +4,7 @@ displayName: Victoria Junior College
 placeType: Landmark/Venue
 country: Singapore
 aliases: [Victoria Junior College]
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -17,4 +17,6 @@ Singapore junior college where [[glenn-kweh|Glenn Kweh]] sat his GCE 'A' Level e
 ## Located In
 
 ## AI Context
+- [[article/2026-05/1095324-zb-online-commentary-yan-mengda-talent-can-be-discovered-and|1095324-zb-online-commentary-yan-mengda-talent-can-be-discovered-and]]
+- [[article/2026-05/1095329-zb-commentary-talent-can-be-discovered-and-sought|1095329-zb-commentary-talent-can-be-discovered-and-sought]]
 

@@ -4,7 +4,7 @@ displayName: Taiwan People's Party
 orgType:
 country:
 aliases: []
-mentionCount: 3
+mentionCount: 6
 tags: []
 ---
 
@@ -22,3 +22,7 @@ Taiwan People's Party — organisation referenced in March 2026 general-news cov
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1093546-taiwan-opposition-votes-to-cut-lai-s-defense-budget-despite|1093546-taiwan-opposition-votes-to-cut-lai-s-defense-budget-despite]]
+- [[article/2025-12/818284-taiwan-s-first-domestically-built-submarine-misses-delivery-deadline|Taiwan's First Domestically-Built Submarine Misses Delivery Deadline]]
+- [[article/2025-12/818286-taiwans-first-domestically-built-submarine-misses-delivery-deadline|Taiwan’s First Domestically Built Submarine Misses Delivery Deadline]]
+

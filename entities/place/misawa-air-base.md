@@ -4,7 +4,7 @@ displayName: Misawa Air Base
 placeType: Other
 country: Japan
 aliases: [Misawa Air Base]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -20,3 +20,5 @@ US military air base in Aomori Prefecture, Japan, receiving its first F-35A depl
 
 
 Related topic: [[defence]]
+- [[article/2026-01/908496-japan-waiting-5-years-for-7-2bn-in-us-military-equipment-purchases|Japan Waiting 5 Years For $7.2bn In US Military Equipment Purchases]]
+

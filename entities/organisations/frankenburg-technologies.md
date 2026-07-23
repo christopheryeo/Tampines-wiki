@@ -4,7 +4,7 @@ displayName: Frankenburg Technologies
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Frankenburg Technologies — organisation referenced in March 2026 general-news 
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1042567-what-the-invasion-of-ukraine-and-iran-war-should-teach-europe-about-ai|What The Invasion Of Ukraine And Iran War Should Teach Europe About Air Defence]]
+

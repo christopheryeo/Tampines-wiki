@@ -4,7 +4,7 @@ displayName: 31st Marine Expeditionary Unit
 orgType:
 country:
 aliases: []
-mentionCount: 19
+mentionCount: 21
 tags: []
 ---
 
@@ -36,3 +36,6 @@ tags: []
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1041363-us-deploys-third-aircraft-carrier-to-middle-east-as-iran-war-continues|US Deploys Third Aircraft Carrier To Middle East As Iran War Continues]]
+- [[article/2026-04/1077632-the-indo-pacific-is-the-defining-strategic-theatre-how-committed-is-us|‘The Indo-Pacific Is The Defining Strategic Theatre’: How Committed Is US To This Region?]]
+

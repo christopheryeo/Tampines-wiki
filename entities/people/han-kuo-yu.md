@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -19,3 +19,6 @@ Han Kuo-yu — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-05/1093536-taiwan-passes-special-defense-budget-to-better-deter-china|1093536-taiwan-passes-special-defense-budget-to-better-deter-china]]
+- [[article/2026-04/1064202-us-senators-reassure-taiwan-on-weapons-approvals-in-coming-weeks|US Senators Reassure Taiwan On Weapons Approvals In Coming Weeks]]
+

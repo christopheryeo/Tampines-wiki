@@ -3,7 +3,7 @@ countryId: jordan
 displayName: Jordan
 region: Middle East
 iso2: JO
-mentionCount: 86
+mentionCount: 104
 aliases: []
 ---
 
@@ -23,6 +23,24 @@ aliases: []
 Jordan's capital Amman was a transit point where a Singaporean tour group was stranded during the March 2026 Middle East airspace closures.
 
 ## Coverage
+- [[1135563-us-media-reports-that-iran-fired-missiles-at-us-military-bas|US Media Reports That Iran Fired Missiles At US Military Bases In The Middle East; Five...]]
+- [[1135562-iran-launched-at-least-four-missiles-at-a-us-military-base-k|Iran Launched At Least Four Missiles At A US Military Base; Kuwait Says It Is Intercept...]]
+- [[1135560-iran-targets-us-bases-in-jordan-and-the-gulf-after-trump-ord|Iran Targets US Bases In Jordan And The Gulf After Trump Orders Strikes Near Hormuz]]
+- [[1135559-iran-targets-us-bases-in-jordan-and-the-gulf-after-trump-ord|Iran Targets US Bases In Jordan And The Gulf After Trump Orders Strikes Near Hormuz]]
+- [[1135555-iran-retaliates-against-us-base-in-jordan-destroying-f-35-de|Iran Retaliates Against US Base In Jordan, Destroying F-35 Depot (Iran Balas Serang Pan...]]
+- [[1131082-indonesia-seven-nations-condemn-israeli-settler-attack-on-al|Indonesia, Seven Nations Condemn Israeli Settler Attack On Al-Aqsa]]
+- [[1128209-iranian-attacks-damaged-20-us-military-sites-since-war-began|Iranian Attacks Damaged 20 US Military Sites Since War Began]]
+- [[1164115-us-launches-new-iran-strikes-reimposes-naval-blockade|US Launches New Iran Strikes, Reimposes Naval Blockade]]
+- [[1162628-overseas-operations-allow-saf-to-keep-getting-better-with-ne|Overseas Operations Allow SAF To 'Keep Getting Better' With New Networks And Knowledge:...]]
+- [[1162625-iran-escalates-attacks-on-us-bases-in-gulf-states-warns-of-m|Iran Escalates Attacks On US Bases In Gulf States, Warns Of More 'Incidents' In Strait]]
+- [[1161966-saf-overseas-service-medal-ceremony|SAF Overseas Service Medal Ceremony]]
+- [[1161965-saf-overseas-service-medal-ceremony|SAF Overseas Service Medal Ceremony]]
+- [[1161960-saf-overseas-service-medal-ceremony|SAF Overseas Service Medal Ceremony]]
+- [[1161055-iran-attacks-neighbours-as-us-promises-tehran-will-pay-and-w|Iran Attacks Neighbours As US Promises Tehran Will ‘Pay’ And War In The Middle East Res...]]
+- [[1161051-iran-attacked-gulf-neighbours-in-retaliation-for-us-air-stri|Iran Attacked Gulf Neighbours In Retaliation For US Air Strikes (伊朗袭击波斯湾邻国 报复美国空袭)]]
+- [[1160992-iran-strikes-gulf-neighbors-after-new-us-attacks|Iran Strikes Gulf Neighbors After New US Attacks]]
+- [[1160946-iran-strikes-gulf-neighbours-after-new-us-attacks|Iran Strikes Gulf Neighbours After New US Attacks]]
+- [[1160941-iran-retaliates-by-striking-us-targets-in-the-middle-east-as|Iran Retaliates By Striking US Targets In The Middle East As Air Raid Sirens Sound In J...]]
 - [[1005164-singapore-arranges-two-military-flights-to-riyadh|Singapore's MFA and MINDEF announced on 9 March 2026 that the RSAF would deploy an Airb...]]
 - [[1001975-iran-hits-key-us-radar-in-jordan-deepening-gulf-mi|A US official confirmed Iran destroyed a US$300 million THAAD radar system at Muwaffaq ...]]
 - [[1013409-assisting-81-singaporeans-and-their-families-to-ev|Lianhe Zaobao Online's fullest account of the second RSAF A330 MRTT repatriation flight...]]

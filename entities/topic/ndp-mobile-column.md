@@ -1,0 +1,21 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: NDP Mobile Column
+aliases:
+  - NDP Mobile Column
+owner: Alex
+created: 2026-07-18T02:12:50
+last_updated: 2026-07-18T02:12:50
+category: "Imported article topic"
+articleCount: 1
+tags:
+  - "#topic"
+---
+
+# NDP Mobile Column
+
+## Coverage
+- [[article/2026-05/1109385-national-day-parade-2026-drone-show-for-the-first-time-2026|1109385-national-day-parade-2026-drone-show-for-the-first-time-2026]]

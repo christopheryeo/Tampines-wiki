@@ -4,7 +4,7 @@ displayName: Ocius Technologies
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Ocius Technologies — organisation referenced in March 2026 general-news covera
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1064600-australia-sets-up-maritime-autonomous-unit-amidst-unmanned-push|Australia Sets Up Maritime Autonomous Unit Amidst Unmanned Push]]
+

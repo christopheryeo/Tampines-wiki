@@ -4,7 +4,7 @@ displayName: National People's Congress
 orgType:
 country:
 aliases: []
-mentionCount: 3
+mentionCount: 5
 tags: []
 ---
 
@@ -22,3 +22,6 @@ National People's Congress — organisation referenced in March 2026 general-new
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1042592-nikkei-asian-review-commentary-analysis-why-has-iran-not-disrupted-xi-|Nikkei Asian Review Commentary: "Analysis: Why Has Iran Not Disrupted Xi Jinping's Focus On His Military?"]]
+- [[article/2026-02/985574-china-removes-five-generals-from-national-lawmaking-body|China Removes Five Generals From National Lawmaking Body]]
+

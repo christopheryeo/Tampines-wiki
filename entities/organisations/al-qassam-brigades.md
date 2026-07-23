@@ -4,7 +4,7 @@ displayName: Al-Qassam Brigades
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -18,3 +18,6 @@ Al-Qassam Brigades — organisation referenced in March 2026 general-news covera
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-01/917583-trump-warns-of-destroying-hamas-if-it-fails-to-disarm-trump-beri-amara|Trump Warns Of Destroying Hamas If It Fails To Disarm (Trump Beri Amaran Hancurkan Hamas Jika Gagal Lucut Senjata)]]
+- [[article/2025-11/775268-hamas-says-fighters-holed-up-in-rafah-will-not-surrender|Hamas Says Fighters Holed Up In Rafah Will Not Surrender]]
+

@@ -5,7 +5,7 @@ role: Vice Foreign Minister
 affiliation: Chinese Ministry of Foreign Affairs
 country: China
 aliases: [Sun Weidong]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,4 +19,5 @@ Chinese Vice Foreign Minister who co-chaired the 11th China-Philippines South Ch
 [[china|China]] · [[china-ministry-of-foreign-affairs|Chinese Ministry of Foreign Affairs]]
 
 ## AI Context
+- [[article/2026-04/1060225-china-dismisses-vice-minister-of-foreign-affairs-sun-weidong|China Dismisses Vice Minister Of Foreign Affairs Sun Weidong]]
 

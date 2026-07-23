@@ -12,4 +12,4 @@ aliases: [News18 Tamil]
 - [[9387821532-america-vs-iran-war---us-iran-war-2026|America vs Iran War / US Iran War 2026 (Tamil video)]]
 
 ## Profile
-Tamil-language arm of India's News18 network. Cascaded from a video report on the US-Iran war; monitoring relevance indirect (international coverage of the US-Iran conflict).
+Tamil-language arm of India's News18 network. Cascaded from a video report on the US-[[iran-war|Iran war]]; monitoring relevance indirect (international coverage of the US-Iran conflict).

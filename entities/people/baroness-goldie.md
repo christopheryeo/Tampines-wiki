@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,3 +19,5 @@ Baroness Goldie — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1071589-uk-defence-journal-commentary-uk-reaffirms-f-35-commitment-but-questio|UK Defence Journal Commentary: "UK Reaffirms F-35 Commitment But Questions Remain Over 138"]]
+

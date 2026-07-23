@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 10
+mentionCount: 20
 tags: []
 ---
 
@@ -13,6 +13,9 @@ tags: []
 Mojtaba Khamenei — person referenced in March 2026 general-news coverage.
 
 ## Coverage
+- [[1142600-vance-expects-iran-talks-soon-as-guards-say-hormuz-is-closed|Vance Expects Iran Talks Soon, As Guards Say Hormuz Is Closed Again]]
+- [[1134041-middle-east-ceasefire-at-risk-after-iran-launches-missile-ba|Middle East Ceasefire At Risk After Iran Launches Missile Barrage At Israel]]
+- [[1134032-iran-launches-missile-barrage-at-israel-for-first-time-since|Iran Launches Missile Barrage At Israel For First Time Since Mid-East Ceasefire]]
 - [[1010486-iran-s-new-supreme-leader-says-strait-of-hormuz-cl|Duplicate wire coverage of the same event as Iran Escalates Attacks On Shipping And Dubai, Sending Oil Higher.]]
 - [[1010488-iran-escalates-attacks-on-shipping-and-dubai-sendi|Iran's new Supreme Leader Mojtaba Khamenei said the Strait of Hormuz must stay closed a...]]
 - [[1010490-iran-s-supreme-leader-in-first-remarks-vows-to-ave|Duplicate wire coverage of the same event as Iran Escalates Attacks On Shipping And Dubai, Sending Oil Higher.]]
@@ -28,3 +31,11 @@ Mojtaba Khamenei — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-05/1113738-trump-says-there-is-no-rush-for-iran-deal-us-blockade-stays|1113738-trump-says-there-is-no-rush-for-iran-deal-us-blockade-stays]]
+- [[article/2026-05/1116411-iran-accuses-us-of-breaking-truce-after-new-strikes|1116411-iran-accuses-us-of-breaking-truce-after-new-strikes]]
+- [[article/2026-04/1041736-trump-says-iran-has-asked-for-a-ceasefire-us-wants-to-see-hormuz-open-|Trump Says Iran Has Asked For A Ceasefire, US Wants To See Hormuz Open First]]
+- [[article/2026-04/1042569-a-war-meant-to-break-iran-could-leave-tehran-stronger-and-gulf-exposed|A War Meant To Break Iran Could Leave Tehran Stronger, And Gulf Exposed]]
+- [[article/2026-04/1049420-north-korea-distancing-itself-from-iran-to-leave-door-open-for-us-talk|North Korea Distancing Itself From Iran To Leave Door Open For US Talks, Seoul Says]]
+- [[article/2026-04/1070984-trump-extends-ceasefire-until-iran-submits-new-proposal|Trump Extends Ceasefire Until Iran Submits New Proposal]]
+- [[article/2026-04/1080943-trump-unhappy-with-latest-peace-proposal-says-iran-figuring-out-its-le|Trump, Unhappy With Latest Peace Proposal, Says Iran 'Figuring Out Its Leadership']]
+

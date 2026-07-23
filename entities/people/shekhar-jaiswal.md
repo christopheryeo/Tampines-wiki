@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -20,3 +20,6 @@ Shekhar Jaiswal — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-05/1105241-strong-performance-across-all-businesses-boosted-st-engineer|1105241-strong-performance-across-all-businesses-boosted-st-engineer]]
+- [[article/2026-05/1105684-first-quarter-revenue-up-11-year-on-year-st-engineering-anno|1105684-first-quarter-revenue-up-11-year-on-year-st-engineering-anno]]
+

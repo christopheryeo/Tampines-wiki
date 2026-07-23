@@ -4,7 +4,7 @@ displayName: F-35 Joint Program Office
 orgType:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -18,3 +18,6 @@ F-35 Joint Program Office — organisation referenced in March 2026 general-news
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-02/941116-lockheed-f-35-backlog-cleared-targeting-sweet-spot-delivery-pace|Lockheed: F-35 Backlog Cleared, Targeting ‘Sweet Spot’ Delivery Pace]]
+- [[article/2026-02/970801-f-35-software-could-be-jailbreaked-like-an-iphone-dutch-defense-secret|F-35 Software Could Be Jailbreaked Like An IPhone: Dutch Defense Secretar]]
+

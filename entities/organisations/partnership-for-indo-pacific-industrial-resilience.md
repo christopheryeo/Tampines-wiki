@@ -4,7 +4,7 @@ displayName: Partnership for Indo-Pacific Industrial Resilience
 orgType: Government
 country: 
 aliases: [Partnership for Indo-Pacific Industrial Resilience]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -21,3 +21,5 @@ tags: []
 
 
 Related topic: [[defence]]
+- [[article/2026-05/1122245-khaled-nordin-meets-us-and-australian-defence-ministers-at-s|1122245-khaled-nordin-meets-us-and-australian-defence-ministers-at-s]]
+

@@ -4,7 +4,7 @@ displayName: Camp Kamifurano
 placeType: Camp/Training Ground
 country: Japan
 aliases: [Camp Kamifurano]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -17,4 +17,5 @@ Camp in Hokkaido earmarked for long-range missile deployment in FY2026.
 ## Located In
 
 ## AI Context
+- [[article/2025-11/767024-japan-to-deploy-ground-based-long-range-missiles-at-four-sites|Japan To Deploy Ground-Based Long-Range Missiles At Four Sites]]
 

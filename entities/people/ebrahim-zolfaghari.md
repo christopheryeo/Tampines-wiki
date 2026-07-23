@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,3 +19,5 @@ Ebrahim Zolfaghari — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1056469-us-warships-enter-hormuz-to-clear-mines-as-tensions-with-iran-escalate|US Warships Enter Hormuz To Clear Mines As Tensions With Iran Escalate]]
+

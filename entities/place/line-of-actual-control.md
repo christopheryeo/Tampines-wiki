@@ -4,7 +4,7 @@ displayName: Line of Actual Control
 placeType: Border area
 country:
 aliases: [LAC]
-mentionCount: 3
+mentionCount: 5
 tags: []
 ---
 
@@ -21,3 +21,6 @@ Border area named in three July 2026 China-India relations reports as the settin
 
 ## AI Context
 Content sourced solely from the citing articles; no external enrichment performed.
+- [[article/2026-02/966397-most-potent-aircraft-in-china-clash-why-u-s-supplied-p-8-poseidon-is-a|“Most Potent” Aircraft In China Clash: Why U.S.-Supplied P-8 Poseidon Is A Game-Changer For Indian Military]]
+- [[article/2025-11/781886-india-inaugurates-new-military-airbase-close-to-china-border-source-sa|India Inaugurates New Military Airbase Close To China Border, Source Says]]
+

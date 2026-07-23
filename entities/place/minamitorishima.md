@@ -4,7 +4,7 @@ displayName: Minamitorishima
 placeType: Island
 country: Japan
 aliases: [Minamitorishima]
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -20,3 +20,6 @@ Japan's easternmost territory, where the Defence Ministry plans to deploy Type-1
 
 
 Related topic: [[defence]]
+- [[article/2026-05/1107481-japan-plans-island-drone-deployment-to-monitor-chinese-naval|1107481-japan-plans-island-drone-deployment-to-monitor-chinese-naval]]
+- [[article/2026-04/1047706-japan-to-strengthen-pacific-ocean-defense-system|Japan To Strengthen Pacific Ocean Defense System]]
+

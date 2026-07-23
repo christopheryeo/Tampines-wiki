@@ -1,0 +1,116 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: Health
+aliases:
+  - Health
+owner: Alex
+created: 2026-07-18T02:12:50
+last_updated: 2026-07-18T13:17:41
+category: "Imported article topic"
+articleCount: 94
+tags:
+  - "#topic"
+---
+
+# Health
+
+## Coverage
+- [[article/2026-05/1096204-israeli-strikes-kill-three-people-in-gaza-medics-say-testing|1096204-israeli-strikes-kill-three-people-in-gaza-medics-say-testing]]
+- [[article/2026-05/1117346-israeli-airstrikes-in-lebanon-kill-71-bombs-strike-near-key|1117346-israeli-airstrikes-in-lebanon-kill-71-bombs-strike-near-key]]
+- [[article/2026-04/1041361-money-89-3fm-interview-with-ord-co-founders|MONEY 89.3FM Interview with ORD+ Co-Founders]]
+- [[article/2026-04/1051054-govt-to-look-at-better-integrating-mental-health-care-in-saf-and-publi|Govt To Look At Better Integrating Mental Health Care In SAF & Public Heath Services: Zaqy Mohamad]]
+- [[article/2026-04/1053276-defence-ministry-launches-autism-support-programme-for-children-of-per|Defence Ministry Launches Autism Support Programme For Children Of Personnel]]
+- [[article/2026-04/1058085-the-ns-medical-classification-system-will-be-updated-by-the-end-of-nex|The NS Medical Classification System Will Be Updated By The End Of Next Year, Allowing Approximately 1,200 New Recruits To Be "Upgraded" Each Year (明年底更新入伍健康分级制每年约1200新兵可‘升级’)]]
+- [[article/2026-04/1058550-the-desire-to-live-a-meaningful-ns-is-achieved-with-the-reassessment-o|The Desire To Live A Meaningful NS Is Achieved With The Reassessment Of Medical Classification (Hasrat Jalani NS Bermakna Tercapai Dengan Penilaian Semula Klasifikasi Perubatan)]]
+- [[article/2026-04/1058831-singapore-hot-topic-updated-medical-classification-system|Singapore Hot Topic: Updated Medical Classification System (狮城热话：健康分级制更新版)]]
+- [[article/2026-04/1058834-updated-medical-classification-system-for-national-servicemen|Updated Medical Classification System For National Servicemen (தேசிய சேவையாளர்களுக்குப் புதுப்பிக்கப்பட்ட மருத்துவ வகைப்பாட்டு முறை)]]
+- [[article/2026-04/1058838-young-people-enlisting-in-the-military-have-mixed-feelings-about-the-u|Young People Enlisting In The Military Have Mixed Feelings About The Updated Health Rating System; Parents Are Concerned About The Assessment And Safety. (入伍青年对健康分级更新喜忧参半 家长关注评估与安全)]]
+- [[article/2026-04/1058839-understand-in-one-article-how-will-new-recruits-be-classified-under-th|Understand In One Article! How Will New Recruits Be Classified Under The Updated Health Grading System? (一文看懂！健康分级制更新 新兵将如何分类？ )]]
+- [[article/2026-04/1059057-update-to-medical-classification-for-national-servicemen|Update To Medical Classification For National Servicemen (தேசிய சேவையாளர்களுக்கான மருத்துவ வகைப்பாடு புதுப்பிப்பு)]]
+- [[article/2026-04/1059058-young-people-enlisting-in-the-military-have-mixed-feelings-about-the-n|Young People Enlisting In The Military Have Mixed Feelings About The New System, While Parents Are Generally Concerned About The Assessments And Safety (入伍青年对新制喜忧参半 家长普遍关注评估与安全)]]
+- [[article/2026-04/1059059-the-desire-to-live-a-meaningful-ns-is-achieved-with-the-reassessment-o|The Desire To Live A Meaningful NS Is Achieved With The Reassessment Of Medical Classification (Hasrat Jalani NS Bermakna Tercapai Dengan Penilaian Semula Klasifikasi Perubatan)]]
+- [[article/2026-04/1067082-about-70-of-respondents-considered-the-dirt-and-disorder-of-public-toi|About 70% Of Respondents Considered The Dirt And Disorder Of Public Toilets To Be The Biggest Public Health Problem (约七成者视公厕脏乱为最大公共卫生问题)]]
+- [[article/2026-04/1069144-st-forum-letter-uv-risks-saf-home-team-take-steps-to-mitigate-exposure|ST Forum Letter: "UV Risks • SAF, Home Team Take Steps To Mitigate Exposure"]]
+- [[article/2026-04/1074842-nsf-under-investigation-after-being-caught-for-vape-related-offences-o|NSF Under Investigation After Being Caught For Vape-Related Offences Outside Sengkang HDB Flat]]
+- [[article/2026-04/1074847-national-serviceman-tried-to-enter-flat-police-alerted-to-scene-vape-f|National Serviceman Tried To Enter Flat, Police Alerted To Scene; Vape Found (国民服役人员图闯住家单位 惊动警方到场 查获电子烟具)]]
+- [[article/2026-04/1075017-nsf-probed-for-alleged-vape-offence-after-trying-to-enter-wrong-sengka|NSF Probed For Alleged Vape Offence After Trying To Enter Wrong Sengkang Flat In Early Morning Incident]]
+- [[article/2026-04/1075020-saf-investigation-on-nsf-who-vaped-and-tried-to-enter-wrong-flat|SAF Investigation On NSF Who Vaped And Tried To Enter Wrong Flat]]
+- [[article/2026-04/1075021-saf-investigation-on-nsf-who-vaped-and-tried-to-enter-wrong-flat|SAF Investigation On NSF Who Vaped And Tried To Enter Wrong Flat]]
+- [[article/2026-04/1075022-saf-investigation-on-nsf-who-vaped-and-tried-to-enter-wrong-flat|SAF Investigation On NSF Who Vaped And Tried To Enter Wrong Flat]]
+- [[article/2026-04/1075699-national-serviceman-questioned-over-smoking-e-cigarette-outside-reside|National Serviceman Questioned Over Smoking E-Cigarette Outside Residence (வீவக குடியிருப்புக்கு வெளியே மின்சிகரெட் புகைத்த விவகாரம்: தேசியச் சேவையாளரிடம் விசாரணை)]]
+- [[article/2026-04/1082904-thailand-wants-sg-to-invest-in-31-billion-land-bridge-proposal-as-horm|Thailand Wants SG To Invest In $31 Billion ‘Land Bridge’ Proposal As Hormuz Deadlock Persists]]
+- [[article/2026-02/936234-liebherr-focuses-on-smaller-actuators-and-thinner-wings|Liebherr Focuses On Smaller Actuators And Thinner Wings]]
+- [[article/2026-02/967746-isf-participation-in-gaza-under-national-control-non-combat-indonesian|ISF Participation In Gaza Under National Control, Non-Combat – Indonesian Foreign Ministry]]
+- [[article/2026-02/967871-israeli-airstrikes-kill-9-in-gaza-including-tent-camp-palestinian-offi|Israeli Airstrikes Kill 9 In Gaza, Including Tent Camp, Palestinian Officials Say]]
+- [[article/2026-02/967873-israeli-airstrikes-kill-9-in-gaza-including-tent-camp-palestinian-offi|Israeli Airstrikes Kill 9 In Gaza, Including Tent Camp, Palestinian Officials Say]]
+- [[article/2026-02/978028-ukraine-strikes-a-key-industrial-site-deep-inside-russia|Ukraine Strikes A Key Industrial Site Deep Inside Russia]]
+- [[article/2026-02/986997-the-physical-assessment-system-is-more-refined-and-servicemen-are-assi|The Physical Assessment System Is More Refined, And Servicemen Are Assigned Positions That Are More Closely Aligned With Their Abilities. (体格鉴定体系更精细化 军人岗位安排更贴合能力)]]
+- [[article/2026-02/988058-minister-s-speech-maximising-ns-contributions-and-defence-diplomacy|Minister's Speech: Maximising NS Contributions And Defence Diplomacy]]
+- [[article/2026-02/988812-a-new-medical-classification-system-will-be-announced-this-year-to-imp|A New Medical Classification System Will Be Announced This Year To Improve The Efficiency Of Matching Personnel To Suitable Roles (新体格鉴定制度今年公布 提升人岗相适部署效率)]]
+- [[article/2026-01/893348-israeli-strikes-kill-at-least-13-across-gaza-as-trump-is-expected-to-a|Israeli Strikes Kill At Least 13 Across Gaza, As Trump Is Expected To Announce Board Of Peace]]
+- [[article/2026-01/893352-israel-hamas-conflict-israeli-forces-strike-gaza-hours-after-hitting-m|Israel-Hamas Conflict (Israeli Forces Strike Gaza Hours After Hitting Militant Rocket Launch Site)]]
+- [[article/2026-01/902224-withdrawal-from-world-health-organisation-makes-us-world-unsafe|Withdrawal From World Health Organisation Makes US, World 'Unsafe']]
+- [[article/2026-01/928172-gaza-war-triggers-unprecedented-israeli-mental-health-crisis|Gaza War Triggers Unprecedented Israeli Mental Health Crisis]]
+- [[article/2026-01/928463-tourists-are-prohibited-from-bringing-vapes-into-mexico-and-violators-|Tourists Are Prohibited From Bringing Vapes Into Mexico, And Violators Face Jail Time And A Fine Of Rp 208.5 Million. (Turis Dilarang Bawa Vape Ke Meksiko, Pelanggarnya Terancam Penjara Dan Denda Rp208,5 Juta)]]
+- [[article/2026-01/932344-israel-releases-15-palestinian-bodies-as-truce-deal-shifts-to-next-pha|Israel Releases 15 Palestinian Bodies As Truce Deal Shifts To Next Phase]]
+- [[article/2026-01/933372-500-billion-euro-crisis-fund-could-be-used-for-defence-says-esm-chief|$500 Billion Euro Crisis Fund Could Be Used For Defence, Says ESM Chief]]
+- [[article/2025-12/822452-hamas-hands-over-one-of-two-last-hostage-bodies-in-gaza-red-cross-says|Hamas Hands Over One Of Two Last Hostage Bodies In Gaza, Red Cross Says]]
+- [[article/2025-12/823747-pm-wong-anwar-to-meet-on-dec-4-more-collaboration-on-anti-drug-efforts|PM Wong, Anwar To Meet On Dec 4; More Collaboration On Anti-Drug Efforts And Health Planned]]
+- [[article/2025-12/824185-the-singapore-malaysia-leader-s-retreat-will-be-held-on-thursday-with-|The Singapore-Malaysia Leader's Retreat Will Be Held On Thursday, With Cooperation Expected In Areas Such As Anti-Drug Efforts And Health (新马领导人非正式峰会周四举行 料在反毒卫生等领域达成合作)]]
+- [[article/2025-12/824191-sg-malaysia-leaders-to-review-joint-projects-enhance-cooperation-pemim|SG, Malaysia Leaders To Review Joint Projects, Enhance Cooperation (Pemimpin SG, Malaysia Akan Semak Semula Projek Bersama, Pertingkat Kerjasama)]]
+- [[article/2025-12/826155-singapore-and-malaysia-deepen-ties-with-updated-rts-link-deal-and-pact|Singapore And Malaysia Deepen Ties With Updated RTS Link Deal And Pacts On Drug Control And Healthcare]]
+- [[article/2025-12/826233-s-pore-and-malaysia-update-rts-plans-agree-to-collaborate-more-on-anti|S'pore And Malaysia Update RTS Plans, Agree To Collaborate More On Anti-Drug Enforcement And Health]]
+- [[article/2025-12/826255-spore-and-malaysia-update-rts-plans-agree-to-collaborate-more-on-anti-|S’pore And Malaysia Update RTS Plans, Agree To Collaborate More On Anti-Drug Enforcement And Health]]
+- [[article/2025-12/826257-spore-and-malaysia-update-rts-plans-agree-to-collaborate-more-on-anti-|S’pore And Malaysia Update RTS Plans, Agree To Collaborate More On Anti-Drug Enforcement And Health]]
+- [[article/2025-12/826259-spore-and-malaysia-update-rts-plans-agree-to-collaborate-more-on-anti-|S’pore And Malaysia Update RTS Plans, Agree To Collaborate More On Anti-Drug Enforcement And Health]]
+- [[article/2025-12/826261-spore-and-malaysia-update-rts-plans-agree-to-collaborate-more-on-anti-|S’pore And Malaysia Update RTS Plans, Agree To Collaborate More On Anti-Drug Enforcement And Health]]
+- [[article/2025-12/826269-malaysia-and-singapore-strengthen-cooperation-in-combating-drug-traffi|Malaysia And Singapore Strengthen Cooperation In Combating Drug Trafficking And Deepen Bilateral Health Cooperation (马新加强合作打击毒品贩运 深化两国卫生合作)]]
+- [[article/2025-12/826584-progress-made-at-malaysiasingapore-leaders-retreat-singaporean-compani|Progress Made At Malaysia–Singapore Leader’s Retreat: Singaporean Companies Plan To Invest RM17.5 Billion In Johor–Singapore Special Economic Zone (马新峰会取得进展 狮城企业拟投资柔新特区175亿)]]
+- [[article/2025-12/827194-singapore-and-malaysia-deepen-ties-with-updated-rts-link-deal-and-pact|Singapore And Malaysia Deepen Ties With Updated RTS Link Deal And Pacts On Drug Control And Healthcare]]
+- [[article/2025-12/827196-singapore-and-malaysia-deepen-ties-with-updated-rts-link-deal-and-pact|Singapore And Malaysia Deepen Ties With Updated RTS Link Deal And Pacts On Drug Control And Healthcare]]
+- [[article/2025-12/827198-singapore-and-malaysia-deepen-ties-with-updated-rts-link-deal-and-pact|Singapore And Malaysia Deepen Ties With Updated RTS Link Deal And Pacts On Drug Control And Healthcare]]
+- [[article/2025-12/827200-singapore-and-malaysia-deepen-ties-with-updated-rts-link-deal-and-pact|Singapore And Malaysia Deepen Ties With Updated RTS Link Deal And Pacts On Drug Control And Healthcare]]
+- [[article/2025-12/827557-malaysian-and-singaporean-prime-ministers-meet-reaffirming-continued-c|Malaysian And Singaporean Prime Ministers Meet, Reaffirming Continued Cooperation In Combating Drug Trafficking. (马新总理会晤 宣示继续合作打击贩毒)]]
+- [[article/2025-12/827559-malaysia-singapore-ink-3-major-pacts-on-drugs-healthcare-and-transport|Malaysia, Singapore Ink 3 Major Pacts On Drugs, Healthcare And Transport]]
+- [[article/2025-12/827611-pm-wong-welcomes-close-cooperation-with-malaysia-tackles-complex-issue|PM Wong Welcomes Close Cooperation With Malaysia; Tackles Complex Issues As 'Good Neighbours' (PM Wong Alu-Alukan Kerjasama Rapat Dengan Malaysia; Tangani Isu Rumit Sebagai 'Jiran Baik')]]
+- [[article/2025-12/828405-joint-statement-by-the-singaporemalaysia-transport-ministries-cross-bo|Joint Statement By The Singapore–Malaysia Transport Ministries: Cross-Border Taxi Quota For Both Countries Raised To 500 Vehicles (新马交通部联合声明：新马跨境德士配额各增至500辆)]]
+- [[article/2025-12/833483-everything-destroyed-as-indonesias-aceh-grapples-with-disease-after-fl|‘Everything Destroyed’ As Indonesia’S Aceh Grapples With Disease After Floods]]
+- [[article/2025-12/834897-zb-online-editorial-singapore-malaysia-cooperation-offers-unlimited-po|ZB Online Editorial: "Singapore-Malaysia Cooperation Offers Unlimited Potential For Win-Win Results" (社论：新马合作共赢潜力无限)]]
+- [[article/2025-12/837928-calls-grow-for-indonesia-to-accept-foreign-disaster-aid-following-floo|Calls Grow For Indonesia To Accept Foreign Disaster Aid Following Floods]]
+- [[article/2025-12/849020-israeli-military-targets-senior-hamas-commander-in-gaza-strike|Israeli Military Targets Senior Hamas Commander In Gaza Strike]]
+- [[article/2025-12/857397-reuters-commentary-explainer-what-s-next-for-the-gaza-ceasefire-and-wi|Reuters Commentary: "Explainer: What's Next For The Gaza Ceasefire And Will The Truce Last?"]]
+- [[article/2025-12/865276-mass-resumes-at-st-joseph-s-church-a-day-after-suspicious-item-was-fou|Mass Resumes At St Joseph's Church A Day After Suspicious Item Was Found (Misa Disambung Semula Di Gereja St Joseph Sehari Selepas Barang Mencurigakan Ditemui)]]
+- [[article/2025-12/866131-mass-resumes-at-st-joseph-s-church-a-day-after-suspicious-item-was-fou|Mass Resumes At St Joseph's Church A Day After Suspicious Item Was Found (Misa Di Gereja St Joseph Disambung Sehari Selepas Barang Mencurigakan Ditemui)]]
+- [[article/2025-12/878313-israel-will-suspend-the-operations-of-dozens-of-humanitarian-groups-in|Israel Will Suspend The Operations Of Dozens Of Humanitarian Groups In Gaza Starting In January. (Israel Akan Gantung Operasi Puluhan Kumpulan Kemanusiaan Di Gaza Mulai Januari)]]
+- [[article/2025-11/762090-singlife-boosts-insurance-for-mindef-and-mha-servicemen|Singlife Boosts Insurance For MINDEF And MHA Servicemen]]
+- [[article/2025-11/763884-israel-returns-45-palestinian-bodies-to-gaza-health-ministry|Israel Returns 45 Palestinian Bodies To Gaza: Health Ministry]]
+- [[article/2025-11/764226-israel-returns-45-palestinian-bodies-to-gaza-taking-total-to-270-since|Israel Returns 45 Palestinian Bodies To Gaza, Taking Total To 270 Since Ceasefire Deal]]
+- [[article/2025-11/764486-israel-hands-over-bodies-of-45-palestinians-in-gaza-45|Israel Hands Over Bodies Of 45 Palestinians In Gaza (காஸாவில் 45 பாலஸ்தீனர்களின் சடலங்களை ஒப்படைத்த இஸ்ரேல்)]]
+- [[article/2025-11/764493-israeli-airstrikes-in-southern-lebanon-kill-two-hezbollah-militants|Israeli Airstrikes In Southern Lebanon Kill Two Hezbollah Militants (以军空袭黎巴嫩南部 打死两名真主党武装人员)]]
+- [[article/2025-11/764733-meet-the-airbus-a400m-key-facts-on-indonesia-s-new-military-transport|Meet The Airbus A400M: Key Facts On Indonesia's New Military Transport]]
+- [[article/2025-11/768264-israel-receives-body-of-another-hostage-as-palestinian-deaths-reported|Israel Receives Body Of Another Hostage As Palestinian Deaths Reported In Gaza]]
+- [[article/2025-11/768274-plan-and-train-for-career-gain|Plan & Train For Career Gain]]
+- [[article/2025-11/768276-60-years-of-workforce-development-planning-and-training-allowing-caree|60 Years Of Workforce Development: Planning And Training Allowing Career Growth To Benefit (60年的劳动力发展 规划与培训让职业生涯受益)]]
+- [[article/2025-11/773022-israel-receives-coffin-hamas-says-contains-body-of-gaza-hostage|Israel Receives Coffin Hamas Says Contains Body Of Gaza Hostage]]
+- [[article/2025-11/774487-the-death-toll-in-the-israel-palestine-conflict-has-reached-nearly-70-|The Death Toll In The Israel-Palestine Conflict Has Reached Nearly 70,000, With Hundreds Still Injured Or Killed Even After The Ceasefire (以哈冲突死亡人数近7万 停火后仍有数百人伤亡)]]
+- [[article/2025-11/780316-singapore-donates-prosthetic-limbs-to-jordan-to-help-palestinian-amput|Singapore Donates Prosthetic Limbs To Jordan To Help Palestinian Amputees In Gaza (新加坡向约旦捐赠义肢 助加沙巴勒斯坦截肢者)]]
+- [[article/2025-11/780482-inspired-by-his-involvement-in-contact-tracing-during-the-pandemic-a-f|Inspired By His Involvement In Contact Tracing During The Pandemic, A Former Flight Attendant Has Switched Careers To The Field Of Public Health (疫情期间参与追踪工作受启发 前空少转行投身公共卫生领域)]]
+- [[article/2025-11/780498-spore-donates-250-000-worth-of-prosthetic-products|S’pore Donates $250,000 Worth Of Prosthetic Products]]
+- [[article/2025-11/780500-singapore-donates-prosthetic-limbs-to-jordan-to-help-palestinian-amput|Singapore Donates Prosthetic Limbs To Jordan To Help Palestinian Amputees From Gaza (新加坡向约旦捐赠义肢 助加沙巴勒斯坦截肢者)]]
+- [[article/2025-11/780502-prosthetic-arms-legs-for-palestinians-who-lost-thier-limbs|Prosthetic Arms, Legs For Palestinians Who Lost Thier Limbs (உடல் உறுப்பு இழந்த பாலஸ்தீனர்களுக்குச் செயற்கை கை, கால்)]]
+- [[article/2025-11/780544-singapore-donates-250-000-worth-of-prosthetic-products-to-palestinian-|Singapore Donates $250,000 Worth Of Prosthetic Products To Palestinian Amputees]]
+- [[article/2025-11/783742-gaza-health-officials-say-they-received-the-bodies-of-15-palestinians-|Gaza Health Officials Say They Received The Bodies Of 15 Palestinians Returned By Israel]]
+- [[article/2025-11/788542-the-indonesian-navy-prepares-the-marine-corps-for-a-peacekeeping-missi|The Indonesian Navy Prepares The Marine Corps For A Peacekeeping Mission In Gaza  (TNI AL Siapkan Korps Marinir Untuk Misi Perdamaian Di Gaza
+ )]]
+- [[article/2025-11/789965-tni-ad-prepares-personnel-for-peacekeeping-mission-in-gaza-tni-ad-siap|TNI AD Prepares Personnel For Peacekeeping Mission In Gaza (TNI AD Siapkan Personel Untuk Misi Perdamaian Di Gaza)]]
+- [[article/2025-11/790280-indonesian-army-prepares-troops-for-peacekeeping-mission-in-gaza|Indonesian Army Prepares Troops For Peacekeeping Mission In Gaza]]
+- [[article/2025-11/791689-thirteen-people-killed-in-israeli-strike-on-lebanon-s-sidon-lebanese-h|Thirteen People Killed In Israeli Strike On Lebanon's Sidon, Lebanese Health Ministry Says]]
+- [[article/2025-11/794088-israeli-airstrikes-kill-25-palestinians-in-gaza-rattling-ceasefire-med|Israeli Airstrikes Kill 25 Palestinians In Gaza, Rattling Ceasefire, Medics Say]]
+- [[article/2025-11/800037-israeli-airstrike-on-car-in-gaza-city-kills-four-others-wounded-medics|Israeli Airstrike On Car In Gaza City Kills Four, Others Wounded, Medics Say]]
+- [[article/2025-11/800038-israeli-airstrike-on-car-in-gaza-city-kills-four-others-wounded-medics|Israeli Airstrike On Car In Gaza City Kills Four, Others Wounded, Medics Say]]
+- [[article/2025-11/800041-israeli-airstrike-on-car-in-gaza-city-kills-four-others-wounded-medics|Israeli Airstrike On Car In Gaza City Kills Four, Others Wounded, Medics Say]]
+- [[article/2025-11/800065-israeli-airstrikes-kill-14-people-in-gaza-medics-say|Israeli Airstrikes Kill 14 People In Gaza, Medics Say]]
+

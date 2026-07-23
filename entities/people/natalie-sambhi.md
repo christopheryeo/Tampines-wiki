@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 4
+mentionCount: 6
 tags: []
 ---
 
@@ -24,3 +24,6 @@ Natalie Sambhi — person referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2025-11/781062-anchored-in-the-region-what-the-new-australiaindonesia-security-treaty|“Anchored In The Region” – What The New Australia–Indonesia Security Treaty Really Means]]
+- [[article/2025-11/781077-lowy-institute-commentary-anchored-in-the-region-what-the-new-australi|Lowy Institute Commentary: “Anchored In The Region” – What The New Australia–Indonesia Security Treaty Really Means]]
+

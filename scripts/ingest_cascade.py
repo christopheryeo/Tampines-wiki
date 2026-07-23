@@ -414,6 +414,19 @@ def key_points(body: str) -> list[str]:
     return points or ["No further key points were available in the source item."]
 
 
+def issue_tag_lines(source_tags: list[str]) -> str:
+    """Preserve exact enriched issue-tag values in the compiled article body."""
+
+    values = []
+    seen = set()
+    for raw in source_tags:
+        value = re.sub(r"[\r\n]+", " ", str(raw)).strip()
+        if value and value.casefold() not in seen:
+            seen.add(value.casefold())
+            values.append(value)
+    return "\n".join(f"- {value}" for value in values) or "- None recorded"
+
+
 def article_filename(frontmatter: dict[str, Any], raw_path: Path) -> str:
     """Build the compiled article filename from source ID and title."""
 
@@ -551,6 +564,9 @@ def compile_one(
 
 ## Key Points
 {chr(10).join(f"- {point}" for point in key_points(body))}
+
+## Issue Tags
+{issue_tag_lines(source_tags)}
 
 ## Covered By
 {chr(10).join(f"- {link}" for link in outlet_links) or "- None recorded"}

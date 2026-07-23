@@ -1,0 +1,73 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)
+aliases:
+  - Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)
+owner: Alex
+created: 2026-07-18T10:36:35
+last_updated: 2026-07-18T10:36:35
+category: Imported article topic
+articleCount: 52
+tags:
+  - "#topic"
+---
+
+# Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)
+
+## Coverage
+- [[article/2026-02/955529-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/955535-spore-mounts-largest-ever-cyber-defence-operation-after-highly-sophist|S’pore Mounts Largest-Ever Cyber Defence Operation After Highly Sophisticated Hackers Targets 4 Major Telcos]]
+- [[article/2026-02/955541-singapore-s-telecommunications-operators-hacked-cyber-security-agency-|Singapore's Telecommunications Operators Hacked; Cyber ​​Security Agency: Targeted Attack By Cyber Espionage Group. (星國電信業者遇駭 網安局：遭網路間諜組織鎖定攻擊)]]
+- [[article/2026-02/955543-singapore-s-telecommunications-operators-hacked-cyber-security-agency-|Singapore's Telecommunications Operators Hacked; Cyber ​​Security Agency: Targeted Attack By Cyber Espionage Group. (星國電信業者遇駭 網安局：遭網路間諜組織鎖定攻擊)]]
+- [[article/2026-02/955545-singapore-s-telecommunications-operators-hacked-cyber-security-agency-|Singapore's Telecommunications Operators Hacked; Cyber ​​Security Agency: Targeted Attack By Cyber Espionage Group. (星國電信業者遇駭 網安局：遭網路間諜組織鎖定攻擊)]]
+- [[article/2026-02/955547-singapore-s-telecommunications-operators-hacked-cyber-security-agency-|Singapore's Telecommunications Operators Hacked; Cyber ​​Security Agency: Targeted Attack By Cyber Espionage Group. (星國電信業者遇駭 網安局：遭網路間諜組織鎖定攻擊)]]
+- [[article/2026-02/955551-cyberattack-on-singaporean-telecommunications-companies-unc3886-group-|Cyberattack On Singaporean Telecommunications Companies - UNC3886 Group Responsible (சிங்கப்பூர்த் தொலைத்தொடர்பு நிறுவனங்கள் மீது இணையத் தாக்குதல் - UNC3886 குழு காரணம்)]]
+- [[article/2026-02/955555-4-singapore-telcos-targeted-in-unc3886-cyber-attack-4-syarikat-telco-s|4 Singapore Telcos Targeted In UNC3886 Cyber Attack (4 Syarikat Telco Singapura Jadi Sasaran Serangan Siber UNC3886)]]
+- [[article/2026-02/955557-singapore-says-cyber-espionage-group-targeted-telco-infrastructure|Singapore Says Cyber Espionage Group Targeted Telco Infrastructure]]
+- [[article/2026-02/955559-singapore-says-cyber-espionage-group-targeted-telco-infrastructure|Singapore Says Cyber Espionage Group Targeted Telco Infrastructure]]
+- [[article/2026-02/955561-four-singaporean-telecom-operators-targeted-in-cyber-attack-empat-oper|Four Singaporean Telecom Operators Targeted In Cyber ​​Attack (Empat Operator Telekomunikasi Singapura Jadi Target Serangan Siber)]]
+- [[article/2026-02/955569-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/955571-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/955573-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/955575-largest-cyber-incident-response-against-unc3886-unc3886|Largest Cyber Incident Response Against UNC3886 (UNC3886க்கு எதிராக மிகப் பெரிய இணையப் பாதுகாப்பு நடவடிக்கை)]]
+- [[article/2026-02/956001-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/956007-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/956009-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/956011-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/956013-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/956018-four-major-telcos-were-targeted-by-unc3886-csa-dis-saf-mention|Four Major Telcos Were Targeted By UNC3886 (CSA/DIS/SAF Mention)]]
+- [[article/2026-02/956090-cyberattack-on-four-major-telecommunications-companies|Cyberattack On Four Major Telecommunications Companies (நான்கு முக்கியத் தொலைத்தொடர்பு நிறுவனங்கள் மீது இணையத் தாக்குதல்)]]
+- [[article/2026-02/956094-cyber-defenders-tackles-singapore-s-biggest-cyber-threats-pelindung-si|Cyber ​​Defenders Tackles Singapore's Biggest Cyber ​​Threats (Pelindung Siber Tangani Ancaman Siber Terbesar S’Pura)]]
+- [[article/2026-02/956389-tracking-hackers-and-hardening-systems-are-difficult-over-100-people-w|Tracking Hackers And Hardening Systems Are Difficult; Over 100 People Were Mobilised To Participate In The Cyberattack Response Operation. (追踪黑客及系统加固难度大 动员逾百人参与网袭应对行动)]]
+- [[article/2026-02/956391-suria-online-evening-news-brief-for-9-feb|Suria Online Evening News Brief For 9 Feb]]
+- [[article/2026-02/956397-4-telcos-targeted-in-cyber-attack-by-threat-group-no-sensitive-data-le|4 Telcos Targeted In Cyber Attack By Threat Group, No Sensitive Data Leaked]]
+- [[article/2026-02/956399-singapore-telcos-attacked-by-unc3886-prompting-largest-cyber-response-|Singapore Telcos Attacked By UNC3886, Prompting Largest Cyber Response To Date]]
+- [[article/2026-02/956409-what-is-unc3886-the-group-that-attacked-singapores-telco-infrastructur|What Is UNC3886, The Group That Attacked Singapore’S Telco Infrastructure?]]
+- [[article/2026-02/956411-what-is-unc3886-the-group-that-attacked-singapores-telco-infrastructur|What Is UNC3886, The Group That Attacked Singapore’S Telco Infrastructure?]]
+- [[article/2026-02/956413-what-is-unc3886-the-group-that-attacked-singapore-s-telco-infrastructu|What Is UNC3886, The Group That Attacked Singapore's Telco Infrastructure?]]
+- [[article/2026-02/956415-what-is-unc3886-the-group-that-attacked-singapores-telco-infrastructur|What Is UNC3886, The Group That Attacked Singapore’S Telco Infrastructure?]]
+- [[article/2026-02/956417-what-is-unc3886-the-group-that-attacked-singapores-telco-infrastructur|What Is UNC3886, The Group That Attacked Singapore’S Telco Infrastructure?]]
+- [[article/2026-02/956419-what-is-unc3886-the-group-that-attacked-singapores-telco-infrastructur|What Is UNC3886, The Group That Attacked Singapore’S Telco Infrastructure?]]
+- [[article/2026-02/956421-what-is-unc3886-the-group-that-attacked-singapores-telco-infrastructur|What Is UNC3886, The Group That Attacked Singapore’S Telco Infrastructure?]]
+- [[article/2026-02/956423-four-local-telecommunications-companies-were-attacked-by-a-hacker-grou|Four Local Telecommunications Companies Were Attacked By A Hacker Group; However, Personal Data And Sensitive Information Were Not Leaked. (本地四家电信公司遭黑客组织攻击 个资和敏感数据没有外泄)]]
+- [[article/2026-02/956425-four-telecommunications-companies-were-attacked-by-the-unc3886-hacker-|Four Telecommunications Companies Were Attacked By The UNC3886 Hacker; Customer Data Was Not Leaked. (四电信公司曾遭UNC3886黑客攻击 客户资料未外泄)]]
+- [[article/2026-02/956678-spores-four-major-telcos-came-under-attack-by-cyberespionage-group-unc|S’pore’s Four Major Telcos Came Under Attack By Cyberespionage Group UNC3886 In 2025]]
+- [[article/2026-02/956693-josephine-teo-the-hacking-group-unc3886-targeted-telecommunications-sy|Josephine Teo: The Hacking Group UNC3886 Targeted Telecommunications Systems In Its Cyberattacks (杨莉明：黑客组织UNC3886网袭目标是电信系统)]]
+- [[article/2026-02/956696-investigation-finds-hackers-did-not-access-user-data-four-telecom-comp|Investigation Finds Hackers Did Not Access User Data; Four Telecom Companies Hit By Cyberattacks Last Year With No Customer Data Breach (调查显示黑客未读取用户数据 四电信公司去年遭网袭 无客户资料外泄)]]
+- [[article/2026-02/956698-4-s-pore-telco-companies-attacked-by-cyber-espionage-in-2025-4-firma-t|4 S'pore Telco Companies Attacked By Cyber Espionage In 2025 (4 Firma Telko S'pura Diserang Kumpulan Perisik Siber Pada 2025)]]
+- [[article/2026-02/956699-attack-on-four-major-telecommunications-companies-4|Attack On Four Major Telecommunications Companies (4 முக்கியத் தொலைத்தொடர்பு நிறுவனங்கள் மீது தாக்குதல்)]]
+- [[article/2026-02/956702-singapores-four-major-telcos-came-under-attack-by-cyber-espionage-grou|Singapore’s Four Major Telcos Came Under Attack By Cyber Espionage Group UNC3886]]
+- [[article/2026-02/956704-over-100-cyberdefenders-involved-in-multi-agency-operation-against-unc|Over 100 Cyberdefenders Involved In Multi-Agency Operation Against UNC3886]]
+- [[article/2026-02/956706-over-a-hundred-cybersecurity-specialists-join-forces-to-counter-hacker|Over A Hundred Cybersecurity Specialists Join Forces To Counter Hacker Intrusions, Combining Offense And Defence To Safeguard Network Security (百余专才对抗黑客入侵 攻防并行协力守护网安)]]
+- [[article/2026-02/956707-cyber-defenders-tackles-singapore-s-biggest-cyber-threats-pelindung-si|Cyber ​​Defenders Tackles Singapore's Biggest Cyber ​​Threats (Pelindung Siber Tangani Ancaman Siber Terbesar S’pura)]]
+- [[article/2026-02/956710-largest-cyber-incident-response-against-unc3886-3886|Largest Cyber Incident Response Against UNC3886 (‘யுஎன்சி3886’க்கு எதிராக மிகப் பெரிய இணையப் பாதுகாப்பு நடவடிக்கை)]]
+- [[article/2026-02/956712-are-essential-services-in-spore-safe-from-attack-by-group|Are Essential Services In S’pore Safe From Attack By Group?]]
+- [[article/2026-02/956714-what-threat-does-the-unc3886-cyber-attack-pose-unc3886|What Threat Does The UNC3886 Cyber-Attack Pose? (UNC3886网袭有何威胁?)]]
+- [[article/2026-02/957000-singapore-operation-cyber-guardian-boosts-telecom-resilience|Singapore: Operation Cyber Guardian Boosts Telecom Resilience]]
+- [[article/2026-02/957002-unc3886-hackers-hit-four-telcos-last-year|UNC3886 Hackers Hit Four Telcos Last Year]]
+- [[article/2026-02/957323-four-major-singapore-telcos-targeted-in-cyberattack|Four Major Singapore Telcos Targeted In Cyberattack]]
+- [[article/2026-02/964854-news-9-feb-singapore-telco-targeted-by-cyber-attack-news-9-feb-singapo|NEWS (9 FEB) | Singapore Telco Targeted By Cyber Attack (NEWS (9 FEB) | Singapore Telco Targeted By Cyber Attack (BERITA (9 FEB) | Syarikat Telko Singapura Jadi Sasaran Serangan Siber))]]
+

@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 5
 tags: []
 ---
 
@@ -20,3 +20,7 @@ Kyriakos Mitsotakis — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-04/1076465-france-and-greece-renew-defense-pact-deepening-military-ties|France And Greece Renew Defense Pact Deepening Military Ties]]
+- [[article/2026-04/1076957-macron-views-eu-joint-defence-clause-as-stronger-than-nato|Macron Views EU Joint Defence Clause As ‘Stronger’ Than Nato]]
+- [[article/2026-04/1078662-france-and-greece-further-strengthen-mutual-defense-ties|France And Greece Further Strengthen Mutual Defense Ties]]
+

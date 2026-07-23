@@ -5,7 +5,7 @@ role: Analyst
 affiliation: Institute for Strategy and Policy – Myanmar
 country: Myanmar
 aliases: [Naing Min Khant]
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -23,3 +23,5 @@ Analyst who described Ye Win Oo's power as gained through Min Aung Hlaing's patr
 
 
 Related topic: [[defence]]
+- [[article/2026-02/944520-myanmar-junta-plans-super-body-to-tighten-grip-on-military-new-governm|Myanmar Junta Plans 'Super-Body' To Tighten Grip On Military, New Government]]
+

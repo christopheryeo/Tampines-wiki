@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 27
+mentionCount: 63
 tags: []
 ---
 
@@ -13,6 +13,13 @@ tags: []
 Ayatollah Ali Khamenei — person referenced in March 2026 general-news coverage.
 
 ## Coverage
+- [[1138040-trump-says-deal-to-end-war-will-be-signed-on-sunday-iran-que|Trump Says Deal To End War Will Be Signed On Sunday, Iran Questions Timing]]
+- [[1138039-trump-says-deal-to-end-war-will-be-signed-on-sunday-iran-que|Trump Says Deal To End War Will Be Signed On Sunday, Iran Questions Timing]]
+- [[1138034-trump-says-deal-to-end-war-will-be-signed-on-june-14-iran-qu|Trump Says Deal To End War Will Be Signed On June 14, Iran Questions Timing]]
+- [[1162626-yemen-s-houthis-strike-saudi-arabia-s-abha-airport-with-miss|Yemen’s Houthis Strike Saudi Arabia’S Abha Airport With Missiles And Drones In A Sharp...]]
+- [[1159396-iran-says-it-hits-u-s-military-targets-in-gulf-buries-slain|Iran Says It Hits U.S. Military Targets In Gulf, Buries Slain Leader Khamenei]]
+- [[1156867-trump-says-there-will-either-be-a-deal-with-iran-or-us-will|Trump Says There Will Either Be A Deal With Iran Or US Will 'Finish The Job']]
+- [[1155074-indonesian-ambassador-represents-nation-at-ali-khamenei-fune|Indonesian Ambassador Represents Nation At Ali Khamenei Funeral]]
 - [[1004241-rsaf-a330-aircraft-to-support-repatriation-of-sing|Duplicate wire coverage of the same event as Singapore Arranges Two Military Flights To Riyadh.]]
 - [[1004242-rsaf-a330-aircraft-to-support-repatriation-of-sing|Duplicate wire coverage of the same event as Singapore Arranges Two Military Flights To Riyadh.]]
 - [[1004244-rsaf-a330-aircraft-to-support-repatriation-of-sing|Duplicate wire coverage of the same event as Singapore Arranges Two Military Flights To Riyadh.]]
@@ -47,3 +54,33 @@ Ayatollah Ali Khamenei — person referenced in March 2026 general-news coverage
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-05/1125408-the-guardian-commentary-trump-s-art-of-the-deal-is-nowhere-t|1125408-the-guardian-commentary-trump-s-art-of-the-deal-is-nowhere-t]]
+- [[article/2026-04/1042081-us-to-leave-iran-pretty-quickly-and-return-if-needed-trump-tells-reute|US To Leave Iran ‘Pretty Quickly’ And Return If Needed, Trump Tells Reuters]]
+- [[article/2026-04/1042569-a-war-meant-to-break-iran-could-leave-tehran-stronger-and-gulf-exposed|A War Meant To Break Iran Could Leave Tehran Stronger, And Gulf Exposed]]
+- [[article/2026-04/1046191-israel-says-striking-hezbollah-sites-in-beirut-after-destroying-bridge|Israel Says Striking Hezbollah Sites In Beirut After Destroying Bridge]]
+- [[article/2026-04/1046192-israel-says-striking-hezbollah-sites-in-beirut-after-destroying-bridge|Israel Says Striking Hezbollah Sites In Beirut After Destroying Bridge]]
+- [[article/2026-04/1046322-israel-says-striking-hezbollah-sites-in-beirut-after-destroying-bridge|Israel Says Striking Hezbollah Sites In Beirut After Destroying Bridge]]
+- [[article/2026-04/1049420-north-korea-distancing-itself-from-iran-to-leave-door-open-for-us-talk|North Korea Distancing Itself From Iran To Leave Door Open For US Talks, Seoul Says]]
+- [[article/2026-04/1070984-trump-extends-ceasefire-until-iran-submits-new-proposal|Trump Extends Ceasefire Until Iran Submits New Proposal]]
+- [[article/2026-04/1080943-trump-unhappy-with-latest-peace-proposal-says-iran-figuring-out-its-le|Trump, Unhappy With Latest Peace Proposal, Says Iran 'Figuring Out Its Leadership']]
+- [[article/2026-02/941331-uae-urges-us-and-iran-to-strike-nuclear-deal-ahead-of-talks|UAE Urges US And Iran To Strike Nuclear Deal Ahead Of Talks]]
+- [[article/2026-02/959208-trump-hints-at-second-carrier-in-middle-east-as-iran-and-us-near-talks|Trump Hints At Second Carrier In Middle East As Iran And US Near Talks]]
+- [[article/2026-02/971572-iran-us-nuclear-talks-adjourn-amid-military-drills-in-strait|Iran-US Nuclear Talks Adjourn Amid Military Drills In Strait]]
+- [[article/2026-02/971614-iran-says-it-agreed-to-principles-of-nuclear-deal-with-us|Iran Says It Agreed To ‘Principles’ of Nuclear Deal With US]]
+- [[article/2026-02/972141-us-iran-hail-progress-in-nuclear-talks-after-trump-threats|US, Iran Hail Progress In Nuclear Talks After Trump Threats]]
+- [[article/2026-02/979728-trump-considers-targeted-strike-against-iran-followed-by-larger-attack|Trump Considers Targeted Strike Against Iran, Followed By Larger Attack]]
+- [[article/2026-02/989964-trump-says-us-carrying-out-major-combat-operations-in-iran|Trump Says US Carrying Out 'Major Combat Operations' In Iran]]
+- [[article/2026-02/989966-trump-says-us-carrying-out-major-combat-operations-in-iran|Trump Says US Carrying Out 'Major Combat Operations' In Iran]]
+- [[article/2026-01/883577-world-reacts-to-us-strikes-on-venezuela|World Reacts To US Strikes On Venezuela]]
+- [[article/2026-01/902218-the-times-of-israel-commentary-why-the-massive-iran-protests-havent-to|The Times of Israel Commentary: "Why The Massive Iran Protests Haven’T Toppled Its Clerical Establishment"]]
+- [[article/2026-01/909505-iran-s-leader-khamenei-accuses-trump-of-inciting-deadly-protests|Iran's Leader Khamenei Accuses Trump Of Inciting Deadly Protests]]
+- [[article/2026-01/911145-at-least-5-000-dead-in-iran-unrest-official-says-as-judiciary-hints-at|At Least 5,000 Dead In Iran Unrest, Official Says, As Judiciary Hints At Executions]]
+- [[article/2026-01/918036-trump-again-threatens-to-take-military-action-against-iran|Trump Again Threatens To Take Military Action Against Iran (特朗普再威胁对伊朗动武)]]
+- [[article/2026-01/928174-iranian-government-braces-for-possible-attack-as-us-navy-arrives-in-re|Iranian Government Braces For Possible Attack As US Navy Arrives In Region]]
+- [[article/2026-01/930238-trump-warns-iran-to-make-nuclear-deal-or-next-attack-will-be-far-worse|Trump Warns Iran To Make Nuclear Deal Or Next Attack Will Be 'Far Worse']]
+- [[article/2026-01/930240-trump-tells-iran-to-make-nuclear-deal-or-next-attack-will-be-far-worse|Trump Tells Iran To Make Nuclear Deal Or Next Attack Will Be 'Far Worse']]
+- [[article/2026-01/930244-trump-warns-iran-to-make-nuclear-deal-or-next-attack-will-be-far-worse|Trump Warns Iran To Make Nuclear Deal Or Next Attack Will Be ‘Far Worse’]]
+- [[article/2026-01/930246-trump-warns-iran-to-make-nuclear-deal-or-next-attack-will-be-far-worse|Trump Warns Iran To Make Nuclear Deal Or Next Attack Will Be ‘Far Worse’]]
+- [[article/2026-01/935233-iran-renews-threat-to-strike-israel-as-fears-of-us-attack-grow|Iran Renews Threat To Strike Israel As Fears Of US Attack Grow]]
+- [[article/2026-01/935235-iran-renews-threat-to-strike-israel-as-fears-of-us-attack-grow|Iran Renews Threat To Strike Israel As Fears Of US Attack Grow]]
+

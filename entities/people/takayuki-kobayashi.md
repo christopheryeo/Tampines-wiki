@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 3
 tags: []
 ---
 
@@ -22,3 +22,5 @@ Takayuki Kobayashi — person referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1076743-japan-assesses-feasibility-of-sending-minesweepers-to-strait-of-hormuz|Japan Assesses Feasibility Of Sending Minesweepers To Strait Of Hormuz]]
+

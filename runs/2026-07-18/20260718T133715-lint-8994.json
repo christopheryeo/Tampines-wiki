@@ -1,0 +1,360 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260718T133715-lint-8994",
+  "operation": "lint",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-07-18T13:37:15+08:00",
+  "endedAt": "2026-07-18T13:42:31+08:00",
+  "durationSec": 315.696,
+  "articleMetrics": {
+    "inputCount": 16837,
+    "processedCount": 16837,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 57,
+    "duplicateCount": 0,
+    "failedCount": 51,
+    "avgSecPerArticle": 0.01875
+  },
+  "fileMetrics": {
+    "scannedCount": 27122,
+    "changedCount": 150,
+    "failedCount": 51,
+    "avgSecPerFile": 0.01164
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "structuralLinksNormalized": 0,
+    "yamlFixed": 0,
+    "aliasOnlyLinksRewritten": 0,
+    "articlesRelocated": 0,
+    "coverageLabelsRegenerated": 0,
+    "coverageLabelFilesChanged": 0,
+    "orphanEntityBodyLinksAdded": 329,
+    "proseEntityLinksAdded": 0,
+    "remainingYamlErrors": 0,
+    "remainingBrokenLinks": 51
+  },
+  "errors": [
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/callsites/readme.md",
+      "target": "Class",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/es-abstract/CHANGELOG.md",
+      "target": "NextMethod",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/es-abstract/CHANGELOG.md",
+      "target": "UnicodeSets",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/is-callable/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/is-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/is-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...segment",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...folder",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...file",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...folderName",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...segmentName",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-static-paths.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/object.entries/CHANGELOG.md",
+      "target": "Get",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/object.values/CHANGELOG.md",
+      "target": "Get",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/styled-jsx/readme.md",
+      "target": "\"styled-jsx/babel\", { \"optimizeForSpeed\": true }",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/undici/docs/docs/api/ContentType.md",
+      "target": "'charset', 'gbk'",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/undici/docs/docs/api/GlobalInstallation.md",
+      "target": "'content-type', 'application/json'",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/which-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "dashboards/site/node_modules/which-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    }
+  ],
+  "notes": "",
+  "metadata": {
+    "script": "fix_links.py",
+    "dryRun": false,
+    "domain": null,
+    "skipRelocate": false,
+    "skipAlias": false,
+    "skipYaml": false,
+    "skipCoverageLabels": false,
+    "skipEntityBodyLinks": false,
+    "skipNormalize": false,
+    "linkEntities": false
+  }
+}

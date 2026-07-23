@@ -4,7 +4,7 @@ displayName: Changi Prison
 placeType: Landmark/Venue
 country: singapore
 aliases: []
-mentionCount: 7
+mentionCount: 15
 tags: ['#saf']
 ---
 
@@ -27,3 +27,12 @@ Prison in Singapore where Amos Yee was remanded and from which he was released o
 Tagged #saf — related to Amos Yee's Enlistment Act case. Content sourced solely from the citing article; no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1048455-i-wish-the-americans-had-kept-him-shanmugam-on-amos-yee|I Wish The Americans Had Kept Him': Shanmugam On Amos Yee]]
+- [[article/2026-04/1048736-singapores-shanmugam-on-deported-blogger-amos-yee-i-wish-the-americans|Singapore’S Shanmugam On Deported Blogger Amos Yee: ‘I Wish The Americans Had Kept Him’]]
+- [[article/2025-12/864716-man-charged-over-allegedly-placing-item-resembling-an-explosive-device|Man Charged Over Allegedly Placing Item Resembling An Explosive Device Within Church Premises]]
+- [[article/2025-12/865031-man-charged-with-placing-explosive-like-items-on-church-premises-lelak|Man Charged With Placing Explosive-Like Items On Church Premises (Lelaki Didakwa Letak Barangan Serupa Alat Letupan Di Premis Gereja)]]
+- [[article/2025-12/866123-man-charged-after-allegedly-placing-item-resembling-an-explosive-devic|Man Charged After Allegedly Placing Item Resembling An Explosive Device On Church Premises]]
+- [[article/2025-12/866125-man-charged-with-placing-explosive-like-items-on-church-premises-lelak|Man Charged With Placing Explosive-Like Items On Church Premises (Lelaki Didakwa Letak Barangan Serupa Alat Letupan Di Premis Gereja)]]
+- [[article/2025-12/867809-man-charged-with-making-false-threat|Man Charged With Making False Threat]]
+- [[article/2025-12/870767-man-charged-with-making-false-threat|Man Charged With Making False Threat]]
+

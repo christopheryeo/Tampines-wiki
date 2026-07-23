@@ -4,7 +4,7 @@ displayName: Penang
 placeType: Other
 country:
 aliases: []
-mentionCount: 9
+mentionCount: 15
 tags: []
 ---
 
@@ -28,3 +28,10 @@ Penang — place referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-04/1082303-pete-hegseth-questioned-why-minesweepers-were-sent-to-singapore-weeks-|Pete Hegseth Questioned Why Minesweepers Were Sent To Singapore Weeks Before Iran War]]
+- [[article/2026-01/928654-singapore-airlines-adds-flights-for-march-to-october-season-adjusts-sc|Singapore Airlines Adds Flights For March To October Season, Adjusts Schedules For Singapore Airshow]]
+- [[article/2025-12/826560-singapore-to-open-consulates-in-sabah-sarawak|Singapore To Open Consulates In Sabah, Sarawak]]
+- [[article/2025-12/826562-singapore-to-open-consulates-in-sabah-sarawak-singapura-bakal-buka-kon|Singapore To Open Consulates In Sabah, Sarawak (Singapura Bakal Buka Konsulat Di Sabah, Sarawak)]]
+- [[article/2025-12/834188-commentary-the-story-of-how-singapore-separated-from-malaysia-in-1965-|Commentary: The Story Of How Singapore Separated From Malaysia In 1965 Is One Of Many Intriguing Ifs]]
+- [[article/2025-12/878895-maphotosg-tremendous-ten|MAphotoSG – Tremendous Ten]]
+

@@ -5,7 +5,7 @@ role: Vice President
 affiliation: Government of Taiwan
 country: Taiwan
 aliases: [Hsiao Bi-khim]
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -22,3 +22,6 @@ Taiwan's Vice President stressing defence investment and societal resilience.
 
 
 Related topic: [[defence]]
+- [[article/2026-01/885183-chinese-cyber-attacks-on-taiwan-infrastructure-averaged-2-6-million-a-|Chinese Cyber Attacks On Taiwan Infrastructure Averaged 2.6 Million A Day In 2025: Report]]
+- [[article/2026-01/886474-chinese-cyber-attacks-on-taiwan-infrastructure-averaged-2-6-million-a-|Chinese Cyber Attacks On Taiwan Infrastructure Averaged 2.6 Million A Day In 2025: Report]]
+

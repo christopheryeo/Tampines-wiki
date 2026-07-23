@@ -48,6 +48,10 @@ media-monitoring/
 ├── scripts/               ← maintenance tooling and the written procedures agents follow
 │   ├── generate_catalog.py        ← rebuilds every domain's catalog.md
 │   ├── raw_feed_to_inputs.py      ← derives preserved raw feeds into Inputs/articles/
+│   ├── route_input_articles.py    ← routes loose crawler inputs into publication months
+│   ├── enrich_radar_inputs.py     ← evidence-backed six-field enrichment for input articles
+│   ├── stage_enriched_radar_inputs.py
+│   │                            ← reviewed enriched-input to UAT staging bundle
 │   ├── ingest_cascade.py          ← timed raw-input compile + entity cascade runner
 │   ├── article_quality.py         ← article schema check + source-backed safe repair
 │   ├── stage_mysql_feeds.py       ← deterministic raw-feed to isolated UAT staging bundle
@@ -65,7 +69,9 @@ media-monitoring/
 │   ├── query_procedure.md         ← how to answer questions against the vault
 │   ├── people_country_inference_procedure.md
 │   │                            ← how to infer missing person countries from vault context
-│   └── issue_radar_procedure.md   ← how radar flags become filed issue assessments
+│   ├── issue_radar_procedure.md   ← how radar flags become filed issue assessments
+│   └── enriched_radar_load_procedure.md
+│                                ← how approved enrichment reaches UAT safely
 │
 ├── topics/                ← monitoring topic definitions (keywords, sources, schedule)
 │   └── sa26.json
@@ -90,6 +96,16 @@ media-monitoring/
 `Inputs/` is where raw coverage lands *before* it becomes part of the wiki. It sits deliberately outside `entities/` and outside every `catalog.md`, so anything here is invisible to queries until it has been ingested. Items are stored one per file under `Inputs/articles/YYYY-MM/`, grouped by publication month, and named `<articleId>-<slug>.md`.
 
 These raw files use their own **input schema**, which is *not* the compiled article-note schema used in `entities/article/`. Their frontmatter carries the fields the ingest pipeline emits — `articleId`, `articleTitle`, `publishedDate`, `category`, `topic`, `tone`, `toneSentiment`, `eventType`, `tags`, `outlets`, `countries`, `coverageCount`, `mediaCount`, `sourceType`, and `url` — and the body is the raw report as **plain narrative text with no `[[wikilinks]]` yet**. (Note the differences from a compiled note: here `tags` are plain strings like `[Exercise, Training]` rather than quoted `#`-hashtags, links are absent rather than piped, and there is no `## Summary`/`## Related Entities` structure.)
+
+There are two supported arrival routes, and both converge here:
+
+- **DSTA route:** preserved delivery under `raw/` → `raw_feed_to_inputs.py` →
+  `Inputs/articles/YYYY-MM/`.
+- **Crawler route:** crawler → `Inputs/articles/`; loose root files are routed into
+  `Inputs/articles/YYYY-MM/` by `route_input_articles.py`.
+
+Nothing under `raw/` is enriched, staged, compiled, or cascaded directly. Once an article is in
+Inputs, both source routes use the same enrichment, UAT staging, compile, and cascade gates.
 
 Two `sourceType` variants arrive through the same folder:
 
@@ -197,8 +213,57 @@ python3 scripts/raw_feed_to_inputs.py --month 2026-05
 python3 scripts/raw_feed_to_inputs.py --all --write
 ```
 
+##### `route_input_articles.py` — loose crawler input to publication-month folder
+Reads loose Markdown files directly under `Inputs/articles/`, derives `YYYY-MM` from each
+`publishedDate`, and moves them unchanged into `Inputs/articles/YYYY-MM/`. Default mode is a dry
+run; `--write` performs the move. Existing input or compiled destinations are blocked, never
+overwritten.
+
+```bash
+python3 scripts/route_input_articles.py
+python3 scripts/route_input_articles.py --write
+```
+
+##### `enrich_radar_inputs.py` — evidence-backed radar-input enrichment
+Fills the six fields needed to combine loose input articles with the historical issue-radar
+corpus: existing-vocabulary issue tags, outlet name, outlet country, institutional category,
+Factual/Opinionated tone, and Facilitated/Unfacilitated event type. It shortlists tags from the
+production tag inventory and uses two independent schema-constrained model passes for classification.
+Both passes must agree and meet the confidence threshold before a value is eligible for automatic
+application; disagreements and low-confidence results stay in the JSON review artifact.
+
+The default run is non-mutating. `--apply` updates only high-confidence registered input fields.
+The API key comes from `OPENAI_API_KEY` or the Git-ignored `.env.local` and is never written to
+output. Because the runner may retrieve source pages and send article text to the configured model
+API, an operator must explicitly authorize that external data transfer before a live run.
+
+```bash
+python3 scripts/enrich_radar_inputs.py --limit 5 --no-fetch
+python3 scripts/enrich_radar_inputs.py
+python3 scripts/enrich_radar_inputs.py --apply
+```
+
 ##### `stage_mysql_feeds.py` — deterministic UAT staging bundle
 Validates preserved monthly feed exports against the approved source-to-UAT mapping, reconfirms expected file hashes, and writes escaped UTF-8 TSV files plus explicit MySQL `LOAD DATA LOCAL INFILE` and validation SQL. It writes no database data itself and never edits `raw/`. Staged records retain source file, source row, raw article ID, canonical raw JSON, and SHA-256 record hashes; known identity and quality exceptions are routed into `UAT_stg_quarantine` rather than corrected, truncated, merged, or discarded. `verify-bundle` recomputes generated file hashes, row counts, and per-source record-hash chains before or after database execution.
+
+##### `stage_enriched_radar_inputs.py` — enriched inputs to the shared UAT article database
+Reads enriched Markdown articles plus their assessment artifacts and prepares a deterministic,
+non-writing UAT bundle. External IDs of any format are preserved as provenance while unique negative
+staging IDs are mapped to new positive UAT IDs during transformation. It emits article, online
+coverage, and exact issue-tag rows; uncertain articles go to `review_queue.csv` and are excluded
+from canonical UAT until an attributed approval file is supplied. Generated SQL loads isolated
+staging, validates canonical-shaped candidates, and performs the final UAT insert in a single
+rollback-on-failure transaction. It never contains production-writing SQL.
+
+```bash
+python3 scripts/stage_enriched_radar_inputs.py prepare \
+  --input-dir Inputs/articles \
+  --loose-only \
+  --assessment runs/2026-07-23/artifacts/radar-input-enrichment.json \
+  --output-dir runs/2026-07-23/artifacts/enriched-radar-uat-bundle
+python3 scripts/stage_enriched_radar_inputs.py verify-bundle \
+  --bundle-dir runs/2026-07-23/artifacts/enriched-radar-uat-bundle
+```
 
 #### Ingest, cascade, and catalogs
 
@@ -214,6 +279,11 @@ python3 scripts/ingest_cascade.py --month 2026-07 --dry-run
 ```
 
 Important boundaries: `--dry-run` previews without writing; outlets, countries, and topics can be created from raw metadata; people, organisations, and places are only linked when already present because creating them still requires judgment. The timer covers the full operation through validation and receipt writing, and each real run should report elapsed time, processed article count, and average seconds per article.
+
+Exact enriched issue tags remain plain database tags for radar computation. Because the compiled
+wiki article schema reserves YAML `tags` for system markers such as `#source` and `#saf`,
+`ingest_cascade.py` preserves enriched issue tags in the article body's `## Issue Tags` section and
+as topic relationships instead of replacing the system-tag registry.
 
 ##### `patch_coverage.py` — safely update entity Coverage lists and counts
 Handles the mechanical bookkeeping half of linking existing entities to newly-ingested articles. It increments mention/article counts by exactly the number of genuinely new `(entity, article)` pairs and appends matching `- [[article|label]]` lines to `## Coverage`. It does not decide which entities are new, write summaries, or touch related-entity prose.
@@ -302,6 +372,13 @@ The judgment procedure for proposing and, after approval, writing `country` valu
 
 #### `issue_radar_procedure.md` — turning radar flags into filed issue assessments
 The judgment half of the issue radar. Five steps: run the signal layer (never hand-tuning its output mid-pass); cluster tag-level flags into issue objects by checking article/entity overlap (six flags like `amos yee`, `enlistment act`, `cmpb`, `deportation` are one issue — and issues are named for the risk, not the person carrying it); answer the **ramification questionnaire** from vault content only (who is forced to respond if this doubles? which standing fault line does it touch? what future dated catalysts do the citing articles mention? has anyone senior taken an irreversible position? is a foreign story migrating into domestic institutional categories?); file the result into `entities/issues/` per that domain's registry and template, keeping dismissals as calibration data; and surface only `warm`+ issues with `moderate`+ ramification — precision over recall at the alert layer, liberal filing at the watchlist layer. Its known limits are written down in the procedure itself: it detects *percolating* issues only — exogenous shocks have no media precursors and must never be claimed as detectable.
+
+#### `enriched_radar_load_procedure.md` — loading approved enrichment into UAT
+The operational bridge between loose enriched Markdown articles and the shared article database.
+It prepares and verifies a deterministic bundle, routes uncertain articles to an attributed review
+file, loads isolated staging, allocates safe database IDs, validates canonical-shaped candidates,
+performs an atomic UAT load, and then runs the radar against UAT. Production promotion remains a
+separate explicitly approved action.
 
 ---
 

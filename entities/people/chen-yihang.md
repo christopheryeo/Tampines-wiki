@@ -5,7 +5,7 @@ role: First Singaporean professional Weiqi player
 affiliation:
 country: Singapore
 aliases: [Chen Yihang]
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -21,3 +21,6 @@ tags: []
 
 ## AI Context
 Content sourced solely from the citing articles above; no external enrichment performed (§1 traceability, per this domain's index.md).
+- [[article/2026-04/1040498-singapores-first-professional-weiqi-player-chen-yihang-temporarily-ste|Singapore’s First Professional Weiqi Player, Chen Yihang, Temporarily Stepped Away From The Japanese Circuit Due To National Service And Other Considerations (我国首位职业围棋手 陈奕航因服役等考量暂别日本赛场)]]
+- [[article/2026-04/1040501-yihang-15-blazes-weiqi-trail|YIHANG, 15, BLAZES WEIQI TRAIL]]
+

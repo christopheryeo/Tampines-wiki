@@ -1,0 +1,110 @@
+---
+type: entity
+subtype: topic
+domain: Topics
+status: active
+displayName: Hormuz
+aliases:
+  - Hormuz
+owner: Alex
+created: 2026-07-18T02:12:50
+last_updated: 2026-07-18T02:38:59
+category: "Imported article topic"
+articleCount: 89
+tags:
+  - "#topic"
+---
+
+# Hormuz
+
+## Coverage
+- [[article/2026-05/1084662-us-hormuz-coalition-not-in-competition-with-france-britain-m|1084662-us-hormuz-coalition-not-in-competition-with-france-britain-m]]
+- [[article/2026-05/1087758-trump-calls-iran-talks-very-positive-us-to-guide-ships-throu|1087758-trump-calls-iran-talks-very-positive-us-to-guide-ships-throu]]
+- [[article/2026-05/1088084-thailand-seizes-on-hormuz-fears-to-push-land-bridge-dream|1088084-thailand-seizes-on-hormuz-fears-to-push-land-bridge-dream]]
+- [[article/2026-05/1090009-us-and-bahrain-push-un-backed-action-for-hormuz|1090009-us-and-bahrain-push-un-backed-action-for-hormuz]]
+- [[article/2026-05/1090010-us-and-bahrain-push-un-backed-action-for-hormuz-as-washingto|1090010-us-and-bahrain-push-un-backed-action-for-hormuz-as-washingto]]
+- [[article/2026-05/1090190-trump-says-operation-to-reopen-strait-of-hormuz-will-be-paus|1090190-trump-says-operation-to-reopen-strait-of-hormuz-will-be-paus]]
+- [[article/2026-05/1090193-trump-says-pausing-hormuz-operation-in-push-for-iran-deal|1090193-trump-says-pausing-hormuz-operation-in-push-for-iran-deal]]
+- [[article/2026-05/1093762-southeast-asia-boosts-maritime-ties-to-avoid-hormuz-like-cri|1093762-southeast-asia-boosts-maritime-ties-to-avoid-hormuz-like-cri]]
+- [[article/2026-05/1095246-britain-sending-warship-to-middle-east-ahead-of-hormuz-missi|1095246-britain-sending-warship-to-middle-east-ahead-of-hormuz-missi]]
+- [[article/2026-05/1095248-south-east-asia-nations-boost-maritime-ties-to-avoid-hormuz|1095248-south-east-asia-nations-boost-maritime-ties-to-avoid-hormuz]]
+- [[article/2026-05/1095249-uk-deploys-warship-to-middle-east-with-eye-on-potential-horm|1095249-uk-deploys-warship-to-middle-east-with-eye-on-potential-horm]]
+- [[article/2026-05/1095320-south-east-asia-nations-boost-maritime-ties-to-avoid-hormuz|1095320-south-east-asia-nations-boost-maritime-ties-to-avoid-hormuz]]
+- [[article/2026-05/1096417-trump-rejects-iran-proposal-teheran-threatens-new-strikes-an|1096417-trump-rejects-iran-proposal-teheran-threatens-new-strikes-an]]
+- [[article/2026-05/1097747-iran-says-it-s-deployed-mini-submarines-in-contest-to-contro|1097747-iran-says-it-s-deployed-mini-submarines-in-contest-to-contro]]
+- [[article/2026-05/1097748-iran-says-it-s-deployed-mini-submarines-in-contest-to-contro|1097748-iran-says-it-s-deployed-mini-submarines-in-contest-to-contro]]
+- [[article/2026-05/1098766-south-korea-weighs-phased-role-in-hormuz-mission-after-us-ta|1098766-south-korea-weighs-phased-role-in-hormuz-mission-after-us-ta]]
+- [[article/2026-05/1098767-china-and-us-agree-on-opposing-hormuz-tolls-state-department|1098767-china-and-us-agree-on-opposing-hormuz-tolls-state-department]]
+- [[article/2026-05/1103052-european-countries-in-talks-with-tehran-for-hormuz-transit|1103052-european-countries-in-talks-with-tehran-for-hormuz-transit]]
+- [[article/2026-05/1103445-european-countries-in-talks-with-tehran-for-hormuz-transit-i|1103445-european-countries-in-talks-with-tehran-for-hormuz-transit-i]]
+- [[article/2026-05/1108044-iran-is-consolidating-control-of-hormuz-with-island-checkpoi|1108044-iran-is-consolidating-control-of-hormuz-with-island-checkpoi]]
+- [[article/2026-05/1110901-foreign-affairs-commentary-the-coming-contest-for-asia-s-wat|1110901-foreign-affairs-commentary-the-coming-contest-for-asia-s-wat]]
+- [[article/2026-05/1114245-regional-stewardship-key-to-strait-of-malacca-safety-and-sta|1114245-regional-stewardship-key-to-strait-of-malacca-safety-and-sta]]
+- [[article/2026-05/1118915-u-s-strikes-iranian-military-near-hormuz-with-no-accord-in-s|1118915-u-s-strikes-iranian-military-near-hormuz-with-no-accord-in-s]]
+- [[article/2026-05/1118926-us-strikes-iran-targets-as-trump-vows-to-watch-over-hormuz|1118926-us-strikes-iran-targets-as-trump-vows-to-watch-over-hormuz]]
+- [[article/2026-05/1118928-us-strikes-iranian-military-near-hormuz-with-no-accord-in-si|1118928-us-strikes-iranian-military-near-hormuz-with-no-accord-in-si]]
+- [[article/2026-05/1119240-iran-and-us-trade-air-strikes-after-trump-dismisses-report-o|1119240-iran-and-us-trade-air-strikes-after-trump-dismisses-report-o]]
+- [[article/2026-05/1119270-malay-mail-online-commentary-strait-of-malacca-stability-sov|1119270-malay-mail-online-commentary-strait-of-malacca-stability-sov]]
+- [[article/2026-05/1121026-iran-and-the-us-trade-air-strikes-after-trump-dismisses-repo|1121026-iran-and-the-us-trade-air-strikes-after-trump-dismisses-repo]]
+- [[article/2026-05/1124924-qatar-says-temporary-toll-at-strait-of-hormuz-is-negotiable|1124924-qatar-says-temporary-toll-at-strait-of-hormuz-is-negotiable]]
+- [[article/2026-05/1124930-qatar-says-temporary-hormuz-fee-to-clear-mines-is-negotiable|1124930-qatar-says-temporary-hormuz-fee-to-clear-mines-is-negotiable]]
+- [[article/2026-05/1125054-qatar-says-temporary-toll-at-strait-of-hormuz-is-negotiable|1125054-qatar-says-temporary-toll-at-strait-of-hormuz-is-negotiable]]
+- [[article/2026-05/1125275-qatar-opposes-permanent-hormuz-shipping-tolls-but-says-tempo|1125275-qatar-opposes-permanent-hormuz-shipping-tolls-but-says-tempo]]
+- [[article/2026-05/1125276-qatar-opposes-permanent-hormuz-shipping-tolls-but-says-tempo|1125276-qatar-opposes-permanent-hormuz-shipping-tolls-but-says-tempo]]
+- [[article/2026-04/1044266-china-says-us-israeli-attacks-on-iran-the-root-cause-of-hormuz-blockag|China Says US, Israeli Attacks On Iran The ‘Root Cause’ Of Hormuz Blockage]]
+- [[article/2026-04/1044304-taiwan-vows-2bn-coast-guard-reinforcement-as-hormuz-highlights-strait-|Taiwan Vows $2bn Coast Guard Reinforcement As Hormuz Highlights Strait Risk]]
+- [[article/2026-04/1049882-iran-does-not-forget-its-friends-as-malaysia-ships-pass-hormuz-amid-se|Iran ‘Does Not Forget Its Friends’ As Malaysia Ships Pass Hormuz Amid Selective Access]]
+- [[article/2026-04/1051064-japans-pm-takaichi-speaks-with-irans-pezeshkian-reports-say|Japan’s PM Takaichi Speaks With Iran’s Pezeshkian, Reports Say]]
+- [[article/2026-04/1051454-japan-pm-urges-iran-president-to-swiftly-secure-safe-hormuz-passage|Japan PM Urges Iran President To Swiftly Secure Safe Hormuz Passage]]
+- [[article/2026-04/1052081-trump-pushes-for-strait-of-hormuz-reopening-without-tolls-white-house-|Trump Pushes For Strait Of Hormuz Reopening Without Tolls, White House Says]]
+- [[article/2026-04/1052413-malaysia-wont-be-lectured-singapores-refusal-to-negotiate-over-hormuz-|‘Malaysia Won’t Be Lectured’: Singapore’s Refusal To Negotiate Over Hormuz Creates Waves]]
+- [[article/2026-04/1053278-nato-s-rutte-told-allies-trump-wants-hormuz-commitments-within-days-di|NATO's Rutte Told Allies Trump Wants Hormuz Commitments Within Days, Diplomats Say]]
+- [[article/2026-04/1053290-malaysia-furious-at-singapore-s-bringing-up-malacca-straits-over-iran-|Malaysia Furious At Singapore's Bringing Up Malacca Straits Over Iran's Closure Of The Strait Of Hormuz (Malaysia Geram Singapura Bawa-Bawa Selat Malaka Soal Penutupan Selat Hormuz Oleh Iran)]]
+- [[article/2026-04/1056469-us-warships-enter-hormuz-to-clear-mines-as-tensions-with-iran-escalate|US Warships Enter Hormuz To Clear Mines As Tensions With Iran Escalate]]
+- [[article/2026-04/1057574-us-move-to-blockade-hormuz-sets-up-risky-new-showdown|US Move To Blockade Hormuz Sets Up Risky New Showdown]]
+- [[article/2026-04/1058249-asean-urges-safe-passage-in-hormuz-as-trump-eyes-blockade|Asean Urges Safe Passage In Hormuz As Trump Eyes Blockade]]
+- [[article/2026-04/1058535-iran-sends-warning-on-gulf-ports-after-us-threat-to-block-hormuz|Iran Sends Warning On Gulf Ports After US Threat To Block Hormuz]]
+- [[article/2026-04/1058829-macron-starmer-tout-plan-to-open-up-hormuz-to-shipping|Macron, Starmer Tout Plan To Open Up Hormuz To Shipping]]
+- [[article/2026-04/1058835-uk-and-france-to-co-host-talks-this-week-on-possible-defensive-naval-m|UK And France To Co-Host Talks This Week On Possible Defensive Naval Mission For Hormuz]]
+- [[article/2026-04/1058836-uk-and-france-to-co-host-talks-this-week-on-possible-defensive-naval-m|UK And France To Co-Host Talks This Week On Possible Defensive Naval Mission For Hormuz]]
+- [[article/2026-04/1059280-un-chief-says-all-parties-must-respect-freedom-of-navigation-in-hormuz|UN Chief Says ‘All Parties’ Must Respect Freedom Of Navigation In Hormuz]]
+- [[article/2026-04/1059875-india-today-commentary-amid-hormuz-war-is-us-now-eyeing-key-strait-vit|India Today Commentary: "Amid Hormuz War, Is US Now Eyeing Key Strait Vital To India?"]]
+- [[article/2026-04/1060255-besides-hormuz-these-are-the-straits-that-control-the-flow-of-global-o|Besides Hormuz, These Are The Straits That Control The Flow Of Global Oil Distribution. (Selain Hormuz, Ini Deretan Selat Yang Kuasai Aliran Distribusi Minyak Dunia)]]
+- [[article/2026-04/1064197-exclusive-iran-offers-proposal-allowing-ships-to-exit-oman-side-of-hor|Exclusive: Iran Offers Proposal Allowing Ships To Exit Oman Side Of Hormuz Free Of Attack, Source Says]]
+- [[article/2026-04/1064598-hormuz-blockade-stirs-tension-over-malacca-strait-near-singapore|Hormuz Blockade Stirs Tension Over Malacca Strait Near Singapore]]
+- [[article/2026-04/1064599-hormuz-blockade-stirs-tension-over-malacca-strait-near-singapore|Hormuz Blockade Stirs Tension Over Malacca Strait Near Singapore]]
+- [[article/2026-04/1064736-hormuz-blockade-stirs-tension-over-malacca-strait-near-singapore|Hormuz Blockade Stirs Tension Over Malacca Strait Near Singapore]]
+- [[article/2026-04/1064875-video-us-mine-countermeasure-fleet-quietly-deployed-13-vessels-blocked|(Video) US Mine Countermeasure Fleet Quietly Deployed! 13 Vessels Blocked Amid Blockage Of Hormuz; Belgium Intercepted Shipments Bound for Israel ((影) 美軍掃雷艦隊悄然出動了! 封鎖荷姆茲阻13船 比利時攔截運以色列裝備)]]
+- [[article/2026-04/1065103-iran-says-hormuz-strait-now-completely-open|Iran says Hormuz Strait Now ‘Completely Open’]]
+- [[article/2026-04/1065104-iran-says-hormuz-strait-open-after-lebanon-deal|Iran Says Hormuz Strait Open After Lebanon Deal]]
+- [[article/2026-04/1065105-iran-says-hormuz-strait-open-after-lebanon-deal-trump-expects-iran-dea|Iran Says Hormuz Strait Open After Lebanon Deal, Trump Expects Iran Deal 'Soon']]
+- [[article/2026-04/1065696-ships-crossing-hormuz-need-ok-from-irgc-unfreezing-funds-part-of-deal-|Ships crossing Hormuz need OK from IRGC, unfreezing funds part of deal, Iran official says]]
+- [[article/2026-04/1066197-iran-closes-hormuz-strait-again-over-us-blockade-with-ships-mid-transi|Iran Closes Hormuz Strait Again Over US Blockade With Ships Mid-Transit]]
+- [[article/2026-04/1066198-iran-closes-hormuz-strait-again|Iran Closes Hormuz Strait Again]]
+- [[article/2026-04/1066725-france-uk-to-lead-multinational-hormuz-mission|France, UK To Lead Multinational Hormuz Mission]]
+- [[article/2026-04/1068457-chinas-xi-urges-ceasefire-full-hormuz-transit-in-saudi-call|China’S Xi Urges Ceasefire, Full Hormuz Transit In Saudi Call]]
+- [[article/2026-04/1068459-chinas-xi-urges-ceasefire-full-hormuz-transit-in-saudi-call|China’s Xi Urges Ceasefire, Full Hormuz Transit In Saudi Call]]
+- [[article/2026-04/1068760-hormuz-crisis-spurs-thailand-to-fast-track-land-bridge-project-bypassi|Hormuz Crisis Spurs Thailand To Fast-Track Land Bridge Project Bypassing Malacca Strait]]
+- [[article/2026-04/1071001-military-planners-to-discuss-hormuz-reopening-in-london|Military Planners To Discuss Hormuz Reopening In London]]
+- [[article/2026-04/1071002-military-planners-to-discuss-hormuz-reopening-in-london|Military Planners To Discuss Hormuz Reopening In London]]
+- [[article/2026-04/1071004-military-planners-to-discuss-hormuz-reopening-in-london|Military Planners To Discuss Hormuz Reopening In London]]
+- [[article/2026-04/1071755-trump-declares-iran-ceasefire-extension-with-hormuz-strait-still-block|Trump Declares Iran Ceasefire Extension With Hormuz Strait Still Blocked]]
+- [[article/2026-04/1073006-iran-says-wont-reopen-hormuz-as-long-as-us-blockade-remains|Iran Says Won’t Reopen Hormuz As Long As US Blockade Remains]]
+- [[article/2026-04/1073609-trump-orders-navy-to-shoot-boats-placing-mines-in-hormuz-strait|Trump Orders Navy To Shoot Boats Placing Mines In Hormuz Strait]]
+- [[article/2026-04/1073632-pentagon-denies-clearing-hormuz-strait-mines-will-take-6-months|Pentagon Denies Clearing Hormuz Strait Mines Will Take 6 Months]]
+- [[article/2026-04/1073633-italy-ready-to-deploy-two-minesweepers-in-hormuz-strait-navy-chief-say|Italy Ready To Deploy Two Minesweepers In Hormuz Strait, Navy Chief Says]]
+- [[article/2026-04/1075241-pentagon-chief-hegseth-blasts-europe-asia-for-free-riding-on-us-hormuz|Pentagon Chief Hegseth Blasts Europe, Asia For ‘Free-Riding’ On US Hormuz Action]]
+- [[article/2026-04/1076584-germany-deploys-navy-to-the-mediterranean-turkey-considering-participa|Germany Deploys Navy To The Mediterranean; Turkey Considering Participation In Hormuz Strait Mine-Clearing (德国部署海军至地中海 土耳其或参与霍尔木兹海峡排雷)]]
+- [[article/2026-04/1076585-germany-to-deploy-minehunter-to-the-mediterranean-in-preparation-for-p|Germany To Deploy Minehunter To The Mediterranean In Preparation For Possible Hormuz Mission (德国将向地中海派遣扫雷舰 为在霍峡任务做准备)]]
+- [[article/2026-04/1076744-germany-to-dispatch-minesweeper-for-possible-hormuz-mission|Germany To Dispatch Minesweeper For Possible Hormuz Mission]]
+- [[article/2026-04/1078495-thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-s|Thailand Touts $31 Billion 'Land Bridge' Plan Amid Hormuz Crisis, Courts Singapore]]
+- [[article/2026-04/1078496-thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-s|Thailand Touts $31 Billion 'Land Bridge' Plan Amid Hormuz Crisis, Courts Singapore]]
+- [[article/2026-04/1079316-thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-s|Thailand Touts $31 Billion ‘Land Bridge’ Plan Amid Hormuz Crisis, Courts Singapore]]
+- [[article/2026-04/1079912-thailand-touts-us-31-billion-land-bridge-plan-amid-hormuz-crisis-court|Thailand Touts US$31 Billion 'Land Bridge' Plan Amid Hormuz Crisis, Courts Singapore]]
+- [[article/2026-04/1081452-hormuz-crisis-revives-thailands-land-bridge-plan-but-business-case-sti|Hormuz Crisis Revives Thailand’S Land Bridge Plan But Business Case Still Lacking]]
+- [[article/2026-04/1082904-thailand-wants-sg-to-invest-in-31-billion-land-bridge-proposal-as-horm|Thailand Wants SG To Invest In $31 Billion ‘Land Bridge’ Proposal As Hormuz Deadlock Persists]]
+- [[article/2026-04/1083043-thailand-wants-sg-to-invest-in-31-billion-land-bridge-proposal-as-horm|Thailand Wants SG To Invest In $31 Billion 'Land Bridge' Proposal As Hormuz Deadlock Persists]]
+- [[article/2026-04/1083044-thailand-wants-sg-to-invest-in-31-billion-land-bridge-proposal-as-horm|Thailand Wants SG To Invest In $31 Billion 'Land Bridge' Proposal As Hormuz Deadlock Persists]]
+- [[article/2026-04/1083045-thailand-wants-sg-to-invest-in-31-billion-land-bridge-proposal-as-horm|Thailand Wants SG To Invest In $31 Billion 'Land Bridge' Proposal As Hormuz Deadlock Persists]]
+- [[article/2026-04/1083046-thailand-wants-sg-to-invest-in-31-billion-land-bridge-proposal-as-horm|Thailand Wants SG To Invest In $31 Billion 'Land Bridge' Proposal As Hormuz Deadlock Persists]]
+

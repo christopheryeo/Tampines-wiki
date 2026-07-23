@@ -4,7 +4,7 @@ displayName: National Armaments Director Group
 orgType: Government
 country: United Kingdom
 aliases: []
-mentionCount: 4
+mentionCount: 5
 tags: []
 ---
 
@@ -22,3 +22,5 @@ Organisation named in a July 2026 report as a collaborator on AI and machine-lea
 
 ## AI Context
 Content sourced solely from the citing article; no external enrichment performed.
+- [[article/2026-04/1063557-uk-awards-boeing-1-2b-contract-to-support-apache-and-chinook-fleet|UK Awards Boeing $1.2B Contract To Support Apache And Chinook Fleet]]
+

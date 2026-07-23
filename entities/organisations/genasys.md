@@ -4,7 +4,7 @@ displayName: Genasys Inc.
 orgType:
 country:
 aliases: []
-mentionCount: 4
+mentionCount: 5
 tags: []
 ---
 
@@ -20,3 +20,5 @@ Genasys Inc. — organisation referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-02/962654-genasys-inc-receives-2-0m-lrad-order-for-republic-of-singapore-navy-un|Genasys Inc. Receives $2.0M LRAD Order For Republic Of Singapore Navy Unmanned Surface Vessels]]
+

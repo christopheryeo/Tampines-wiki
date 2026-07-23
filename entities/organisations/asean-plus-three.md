@@ -4,7 +4,7 @@ displayName: ASEAN Plus Three
 orgType: Government
 country: 
 aliases: [ASEAN Plus Three]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,4 +18,5 @@ ASEAN-led platform through which ASEAN engages China, Japan and South Korea, cit
 [[asean|ASEAN]] · [[china|China]] · [[japan|Japan]] · [[south-korea|South Korea]]
 
 ## AI Context
+- [[article/2026-05/1094147-asean-mulls-sharing-fuel-food-resources-as-fears-of-prolonge|1094147-asean-mulls-sharing-fuel-food-resources-as-fears-of-prolonge]]
 

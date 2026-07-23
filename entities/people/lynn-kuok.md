@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -19,3 +19,5 @@ Lynn Kuok — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-05/1110901-foreign-affairs-commentary-the-coming-contest-for-asia-s-wat|1110901-foreign-affairs-commentary-the-coming-contest-for-asia-s-wat]]
+

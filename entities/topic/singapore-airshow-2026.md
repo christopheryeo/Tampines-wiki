@@ -7,7 +7,7 @@ articleCount: 3
 ---
 
 ## Definition
-Singapore Airshow 2026 — topic identified during March 2026 general-news cascade processing.
+[[singapore-airshow|Singapore Airshow]] 2026 — topic identified during March 2026 general-news cascade processing.
 
 ## Coverage
 - [[1014544-local-drone-firms-avoid-fierce-market-share-battle|Lianhe Zaobao reports that amid Iran's heavy use of low-cost Shahed-136 suicide drones ...]]

@@ -4,7 +4,7 @@ displayName: Al Dhafra Air Base
 placeType: Other
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -21,3 +21,6 @@ Al Dhafra Air Base — place referenced in March 2026 general-news coverage.
 Content sourced solely from the citing article(s); no external enrichment performed.
 
 Related topic: [[defence]]
+- [[article/2026-02/989976-iran-targets-us-bases-in-gulf-in-retaliation-for-airstrikes|Iran Targets US Bases In Gulf In Retaliation For Airstrikes]]
+- [[article/2026-01/926410-us-aircraft-carrier-enters-middle-east-region-as-iran-warns-against-at|US Aircraft Carrier Enters Middle East Region As Iran Warns Against Attack]]
+

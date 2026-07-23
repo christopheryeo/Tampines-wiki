@@ -4,7 +4,7 @@ displayName: Mazagon Dock Shipbuilders
 orgType: Defence Industry
 country: India
 aliases: []
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,3 +18,5 @@ Indian state-owned shipbuilder; to build six Project 75(I) AIP submarines with [
 
 ## AI Context
 Content sourced solely from the citing article(s) above; no external enrichment performed (§1 traceability, per this domain's index.md).
+- [[article/2026-01/898630-india-and-germany-eye-defence-industry-boost-to-ties|India And Germany Eye Defence Industry Boost To Ties]]
+

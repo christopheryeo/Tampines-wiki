@@ -5,7 +5,7 @@ role: Minister of State for Foreign Affairs and Trade and Industry
 affiliation: MFA
 country: Singapore
 aliases: []
-mentionCount: 20
+mentionCount: 25
 tags: []
 ---
 
@@ -42,3 +42,9 @@ Not #saf-flagged — MFA-led civilian repatriation coordination.
 - [[1004460-gan-siow-huang-authorities-dispatch-additional-rep|coverage]]
 
 Related topic: [[defence]]
+- [[article/2026-05/1101484-singapore-india-to-increase-cooperation-in-many-areas|1101484-singapore-india-to-increase-cooperation-in-many-areas]]
+- [[article/2026-05/1102602-singapore-sees-india-as-key-partner-in-digital-and-green-tra|1102602-singapore-sees-india-as-key-partner-in-digital-and-green-tra]]
+- [[article/2025-12/843708-a-specialist-officer-takes-on-a-new-responsibility-with-dreams|A Specialist Officer Takes On A New Responsibility With Dreams (கனவுகளுடன் புதிய பொறுப்பை ஏற்ற சிறப்புப் படை அதிகாரி)]]
+- [[article/2025-11/795667-female-specialist-trainee-cadet-in-the-military-police-wins-golden-bay|Female Specialist Trainee Cadet In The Military Police Wins Golden Bayonet Award (Kadet Pakar Pelatih Wanita Di Polis Tentera Raih Anugerah Bayonet Emas)]]
+- [[article/2025-11/796238-female-specialist-trainee-cadet-in-the-military-police-wins-golden-bay|Female Specialist Trainee Cadet In The Military Police Wins Golden Bayonet Award (Kadet Pakar Pelatih Wanita Di Polis Tentera Raih Anugerah Bayonet Emas)]]
+

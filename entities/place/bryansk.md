@@ -4,7 +4,7 @@ displayName: Bryansk
 placeType: Other
 country:
 aliases: []
-mentionCount: 4
+mentionCount: 5
 tags: []
 ---
 
@@ -12,6 +12,7 @@ tags: []
 Bryansk — place referenced in March 2026 general-news coverage.
 
 ## Coverage
+- [[1163095-russia-said-ukrainians-used-balloons-trailers-and-drones-to|Russia Said Ukrainians Used Balloons, Trailers, And Drones To Sneak AI Attack Quadcopte...]]
 - [[1008558-kremlin-says-britain-was-involved-in-ukraine-s-mis|Reuters, ST Online and The Star Online reported the Kremlin accused British specialists...]]
 - [[1008560-kremlin-says-britain-was-involved-in-ukraine-s-mis|Duplicate wire coverage of the same event as Kremlin Says Britain Was Involved In Ukraine's Missile Strike On Russia.]]
 - [[1008562-kremlin-says-britain-was-involved-in-ukraine-s-mis|Duplicate wire coverage of the same event as Kremlin Says Britain Was Involved In Ukraine's Missile Strike On Russia.]]

@@ -4,7 +4,7 @@ displayName: Miao Yi Infotech
 orgType: Media
 country: Singapore
 aliases: [Miao Yi Infotech]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -18,4 +18,5 @@ Publisher of The Online Citizen, subject to POFMA correction directions alongsid
 [[the-online-citizen|The Online Citizen]] · [[terry-xu|Terry Xu]]
 
 ## AI Context
+- [[article/2026-04/1040499-the-online-citizen-was-ordered-to-publish-a-correction-notice-in-the-s|“The Online Citizen” Was Ordered To Publish A Correction Notice In The Straits Times For The Second Time Within A Week (“网络公民”被令在《海峡时报》一星期内第二次刊登更正信息)]]
 

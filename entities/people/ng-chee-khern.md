@@ -5,7 +5,7 @@ role: Former RSAF Chief; incoming ISEAS director
 affiliation: ISEAS-Yusof Ishak Institute
 country: Singapore
 aliases: [Ng Chee Khern]
-mentionCount: 7
+mentionCount: 10
 tags: ['#saf']
 ---
 
@@ -13,6 +13,7 @@ tags: ['#saf']
 Former Chief of [[rsaf|RSAF]] (2006-2009), later Permanent Secretary at the Ministry of Manpower (2022-2025) and Director of the Security and Intelligence Division. Took over as director of the [[iseas-yusof-ishak-institute|ISEAS-Yusof Ishak Institute]] from 1 Apr 2026, succeeding Choi Shing Kwok.
 
 ## Coverage
+- [[1159415-st-online-commentary-how-long-will-asia-s-long-peace-last|ST Online Commentary: "How Long Will Asia’S ‘Long Peace’ Last?"]]
 - [[1029573-former-singapore-air-force-chief-new-director-of-i|Former RSAF Chief new ISEAS director]]
 - [[1028504-s-pore-s-ex-air-force-chief-to-helm-iseas-yusof-is|Yahoo! News Singapore (off ST Online) reported that former Chief of Air Force Ng Chee Khern will take over ...]]
 - [[1028506-s-pore-s-ex-air-force-chief-to-helm-iseas-yusof-is|Yahoo! News Malaysia (off ST Online) reported that former Chief of Air Force Ng Chee Khern will take over a...]]
@@ -28,3 +29,6 @@ Former Chief of [[rsaf|RSAF]] (2006-2009), later Permanent Secretary at the Mini
 Deny-listed entity — tagged `#saf`; excluded from any external/demo export per §10. Content sourced solely from the citing article above; no external enrichment performed (§1 traceability, per this domain's index.md).
 
 Related topic: [[defence]]
+- [[article/2026-05/1122249-to-lam-called-on-asia-pacific-countries-to-turn-the-tide-and|1122249-to-lam-called-on-asia-pacific-countries-to-turn-the-tide-and]]
+- [[article/2026-05/1122509-the-world-faces-three-major-challenges-disorder-hardship-and|1122509-the-world-faces-three-major-challenges-disorder-hardship-and]]
+

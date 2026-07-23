@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 1
+mentionCount: 3
 tags: []
 ---
 
@@ -19,3 +19,6 @@ Nattaphon Narkphanit — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2025-12/867275-thailand-cambodia-border-meeting-in-doubt-over-venue-row|Thailand-Cambodia Border Meeting In Doubt Over Venue Row]]
+- [[article/2025-12/873439-thailand-and-cambodia-sign-a-new-ceasefire-agreement-to-end-border-fig|Thailand And Cambodia Sign A New Ceasefire Agreement To End Border Fighting]]
+

@@ -4,7 +4,7 @@ displayName: Norwegian Army
 orgType:
 country:
 aliases: []
-mentionCount: 3
+mentionCount: 5
 tags: []
 ---
 
@@ -20,3 +20,6 @@ Norwegian Army — organisation referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-01/930988-norway-orders-2-billion-artillery-system-from-south-korea-s-hanwha-aer|Norway Orders $2 Billion Artillery System From South Korea's Hanwha Aerospace]]
+- [[article/2026-01/930990-norway-orders-2-billion-artillery-system-from-south-korea-s-hanwha-aer|Norway Orders $2 Billion Artillery System From South Korea's Hanwha Aerospace]]
+

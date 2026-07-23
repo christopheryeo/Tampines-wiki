@@ -4,7 +4,7 @@ displayName: Pilatus Aircraft
 orgType: Defence Industry
 country: Switzerland
 aliases: [Pilatus Aircraft]
-mentionCount: 1
+mentionCount: 2
 tags: []
 ---
 
@@ -21,3 +21,5 @@ Swiss aircraft manufacturer whose PC-24 jet was selected by Indonesia's Ministry
 
 
 Related topic: [[defence]]
+- [[article/2026-04/1045174-following-australia-and-singapore-indonesia-becomes-the-third-country-|Following Australia And Singapore, Indonesia Becomes The Third Country In The Asia Pacific To Use Pilatus' Light Jets (Susul Australia Dan Singapura, Indonesia Jadi Negara Ketiga Di Asia Pasifik Yang Gunakan Jet Ringan Dari Pilatus)]]
+

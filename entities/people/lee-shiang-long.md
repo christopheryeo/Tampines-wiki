@@ -5,7 +5,7 @@ role:
 affiliation:
 country:
 aliases: []
-mentionCount: 2
+mentionCount: 4
 tags: []
 ---
 
@@ -20,3 +20,6 @@ Lee Shiang Long — person referenced in March 2026 general-news coverage.
 
 ## AI Context
 Content sourced solely from the citing article(s); no external enrichment performed.
+- [[article/2026-02/943247-st-engineering-to-work-with-shield-ai-to-implement-its-hivemind-soluti|ST Engineering To Work With Shield AI To Implement Its Hivemind Solution]]
+- [[article/2026-02/947225-shield-ai-st-engineering-explore-hivemind-autonomy-software-integratio|Shield AI, ST Engineering Explore Hivemind Autonomy Software Integration]]
+
