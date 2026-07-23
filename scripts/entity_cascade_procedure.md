@@ -129,9 +129,12 @@ For each entity that doesn't yet exist:
     - If one cascade run touches five entities, that's five `log.md` lines (across whichever
       domains' logs they belong to), not one summarizing line — the wikilink only does its job if
       it names exactly one file.
-14. **Lint gate — run `python3 scripts/check_links.py` before considering the cascade done, and treat
-    a non-zero exit as "not finished".** This is the postcondition of the cascade, not an optional
-    extra: a linking pass must never *emit* the corruption it checks for. It reports, by severity —
+14. **Quality and lint gates — run `python3 scripts/article_quality.py --check --path
+    <compiled-article.md> --no-run-log`, then `python3 scripts/check_links.py`, before considering the
+    cascade done; treat either non-zero exit as "not finished".** The first command enforces the
+    frozen article registry, native-ID/filename agreement, enums, required values, publication-month
+    placement, and compiled sections. The second is the link postcondition: a linking pass must never
+    *emit* the corruption it checks for. It reports, by severity —
 
     **Hard failures (exit 1 — must be fixed before the cascade is done):**
     - **BROKEN** — target matches no file and no alias (a genuine missing entity — create it, Step 2).

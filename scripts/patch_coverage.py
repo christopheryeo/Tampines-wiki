@@ -32,12 +32,15 @@ only Coverage lines and a missing `aliases` field are added.
 Usage:
   python3 patch_coverage.py updates.json           # apply
   python3 patch_coverage.py updates.json --dry-run  # preview only
+  python3 patch_coverage.py updates.json --no-run-log # suppress receipt
 """
 import sys
 import os
 import re
 import json
 from collections import defaultdict
+from contextlib import nullcontext
+from run_logger import RunLogger
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTITIES_DIR = os.path.join(ROOT, "entities")
@@ -56,6 +59,11 @@ COUNT_FIELD = {
 
 
 def load_updates(path):
+    """Load update rows and group them by target entity.
+
+    Grouping keeps count updates correct when multiple new articles mention the
+    same entity in one cascade batch.
+    """
     with open(path, encoding="utf-8") as f:
         updates = json.load(f)
     grouped = defaultdict(list)
@@ -68,6 +76,7 @@ def load_updates(path):
 
 
 def find_entity_file(domain, entity_id):
+    """Return the canonical note path for an existing entity, if present."""
     path = os.path.join(ENTITIES_DIR, domain, f"{entity_id}.md")
     return path if os.path.exists(path) else None
 
@@ -86,6 +95,12 @@ def find_coverage_block(text):
 
 
 def apply_update(domain, entity_id, updates, dry_run):
+    """Apply all new Coverage lines for one entity.
+
+    Existing article links are detected inside the current Coverage block and
+    skipped before counts are incremented, which makes reruns idempotent after
+    an interrupted cascade.
+    """
     path = find_entity_file(domain, entity_id)
     if path is None:
         return {"domain": domain, "id": entity_id, "error": "entity file not found — create it manually first"}
@@ -179,15 +194,30 @@ def apply_update(domain, entity_id, updates, dry_run):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 patch_coverage.py updates.json [--dry-run]", file=sys.stderr)
+        print("Usage: python3 patch_coverage.py updates.json [--dry-run] [--no-run-log]", file=sys.stderr)
         sys.exit(1)
     updates_path = sys.argv[1]
     dry_run = "--dry-run" in sys.argv[2:]
+    no_run_log = "--no-run-log" in sys.argv[2:]
 
     grouped = load_updates(updates_path)
+    update_rows = sum(len(v) for v in grouped.values())
+    article_count = len({u["article"] for updates in grouped.values() for u in updates})
+    run = None
+    if not no_run_log:
+        run = RunLogger(
+            "cascade",
+            metadata={
+                "script": "patch_coverage.py",
+                "dryRun": dry_run,
+                "updatesPath": os.path.relpath(os.path.abspath(updates_path), ROOT),
+            },
+        )
+
     results = []
-    for (domain, entity_id), updates in grouped.items():
-        results.append(apply_update(domain, entity_id, updates, dry_run))
+    with (run.stage("patch_coverage", article_count=article_count, file_count=len(grouped)) if run else nullcontext()):
+        for (domain, entity_id), updates in grouped.items():
+            results.append(apply_update(domain, entity_id, updates, dry_run))
 
     errors = [r for r in results if "error" in r]
     changed = [r for r in results if "error" not in r and not r["noop"]]
@@ -208,7 +238,34 @@ def main():
             print(f"[{r['domain']}/{r['id']}] {r['error']}")
 
     print(f"\n{len(changed)} entities updated, {len(noops)} no-ops, {len(errors)} errors "
-          f"({len(grouped)} entities total from {sum(len(v) for v in grouped.values())} update rows).")
+          f"({len(grouped)} entities total from {update_rows} update rows).")
+
+    if run:
+        added_pairs = sum(len(r["added"]) for r in changed)
+        skipped_pairs = sum(len(r["skipped"]) for r in changed + noops)
+        run.status = "failed" if errors else "ok"
+        run.set_article_metrics(
+            inputCount=article_count,
+            processedCount=article_count,
+            updatedCount=added_pairs,
+            skippedCount=skipped_pairs,
+            failedCount=len(errors),
+        )
+        run.set_file_metrics(
+            scannedCount=len(grouped),
+            changedCount=len(changed),
+            failedCount=len(errors),
+        )
+        run.add_output("updateRows", update_rows)
+        run.add_output("entitiesChanged", len(changed))
+        run.add_output("entitiesNoop", len(noops))
+        run.add_output("coveragePairsAdded", added_pairs)
+        run.add_output("coveragePairsSkipped", skipped_pairs)
+        for error in errors:
+            run.add_error(error["error"], domain=error["domain"], entityId=error["id"])
+        if errors:
+            run.status = "failed"
+        run.finish()
 
     if errors:
         sys.exit(1)

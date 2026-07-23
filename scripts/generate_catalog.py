@@ -25,6 +25,12 @@ import re
 import os
 from datetime import datetime
 
+try:
+    import yaml
+except ImportError:
+    print("This script requires PyYAML. Install it with: pip3 install pyyaml", file=sys.stderr)
+    sys.exit(2)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_FILES = {"index.md", "catalog.md", "_template.md", "log.md"}
 
@@ -37,17 +43,24 @@ def parse_frontmatter(path):
     parts = text.split("---", 2)
     if len(parts) < 3:
         return {}
-    fm = {}
-    for line in parts[1].splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        key, sep, value = line.partition(": ")
-        if not sep:
-            continue
-        value = value.strip().strip("'").strip('"')
-        fm[key.strip()] = value
+    try:
+        fm = yaml.safe_load(parts[1]) or {}
+    except yaml.YAMLError as exc:
+        raise ValueError(f"invalid YAML frontmatter in {path}: {exc}") from exc
+    if not isinstance(fm, dict):
+        raise ValueError(f"frontmatter in {path} must be a mapping")
     return fm
+
+
+def scalar(value):
+    """Stable catalog text for typed YAML values without losing list contents."""
+    if value is None:
+        return ""
+    if isinstance(value, (list, tuple)):
+        return ", ".join(str(item) for item in value)
+    if hasattr(value, "isoformat") and not isinstance(value, str):
+        return value.isoformat()
+    return str(value)
 
 
 def find_notes(domain_dir):
@@ -65,14 +78,14 @@ def gen_article_catalog(domain_dir):
         fm = parse_frontmatter(path)
         rel = os.path.relpath(path, domain_dir)
         stem = os.path.basename(path)[:-3]
-        note_id = fm.get("sourceId") or fm.get("articleId") or stem
+        note_id = scalar(fm.get("sourceId") or fm.get("articleId") or stem)
         slug = stem[len(note_id) + 1:] if stem.startswith(note_id + "-") else stem
-        title = fm.get("articleTitle") or slug.replace("-", " ").title()
-        published = fm.get("publishedDate", "")
-        status = fm.get("status", "active")
-        source_type = fm.get("sourceType", "")
-        sentiment = fm.get("toneSentiment", "")
-        tags = fm.get("tags", "").strip("[]")
+        title = scalar(fm.get("articleTitle")) or slug.replace("-", " ").title()
+        published = scalar(fm.get("publishedDate"))
+        status = scalar(fm.get("status", "active"))
+        source_type = scalar(fm.get("sourceType"))
+        sentiment = scalar(fm.get("toneSentiment"))
+        tags = scalar(fm.get("tags"))
         rows.append((published, note_id, title, status, source_type, sentiment, tags, rel))
     rows.sort(key=lambda r: r[0], reverse=True)
 
@@ -106,12 +119,12 @@ def gen_outlet_catalog(domain_dir):
         rel = os.path.relpath(path, domain_dir)
         outlet_id = fm.get("outletId", os.path.basename(path)[:-3])
         rows.append((
-            fm.get("displayName", outlet_id),
-            outlet_id,
-            fm.get("country", ""),
-            fm.get("mediaCategory", ""),
-            fm.get("articleCount", "0"),
-            fm.get("aliases", "").strip("[]"),
+            scalar(fm.get("displayName", outlet_id)),
+            scalar(outlet_id),
+            scalar(fm.get("country")),
+            scalar(fm.get("mediaCategory")),
+            scalar(fm.get("articleCount", "0")),
+            scalar(fm.get("aliases")),
             rel,
         ))
     rows.sort(key=lambda r: r[0].lower())
@@ -175,8 +188,8 @@ def gen_generic_entity_catalog(domain, domain_dir):
     for path in find_notes(domain_dir):
         fm = parse_frontmatter(path)
         rel = os.path.relpath(path, domain_dir)
-        row = [fm.get(field, "") for field in fields]
-        sort_key = fm.get(title_field, os.path.basename(path)[:-3]).lower()
+        row = [scalar(fm.get(field)) for field in fields]
+        sort_key = scalar(fm.get(title_field, os.path.basename(path)[:-3])).lower()
         rows.append((sort_key, row, rel))
     rows.sort(key=lambda r: r[0])
 

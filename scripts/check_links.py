@@ -53,6 +53,7 @@ Usage:
 
 Usage (cont.):
   python3 scripts/check_links.py --no-unlinked      # skip the UNLINKED ENTITY scan (faster)
+  python3 scripts/check_links.py --no-run-log       # suppress canonical run receipt
 
 Exit code: 1 if any BROKEN link, target-embedded NESTED link, or YAML ERROR was found (these
 break a link's target), 0 otherwise. Advisory findings never fail the exit code on their own:
@@ -63,6 +64,7 @@ import sys
 import os
 import re
 import glob
+from run_logger import RunLogger
 
 try:
     import yaml
@@ -78,7 +80,7 @@ FULL_LINK = re.compile(r"\[\[[^\[\]]*\]\]")
 # signature of a nested/malformed link like [[a-[[b|B]]-c|X]].
 NESTED_OPEN = re.compile(r"\[\[[^\]]*\[\[")
 DOC_SKIP_NAMES = {"index.md", "catalog.md", "log.md", "_template.md", "README.md"}
-DOC_SKIP_DIRS = ("scripts/", "entities/decisions/")
+DOC_SKIP_DIRS = ("scripts/", "entities/decisions/", "dashboards/site/node_modules/")
 
 # Article prose sections scanned for known entities left unlinked.
 PROSE_SECTIONS = ("Summary", "Key Points")
@@ -100,6 +102,25 @@ def link_base(content):
     """Given the text between [[ and ]], return the bare target slug (drop any
     '#anchor' and '|display')."""
     return content.split("|", 1)[0].split("#", 1)[0].strip()
+
+
+def target_stem(target):
+    """Normalize a wikilink target to its filename stem for entity comparisons."""
+    return os.path.basename(target.strip())
+
+
+def note_targets(path):
+    """All wikilink targets that should resolve to this note.
+
+    The vault prefers bare filenames, but some generated notes use Obsidian-style
+    path-qualified targets such as [[topic/foo]] or [[article/2026-04/bar]].
+    Treat those as resolvable when they point at an actual note on disk.
+    """
+    no_ext = os.path.splitext(path)[0]
+    targets = {os.path.basename(no_ext), no_ext}
+    if no_ext.startswith("entities/"):
+        targets.add(no_ext[len("entities/"):])
+    return targets
 
 
 def extract_prose(text):
@@ -200,7 +221,7 @@ def find_unlinked_entities(scan_notes, name_to_slug):
             continue
         with open(os.path.join(ROOT, path), encoding="utf-8") as f:
             text = f.read()
-        linked = {link_base(m.group(0)[2:-2]) for m in FULL_LINK.finditer(text)}
+        linked = {target_stem(link_base(m.group(0)[2:-2])) for m in FULL_LINK.finditer(text)}
         plain = FULL_LINK.sub("  ", extract_prose(text))
         seen = set()
         for name, slugs in name_to_slug.items():
@@ -245,12 +266,25 @@ def main():
     args = sys.argv[1:]
     include_docs = "--include-docs" in args
     check_unlinked = "--no-unlinked" not in args
+    no_run_log = "--no-run-log" in args
     domain = None
     if "--domain" in args:
         domain = args[args.index("--domain") + 1]
 
+    run = None
+    if not no_run_log:
+        run = RunLogger(
+            "lint",
+            metadata={
+                "script": "check_links.py",
+                "includeDocs": include_docs,
+                "checkUnlinked": check_unlinked,
+                "domain": domain,
+            },
+        )
+
     all_notes = find_all_notes()
-    real_stems = {os.path.splitext(os.path.basename(p))[0] for p in all_notes}
+    real_targets = {target for p in all_notes for target in note_targets(p)}
 
     alias_index = {}  # alias text -> [paths]
     yaml_errors = []  # (path, error)
@@ -269,17 +303,16 @@ def main():
             alias_index.setdefault(aliases.strip(), []).append(path)
 
     scan_notes = find_all_notes(domain_filter=domain)
+    scanned_note_paths = [p for p in scan_notes if include_docs or not is_doc_file(p)]
     broken = []      # (path, target)
     alias_only = []  # (path, target, resolved_paths)
 
-    for path in scan_notes:
-        if not include_docs and is_doc_file(path):
-            continue
+    for path in scanned_note_paths:
         with open(os.path.join(ROOT, path), encoding="utf-8") as f:
             text = f.read()
         for m in LINK_PATTERN.finditer(text):
             target = m.group(1).strip()
-            if target in real_stems:
+            if target in real_targets:
                 continue
             if target in alias_index:
                 alias_only.append((path, target, alias_index[target]))
@@ -298,7 +331,7 @@ def main():
     if check_unlinked:
         name_to_slug = build_entity_name_index(all_notes)
         unlinked = find_unlinked_entities(
-            [p for p in scan_notes if include_docs or not is_doc_file(p)],
+            scanned_note_paths,
             name_to_slug,
         )
 
@@ -358,6 +391,33 @@ def main():
     if not (hard_fail or warnings):
         print("CLEAN: no broken, nested, or alias-only links, no YAML errors, "
               "no malformed labels, no unlinked entities.")
+
+    if run:
+        article_count = len([p for p in scanned_note_paths if p.startswith(ARTICLE_PREFIX)])
+        warning_count = (
+            len(nested_display)
+            + len(unbalanced)
+            + len(broken_truncated)
+            + len(alias_only)
+            + len(unlinked)
+        )
+        run.status = "failed" if hard_fail else "ok"
+        run.set_article_metrics(
+            inputCount=article_count,
+            processedCount=article_count,
+            failedCount=len(broken) + len(yaml_errors) + len(nested_target),
+        )
+        run.set_file_metrics(
+            scannedCount=len(scanned_note_paths),
+            failedCount=len(broken) + len(yaml_errors) + len(nested_target),
+        )
+        run.add_output("brokenLinks", len(broken))
+        run.add_output("yamlErrors", len(yaml_errors))
+        run.add_output("nestedTargetLinks", len(nested_target))
+        run.add_output("warnings", warning_count)
+        run.add_output("aliasOnlyLinks", len(alias_only))
+        run.add_output("unlinkedEntityMentions", len(unlinked))
+        run.finish()
 
     sys.exit(1 if hard_fail else 0)
 

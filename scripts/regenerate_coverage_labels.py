@@ -18,6 +18,11 @@ WIKILINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 
 
 def article_paths():
+    """Return compiled article notes keyed by filename stem.
+
+    Coverage links store article stems as their targets, so this index lets the
+    repair pass resolve a malformed label without changing the target itself.
+    """
     return {
         path.stem: path
         for path in (ROOT / "entities" / "article").rglob("*.md")
@@ -26,6 +31,12 @@ def article_paths():
 
 
 def summary_label(article_path):
+    """Derive a replacement Coverage label from one article's Summary.
+
+    Existing wikilinks are flattened to display text before the first sentence
+    is truncated. This keeps the repair source-backed and prevents nested links
+    from being reintroduced into the entity Coverage list.
+    """
     text = article_path.read_text(encoding="utf-8")
     match = re.search(r"^## Summary\s*$\n(.*?)(?=^## |\Z)", text, re.MULTILINE | re.DOTALL)
     if not match:
@@ -40,7 +51,12 @@ def summary_label(article_path):
 
 
 def regenerate(dry_run=False, log=False, domains=None):
-    """Return (changed_links, changed_files, skipped) after an optional repair."""
+    """Return (changed_links, changed_files, skipped) after an optional repair.
+
+    Only lines with embedded wikilinks in the display label are eligible. The
+    outer article target is preserved exactly, which is the core safety
+    property of this utility.
+    """
     articles = article_paths()
     changed_files = 0
     changed_links = 0
@@ -63,6 +79,8 @@ def regenerate(dry_run=False, log=False, domains=None):
                     rebuilt.append(line)
                     continue
                 target = match.group(2).strip()
+                # If the cited article cannot provide a summary, leave the
+                # line unchanged and report it for manual review.
                 label = summary_label(articles[target]) if target in articles else None
                 if not label:
                     skipped.append((path.relative_to(ROOT), target))

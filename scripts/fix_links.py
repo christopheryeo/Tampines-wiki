@@ -115,6 +115,7 @@ Usage:
   python3 scripts/fix_links.py --skip-entity-body-links # skip pass 5
   python3 scripts/fix_links.py --skip-normalize # skip pass 0 (structural repair)
   python3 scripts/fix_links.py --link-entities  # also run pass 6 (backfill article prose links)
+  python3 scripts/fix_links.py --no-run-log     # suppress canonical run receipt
 
 Run this regularly -- after any ingest/cascade batch, or on a schedule --
 to keep link rot from accumulating. Exit code 1 if anything is left
@@ -129,6 +130,7 @@ import subprocess
 from datetime import datetime
 from regenerate_coverage_labels import regenerate
 from link_orphan_entity_bodies import link_orphans
+from run_logger import RunLogger
 
 try:
     import yaml
@@ -141,7 +143,7 @@ ENTITIES_DIR = os.path.join(ROOT, "entities")
 INPUTS_ARTICLES_DIR = os.path.join(ROOT, "Inputs", "articles")
 LINK_PATTERN = re.compile(r"\[\[([^\]]+)\]\]")
 DOC_SKIP_NAMES = {"index.md", "catalog.md", "log.md", "_template.md", "README.md"}
-DOC_SKIP_DIRS = ("scripts/", "entities/decisions/")
+DOC_SKIP_DIRS = ("scripts/", "entities/decisions/", "dashboards/site/node_modules/")
 
 # --- Pass 0 (normalize) ---
 # A single well-formed, non-nested link.
@@ -216,6 +218,12 @@ def normalize_links(text):
     original = text
     while True:
         before = text
+        # Coverage labels can contain bracketed article-title prefixes like
+        # [Singapore Airshow]. If a linker wraps the inner words, it creates
+        # triple brackets inside the outer article link display. Preserve the
+        # visible label text and remove the inner wikilink markup.
+        text = re.sub(r"\[\[\[([^\[\]|]+)\|([^\[\]]+)\]\]\]", r"[\2]", text)
+        text = re.sub(r"\[\[\[([^\[\]|]+)\|([^\[\]]+)\]\]\s+([^\[\]]+)\]", r"[\2 \3]", text)
         text = SINGLE_CLOSE.sub(lambda m: f"[[{m.group(1)}]]", text)
         nxt = _collapse_target_embedded(text)
         if nxt is not None:
@@ -245,7 +253,8 @@ def article_related_slugs(text):
             continue
         for s, e in spans:
             for m in FULL_LINK.finditer(text[s:e]):
-                slugs.add(m.group(0)[2:-2].split("|", 1)[0].split("#", 1)[0].strip())
+                target = m.group(0)[2:-2].split("|", 1)[0].split("#", 1)[0].strip()
+                slugs.add(os.path.basename(target))
     return slugs
 
 
@@ -278,7 +287,7 @@ def build_entity_indexes():
                 names.add(aliases.strip())
             names = {n for n in names if len(n) >= 3}
             if names:
-                slug_names[slug] = names
+                slug_names.setdefault(slug, set()).update(names)
             if domain in AUGMENT_DOMAINS:
                 for n in names:
                     if len(n) >= 5 and " " in n:
@@ -304,7 +313,7 @@ def link_entities_in_article(text, slug_names, name_to_slug):
     # leave it — never add a second link to a later plain mention. (Without this,
     # linking the first *unlinked* occurrence would wrongly wrap every entity's
     # second mention on articles that already link the first.)
-    linked_anywhere = {m.group(0)[2:-2].split("|", 1)[0].split("#", 1)[0].strip()
+    linked_anywhere = {os.path.basename(m.group(0)[2:-2].split("|", 1)[0].split("#", 1)[0].strip())
                        for m in FULL_LINK.finditer(text)}
     cand -= linked_anywhere
 
@@ -324,6 +333,11 @@ def link_entities_in_article(text, slug_names, name_to_slug):
         hit = None
         for s, e in prose_spans:
             for m in pat.finditer(text, s, e):
+                # Avoid turning existing bracketed labels like [NDP Media Feature]
+                # into malformed triple-bracket links.
+                if (m.start() > 0 and text[m.start() - 1] == "[") or \
+                   (m.end() < len(text) and text[m.end()] == "]"):
+                    continue
                 if not overlaps(m.start(), m.end()):
                     hit = (m.start(), m.end())
                     break
@@ -413,8 +427,16 @@ def try_fix_yaml_error(fm_text):
     return (candidate, applied) if applied and try_parse(candidate) else (None, [])
 
 
+def note_targets(path):
+    no_ext = os.path.splitext(path)[0]
+    targets = {os.path.basename(no_ext), no_ext}
+    if no_ext.startswith("entities/"):
+        targets.add(no_ext[len("entities/"):])
+    return targets
+
+
 def build_context(all_notes):
-    real_stems = {os.path.splitext(os.path.basename(p))[0] for p in all_notes}
+    real_targets = {target for p in all_notes for target in note_targets(p)}
     alias_index = {}
     yaml_errors = {}
     for path in all_notes:
@@ -436,7 +458,7 @@ def build_context(all_notes):
                 alias_index.setdefault(str(a), []).append(stem)
         elif isinstance(aliases, str) and aliases.strip():
             alias_index.setdefault(aliases.strip(), []).append(stem)
-    return real_stems, alias_index, yaml_errors
+    return real_targets, alias_index, yaml_errors
 
 
 def split_link_target(content):
@@ -455,14 +477,14 @@ def split_link_target(content):
     return base, anchor, label
 
 
-def rewrite_alias_only_links(text, real_stems, alias_index, report, rel_path):
+def rewrite_alias_only_links(text, real_targets, alias_index, report, rel_path):
     changed = False
 
     def repl(m):
         nonlocal changed
         content = m.group(1)
         base, anchor, label = split_link_target(content)
-        if base in real_stems or base not in alias_index:
+        if base in real_targets or base not in alias_index:
             return m.group(0)
         real = alias_index[base][0]
         display = label if label is not None else (base + anchor)
@@ -474,7 +496,7 @@ def rewrite_alias_only_links(text, real_stems, alias_index, report, rel_path):
     return new_text, changed
 
 
-def find_broken_targets(all_notes, real_stems, alias_index):
+def find_broken_targets(all_notes, real_targets, alias_index):
     broken = []
     for path in all_notes:
         if is_doc_file(path):
@@ -483,7 +505,7 @@ def find_broken_targets(all_notes, real_stems, alias_index):
             text = f.read()
         for m in LINK_PATTERN.finditer(text):
             base, _, _ = split_link_target(m.group(1))
-            if base in real_stems or base in alias_index:
+            if base in real_targets or base in alias_index:
                 continue
             broken.append((path, base))
     return broken
@@ -565,9 +587,29 @@ def main():
     skip_entity_body_links = "--skip-entity-body-links" in args
     skip_normalize = "--skip-normalize" in args
     do_link_entities = "--link-entities" in args
+    no_run_log = "--no-run-log" in args
     domain = None
     if "--domain" in args:
         domain = args[args.index("--domain") + 1]
+
+    scanned_notes_for_run = [p for p in find_all_notes(domain_filter=domain) if not is_doc_file(p)]
+    run = None
+    if not no_run_log:
+        run = RunLogger(
+            "lint",
+            metadata={
+                "script": "fix_links.py",
+                "dryRun": dry_run,
+                "domain": domain,
+                "skipRelocate": skip_relocate,
+                "skipAlias": skip_alias,
+                "skipYaml": skip_yaml,
+                "skipCoverageLabels": skip_coverage_labels,
+                "skipEntityBodyLinks": skip_entity_body_links,
+                "skipNormalize": skip_normalize,
+                "linkEntities": do_link_entities,
+            },
+        )
 
     label = "DRY RUN -- no files written" if dry_run else "APPLIED"
     print(f"=== {label} ===\n")
@@ -759,6 +801,48 @@ def main():
     remaining = len(final_yaml_errors) + len(still_broken)
     if remaining == 0:
         print("\nCLEAN: nothing left requiring manual attention.")
+
+    if run:
+        article_count = len([p for p in scanned_notes_for_run if p.startswith(ARTICLE_PREFIX)])
+        total_added = sum(len(a) for _, a in entity_links)
+        changed_files = len(
+            set(normalized)
+            | {p for p, _applied in yaml_fixed}
+            | {p for p, _old, _new in alias_fixed}
+            | {f"entities/article/{month}/{name}.md" for name, month in moved_total}
+            | {f"entities/{changed_domain}/{slug}.md" for changed_domain, slug, _added in orphan_entity_changes}
+            | {p for p, _added in entity_links}
+        )
+        run.status = "failed" if remaining else "ok"
+        run.set_article_metrics(
+            inputCount=article_count,
+            processedCount=article_count,
+            updatedCount=len(moved_total) + total_added,
+            skippedCount=len(coverage_label_skipped),
+            failedCount=remaining,
+        )
+        run.set_file_metrics(
+            scannedCount=len(scanned_notes_for_run),
+            changedCount=changed_files,
+            failedCount=remaining,
+        )
+        run.add_output("structuralLinksNormalized", len(normalized))
+        run.add_output("yamlFixed", len(yaml_fixed))
+        run.add_output("aliasOnlyLinksRewritten", len(alias_fixed))
+        run.add_output("articlesRelocated", len(moved_total))
+        run.add_output("coverageLabelsRegenerated", coverage_labels_fixed)
+        run.add_output("coverageLabelFilesChanged", coverage_label_files)
+        run.add_output("orphanEntityBodyLinksAdded", orphan_entity_link_count)
+        run.add_output("proseEntityLinksAdded", total_added)
+        run.add_output("remainingYamlErrors", len(final_yaml_errors))
+        run.add_output("remainingBrokenLinks", len(still_broken))
+        for path, err in final_yaml_errors.items():
+            run.add_error(err, path=path, kind="yaml")
+        for path, target in still_broken:
+            run.add_error("broken link remains", path=path, target=target, kind="wikilink")
+        if remaining:
+            run.status = "failed"
+        run.finish()
     sys.exit(1 if remaining else 0)
 
 
