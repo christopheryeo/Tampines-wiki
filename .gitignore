@@ -38,6 +38,7 @@ entities/articles/
 entities/appointments/
 
 # Temporary run/debug output
+runs/**/artifacts/
 tmp/
 *.tmp
 *.log
