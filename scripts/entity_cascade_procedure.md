@@ -97,6 +97,12 @@ For each entity that doesn't yet exist:
       wrong silently double-counts — see [[fix-articlecount-double-counting]].
     - Merge in any new outgoing wikilinks this article's context reveals (e.g. a newly-mentioned
       affiliation), without removing existing ones.
+    - **`scripts/patch_coverage.py` is the single implementation of Coverage insertion and count
+      bumping. No other script may reimplement it — import `apply_update` instead.** This rule was
+      added after `ingest_cascade.py` was found carrying its own inline copy that appended backlinks
+      to end-of-file rather than into the `## Coverage` block, stranding them under whatever section
+      came last (695 notes, 58,341 links, repaired by `scripts/repair_stranded_coverage.py`). Two
+      copies of this logic also means two copies of the [[fix-articlecount-double-counting]] carve-out.
     - **`scripts/patch_coverage.py`** does the mechanical part of this bullet (and the `mentionCount`/
       `articleCount` bump above) for a whole batch in one pass: feed it a JSON list of `{domain, id,
       article, label}` rows and it appends the missing `## Coverage` lines and recomputes the count

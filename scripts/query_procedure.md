@@ -2,7 +2,7 @@
 type: procedure
 name: entity-query
 status: active
-last_updated: 2026-07-09
+last_updated: 2026-07-25
 ---
 
 # Entity Query Procedure
@@ -27,7 +27,7 @@ needs to go through Ingest first, not a case to special-case here.
 
 Some questions ask not "what did X do?" but "list **all** X" — every person, every outlet, every article, every topic, and so on. These are a distinct answer shape and are handled differently from the entity-traversal flow in Steps 2–4:
 
-- **Step 0 still applies.** Check the search cache first, exactly as below — a repeated roster request should reuse its cached answer if it is relevant and not stale (a roster is stale if the domain's note count has changed since the cached `askedDate`).
+- **Step 0 still applies.** Check the search cache first, exactly as below — a repeated roster request should reuse its cached answer if it is relevant and not stale. A roster is stale under the same three triggers as Step 0 item 3, with the domain's note count standing in for `## Coverage`: (a) the domain's note count has *changed* — grown or shrunk — since the cached `askedDate`; (b) the roster is `timeSensitive` and older than the horizon; or (c) it was produced under an older `procedureVersion`.
 - **Resolve the *domain*, not an entity.** Identify which domain the roster is over (people → `entities/people/`, outlets → `entities/outlet/`, etc.) and build the list from that domain's `catalog.md` (or `wiki.db`) — never by opening every note or grepping the corpus.
 - **Render per that domain's `## Producing a List` convention.** Each domain's `index.md` carries a `## Producing a List` section defining exactly how a full roster of that domain must be grouped, nested, sorted, and labelled (e.g. people group by organisation then country; articles group by date then outlet). Follow it verbatim rather than inventing an ad-hoc ordering — this is what keeps roster output consistent and reviewable. Steps 2–4's inbound-Coverage traversal does not apply to a roster; the grouping fields all come from the catalog columns.
 - **Still file to the cache (Step 7).** A roster request is filed back to `entities/search/` like any other query, with `## Entities Resolved` recording the domain(s) listed.
@@ -43,12 +43,28 @@ Some questions ask not "what did X do?" but "list **all** X" — every person, e
    whether the wording overlaps. Similar phrasing does not guarantee the same question: "what was
    said about X" and "what happened at X" can diverge. A cached entry that only superficially matches
    must be treated as no match and set aside.
-3. For any candidate that passes the relevance check, also check it isn't stale: nothing in its
-   resolved entities' `## Coverage` has grown since the entry's `askedDate` (spot-check
-   `mentionCount`/`articleCount` on the relevant entity notes named in `## Entities Resolved`).
-   Appointment notes (`entities/appointments/`) carry neither `## Coverage` nor `mentionCount`; treat
-   an appointment-resolved answer as stale only if that appointment's `## Holders`/`currentHolder`
-   changed since `askedDate`.
+3. For any candidate that passes the relevance check, also check it isn't stale. An entry is stale if
+   **any** of these three triggers fires — check all three:
+   - **(a) Coverage changed.** Anything in its resolved entities' `## Coverage` has *changed* — grown
+     *or* shrunk — since the entry's `askedDate` (spot-check `mentionCount`/`articleCount` on the
+     relevant entity notes named in `## Entities Resolved`). A fall counts as much as a rise: a
+     redaction or removal can invalidate an answer just as new coverage can. Appointment notes
+     (`entities/appointments/`) carry neither `## Coverage` nor `mentionCount`; for those this trigger
+     fires only if that appointment's `## Holders`/`currentHolder` changed since `askedDate`.
+   - **(b) Time-sensitive and past its horizon.** The entry's `timeSensitive` field is `true` and it
+     was asked more than `TIME_SENSITIVE_HORIZON_DAYS` (default 7) ago. A question framed relative to
+     "now" — "recent", "latest", "lately", "these days", "been doing", "this week/month", "so far",
+     "current" — decays as the clock moves even when no coverage changed, because "recent" means
+     something different today than on `askedDate`. Stable factual questions ("Who is X?") are not
+     time-sensitive and never expire on age alone. See `entities/search/index.md` for how
+     `timeSensitive` is set and the horizon tuned.
+   - **(c) Answered under an older procedure.** The entry's `procedureVersion` is older than this
+     file's current `last_updated`. A cached answer composed under a superseded version of this
+     procedure may no longer match what the current method would produce, so it is retired rather than
+     trusted. A **blank or absent** `procedureVersion` (as on every entry filed before this field
+     existed) does **not** by itself fire this trigger — such an entry is governed by (a) and (b)
+     instead, exactly as it was before the field was added.
+   If none of (a)–(c) fires, the entry is fresh.
 4. **If a candidate passes both checks (relevant and fresh):** return its `## Answer` directly as the
    answer to the user, citing the cache entry itself alongside its original `## Sources Cited`.
    Increment its `reuseCount` by 1 and append a `log.md` entry for that update. **Stop here** — the
@@ -162,7 +178,9 @@ date-matched holder link, and its person note (if one exists) is the place to ex
 24. `queryId` = slugified question + content hash (see `entities/search/index.md` item 5).
     `## Entities Resolved` = every entity opened in Steps 1–4. `## Sources Cited` = every article
     opened in Step 3. `status: answered` unless the question couldn't be resolved at all
-    (`status: unresolved`).
+    (`status: unresolved`). Set `timeSensitive: true` if the question is framed relative to "now"
+    (per the relative-time cues in Step 0 item 3b), else `false`. Set `procedureVersion` to this
+    file's current `last_updated` value, stamping the method the answer was composed under.
 25. If Step 0 found a stale match and marked it `superseded`, link this new entry to it in
     `## AI Context` (and vice versa on the old entry — but by appending a note there, never editing
     its original `## Answer`, per the append-only principle §5 and the search domain's own rule
@@ -215,6 +233,12 @@ A later, differently-worded question on the same topic — this is what Step 0 e
    cache entry and its original source (`782384`). Increment that entry's `reuseCount` from `0` to
    `1` and log the update.
 2. **Stop.** Steps 1–7 do not run — no new resolution, no new article reads, no new cache entry.
+
+> **Snapshot note.** This example captures the hit as it stood when `seletar-aerospace-park` had
+> `mentionCount 1`. That count has since grown (8 as of 2026-07-25), so the *same* re-ask today would
+> instead go stale under trigger (a) — coverage changed — and be answered fresh rather than reused.
+> The example still illustrates the relevance/freshness judgement of Step 0; it is a point-in-time
+> snapshot, not a claim that this query is permanently a hit.
 
 ## Why inbound before outbound
 

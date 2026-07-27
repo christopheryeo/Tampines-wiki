@@ -12,22 +12,27 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-ENTITY_DOMAINS = ("country", "organisations", "people", "place", "topic")
+ENTITY_DOMAINS = ("country", "organisations", "people", "place", "topic", "outlet")
 MALFORMED_LINE = re.compile(r"^(\s*- \[\[([^\[\]|]+)\|.*\[\[.*)$")
 WIKILINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 
 
 def article_paths():
-    """Return compiled article notes keyed by filename stem.
+    """Return compiled article notes keyed by every target form Coverage links use.
 
-    Coverage links store article stems as their targets, so this index lets the
-    repair pass resolve a malformed label without changing the target itself.
+    Coverage links usually store the bare article stem as their target, but some
+    (see check_links.py's note_targets(), which treats both forms as resolvable)
+    use the Obsidian-style path-qualified form article/<month>/<stem>. Index both
+    so this repair pass can resolve either without changing the target itself.
     """
-    return {
-        path.stem: path
-        for path in (ROOT / "entities" / "article").rglob("*.md")
-        if path.name not in {"index.md", "catalog.md", "log.md"}
-    }
+    index: dict[str, Path] = {}
+    for path in (ROOT / "entities" / "article").rglob("*.md"):
+        if path.name in {"index.md", "catalog.md", "log.md"}:
+            continue
+        index[path.stem] = path
+        qualified = path.relative_to(ROOT / "entities").with_suffix("").as_posix()
+        index[qualified] = path
+    return index
 
 
 def summary_label(article_path):
@@ -46,7 +51,13 @@ def summary_label(article_path):
     summary = summary.replace("[[", "").replace("]]", "").replace("|", " ")
     if not summary:
         return None
-    first_sentence = re.split(r"(?<=[.!?])\s+", summary, maxsplit=1)[0]
+    # Split on sentence-ending '.'/'?' only. Several outlet names in this vault's
+    # corpus end in '!' ("Yahoo!", "tabla!"), so treating '!' as a sentence
+    # boundary truncates the label to just the outlet name whenever a Summary
+    # opens with an attribution like "Yahoo! News Hong Kong (7 Feb) reported...".
+    # Purely mechanical -- still the article's own first sentence, just measured
+    # correctly.
+    first_sentence = re.split(r"(?<=[.?])\s+", summary, maxsplit=1)[0]
     return first_sentence[:180].rstrip()
 
 

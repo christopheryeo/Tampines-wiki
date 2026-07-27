@@ -57,6 +57,11 @@ UUID_PREFIX = re.compile(
     r"^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
     r"[0-9a-fA-F]{4}-[0-9a-fA-F]{12})(?:-|$)"
 )
+# Crawler-issued hash IDs, e.g. `art-ff4d3a6b-...` or `crawl-fff1...-...` — an
+# alphabetic tag followed by a short hex hash, distinct from the numeric feed
+# ID and full-UUID conventions above. Registered by
+# [[normalise-news-sourcetype-and-art-hash-ids]].
+HASH_ID_PREFIX = re.compile(r"^([a-z]+-[0-9a-fA-F]{6,12})(?:-|$)")
 
 
 def split_note(text: str) -> tuple[str, str]:
@@ -87,6 +92,9 @@ def expected_source_id(path: Path, current: str) -> str:
         return uuid.group(1)
     if current and (stem == current or stem.startswith(current + "-")):
         return current
+    hashed = HASH_ID_PREFIX.match(stem)
+    if hashed:
+        return hashed.group(1)
     return stem.split("-", 1)[0]
 
 
@@ -245,10 +253,27 @@ def main() -> int:
             record = raw.get(expected_id)
 
             if args.fix_safe and source_id != expected_id:
+                # A hash-style ID (art-<hash>, crawl-<hash>) has no raw feed-JSON
+                # record to confirm against. It is instead self-confirming: the
+                # filename was generated once, deterministically, from this same
+                # ID at compile time, so if the current sourceId differs from the
+                # filename-derived ID only by separator style or case, the
+                # filename itself is the provenance for the correction — no new
+                # fact is invented. Registered by
+                # [[normalise-news-sourcetype-and-art-hash-ids]].
+                hash_confirmed = bool(
+                    HASH_ID_PREFIX.match(expected_id)
+                    and re.sub(r"[^0-9a-zA-Z]", "-", source_id).lower() == expected_id.lower()
+                )
                 if record and str(record.get("articleId")) == expected_id:
                     frontmatter = replace_scalar(frontmatter, "sourceId", repr(expected_id))
                     data["sourceId"] = expected_id
                     details.append(f"sourceId {source_id!r} -> {expected_id!r}")
+                    source_id = expected_id
+                elif hash_confirmed:
+                    frontmatter = replace_scalar(frontmatter, "sourceId", repr(expected_id))
+                    data["sourceId"] = expected_id
+                    details.append(f"sourceId {source_id!r} -> {expected_id!r} (filename-confirmed hash ID)")
                     source_id = expected_id
                 else:
                     findings.append(finding("unsafe-source-id", path, f"no raw record confirms {expected_id!r}"))

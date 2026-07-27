@@ -8,7 +8,11 @@ Markdown vault.
 
 Authentication is delegated to the MySQL client. Prefer ``--defaults-file`` or
 ``--login-path`` with a SELECT-only account. Environment variables are also
-supported; see ``--help``.
+supported; see ``--help``. Any ``ISSUE_RADAR_MYSQL_*`` variable, or
+``ISSUE_RADAR_MYSQL_DEFAULTS_FILE``/``ISSUE_RADAR_MYSQL_LOGIN_PATH`` pointing at
+an external option file, may also be placed in the Git-ignored ``.env.local``
+(see ``scripts/local_env.py``) instead of exported in the shell. A real shell
+export always takes precedence over ``.env.local``.
 """
 
 import argparse
@@ -22,6 +26,12 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from local_env import load_local_env  # noqa: E402
 
 
 INSTITUTIONAL = {
@@ -413,6 +423,7 @@ def run(args):
 
 
 def main():
+    load_local_env()
     try:
         run(build_parser().parse_args())
     except (RadarError, ValueError) as exc:

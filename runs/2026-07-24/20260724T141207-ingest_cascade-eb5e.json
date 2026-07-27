@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260724T141207-ingest_cascade-eb5e",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-07-24T14:12:07+08:00",
+  "endedAt": "2026-07-24T14:12:07+08:00",
+  "durationSec": 0.15,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-07-24T14:12:07+08:00",
+      "endedAt": "2026-07-24T14:12:07+08:00",
+      "durationSec": 0.149,
+      "articleCount": 20,
+      "avgSecPerArticle": 0.00745,
+      "fileCount": 20,
+      "avgSecPerFile": 0.00745,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "[Errno 1] Operation not permitted: '/sessions/festive-charming-bohr/mnt/media-monitoring/Inputs/articles/2026-07/9397692582-north-korean-leader-kim-jong-un-hosts-senior-chinese-official-wang-huning.md'",
+          "type": "PermissionError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "[Errno 1] Operation not permitted: '/sessions/festive-charming-bohr/mnt/media-monitoring/Inputs/articles/2026-07/9397692582-north-korean-leader-kim-jong-un-hosts-senior-chinese-official-wang-huning.md'",
+      "type": "PermissionError"
+    },
+    {
+      "message": "[Errno 1] Operation not permitted: '/sessions/festive-charming-bohr/mnt/media-monitoring/Inputs/articles/2026-07/9397692582-north-korean-leader-kim-jong-un-hosts-senior-chinese-official-wang-huning.md'",
+      "type": "PermissionError"
+    }
+  ],
+  "notes": "Full-folder cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": false
+  }
+}

@@ -45,6 +45,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from patch_coverage import apply_update as patch_apply_update
 from run_logger import RunLogger
 
 try:
@@ -86,6 +87,18 @@ DOMAIN_LINK_PREFIX = {
     "places": "place",
 }
 COUNTED_DOMAINS = {"countries", "organisations", "people", "places"}
+
+# This runner uses plural domain keys; patch_coverage.py (which owns the
+# Coverage-block insertion and the count-increment rules) uses the singular
+# folder names under entities/. Map between them at the one call site.
+PATCH_COVERAGE_DOMAINS = {
+    "outlets": "outlet",
+    "countries": "country",
+    "topics": "topic",
+    "organisations": "organisations",
+    "people": "people",
+    "places": "place",
+}
 
 COUNTRY_SEED = {
     "singapore", "china", "united states", "us", "usa", "u.s.", "u.s", "malaysia",
@@ -240,21 +253,36 @@ def append_coverage(domain: str, record: EntityRecord, article_link: str, timest
 
     Returns ``True`` only when the note would receive a new Coverage entry. That
     makes reruns idempotent: an already-linked article is not counted twice.
+
+    The insertion itself is delegated to ``patch_coverage.apply_update`` so the
+    Coverage-block placement and the mentionCount/articleCount rules (including
+    the outlet carve-out from the fix-articlecount-double-counting decision)
+    exist in exactly one place. A previous inline copy here appended to the end
+    of the file instead of into ``## Coverage``, which stranded backlinks under
+    whatever section happened to be last.
     """
 
     if dry_run and not record.path.exists():
         return True
-    text = record.path.read_text(encoding="utf-8")
-    if article_link in text:
+
+    target, _, label = article_link.removeprefix("[[").removesuffix("]]").partition("|")
+    update = {"domain": PATCH_COVERAGE_DOMAINS[domain], "id": record.slug, "article": target}
+    if label:
+        update["label"] = label
+
+    result = patch_apply_update(update["domain"], record.slug, [update], dry_run)
+    if "error" in result:
+        raise RuntimeError(f"patch_coverage failed for {domain}/{record.slug}: {result['error']}")
+    if result["noop"]:
         return False
-    text = text.rstrip() + f"\n- {article_link}\n"
-    text = re.sub(r"last_updated:.*", f"last_updated: {timestamp}", text, count=1)
-    if domain in COUNTED_DOMAINS and "mentionCount:" in text:
-        text = re.sub(r"mentionCount:\s*(\d+)", lambda m: f"mentionCount: {int(m.group(1)) + 1}", text, count=1)
-    if domain == "topics" and "articleCount:" in text:
-        text = re.sub(r"articleCount:\s*(\d+)", lambda m: f"articleCount: {int(m.group(1)) + 1}", text, count=1)
+
+    # patch_coverage deliberately does not touch last_updated; the cascade does.
     if not dry_run:
-        record.path.write_text(text + "\n", encoding="utf-8")
+        text = record.path.read_text(encoding="utf-8")
+        record.path.write_text(
+            re.sub(r"last_updated:.*", f"last_updated: {timestamp}", text, count=1),
+            encoding="utf-8",
+        )
     return True
 
 

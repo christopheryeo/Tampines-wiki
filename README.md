@@ -62,6 +62,8 @@ media-monitoring/
 │   ├── link_orphan_entity_bodies.py
 │   │                            ← conservatively links orphan entity body mentions to peer entities
 │   ├── patch_coverage.py          ← safely updates an entity's Coverage list + counts
+│   │                                (the ONLY implementation — never reimplement inline)
+│   ├── repair_stranded_coverage.py← moves misplaced backlinks back into ## Coverage
 │   ├── people_country_inference.py← proposes missing person-country fills for review
 │   ├── run_logger.py              ← writes canonical run receipts and throughput metrics
 │   ├── issue_radar.py             ← early-warning signal layer (read-only over product tables)
@@ -201,6 +203,32 @@ So the folder holds two kinds of things: **Python programs** that perform mechan
 
 The Python scripts are grouped by broad operating function. They should stay deterministic and source-backed: scripts do mechanical work, while procedure documents cover judgment-heavy steps.
 
+#### Querying
+
+##### `query.py` — ask the wiki a question
+The runnable front door to the query procedure (`query_procedure.md`). Two modes, both operating on the live vault. Caching is controlled per run by `--no-cache-read` / `--no-cache-write`, or by the `QUERY_CACHE_READ` / `QUERY_CACHE_WRITE` env vars (both default on); other env: `QUERY_MODEL`, `QUERY_PORT`.
+
+**API mode** (autonomous; needs `OPENAI_API_KEY`) — this is what an external UI / n8n calls:
+
+```bash
+python3 scripts/query.py "Who is the current CDF?"           # shorthand for `ask`
+python3 scripts/query.py ask "..." --no-cache-write --json   # answer without saving; full JSON result
+python3 scripts/query.py serve --port 8080                   # HTTP endpoint: POST /query {"question": "..."}
+```
+
+`ask` flags: `--no-cache-read` (skip the Step 0 cache check), `--no-cache-write` (don't file the Q&A into `entities/search/`), `--model M` (default `gpt-5.6`), `--json` (full structured result instead of just the answer text).
+
+**Assisted mode** (no API key; drive the deterministic steps by hand and do the reasoning yourself):
+
+```bash
+python3 scripts/query.py resolve "CDF" [--domains appointments people]
+python3 scripts/query.py read appointments cdf
+python3 scripts/query.py search "what was said about X?"
+python3 scripts/query.py list appointments [--limit 400]
+python3 scripts/query.py submit --question "..." --answer "..." \
+        [--entities appointments/cdf ...] [--sources 782384 ...] [--saf] [--time-sensitive] [--reuse <queryId>]
+```
+
 #### Intake and source staging
 
 ##### `raw_feed_to_inputs.py` — preserved feed export to raw intake notes
@@ -231,6 +259,13 @@ Factual/Opinionated tone, and Facilitated/Unfacilitated event type. It shortlist
 production tag inventory and uses two independent schema-constrained model passes for classification.
 Both passes must agree and meet the confidence threshold before a value is eligible for automatic
 application; disagreements and low-confidence results stay in the JSON review artifact.
+
+Note two things this runner does **not** do, despite wording elsewhere suggesting otherwise. It does
+not derive outlet metadata from the source URL — `outlet_name` and `outlet_country` are requested
+from the model in both passes and compared for agreement (the only URL parsing in the script is the
+`public_url()` SSRF guard). And it does not populate `topic`; the classification it writes is
+`category`. It also sets `coverageCount: 1` unconditionally on `--apply` rather than counting actual
+syndication.
 
 The default run is non-mutating. `--apply` updates only high-confidence registered input fields.
 The API key comes from `OPENAI_API_KEY` or the Git-ignored `.env.local` and is never written to
@@ -314,6 +349,29 @@ Repairs entity Coverage lines whose display label contains an embedded wikilink.
 ##### `link_orphan_entity_bodies.py` — add conservative peer links to orphan entity notes
 Finds entity notes with no outgoing entity links and scans their body prose for explicit peer-entity names. YAML, Coverage, Source, AI Context, resolver notes, template comments, existing links, and the note's own name are excluded. Only unambiguous multiword names and uppercase acronyms are linked, so it is conservative enough for mechanical repair. Use `--dry-run` to preview, `--log` to append audit entries, and `--report <path>` for the full change list. This utility is also called through `fix_links.py`'s orphan-body pass.
 
+##### `repair_stranded_coverage.py` — move stranded backlinks into `## Coverage`
+One-off (but idempotent and re-runnable) repair for notes damaged by the superseded inline append in
+`ingest_cascade.py`, which wrote article backlinks to end-of-file instead of into the `## Coverage`
+block — stranding them under whatever section came last (country notes are laid out `## Coverage` →
+`## Outlets Based Here` → `## Notes`). It moves only lines matching `- [[article/...]]` that sit
+outside the Coverage block, leaving prose and non-article links alone, and deliberately does **not**
+touch `mentionCount`/`articleCount` because those were already incremented correctly at append time.
+Default is a dry run; `--write` applies, `--log` appends one audit entry per repaired note, and
+`--report` writes the full change list.
+
+```bash
+python3 scripts/repair_stranded_coverage.py
+python3 scripts/repair_stranded_coverage.py --write --log
+```
+
+#### Dashboards
+
+##### `dashboards/site/scripts/generate_dashboard_data.py` — build the dashboard payload
+Reads the compiled vault and writes `dashboards/site/app/dashboard-data.json`. It covers ten entity
+domains — `people`, `organisations`, `place`, `country`, `outlet`, `topic`, `appointments`, `issues`,
+`search`, `decisions` — and deliberately **excludes** the `article` domain, so the dashboard is built
+from entity notes rather than from the article corpus itself.
+
 #### Entity review and inference
 
 ##### `people_country_inference.py` — propose missing person-country fills
@@ -365,7 +423,9 @@ These are not run — they are read and followed. Each is a written standard ope
 The step-by-step method for the cascade half of ingest: given a compiled article note, extract every `[[wikilink]]` it contains, classify each into the right domain, create a note for any entity that does not yet exist (using that domain's `index.md` registry and template), and wire up links in **both** directions — the new entity backlinks to the citing article via its `## Coverage` section, and links out to its peer entities. It codifies the vault's hard rules: always use the piped `[[real-filename|Display Name]]` link form, never enrich from live web or model knowledge (only from the citing article), and quote flow-list values beginning with `#` (an unquoted hash-prefixed tag is invalid YAML and silently destroys the whole frontmatter block — the most expensive bug found while building the vault).
 
 #### `query_procedure.md` — answering questions against the vault
-The method for answering a natural-language question about entities without brute-force searching the raw corpus. It routes every step through an index, a catalog, or a compiled summary instead. It begins with a mandatory check of the `entities/search/` cache — reusing a prior answer only if it genuinely addresses the same question *and* is not stale (nothing in the resolved entities' Coverage has grown since) — then resolves each named entity against the relevant domain `catalog.md`, reads the compiled entity summaries first, and expands to individual source articles only as needed, always answering with citations. Every non-cached query is itself filed back into the search cache for reuse.
+The method for answering a natural-language question about entities without brute-force searching the raw corpus. It routes every step through an index, a catalog, or a compiled summary instead. It begins with a mandatory check of the `entities/search/` cache — reusing a prior answer only if it genuinely addresses the same question *and* is not stale — then resolves each named entity against the relevant domain `catalog.md`, reads the compiled entity summaries first, and expands to individual source articles only as needed, always answering with citations. Every non-cached query is itself filed back into the search cache for reuse.
+
+A cached answer is treated as stale — and re-answered fresh rather than reused — when **any** of three triggers fires: **(a)** its resolved entities' Coverage has *changed*, grown or shrunk, since the entry was asked; **(b)** the entry is flagged `timeSensitive` (a question framed relative to "now", e.g. "recent"/"latest"/"been doing") and is older than the `TIME_SENSITIVE_HORIZON_DAYS` horizon (default 7); or **(c)** it was produced under an older version of this procedure (`procedureVersion` behind the current `last_updated`). There is deliberately **no** blanket age-based expiry: a stable factual entry whose coverage and procedure are unchanged stays valid indefinitely, because the stored answer is a pure function of the question and vault state (no live enrichment), so wall-clock age alone is not a staleness signal. Authorized by `entities/decisions/add-search-cache-staleness-triggers.md`.
 
 #### `people_country_inference_procedure.md` — filling missing person countries from context
 The judgment procedure for proposing and, after approval, writing `country` values for person notes whose country is blank. It starts from already-ingested vault context: the person note, its Coverage articles, and directly relevant linked organisation/country/appointment notes. It requires a review table first (`suggestedCountry`, confidence, evidence, evidence file, and action), allows live web lookup only as an explicit confirmation pass with source URL and fetch timestamp, writes only high-confidence approved updates, appends one people-domain log entry per changed person, regenerates the people catalog, and runs the people-domain link/YAML gate. It explicitly forbids filling blanks from model background knowledge, name ethnicity, or article/outlet country alone.

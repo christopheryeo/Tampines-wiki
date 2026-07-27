@@ -43,11 +43,16 @@ import urllib.request
 from typing import Any
 
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from local_env import load_local_env  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "Inputs" / "articles"
 DEFAULT_TAGS = ROOT / "runs" / "2026-07-23" / "artifacts" / "issue-radar" / "production-tags.csv"
 DEFAULT_OUTPUT = ROOT / "runs" / dt.date.today().isoformat() / "artifacts" / "radar-input-enrichment.json"
-ENV_FILE = ROOT / ".env.local"
 API_URL = "https://api.openai.com/v1/responses"
 PROMPT_VERSION = "radar-enrichment.v1"
 INSTITUTIONAL = [
@@ -62,24 +67,6 @@ MAX_DOWNLOAD_BYTES = 1_500_000
 
 class EnrichmentError(RuntimeError):
     """A user-facing enrichment error."""
-
-
-def load_local_env(path: Path = ENV_FILE) -> None:
-    """Load simple KEY=VALUE entries without overriding process environment."""
-
-    if not path.exists():
-        return
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
-            value = value[1:-1]
-        if key and key not in os.environ:
-            os.environ[key] = value
 
 
 def split_note(text: str) -> tuple[list[str], str]:

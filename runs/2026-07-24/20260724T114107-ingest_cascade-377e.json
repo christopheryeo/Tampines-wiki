@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260724T114107-ingest_cascade-377e",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-07-24T11:41:07+08:00",
+  "endedAt": "2026-07-24T11:41:34+08:00",
+  "durationSec": 26.164,
+  "articleMetrics": {
+    "inputCount": 10,
+    "processedCount": 10,
+    "createdCount": 10,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 2.6164
+  },
+  "fileMetrics": {
+    "scannedCount": 10540,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.002482
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-07-24T11:41:07+08:00",
+      "endedAt": "2026-07-24T11:41:08+08:00",
+      "durationSec": 0.55,
+      "articleCount": 10,
+      "avgSecPerArticle": 0.055,
+      "fileCount": 10,
+      "avgSecPerFile": 0.055,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-07-24T11:41:28+08:00",
+      "endedAt": "2026-07-24T11:41:33+08:00",
+      "durationSec": 5.64,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 10540,
+      "wikilinks_checked": 260958,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 7,
+      "countries_updated": 8,
+      "topics_created": 15,
+      "topics_updated": 59,
+      "people_updated": 7,
+      "processed": 10,
+      "organisations_updated": 11,
+      "outlets_updated": 3,
+      "countries_created": 2
+    },
+    "statusCounts": {
+      "cascaded": 16847,
+      "inputs": 0,
+      "total": 16847
+    }
+  },
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": false
+  }
+}

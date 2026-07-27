@@ -22,6 +22,7 @@ env/
 .claude/settings.local.json
 .obsidian/workspace.json
 .obsidian/plugins/
+.git-rewrite/
 
 # Generated query/index artifacts
 index/*.db
@@ -36,6 +37,14 @@ raw/
 entities/article/
 entities/articles/
 entities/appointments/
+entities/country/
+entities/decisions/
+entities/organisations/
+entities/outlet/
+entities/people/
+entities/place/
+entities/search/
+entities/topic/
 
 # Temporary run/debug output
 runs/**/artifacts/
