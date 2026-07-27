@@ -2,8 +2,9 @@
 """End-to-end timing benchmark for the query procedure (`scripts/query.py`).
 
 Reads the golden questions from `tests/fixtures/golden_query_cases.md` (so the
-benchmark stays in sync with the test set) and runs each one through
-`query.run_query`, reporting per-case, per-run, and average response time.
+benchmark stays in sync with the test set) and runs one question per iteration
+through `query.run_query`. Questions are selected in fixture order and cycle
+when the requested run count exceeds the number of questions.
 
 This measures the *real* end-to-end path — including the model call — so it
 must run in an environment that can reach the model (i.e. with OPENAI_API_KEY
@@ -15,7 +16,7 @@ resolution and nothing is written back). Turn either half on with
 --cache-read / --cache-write if you want to measure the cached path instead.
 
 Usage:
-    python3 scripts/bench_query.py                     # 5 runs, cache off
+    python3 scripts/bench_query.py                     # 5 questions, cache off
     python3 scripts/bench_query.py --runs 3
     python3 scripts/bench_query.py --cache-read        # measure the cache-hit path
     python3 scripts/bench_query.py --model gpt-5.6
@@ -78,52 +79,51 @@ def run_benchmark(questions: list[str], runs: int, cache_read: bool,
                   cache_write: bool, model: str | None, local: bool = False) -> None:
     width = min(max((len(q) for q in questions), default=20), 52)
     per_case_ms: list[list[float]] = [[] for _ in questions]
-    run_totals: list[float] = []
+    run_times: list[float] = []
 
     if local:
-        print(f"Golden query benchmark — {len(questions)} cases, {runs} run(s), "
+        print(f"Golden query benchmark — {len(questions)} cases, {runs} iteration(s), "
               f"mode=local (deterministic resolve+read only, NO model)\n")
     else:
-        print(f"Golden query benchmark — {len(questions)} cases, {runs} run(s), "
+        print(f"Golden query benchmark — {len(questions)} cases, {runs} iteration(s), "
               f"cache_read={'on' if cache_read else 'off'} "
               f"cache_write={'on' if cache_write else 'off'}, "
               f"model={model or query.DEFAULT_MODEL}\n")
 
     for r in range(runs):
-        print(f"Run {r + 1}:")
-        run_total = 0.0
-        for i, q in enumerate(questions):
-            start = time.perf_counter()
-            status = "ok"
-            try:
-                if local:
-                    status = _time_local_case(q)
-                else:
-                    query.run_query(q, cache_read=cache_read,
-                                    cache_write=cache_write, model=model)
-            except query.QueryError as exc:
-                status = f"ERROR: {exc}"[:60]
-            ms = (time.perf_counter() - start) * 1000
-            per_case_ms[i].append(ms)
-            run_total += ms
-            print(f"  {i + 1}. {q[:width]:<{width}} {ms:9.1f} ms  {status}")
-        run_totals.append(run_total)
-        print(f"  run total: {run_total:9.1f} ms   "
-              f"(avg {run_total / len(questions):.1f} ms/query)\n")
+        i = r % len(questions)
+        q = questions[i]
+        start = time.perf_counter()
+        status = "ok"
+        try:
+            if local:
+                status = _time_local_case(q)
+            else:
+                query.run_query(q, cache_read=cache_read,
+                                cache_write=cache_write, model=model)
+        except query.QueryError as exc:
+            status = f"ERROR: {exc}"[:60]
+        ms = (time.perf_counter() - start) * 1000
+        per_case_ms[i].append(ms)
+        run_times.append(ms)
+        print(f"Run {r + 1} (case {i + 1}): "
+              f"{q[:width]:<{width}} {ms:9.1f} ms  {status}")
 
-    print("Mean per case across runs:")
+    print("\nMean per exercised case:")
     for i, q in enumerate(questions):
+        if not per_case_ms[i]:
+            continue
         mean = sum(per_case_ms[i]) / len(per_case_ms[i])
         print(f"  {i + 1}. {q[:width]:<{width}} {mean:9.1f} ms")
 
-    overall_run = sum(run_totals) / len(run_totals)
-    print(f"\nAverage per run:   {overall_run:9.1f} ms")
-    print(f"Average per query: {overall_run / len(questions):9.1f} ms")
+    overall = sum(run_times) / len(run_times)
+    print(f"\nAverage per iteration/query: {overall:9.1f} ms")
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Time the golden query cases end-to-end.")
-    parser.add_argument("--runs", type=int, default=5, help="number of full passes (default 5)")
+    parser.add_argument("--runs", type=int, default=5,
+                        help="number of one-question iterations (default 5)")
     parser.add_argument("--cache-read", dest="cache_read", action="store_true", default=False,
                         help="allow the Step 0 cache short-circuit (default off)")
     parser.add_argument("--cache-write", dest="cache_write", action="store_true", default=False,
