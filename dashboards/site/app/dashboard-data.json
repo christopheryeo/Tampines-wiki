@@ -1,0 +1,548 @@
+{
+  "refreshedAt": "2026-07-30T21:02:07Z",
+  "latestCoverageAt": "2026-07-27T05:36:29Z",
+  "coverage": {
+    "from": "Nov 2025",
+    "to": "Jul 2026"
+  },
+  "summary": {
+    "articles": 22820,
+    "entities": 10755,
+    "outlets": 747,
+    "liveIssues": 5,
+    "links": 48864,
+    "linksPerArticle": 2.1,
+    "coverageMentions": 36576
+  },
+  "months": [
+    {
+      "key": "2025-11",
+      "label": "Nov 2025",
+      "count": 1306
+    },
+    {
+      "key": "2025-12",
+      "label": "Dec 2025",
+      "count": 1556
+    },
+    {
+      "key": "2026-01",
+      "label": "Jan 2026",
+      "count": 1572
+    },
+    {
+      "key": "2026-02",
+      "label": "Feb 2026",
+      "count": 2808
+    },
+    {
+      "key": "2026-03",
+      "label": "Mar 2026",
+      "count": 2045
+    },
+    {
+      "key": "2026-04",
+      "label": "Apr 2026",
+      "count": 3290
+    },
+    {
+      "key": "2026-05",
+      "label": "May 2026",
+      "count": 5323
+    },
+    {
+      "key": "2026-06",
+      "label": "Jun 2026",
+      "count": 3136
+    },
+    {
+      "key": "2026-07",
+      "label": "Jul 2026",
+      "count": 1784
+    }
+  ],
+  "peakMonth": {
+    "key": "2026-05",
+    "label": "May 2026",
+    "count": 5323
+  },
+  "latestMonth": {
+    "key": "2026-07",
+    "label": "Jul 2026",
+    "count": 1784
+  },
+  "monthChange": -43.1,
+  "sentiments": [
+    {
+      "name": "Neutral",
+      "count": 14283
+    },
+    {
+      "name": "Positive",
+      "count": 8536
+    },
+    {
+      "name": "Negative",
+      "count": 1
+    }
+  ],
+  "eventTypes": [
+    {
+      "name": "Unfacilitated",
+      "count": 12608
+    },
+    {
+      "name": "Facilitated",
+      "count": 10212
+    }
+  ],
+  "sourceTypes": [
+    {
+      "name": "Feed",
+      "count": 22693
+    },
+    {
+      "name": "Crawl",
+      "count": 127
+    }
+  ],
+  "entityComposition": [
+    {
+      "key": "topic",
+      "label": "Topic",
+      "count": 8895
+    },
+    {
+      "key": "outlet",
+      "label": "Outlet",
+      "count": 747
+    },
+    {
+      "key": "people",
+      "label": "People",
+      "count": 413
+    },
+    {
+      "key": "organisations",
+      "label": "Organizations",
+      "count": 368
+    },
+    {
+      "key": "place",
+      "label": "Place",
+      "count": 180
+    },
+    {
+      "key": "country",
+      "label": "Country",
+      "count": 95
+    },
+    {
+      "key": "appointments",
+      "label": "Appointments",
+      "count": 10
+    }
+  ],
+  "top": {
+    "countries": [
+      {
+        "name": "Singapore",
+        "count": 12980
+      },
+      {
+        "name": "Malaysia",
+        "count": 3166
+      },
+      {
+        "name": "United States",
+        "count": 3135
+      },
+      {
+        "name": "China",
+        "count": 2926
+      },
+      {
+        "name": "Taiwan",
+        "count": 2388
+      },
+      {
+        "name": "United Kingdom",
+        "count": 2119
+      },
+      {
+        "name": "Indonesia",
+        "count": 1964
+      },
+      {
+        "name": "Hong Kong",
+        "count": 1564
+      },
+      {
+        "name": "Australia",
+        "count": 1431
+      },
+      {
+        "name": "India",
+        "count": 1135
+      }
+    ],
+    "outlets": [
+      {
+        "name": "Straits Times Online",
+        "count": 769
+      },
+      {
+        "name": "Reuters",
+        "count": 573
+      },
+      {
+        "name": "Channel News Asia Online",
+        "count": 427
+      },
+      {
+        "name": "Lianhe Zaobao Online",
+        "count": 387
+      },
+      {
+        "name": "8world News",
+        "count": 252
+      },
+      {
+        "name": "The Star Online",
+        "count": 218
+      },
+      {
+        "name": "Yahoo! News Taiwan",
+        "count": 208
+      },
+      {
+        "name": "Lianhe Zaobao",
+        "count": 181
+      },
+      {
+        "name": "Yahoo! News Hong Kong",
+        "count": 176
+      },
+      {
+        "name": "South China Morning Post",
+        "count": 168
+      }
+    ],
+    "people": [
+      {
+        "name": "Donald Trump",
+        "count": 2557
+      },
+      {
+        "name": "Chan Chun Sing",
+        "count": 2103
+      },
+      {
+        "name": "Pete Hegseth",
+        "count": 1607
+      },
+      {
+        "name": "Lawrence Wong",
+        "count": 1194
+      },
+      {
+        "name": "Xi Jinping",
+        "count": 628
+      },
+      {
+        "name": "Shinjiro Koizumi",
+        "count": 557
+      },
+      {
+        "name": "To Lam",
+        "count": 445
+      },
+      {
+        "name": "Sanae Takaichi",
+        "count": 442
+      }
+    ],
+    "organizations": [
+      {
+        "name": "MINDEF",
+        "count": 4296
+      },
+      {
+        "name": "RSAF",
+        "count": 1593
+      },
+      {
+        "name": "ASEAN",
+        "count": 1347
+      },
+      {
+        "name": "NATO",
+        "count": 850
+      },
+      {
+        "name": "Parliament of Singapore",
+        "count": 847
+      },
+      {
+        "name": "Singapore Police Force",
+        "count": 786
+      },
+      {
+        "name": "SAF",
+        "count": 680
+      },
+      {
+        "name": "Pentagon",
+        "count": 636
+      }
+    ],
+    "topics": [
+      {
+        "name": "Singapore",
+        "count": 4383
+      },
+      {
+        "name": "US",
+        "count": 3949
+      },
+      {
+        "name": "Defence",
+        "count": 3327
+      },
+      {
+        "name": "SAF",
+        "count": 3065
+      },
+      {
+        "name": "MINDEF",
+        "count": 2846
+      },
+      {
+        "name": "China",
+        "count": 2649
+      },
+      {
+        "name": "Military",
+        "count": 2199
+      },
+      {
+        "name": "Minister",
+        "count": 2096
+      }
+    ],
+    "places": [
+      {
+        "name": "Pacific",
+        "count": 2725
+      },
+      {
+        "name": "Beijing",
+        "count": 1784
+      },
+      {
+        "name": "Middle East",
+        "count": 1781
+      },
+      {
+        "name": "Washington",
+        "count": 1761
+      },
+      {
+        "name": "Hong Kong",
+        "count": 1362
+      },
+      {
+        "name": "South China Sea",
+        "count": 1194
+      },
+      {
+        "name": "Strait of Hormuz",
+        "count": 1066
+      },
+      {
+        "name": "Gaza",
+        "count": 709
+      }
+    ],
+    "tags": [
+      {
+        "name": "saf",
+        "count": 16196
+      },
+      {
+        "name": "defence",
+        "count": 8443
+      }
+    ]
+  },
+  "issues": [
+    {
+      "name": "NS Enforcement / Enlistment Act Prosecutions",
+      "status": "hot",
+      "ramification": "severe",
+      "score": 0.94,
+      "articles": 12,
+      "firstFlagged": "2025-11-30",
+      "lastScored": "2026-07-08",
+      "assessment": "Two concurrent Enlistment Act prosecutions — Amos Yee, deported from the US on 19 Mar 2026 and charged the next day with three counts (failing pre-enlistment medical screening 2016–2026; remaining overseas without valid exit permits), and Edmond Yao Zhi Hai, a Singapore-born dual national convicted 23 Mar 2026 after the court rejected his \"I'm Indonesian\" defence — have fused into a single, internationally covered te",
+      "posture": "2026-07-08 — Prepare lines and brief principal ahead of the 23 Apr PTC and the Apr Yao sentencing: MINDEF/MHA's \"firm stand\" statement, Judge Lee's no-cherry-picking ruling, and Yee's gag-condition bail are all irreversible on-record positions that the next hearings will be measured against; whole issue is saf-sensitive (export-restricted)."
+    },
+    {
+      "name": "Singapore Neutrality Questioned in Regional Commentary",
+      "status": "warm",
+      "ramification": "high",
+      "score": 0.9,
+      "articles": 5,
+      "firstFlagged": "2026-02-28",
+      "lastScored": "2026-07-08",
+      "assessment": "A low-volume but structurally distinctive wave of unfacilitated commentary and analyst-quote coverage is building a narrative that Singapore's foreign-policy neutrality/equidistance is under strain amid the US–China rivalry and the US–Israel–Iran war. The March 2026 wave is anchored by an SCMP (Hong Kong) framing of Foreign Minister Vivian Balakrishnan's 27 Feb parliamentary \"equidistant / no proxy\" remarks, analyst ",
+      "posture": "2026-07-08 — prepare lines: monitor HK/MY/TW outlet framing weekly; MFA-level holding lines on equidistance should be ready before the next war-escalation or US-China summit news cycle; brief principal if a second foreign-outlet wave or a volume doubling appears."
+    },
+    {
+      "name": "SG-Germany Defence Ties / TKMS Naval Procurement",
+      "status": "warm",
+      "ramification": "moderate",
+      "score": 0.85,
+      "articles": 8,
+      "firstFlagged": "2026-02-28",
+      "lastScored": "2026-07-08",
+      "assessment": "Cluster around German Defence Minister Boris Pistorius's 23-25 Mar 2026 Singapore visit (part of a Japan-Singapore-Australia Indo-Pacific tour): a Supply Chain Resiliency Arrangement signed with MINDEF, a TKMS-ST Engineering Marine MOU toward a first Pacific-region submarine service centre in Singapore, an Order of Merit for Dr Ng Eng Hen, and the 10th-anniversary/17th Ex Panzer Strike running concurrently in Oberlau",
+      "posture": "2026-07-08 — Monitor; keep facilitated momentum but prepare holding lines on submarine programme cost/schedule and on geopolitical framing (Chinese state media and German commentary casting Singapore inside a \"middle-power\" alignment), ahead of service-centre and delivery milestones."
+    },
+    {
+      "name": "Singaporeans and the Israel/Gaza Conflict (Sar-El, ISA, Radicalisation)",
+      "status": "hot",
+      "ramification": "severe",
+      "score": 0.83,
+      "articles": 12,
+      "firstFlagged": "2026-02-28",
+      "lastScored": "2026-07-08",
+      "assessment": "A foreign war has migrated into a domestic loyalty-and-cohesion issue: a Declassified UK report (11 Feb 2026) citing IDF data on two Singapore passport holders forced a 5 Mar Parliamentary exchange in which K. Shanmugam staked out zero tolerance — prosecution, ISA detention, or loss of citizenship — for Singaporeans in foreign armed conflicts, followed by a 24 Mar MHA-MINDEF joint statement on a father-son pair who v",
+      "posture": "2026-07-08 — brief principal and prepare lines: race/religion sensitivities, the Sar-El precedent, and the government's on-record \"no verified information\" position are all exposed if the police investigation, an Israeli reply, or a new volunteer case surfaces; monitor sar-el and internal security act weekly."
+    },
+    {
+      "name": "US Regional Force Posture Shifts (Okinawa/CENTCOM)",
+      "status": "watch",
+      "ramification": "moderate",
+      "score": 0.78,
+      "articles": 7,
+      "firstFlagged": "2026-03-15",
+      "lastScored": "2026-07-08",
+      "assessment": "Backdrop cluster tracking US forces in the Indo-Pacific redeploying toward the US–Israel–Iran war: US Central Command-requested reinforcement of ~2,500 Marines and up to three ships led by the USS Tripoli (CNA, 14 Mar), drawing the Okinawa-based 31st Marine Expeditionary Unit through the South China Sea and Singapore Strait (Liberty Times, 17 Mar; USA Today, 19 Mar). Fundamentally a foreign story with no Singapore po",
+      "posture": "2026-07-08 — Monitor for the domestic-migration signal, not volume: flag if the Singapore-mention share of new cluster coverage rises again toward the ~94% seen in the week of 2026-03-16, or if institutional-category (MINDEF/agency) share climbs from its baseline — either recurrence warrants prepared lines on 1990-MoU facilitation before MINDEF is asked agai"
+    },
+    {
+      "name": "Water/Climate Coverage Acceleration (World Water Day 2026)",
+      "status": "dismissed",
+      "ramification": "low",
+      "score": 0.74,
+      "articles": 5,
+      "firstFlagged": "2026-03-31",
+      "lastScored": "2026-07-08",
+      "assessment": "The radar flagged this cluster on acceleration and breadth: pub volume rose 48→76 over two 28d windows with 19 never-seen outlets and new countries (Australia, Vietnam), and grace fu spiked 0→19 in the week of 2026-03-16. On inspection the entire spike is one facilitated communications event — PUB's annual World Water Day 2026 campaign launch at Suntec City on 17 Mar, where Chan Chun Sing spoke on water-energy resili",
+      "posture": "2026-07-08 — No action; re-open only if unfacilitated or critical water/climate coverage appears (e.g. supply incident, pricing controversy, or negative-tone commentary attaching to PUB/Grace Fu)."
+    }
+  ],
+  "health": [
+    {
+      "label": "Source URL",
+      "value": 71.9
+    },
+    {
+      "label": "Sentiment",
+      "value": 100.0
+    },
+    {
+      "label": "Event type",
+      "value": 100.0
+    }
+  ],
+  "weekdays": [
+    {
+      "name": "Mon",
+      "count": 3506
+    },
+    {
+      "name": "Tue",
+      "count": 3149
+    },
+    {
+      "name": "Wed",
+      "count": 3212
+    },
+    {
+      "name": "Thu",
+      "count": 3245
+    },
+    {
+      "name": "Fri",
+      "count": 4128
+    },
+    {
+      "name": "Sat",
+      "count": 2836
+    },
+    {
+      "name": "Sun",
+      "count": 2744
+    }
+  ],
+  "latestArticles": [
+    {
+      "title": "Art E65685Ee Current Affairs Capsule Pdf 7 July 2026",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-e65685ee-current-affairs-capsule-pdf-7-july-2026.md"
+    },
+    {
+      "title": "Art E4680Bd0 India Australia Partnership Offers Win Win Proposition Pm Modi",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-e4680bd0-india-australia-partnership-offers-win-win-proposition-pm-modi.md"
+    },
+    {
+      "title": "Art C6C7F677 Pm Modi Pitches India As Win Win Investment For Australia",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-c6c7f677-pm-modi-pitches-india-as-win-win-investment-for-australia.md"
+    },
+    {
+      "title": "Art A9E8Cfdc Presentazione Del Libro Di Artem Chapeye La Gente Normale Non Va In Gi",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-a9e8cfdc-presentazione-del-libro-di-artem-chapeye-la-gente-normale-non-va-in-gi.md"
+    },
+    {
+      "title": "Art A756F321 Massive Boost Japan To Invest Big In India For Ai Semiconductor And De",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-a756f321-massive-boost-japan-to-invest-big-in-india-for-ai-semiconductor-and-de.md"
+    },
+    {
+      "title": "Art A1E59Aba Ai Actress Tilly Norwood Will Make Her Debut In Coming Of Age Story Mi",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-a1e59aba-ai-actress-tilly-norwood-will-make-her-debut-in-coming-of-age-story-mi.md"
+    },
+    {
+      "title": "Art 99026322 Ai As A Matter Of State By Remi Ladigbolu",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-99026322-ai-as-a-matter-of-state-by-remi-ladigbolu.md"
+    },
+    {
+      "title": "Art 2903Ede2 Blockapt Launches Ai Powered Cyber Defence For Smes",
+      "summary": "Summary unavailable in source item. - No further key points were available in the source item.",
+      "published": "27 Jul 2026",
+      "month": "Jul",
+      "path": "entities/article/2026-07/art-2903ede2-blockapt-launches-ai-powered-cyber-defence-for-smes.md"
+    }
+  ]
+}
