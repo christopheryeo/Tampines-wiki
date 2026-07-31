@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-07-30T21:02:07Z",
+  "refreshedAt": "2026-07-31T21:02:28Z",
   "latestCoverageAt": "2026-07-27T05:36:29Z",
   "coverage": {
     "from": "Nov 2025",
@@ -7,9 +7,9 @@
   },
   "summary": {
     "articles": 22820,
-    "entities": 10755,
+    "entities": 10757,
     "outlets": 747,
-    "liveIssues": 5,
+    "liveIssues": 7,
     "links": 48864,
     "linksPerArticle": 2.1,
     "coverageMentions": 36576
@@ -377,46 +377,35 @@
   },
   "issues": [
     {
-      "name": "NS Enforcement / Enlistment Act Prosecutions",
-      "status": "hot",
-      "ramification": "severe",
-      "score": 0.94,
-      "articles": 12,
-      "firstFlagged": "2025-11-30",
-      "lastScored": "2026-07-08",
-      "assessment": "Two concurrent Enlistment Act prosecutions — Amos Yee, deported from the US on 19 Mar 2026 and charged the next day with three counts (failing pre-enlistment medical screening 2016–2026; remaining overseas without valid exit permits), and Edmond Yao Zhi Hai, a Singapore-born dual national convicted 23 Mar 2026 after the court rejected his \"I'm Indonesian\" defence — have fused into a single, internationally covered te",
-      "posture": "2026-07-08 — Prepare lines and brief principal ahead of the 23 Apr PTC and the Apr Yao sentencing: MINDEF/MHA's \"firm stand\" statement, Judge Lee's no-cherry-picking ruling, and Yee's gag-condition bail are all irreversible on-record positions that the next hearings will be measured against; whole issue is saf-sensitive (export-restricted)."
-    },
-    {
-      "name": "Singapore Neutrality Questioned in Regional Commentary",
-      "status": "warm",
-      "ramification": "high",
-      "score": 0.9,
-      "articles": 5,
-      "firstFlagged": "2026-02-28",
-      "lastScored": "2026-07-08",
-      "assessment": "A low-volume but structurally distinctive wave of unfacilitated commentary and analyst-quote coverage is building a narrative that Singapore's foreign-policy neutrality/equidistance is under strain amid the US–China rivalry and the US–Israel–Iran war. The March 2026 wave is anchored by an SCMP (Hong Kong) framing of Foreign Minister Vivian Balakrishnan's 27 Feb parliamentary \"equidistant / no proxy\" remarks, analyst ",
-      "posture": "2026-07-08 — prepare lines: monitor HK/MY/TW outlet framing weekly; MFA-level holding lines on equidistance should be ready before the next war-escalation or US-China summit news cycle; brief principal if a second foreign-outlet wave or a volume doubling appears."
-    },
-    {
-      "name": "SG-Germany Defence Ties / TKMS Naval Procurement",
+      "name": "Singapore-Indonesia Nationalist Mistrust",
       "status": "warm",
       "ramification": "moderate",
-      "score": 0.85,
+      "score": 0.73,
+      "articles": 5,
+      "firstFlagged": "2026-07-27",
+      "lastScored": "2026-07-31",
+      "assessment": "An unfacilitated commentary wave reframed the 6 Jul Singapore–Indonesia Leaders' Retreat as a test of unequal dependency, transactionalism and nationalist mistrust rather than a routine diplomatic success. Indonesian commentary described friendship mixed with suspicion (KOMPAS.com, 8 Jul), while Singapore commentary highlighted the SellSingapore hashtag and an anti-Singapore nationalist wave in Indonesian social medi",
+      "posture": "2026-07-31 — Monitor Indonesian and Singapore commentary separately from facilitated summit coverage; prepare factual lines on mutual benefits and sovereignty before the next bilateral milestone, and escalate if SellSingapore-type framing broadens beyond commentary."
+    },
+    {
+      "name": "Anti-Indian Online Influence and AI Falsehoods",
+      "status": "hot",
+      "ramification": "high",
+      "score": 0.66,
       "articles": 8,
-      "firstFlagged": "2026-02-28",
-      "lastScored": "2026-07-08",
-      "assessment": "Cluster around German Defence Minister Boris Pistorius's 23-25 Mar 2026 Singapore visit (part of a Japan-Singapore-Australia Indo-Pacific tour): a Supply Chain Resiliency Arrangement signed with MINDEF, a TKMS-ST Engineering Marine MOU toward a first Pacific-region submarine service centre in Singapore, an Order of Merit for Dr Ng Eng Hen, and the 10th-anniversary/17th Ex Panzer Strike running concurrently in Oberlau",
-      "posture": "2026-07-08 — Monitor; keep facilitated momentum but prepare holding lines on submarine programme cost/schedule and on geopolitical framing (Chinese state media and German commentary casting Singapore inside a \"middle-power\" alignment), ahead of service-centre and delivery milestones."
+      "firstFlagged": "2026-07-27",
+      "lastScored": "2026-07-31",
+      "assessment": "A wave of 14 online posts targeted Singapore's Indian community with claims that Singapore was being overrun by Indians. MHA assessed the posts as attempting to sow discord and undermine Singapore's multicultural model; the SPF issued blocking directions to Google, Meta and X under the Online Criminal Harms Act, and Ministers answered questions in Parliament (TOC, 7 Jul; Tabla!, 7 Jul). The Government also linked thi",
+      "posture": "2026-07-31 — Brief principal and prepare lines on the distinction between harmful racial content, foreign coordination (not established), and the legal basis for OCHA/POFMA action; monitor for recurrence or evidence that changes the Government's stated assessment."
     },
     {
       "name": "Singaporeans and the Israel/Gaza Conflict (Sar-El, ISA, Radicalisation)",
-      "status": "hot",
+      "status": "watch",
       "ramification": "severe",
-      "score": 0.83,
+      "score": 0.39,
       "articles": 12,
       "firstFlagged": "2026-02-28",
-      "lastScored": "2026-07-08",
+      "lastScored": "2026-07-31",
       "assessment": "A foreign war has migrated into a domestic loyalty-and-cohesion issue: a Declassified UK report (11 Feb 2026) citing IDF data on two Singapore passport holders forced a 5 Mar Parliamentary exchange in which K. Shanmugam staked out zero tolerance — prosecution, ISA detention, or loss of citizenship — for Singaporeans in foreign armed conflicts, followed by a 24 Mar MHA-MINDEF joint statement on a father-son pair who v",
       "posture": "2026-07-08 — brief principal and prepare lines: race/religion sensitivities, the Sar-El precedent, and the government's on-record \"no verified information\" position are all exposed if the police investigation, an Israeli reply, or a new volunteer case surfaces; monitor sar-el and internal security act weekly."
     },
@@ -424,21 +413,54 @@
       "name": "US Regional Force Posture Shifts (Okinawa/CENTCOM)",
       "status": "watch",
       "ramification": "moderate",
-      "score": 0.78,
+      "score": 0.35,
       "articles": 7,
       "firstFlagged": "2026-03-15",
-      "lastScored": "2026-07-08",
+      "lastScored": "2026-07-31",
       "assessment": "Backdrop cluster tracking US forces in the Indo-Pacific redeploying toward the US–Israel–Iran war: US Central Command-requested reinforcement of ~2,500 Marines and up to three ships led by the USS Tripoli (CNA, 14 Mar), drawing the Okinawa-based 31st Marine Expeditionary Unit through the South China Sea and Singapore Strait (Liberty Times, 17 Mar; USA Today, 19 Mar). Fundamentally a foreign story with no Singapore po",
       "posture": "2026-07-08 — Monitor for the domestic-migration signal, not volume: flag if the Singapore-mention share of new cluster coverage rises again toward the ~94% seen in the week of 2026-03-16, or if institutional-category (MINDEF/agency) share climbs from its baseline — either recurrence warrants prepared lines on 1990-MoU facilitation before MINDEF is asked agai"
+    },
+    {
+      "name": "SG-Germany Defence Ties / TKMS Naval Procurement",
+      "status": "watch",
+      "ramification": "moderate",
+      "score": 0.34,
+      "articles": 8,
+      "firstFlagged": "2026-02-28",
+      "lastScored": "2026-07-31",
+      "assessment": "Cluster around German Defence Minister Boris Pistorius's 23-25 Mar 2026 Singapore visit (part of a Japan-Singapore-Australia Indo-Pacific tour): a Supply Chain Resiliency Arrangement signed with MINDEF, a TKMS-ST Engineering Marine MOU toward a first Pacific-region submarine service centre in Singapore, an Order of Merit for Dr Ng Eng Hen, and the 10th-anniversary/17th Ex Panzer Strike running concurrently in Oberlau",
+      "posture": "2026-07-08 — Monitor; keep facilitated momentum but prepare holding lines on submarine programme cost/schedule and on geopolitical framing (Chinese state media and German commentary casting Singapore inside a \"middle-power\" alignment), ahead of service-centre and delivery milestones."
+    },
+    {
+      "name": "NS Enforcement / Enlistment Act Prosecutions",
+      "status": "watch",
+      "ramification": "severe",
+      "score": 0.32,
+      "articles": 12,
+      "firstFlagged": "2025-11-30",
+      "lastScored": "2026-07-31",
+      "assessment": "Two concurrent Enlistment Act prosecutions — Amos Yee, deported from the US on 19 Mar 2026 and charged the next day with three counts (failing pre-enlistment medical screening 2016–2026; remaining overseas without valid exit permits), and Edmond Yao Zhi Hai, a Singapore-born dual national convicted 23 Mar 2026 after the court rejected his \"I'm Indonesian\" defence — have fused into a single, internationally covered te",
+      "posture": "2026-07-08 — Prepare lines and brief principal ahead of the 23 Apr PTC and the Apr Yao sentencing: MINDEF/MHA's \"firm stand\" statement, Judge Lee's no-cherry-picking ruling, and Yee's gag-condition bail are all irreversible on-record positions that the next hearings will be measured against; whole issue is saf-sensitive (export-restricted)."
+    },
+    {
+      "name": "Singapore Neutrality Questioned in Regional Commentary",
+      "status": "watch",
+      "ramification": "high",
+      "score": 0.29,
+      "articles": 5,
+      "firstFlagged": "2026-02-28",
+      "lastScored": "2026-07-31",
+      "assessment": "A low-volume but structurally distinctive wave of unfacilitated commentary and analyst-quote coverage is building a narrative that Singapore's foreign-policy neutrality/equidistance is under strain amid the US–China rivalry and the US–Israel–Iran war. The March 2026 wave is anchored by an SCMP (Hong Kong) framing of Foreign Minister Vivian Balakrishnan's 27 Feb parliamentary \"equidistant / no proxy\" remarks, analyst ",
+      "posture": "2026-07-08 — prepare lines: monitor HK/MY/TW outlet framing weekly; MFA-level holding lines on equidistance should be ready before the next war-escalation or US-China summit news cycle; brief principal if a second foreign-outlet wave or a volume doubling appears."
     },
     {
       "name": "Water/Climate Coverage Acceleration (World Water Day 2026)",
       "status": "dismissed",
       "ramification": "low",
-      "score": 0.74,
+      "score": 0.0,
       "articles": 5,
       "firstFlagged": "2026-03-31",
-      "lastScored": "2026-07-08",
+      "lastScored": "2026-07-31",
       "assessment": "The radar flagged this cluster on acceleration and breadth: pub volume rose 48→76 over two 28d windows with 19 never-seen outlets and new countries (Australia, Vietnam), and grace fu spiked 0→19 in the week of 2026-03-16. On inspection the entire spike is one facilitated communications event — PUB's annual World Water Day 2026 campaign launch at Suntec City on 17 Mar, where Chan Chun Sing spoke on water-energy resili",
       "posture": "2026-07-08 — No action; re-open only if unfacilitated or critical water/climate coverage appears (e.g. supply incident, pricing controversy, or negative-tone commentary attaching to PUB/Grace Fu)."
     }
