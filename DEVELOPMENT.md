@@ -41,7 +41,7 @@ Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the
 
 Format: tool — surface — files it may touch — files it must not touch — git — link
 
-- ChatGPT Codex — vault QA: run a thorough quality check of Tampines Wiki and fix only clear defects you find. Cover entity notes and indexes under `entities/`, topic notes under `topics/` / `Topics/`, schemas under `schemas/`, issue-radar inputs and outputs (`scripts/issue_radar.py`, related procedures, `issue-radar-site/` tracked sources only if a broken link or schema mismatch requires it), and link integrity (`scripts/check_links.py` / `scripts/fix_links.py` and any broken wiki links they surface). Prefer running existing QA scripts and recording findings; edit tracked vault/script files only to repair real breaks (dead links, broken frontmatter, schema drift, orphaned indexes). Do not invent Features. Do not rewrite `AGENTS.md` / `README.md` operating rules. Do not commit `.env.local`, bulk `runs/` receipts, or other gitignored derived junk unless this Now explicitly requires a named tracked receipt. Do not push to `main`. Finish in one PR with work, clear this Now line, and one wiki Done line (Policy 11).
+- (none)
 
 ## Next
 
@@ -50,3 +50,4 @@ Format: tool — surface — files it may touch — files it must not touch — 
 ## Done
 
 - 2026-09-04 SGT — maintenance — Morgan — Added this DEVELOPMENT.md and CLAUDE.md to formalize Tampines Wiki as the project home with git (`christopheryeo/Tampines-wiki`).
+- 2026-09-04 SGT — wiki — ChatGPT Codex — Audited the Tampines vault, repaired malformed Tag Coverage labels, and hardened link QA and repair logging.

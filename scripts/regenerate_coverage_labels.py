@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Repair malformed entity Coverage labels from the cited article summary.
 
-Only rewrites Coverage lines whose display label contains an embedded wikilink.
+Only rewrites Coverage lines whose display label contains wikilink-breaking
+square brackets, including an embedded wikilink.
 The outer article target is retained exactly; the new label is derived from that
 article's own Summary, so no external enrichment or link-target guessing occurs.
 """
@@ -12,8 +13,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-ENTITY_DOMAINS = ("country", "organisations", "people", "place", "topic", "outlet")
-MALFORMED_LINE = re.compile(r"^(\s*- \[\[([^\[\]|]+)\|.*\[\[.*)$")
+ENTITY_DOMAINS = ("country", "organisations", "people", "place", "topic", "outlet", "tag")
+COVERAGE_LINE = re.compile(r"^\s*- \[\[([^\[\]|]+)\|(.+)\]\]\s*$")
 WIKILINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 
 
@@ -46,9 +47,9 @@ def summary_label(article_path):
     match = re.search(r"^## Summary\s*$\n(.*?)(?=^## |\Z)", text, re.MULTILINE | re.DOTALL)
     if not match:
         return None
-    summary = re.sub(r"\s+", " ", match.group(1)).strip()
-    summary = WIKILINK.sub(lambda m: m.group(2) or m.group(1), summary)
-    summary = summary.replace("[[", "").replace("]]", "").replace("|", " ")
+    summary = WIKILINK.sub(lambda m: m.group(2) or m.group(1), match.group(1))
+    summary = re.sub(r"[\[\]|]+", " ", summary)
+    summary = re.sub(r"\s+", " ", summary).strip()
     if not summary:
         return None
     # Split on sentence-ending '.'/'?' only. Several outlet names in this vault's
@@ -83,13 +84,18 @@ def regenerate(dry_run=False, log=False, domains=None):
                 continue
             lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
             changed = False
+            repaired_sources = []
             rebuilt = []
             for line in lines:
-                match = MALFORMED_LINE.match(line.rstrip("\n"))
+                match = COVERAGE_LINE.match(line.rstrip("\n"))
                 if not match:
                     rebuilt.append(line)
                     continue
-                target = match.group(2).strip()
+                target = match.group(1).strip()
+                display = match.group(2)
+                if "[" not in display and "]" not in display:
+                    rebuilt.append(line)
+                    continue
                 # If the cited article cannot provide a summary, leave the
                 # line unchanged and report it for manual review.
                 label = summary_label(articles[target]) if target in articles else None
@@ -99,21 +105,26 @@ def regenerate(dry_run=False, log=False, domains=None):
                     continue
                 rebuilt.append(f"- [[{target}|{label}]]\n")
                 changed = True
+                repaired_sources.append((target, label))
                 changed_links += 1
             if changed:
                 changed_files += 1
-                changes.append((domain, path.stem, target, label))
+                changes.append((domain, path.stem, repaired_sources))
                 if not dry_run:
                     path.write_text("".join(rebuilt), encoding="utf-8")
 
     if log and not dry_run:
         timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        for domain, entity_id, source_id, source_label in changes:
+        for domain, entity_id, repaired_sources in changes:
             log_path = ROOT / "entities" / domain / "log.md"
+            sources = ", ".join(
+                f"[[{source_id}|{source_label}]]"
+                for source_id, source_label in repaired_sources
+            )
             line = (
-                f"- {timestamp} | source: [[{source_id}|{source_label}]] | "
+                f"- {timestamp} | source: {sources} | "
                 f"entity: [[{entity_id}]] | action: updated — regenerated malformed Coverage label(s) | "
-                "reasoning: repaired target-resolving labels that embedded truncated wikilinks; "
+                "reasoning: repaired target-resolving labels that contained unsafe square brackets; "
                 "new label derived solely from the cited article's Summary.\n"
             )
             with log_path.open("a", encoding="utf-8") as log:
