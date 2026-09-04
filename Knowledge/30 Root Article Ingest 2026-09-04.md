@@ -12,7 +12,7 @@
 - Monthly input files remaining: **0**.
 - Batch reconciliation: **30 = 15 cascaded + 15 held**.
 
-The 15 held files are preserved under `Inputs/holds/20260904T140828+0800-30-root-ingest/`. No pre-existing hold was requeued.
+The 15 held files are preserved under the canonical `Inputs/articles/holds/20260904T140828+0800-30-root-ingest/` location. No pre-existing hold was requeued. The initial parallel `Inputs/holds/` path was repaired after reconciliation; all 15 hashes remained unchanged and the obsolete tree was removed by the move.
 
 ## Timing
 
