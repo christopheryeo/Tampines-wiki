@@ -80,7 +80,13 @@ FULL_LINK = re.compile(r"\[\[[^\[\]]*\]\]")
 # signature of a nested/malformed link like [[a-[[b|B]]-c|X]].
 NESTED_OPEN = re.compile(r"\[\[[^\]]*\[\[")
 DOC_SKIP_NAMES = {"index.md", "catalog.md", "log.md", "_template.md", "README.md"}
-DOC_SKIP_DIRS = ("scripts/", "entities/decisions/", "dashboards/site/node_modules/")
+DOC_SKIP_DIRS = (
+    "scripts/",
+    "entities/decisions/",
+    "dashboards/site/node_modules/",
+    "issue-radar-site/node_modules/",
+    "runs/",
+)
 
 # Article prose sections scanned for known entities left unlinked.
 PROSE_SECTIONS = ("Summary", "Key Points")
@@ -301,11 +307,14 @@ def main():
         )
 
     all_notes = find_all_notes()
+    live_notes = all_notes if include_docs else [p for p in all_notes if not is_doc_file(p)]
+    # Documentation can still be the intentional target of a live note even though
+    # it is excluded from frontmatter validation and link-source scanning.
     real_targets = {target for p in all_notes for target in note_targets(p)}
 
     alias_index = {}  # alias text -> [paths]
     yaml_errors = []  # (path, error)
-    for path in all_notes:
+    for path in live_notes:
         data, err = parse_frontmatter(os.path.join(ROOT, path))
         if err:
             yaml_errors.append((path, err))
@@ -346,7 +355,7 @@ def main():
     nested_target, nested_display, unbalanced = find_structural_defects(scan_notes, include_docs)
     unlinked = []
     if check_unlinked:
-        name_to_slug = build_entity_name_index(all_notes)
+        name_to_slug = build_entity_name_index(live_notes)
         unlinked = find_unlinked_entities(
             scanned_note_paths,
             name_to_slug,

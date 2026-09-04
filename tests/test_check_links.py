@@ -17,6 +17,11 @@ SPEC.loader.exec_module(MODULE)
 
 
 class FindUnlinkedEntitiesTests(unittest.TestCase):
+    def test_skips_runtime_dependencies_and_run_artifacts(self):
+        self.assertTrue(MODULE.is_doc_file("issue-radar-site/node_modules/pkg/readme.md"))
+        self.assertTrue(MODULE.is_doc_file("runs/2026-09-04/artifacts/report.md"))
+        self.assertFalse(MODULE.is_doc_file("entities/article/2026-09/example.md"))
+
     def test_preserves_link_and_word_boundary_semantics(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -72,6 +77,31 @@ class FindUnlinkedEntitiesTests(unittest.TestCase):
             rendered = output.getvalue()
             self.assertIn("UNBALANCED WIKILINK BRACKETS (1 note", rendered)
             self.assertNotIn("MALFORMED COVERAGE LABELS", rendered)
+
+    def test_run_artifact_yaml_is_excluded_before_frontmatter_parsing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            article = root / "entities" / "article" / "2026-09" / "example.md"
+            article.parent.mkdir(parents=True)
+            article.write_text("---\nsourceId: '1'\n---\n\nNo links.\n", encoding="utf-8")
+            artifact = root / "runs" / "2026-09-04" / "bad.md"
+            artifact.parent.mkdir(parents=True)
+            artifact.write_bytes(b"---\nvalue: \x88\n---\n")
+
+            original_root = MODULE.ROOT
+            MODULE.ROOT = str(root)
+            output = io.StringIO()
+            try:
+                with mock.patch.object(
+                    sys, "argv", ["check_links.py", "--no-run-log", "--no-unlinked"]
+                ), contextlib.redirect_stdout(output):
+                    with self.assertRaises(SystemExit) as exit_context:
+                        MODULE.main()
+            finally:
+                MODULE.ROOT = original_root
+
+            self.assertEqual(exit_context.exception.code, 0)
+            self.assertNotIn("YAML ERRORS", output.getvalue())
 
 
 if __name__ == "__main__":
