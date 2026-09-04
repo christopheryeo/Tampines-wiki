@@ -41,8 +41,6 @@ Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the
 
 Format: tool — surface — files it may touch — files it must not touch — git — link
 
-- ChatGPT Codex — vault: inventory `Inputs/articles/holds/` (~2,258 parked files). Count by hold bucket; sample each major class; report which are recoverable vs correctly parked; recommend fix paths per bucket. Do **not** mass-reprocess or move files into the live ingest queue yet. Commit only a tracked report (or append to a tracked vault log / script output under `scripts/` or `Knowledge/` as appropriate) plus any tiny tooling needed to produce the inventory — not bulk hold contents. Do not invent Features. Do not touch the 30 loose root articles in this Now. Do not commit `.env.local` or bulk `runs/` junk. Do not push to `main` except via your implementer PR. Finish in one PR with work, clear this Now line, and one wiki Done line (Policy 11).
-
 ## Next
 
 - ChatGPT Codex — vault: run ingest → enhance → cascade on the **30** loose markdown files at `Inputs/articles/` root (the live ready queue). Respect hold/fail rules; do not pull files out of `holds/` unless a prior Now cleared them. Do not invent Features. Do not push to `main`. Finish in one PR with work, clear Now, and one wiki Done line (Policy 11) when promoted.
@@ -51,3 +49,4 @@ Format: tool — surface — files it may touch — files it must not touch — 
 
 - 2026-09-04 SGT — maintenance — Morgan — Added this DEVELOPMENT.md and CLAUDE.md to formalize Tampines Wiki as the project home with git (`christopheryeo/Tampines-wiki`).
 - 2026-09-04 SGT — wiki — ChatGPT Codex — Audited the Tampines vault, repaired malformed Tag Coverage labels, and hardened link QA and repair logging.
+- 2026-09-04 SGT — wiki — ChatGPT Codex — Audited all 2,258 parked input files, separated 1,808 correctly parked records from 450 source-recovery candidates, and documented a safe fix path for every hold bucket.
