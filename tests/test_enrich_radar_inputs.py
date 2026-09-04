@@ -91,6 +91,16 @@ class RadarInputEnrichmentTests(unittest.TestCase):
         self.assertIn("tags: ['AI Safety']", text)
         self.assertNotIn("confidence", text)
 
+    def test_replace_fields_appends_numeric_values_without_quotes(self):
+        updated = ENRICH.replace_fields(
+            ["articleId: '42'"],
+            {"coverageCount": 1, "mediaCount": 0},
+        )
+        self.assertIn("coverageCount: 1", updated)
+        self.assertIn("mediaCount: 0", updated)
+        self.assertNotIn("coverageCount: '1'", updated)
+        self.assertNotIn("mediaCount: '0'", updated)
+
     def test_apply_assessment_deduplicates_articles_across_files(self):
         result = {
             "tone": "Opinionated",

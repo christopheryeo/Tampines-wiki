@@ -192,6 +192,8 @@ def replace_fields(lines: list[str], updates: dict[str, Any]) -> list[str]:
     for key, value in updates.items():
         if key not in replaced:
             rendered = yaml_list(value) if isinstance(value, list) else yaml_quote(value)
+            if isinstance(value, (int, float)):
+                rendered = str(value)
             output.append(f"{key}: {rendered}")
     return output
 
