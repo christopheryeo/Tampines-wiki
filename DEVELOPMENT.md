@@ -41,9 +41,11 @@ Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the
 
 Format: tool — surface — files it may touch — files it must not touch — git — link
 
+- ChatGPT Codex — vault: run ingest → enhance → cascade on the **30** loose markdown files at `Inputs/articles/` root (the live ready queue). Respect hold/fail rules; do not pull files out of `holds/` unless a prior Now cleared them. Do not invent Features. Do not push to `main`. Finish in one PR with work, clear this Now line, and one wiki Done line (Policy 11).
+
 ## Next
 
-- ChatGPT Codex — vault: run ingest → enhance → cascade on the **30** loose markdown files at `Inputs/articles/` root (the live ready queue). Respect hold/fail rules; do not pull files out of `holds/` unless a prior Now cleared them. Do not invent Features. Do not push to `main`. Finish in one PR with work, clear Now, and one wiki Done line (Policy 11) when promoted.
+- (none) — the 450 source-empty hold IDs need fresh upstream content before any requeue; not a Codex Now until Christopher names a recovery path.
 
 ## Done
 
