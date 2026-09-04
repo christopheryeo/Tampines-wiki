@@ -216,6 +216,19 @@ def find_unlinked_entities(scan_notes, name_to_slug):
     as plain text but whose slug is never wikilinked anywhere in the note.
     Advisory only. Returns [(path, name, slug)]."""
     findings = []
+    candidates_by_token = {}
+    tokenless_candidates = []
+    for name, slugs in name_to_slug.items():
+        candidate = (
+            name,
+            slugs,
+            re.compile(r"(?<!\w)" + re.escape(name) + r"(?!\w)"),
+        )
+        first_token = re.search(r"\w+", name)
+        if first_token:
+            candidates_by_token.setdefault(first_token.group(0), []).append(candidate)
+        else:
+            tokenless_candidates.append(candidate)
     for path in scan_notes:
         if not path.startswith(ARTICLE_PREFIX):
             continue
@@ -224,10 +237,14 @@ def find_unlinked_entities(scan_notes, name_to_slug):
         linked = {target_stem(link_base(m.group(0)[2:-2])) for m in FULL_LINK.finditer(text)}
         plain = FULL_LINK.sub("  ", extract_prose(text))
         seen = set()
-        for name, slugs in name_to_slug.items():
+        tokens = set(re.findall(r"\w+", plain))
+        candidates = list(tokenless_candidates)
+        for token in tokens:
+            candidates.extend(candidates_by_token.get(token, ()))
+        for name, slugs, pattern in candidates:
             if slugs & linked or name in seen:
                 continue
-            if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", plain):
+            if pattern.search(plain):
                 seen.add(name)
                 findings.append((path, name, sorted(slugs)[0]))
     return findings
@@ -358,9 +375,8 @@ def main():
             print(f"  {path}: [[{target}]] -> no file and no alias match")
         print()
 
-    if nested_display or unbalanced or broken_truncated:
+    if nested_display or broken_truncated:
         affected = sorted({p for p, _ in nested_display}
-                          | {p for p, _, _ in unbalanced}
                           | {p for p, _ in broken_truncated})
         print(f"MALFORMED COVERAGE LABELS ({len(affected)} notes) — target resolves but a link is "
               f"embedded in a truncated ## Coverage label; regenerate the label (advisory):")
@@ -368,6 +384,15 @@ def main():
             print(f"  {path}")
         if len(affected) > 15:
             print(f"  ... and {len(affected) - 15} more")
+        print()
+
+    if unbalanced:
+        print(f"UNBALANCED WIKILINK BRACKETS ({len(unbalanced)} notes) — advisory; inspect literal "
+              "source text separately from actual wikilinks:")
+        for path, n_open, n_close in unbalanced[:15]:
+            print(f"  {path}: openings={n_open}, closings={n_close}")
+        if len(unbalanced) > 15:
+            print(f"  ... and {len(unbalanced) - 15} more")
         print()
 
     if alias_only:
