@@ -41,11 +41,11 @@ Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the
 
 Format: tool — surface — files it may touch — files it must not touch — git — link
 
-- (none)
+- ChatGPT Codex — vault: inventory `Inputs/articles/holds/` (~2,258 parked files). Count by hold bucket; sample each major class; report which are recoverable vs correctly parked; recommend fix paths per bucket. Do **not** mass-reprocess or move files into the live ingest queue yet. Commit only a tracked report (or append to a tracked vault log / script output under `scripts/` or `Knowledge/` as appropriate) plus any tiny tooling needed to produce the inventory — not bulk hold contents. Do not invent Features. Do not touch the 30 loose root articles in this Now. Do not commit `.env.local` or bulk `runs/` junk. Do not push to `main` except via your implementer PR. Finish in one PR with work, clear this Now line, and one wiki Done line (Policy 11).
 
 ## Next
 
-- (none)
+- ChatGPT Codex — vault: run ingest → enhance → cascade on the **30** loose markdown files at `Inputs/articles/` root (the live ready queue). Respect hold/fail rules; do not pull files out of `holds/` unless a prior Now cleared them. Do not invent Features. Do not push to `main`. Finish in one PR with work, clear Now, and one wiki Done line (Policy 11) when promoted.
 
 ## Done
 
