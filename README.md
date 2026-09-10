@@ -178,14 +178,14 @@ The division of labour is deliberate: `index.md` says how the domain *should* wo
 
 ## Version control policy
 
-Git tracks the operating surface of the vault: scripts, schemas, configuration, procedure documents, domain manuals, append-only logs, decisions, and curated entity notes. It does **not** track bulk intake/source material, compiled article notes, generated catalogs, or generated query indexes.
+Git tracks the **operating surface** of the vault — the machinery, not the content: scripts, schemas, configuration (`wiki.yaml`, `topics/`), procedure documents, the vault manuals (`README.md`, `AGENTS.md`, `DEVELOPMENT.md`, `CLAUDE.md`), tests, and site/dashboard code. It does **not** track any content: the ingested corpus, every cascaded entity note, generated catalogs, or generated query indexes. Content is local and rebuildable from source; the Markdown notes remain the source of truth on disk, backed up outside Git.
 
 Keep these rules aligned with `.gitignore`:
 
-- Track entity domains such as `entities/people/`, `entities/organisations/`, `entities/outlet/`, `entities/place/`, `entities/country/`, `entities/topic/`, `entities/issues/`, and `entities/decisions/`.
-- Do not track compiled article notes under `entities/article/`; they are bulk derived corpus data and remain local to the vault.
-- Do not track generated `entities/**/catalog.md` files. Rebuild them with `scripts/generate_catalog.py` when needed.
-- Keep `entities/**/index.md` and `entities/**/log.md` tracked unless a domain has an explicit exception, because they define domain behavior and preserve the audit ledger.
+- Do **not** track any `entities/` content domain. Every domain folder — `article/`, `articles/`, `appointments/`, `country/`, `decisions/`, `issues/`, `organisations/`, `outlet/`, `people/`, `place/`, `search/`, `tag/`, `topic/` — is gitignored in full, including each domain's `index.md` (manual/schema-of-record) and `log.md` (audit ledger). See [[git-tracks-operating-surface-not-content]] for why `issues` and `tag` were brought into line on 2026-09-10.
+- Do **not** track bulk intake/source material under `Inputs/` or `raw/`.
+- Do **not** track generated `entities/**/catalog.md` files. Rebuild them with `scripts/generate_catalog.py` when needed.
+- Do **not** track the generated query index (`index/*.db`) or temporary run artifacts (`runs/**/artifacts/`). Canonical run receipts directly under `runs/YYYY-MM-DD/` are tracked.
 
 ## The Purpose of the Wiki
 
