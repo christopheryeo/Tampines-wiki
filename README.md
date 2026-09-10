@@ -81,6 +81,11 @@ media-monitoring/
 ├── dashboards/            ← saved dashboard layouts (tiles + their SQL queries)
 │   └── default.json
 │
+├── n8n flows/             ← n8n automation for this vault: workflow exports + docs
+│   ├── Media Scanner Workflow - Tampines.json      ← the Media Scanner workflow export
+│   ├── Media Scanner Workflow - Documentation.md   ← workflow docs + validation report
+│   └── n8n Documentation Reference.md              ← bookmarks into the n8n node docs
+│
 ├── runs/                  ← per-run ingest receipts (items found / new / duplicates)
 │   └── YYYY-MM-DD/        ← canonical run receipts plus artifacts/ for temporary JSON
 │
@@ -173,6 +178,7 @@ The division of labour is deliberate: `index.md` says how the domain *should* wo
 - **`scripts/`** — Python maintenance tools plus the written procedures agents follow. Detailed below under [The `scripts/` folder](#the-scripts-folder).
 - **`topics/`** — one JSON file per monitored topic, defining its keywords, sources, run schedule, and last-run status.
 - **`dashboards/`** — saved dashboard layouts; each tile pairs a natural-language question with the SQL that answers it.
+- **`n8n flows/`** — n8n automation that feeds this vault. Holds `Media Scanner Workflow - Tampines.json` (the exported Media Scanner workflow: an AI agent that searches news/social sources, classifies articles for relevance, and uploads compiled Markdown notes to `Inputs/articles/` in Dropbox), `Media Scanner Workflow - Documentation.md` (a human-readable description of that workflow plus a dated n8n validation report), and `n8n Documentation Reference.md` (bookmarks into the official n8n node documentation). Workflow JSON exports carry credential *references* only — never secret values.
 - **`runs/`** — canonical JSON receipts for raw-to-inputs, ingest, cascade, lint, and query operations. Receipts record article/file counts, elapsed time, and average time per article/file. Temporary batch inputs, previews, and diagnostic JSON live under each day's `artifacts/` subfolder.
 - **`index/wiki.db`** — a SQLite mirror of the notes that enables fast, SQL-style queries over the corpus. It is generated from the Markdown, which remains the source of truth.
 
