@@ -39,11 +39,13 @@ entities/articles/
 entities/appointments/
 entities/country/
 entities/decisions/
+entities/issues/
 entities/organisations/
 entities/outlet/
 entities/people/
 entities/place/
 entities/search/
+entities/tag/
 entities/topic/
 
 # Temporary run/debug output
