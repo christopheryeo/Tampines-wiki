@@ -3,65 +3,104 @@
 Source: [`Media Scanner Workflow - Tampines.json`](Media%20Scanner%20Workflow%20-%20Tampines.json)
 Workflow name: **Media Scanner Workflow** · 27 nodes · `active: true`
 
-## Purpose
+## Description
 
-An n8n workflow that takes a media-monitoring query, uses an AI agent to search news (and,
-optionally, social) sources for relevant articles, classifies each for relevance, compiles the
-matches into Markdown notes with YAML frontmatter, and uploads them to Dropbox under the target
-vault's `Inputs/articles/` folder — the intake path the Tampines Wiki ingests from.
+The Media Scanner is an automated intake pipeline that sits in front of the Tampines Wiki and turns
+a plain-language media query into filed, structured articles. A caller — a person, a scheduler, or
+another workflow — sends it a topic to watch (for example, a set of keywords about Tampines,
+optionally combined with AND/OR logic) together with a session ID and, if desired, the name of the
+target Dropbox vault. The workflow hands that query to a Gemini-powered AI agent that has a toolbox
+of scrapers wired to it. Rather than blindly scraping everything, the agent follows a deliberate
+search strategy baked into its system prompt: for a simple OR-list of topics it tries them one at a
+time and stops at the first that yields hits; for two AND-joined groups it pairs the terms by
+position and runs every combination. As it searches, it reads each returned article and issues a
+**relevance verdict** — a confidence score and a one-line reason — for every article ID,
+deduplicating as it goes, and emits that verdict list as strict JSON.
 
-## Entry points
+The workflow then reunites those verdicts with the actual article content the agent's tools pulled
+back (preserved because the agent runs with "return intermediate steps" on). If the agent found
+nothing, the run short-circuits and reports an empty result. Otherwise, a code node reconstructs
+each relevant news article into a standardized record — title, URL, author, published date,
+carefully-separated publisher location vs. country, concepts, duplicate flags, the raw API response,
+and the AI's relevance judgement — and renders it as a Markdown file with YAML frontmatter and a safe
+`<articleId>-<slug>.md` filename. Those files are uploaded to `/{vault}/Inputs/articles/` in Dropbox
+in throttled batches (a two-second pause between batches to stay within Dropbox's rate limits),
+landing them exactly where the wiki's ingest pipeline expects raw intake. Finally the workflow
+returns a completion summary — session ID, status, and article count — to whoever called it. In
+effect it replaces manual news clipping with an AI relevance filter that writes straight into the
+vault's intake folder. As currently wired it is news-only: the social scrapers are attached to the
+agent but their results are never filed, and the news sub-workflow tool is disconnected.
 
-The workflow has two triggers, both feeding the `DATA` node:
+## Process
 
-| Trigger | Type | Notes |
-|---|---|---|
-| **Webhook** | `n8n-nodes-base.webhook` (v2.1) | `POST /media-scanner`, `responseMode: responseNode`. The primary external entry point. |
-| **Executed by AI Agent** | `n8n-nodes-base.executeWorkflowTrigger` (v1.1) | Lets another workflow call this one as a sub-workflow, passing `query` and `sessionId`. |
+**Triggers & input shaping**
 
-`DATA` (`code` v2) normalises either input into `{ sessionId, action: "web", chatInput: query,
-dropbox_root }`, defaulting `dropbox_root` to `"tampines-wiki"` when not supplied.
+1. **Webhook** (`webhook` v2.1) — exposes `POST /media-scanner` (response mode = "response node", so
+   the workflow controls the final reply). The main external entry point; receives the query in the
+   request body.
+2. **Executed by AI Agent** (`executeWorkflowTrigger` v1.1) — alternative entry when another workflow
+   calls this one as a sub-workflow, passing `query` and `sessionId`.
+3. **DATA** (`code` v2) — normalises whichever trigger fired into one object:
+   `{ sessionId, action:"web", chatInput: query, dropbox_root }`, defaulting `dropbox_root` to
+   `"tampines-wiki"` if absent.
 
-## AI classification stage
+**AI search & classification (the agent and its sub-nodes)**
 
-`DATA` → **AI Agent** (`@n8n/n8n-nodes-langchain.agent` v3.1, Tools Agent).
+4. **AI Agent** (`langchain.agent` v3.1, Tools Agent) — the orchestrator. Reads the query, decides
+   which scraper tools to call and with what terms, applies the OR/AND search strategy, judges
+   relevance, deduplicates, and outputs a JSON verdict list. Runs with `returnIntermediateSteps:
+   true` so raw tool results are retained.
+5. **Google Gemini Chat Model** (`lmChatGoogleGemini` v1) — the LLM powering the agent (credential:
+   *Google Gemini*).
+6. **Simple Memory** (`memoryBufferWindow` v1.3) — short conversation buffer so the agent has context
+   within a session.
+7. **Structured Output Parser** (`outputParserStructured` v1.3) — forces the agent's final answer
+   into the required schema (`output[]` of `articleId / relevant / relevance_confidence /
+   relevance_reason`); tolerates accidental double-nesting.
+8. **News Scrapper** (`httpRequestTool` v4.4) — the agent tool that queries NewsAPI.ai's
+   `getArticles` endpoint (credential: *News API Key*). **This is the only source whose results are
+   actually filed downstream.**
+9. **Social scrapers ×9** (`httpRequestTool` v4.4, one each) — **Twitter, Instagram, Tik Tok,
+   LinkedIn (profile), LinkedIn (Jobs), Reddit, Youtube, Facebook (Comments), Facebook (Posts)** —
+   all call Apify actors via `run-sync-get-dataset-items`, with request bodies filled from
+   `$fromAI(...)` (credential: *Apify Token*). Callable by the agent, but their output is not
+   persisted by the current pipeline.
+10. **Call 'News Scrapper Sub-Workflow'** (`toolWorkflow` v2.2) — a tool meant to invoke a separate
+    news sub-workflow (`BTRWBlpuSGS0ozed`). **Not connected to the agent, so it never runs.**
 
-The agent is configured with `returnIntermediateSteps: true` and `hasOutputParser: true`, and a
-system prompt that instructs it to: try topics one at a time (OR-lists) or as positional AND-pairs;
-deduplicate by `articleId`; and emit **raw JSON only** in the shape
-`{ "output": [ { articleId, relevant, relevance_confidence, relevance_reason } ] }` (or `{"output": []}`
-when nothing relevant is found).
+**Branch on results**
 
-Attached sub-nodes:
+11. **Check existing folder - Dropbox** (`httpRequest` v4.4) — lists `/{dropbox_root}/Inputs/articles`
+    in Dropbox (credential: *SentientDropbox*). Passes items into the `If`; its result isn't actually
+    consumed by the branch logic.
+12. **If** (`if` v2.3) — tests whether `AI Agent.output` is an empty array. True (empty) → node 13;
+    False (has articles) → node 14.
+13. **No Articles found** (`code` v2) — returns `{ articles: [] }` and routes straight to the response.
 
-| Sub-node | Type | Connection | Role |
-|---|---|---|---|
-| Google Gemini Chat Model | `lmChatGoogleGemini` (v1) | `ai_languageModel` | The LLM (cred: *Google Gemini*). |
-| Simple Memory | `memoryBufferWindow` (v1.3) | `ai_memory` | Conversation buffer. |
-| Structured Output Parser | `outputParserStructured` (v1.3) | `ai_outputParser` | Enforces the `output[]` schema; tolerates accidental double-nesting. |
-| News Scrapper | `httpRequestTool` (v4.4) | `ai_tool` | NewsAPI.ai `getArticles` (cred: *News API Key*). **The source actually persisted downstream.** |
-| Twitter / Instagram / TikTok / LinkedIn (profile) / LinkedIn (Jobs) / Reddit / YouTube / Facebook (Comments) / Facebook (Posts) | `httpRequestTool` (v4.4) | `ai_tool` | Apify actor calls via `run-sync-get-dataset-items` (cred: *Apify Token*). Bodies built with `$fromAI(...)`. |
-| Call 'News Scrapper Sub-Workflow' | `toolWorkflow` (v2.2) | `ai_tool` (unconnected) | Points at workflow `BTRWBlpuSGS0ozed`. **Currently orphaned — see validation report.** |
+**Compile matched articles into files**
 
-## Processing and delivery pipeline
+14. **Response** (`code` v2) — the reassembly step. Extracts the raw news articles from the agent's
+    `intermediateSteps` (tool `news_scrapper`), joins each AI verdict to its raw article by ID,
+    quarantines verdicts with no matching source, builds a standardized article object, renders
+    YAML-frontmatter Markdown, derives a `<articleId>-<slug>.md` filename, and emits each article with
+    a base64 Markdown binary attached.
 
-1. **AI Agent** `main` → **Check existing folder - Dropbox** (`httpRequest` v4.4) — `POST list_folder`
-   on `/{{dropbox_root}}/Inputs/articles` (cred: *SentientDropbox*).
-2. → **If** (`if` v2.3) — condition: `AI Agent.output` array **is empty**.
-   - **true (empty)** → **No Articles found** (`code` v2, returns `{articles: []}`) → **Respond to Webhook**.
-   - **false (has articles)** → **Response** (`code` v2).
-3. **Response** joins each AI classification back to its raw NewsAPI article (pulled from the agent's
-   `intermediateSteps` where the tool name is `news_scrapper`), builds a standardized article object,
-   renders YAML frontmatter + body into a Markdown file (base64 binary), and derives a safe filename
-   `<articleId>-<slug>.md`. Classifications with no matching raw article are dropped (quarantine
-   object built but not emitted to the normal pipeline).
-4. **Response** → **Loop Over Items** (`splitInBatches` v3, batch 10):
-   - **loop** → **Wait** (`wait` v1.1, 2s) → **Upload a file** (`dropbox` v1) to
-     `=/{{ DATA.dropbox_root }}/Inputs/articles/{{ Response.fileName }}` (cred: *SentientDropbox*) → back to the loop.
-   - **done** → **Rebuild Response Items** (`code` v2, returns `{ sessionId, status: "completed",
-     articleCount, error: null }`) → **Respond to Webhook**.
-5. **Respond to Webhook** (`respondToWebhook` v1.5, `respondWith: allIncomingItems`) returns the
-   final payload.
+**Throttled upload loop**
+
+15. **Loop Over Items** (`splitInBatches` v3, batch 10) — iterates the compiled articles in batches;
+    "done" branch → node 18, "loop" branch → node 16.
+16. **Wait** (`wait` v1.1, 2s) — pauses between batches to respect Dropbox rate limits.
+17. **Upload a file** (`dropbox` v1) — writes each Markdown file to
+    `/{dropbox_root}/Inputs/articles/{fileName}` (credential: *SentientDropbox*), then returns to the
+    loop.
+
+**Finish**
+
+18. **Rebuild Response Items** (`code` v2) — after all uploads, builds the summary
+    `{ sessionId, status:"completed", articleCount, error:null }`.
+19. **Respond to Webhook** (`respondToWebhook` v1.5, `respondWith: allIncomingItems`) — returns the
+    final payload to the caller: the completion summary (articles filed) or `{ articles: [] }`
+    (nothing found).
 
 ## Credentials referenced (reference only — no secret values in the JSON)
 
