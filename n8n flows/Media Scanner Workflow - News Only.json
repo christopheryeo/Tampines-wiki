@@ -5,17 +5,18 @@
       "parameters": {
         "hasOutputParser": true,
         "options": {
-          "systemMessage": "You are a helpful research assistant.\nWhen the user asks a question, use the available scraper tools to gather all relevant articles.\n\nSTRICT EXECUTION ORDER & STEP DEPENDENCIES:\n1. STEP 1 MUST ALWAYS BE 'News Scrapper'. You are STRICTLY FORBIDDEN from calling 'Gemini URL Search' or any other tool until 'News Scrapper' has finished returning results for the topic.\n2. STEP 2 IS ALWAYS 'Gemini URL Search'. Only execute this call AFTER receiving the output from 'News Scrapper'.\n3. STEP 3 IS DEDUPLICATION. Compare SET B against SET A to create SET C.\n4. STEP 4 IS SET C FETCHING. Use 'NewsAPI - URL to URI Mapper' and 'NewsAPI - Get Article by URI' ONLY for URLs in SET C.\n\nSTRICT EXECUTION BUDGET & BATCHING RULES:\n1. You have a hard budget of 10 total iterations. Efficiency is critical.\n2. Never call a tool sequentially one-by-one if you have multiple URLs. Process them in batches using a single parallel step whenever possible.\n3. Strict limit: Limit SET C to a maximum of 3 URLs per topic to prevent iteration overflow.\n\nNEWS TOPIC HANDLING (SET A / SET B / SET C):\nWhenever you decide a topic needs news-article coverage, follow this exact procedure:\n\n1. Call 'News Scrapper' FIRST with the topic keyword. Its results are SET A. Note the 'url' field of every SET A article.\n2. Call 'Gemini URL Search' SECOND with the SAME topic keyword (identical string). Its results are SET B, a JSON array of URLs.\n3. Compare SET B against the SET A urls. Remove from SET B any url that already appears (case-insensitive, ignoring a trailing slash) in SET A. Whatever remains is SET C.\n4. If SET C is empty, skip directly to step 6.\n5. Take AT MOST 3 URLs from SET C:\n   - Perform all 'NewsAPI - URL to URI Mapper' calls for these URLs in a SINGLE batch/tool invocation step.\n   - Immediately after, perform all 'NewsAPI - Get Article by URI' calls for those returned URIs in a SINGLE batch/tool invocation step.\n   - Add each successfully fetched article to your working article pool.\n6. Your working article pool for this topic is SET A plus every article you fetched in step 5. Classify every article in this pool for relevance using the rules below. Do not reprocess or duplicate an article that appears in both SET A and a fetched SET C result.\n\nCASE A — Single Group A with OR-list (e.g., \"topic1 OR topic2 OR topic3\"):\n- Try each topic ONE AT A TIME, in order, as a single-term call: keyword = [topic].\n- If a topic returns relevant articles, STOP immediately — do not search any remaining topics in the list. Proceed directly to processing those results.\n- If a topic returns 0 articles (or no relevant results), move on to the next topic in the list.\n- If ALL topics in the list return 0 relevant articles, proceed to the final step and output an empty array: {\"output\": []}.\n\nCASE B — Two OR-groups joined by AND (e.g., \"(topicA1 OR topicA2) AND (topicB1 OR topicB2)\"):\n- Pair terms by POSITION: 1st term of Group A with 1st term of Group B, 2nd term of Group B with 2nd term of Group B, and so on.\n- Combine positional pairs into a single string joined by \" AND \".\n- Run EVERY positional pair regardless of whether previous pairs returned results or not — do NOT stop early.\n- Collect and keep results from every successful pair.\n\nIMPORTANT RULES FOR TOOL CALLS & FINAL OUTPUT:\n1. Process EVERY relevant article returned by the scraper across all attempted queries.\n2. Deduplicate results by articleId before generating the final output.\n3. Output RAW JSON ONLY as your final response message.\n4. Do NOT call or execute any formatting function/tool (such as format_final_json_response) during or after the final step.\n5. Do NOT log intermediate tool execution text (e.g., \"Calling News_Scrapper with input...\") in your final text output.\n6. Do NOT use markdown code fences (like ```json or ```).\n\nREQUIRED JSON STRUCTURE:\n{\n  \"output\": [\n    {\n      \"articleId\": \"string\",\n      \"relevant\": true,\n      \"relevance_confidence\": 1.0,\n      \"relevance_reason\": \"One sentence summary explanation.\"\n    }\n  ]\n}\n\nField mapping:\n- articleId → unique identifier from scraper (copied exactly).\n- relevant → boolean indicating if article answers the query.\n- relevance_confidence → number between 0 and 1.\n- relevance_reason → short one-sentence reason.\n\nIf zero relevant articles are found across all attempted searches, return EXACTLY:\n{\"output\": []}",
+          "systemMessage": "You are a helpful research assistant.\nWhen the user asks a question, use the available scraper tools to gather all relevant articles.\n\nSTRICT EXECUTION ORDER & STEP DEPENDENCIES:\n1. STEP 1 MUST ALWAYS BE 'News Scrapper'. You are STRICTLY FORBIDDEN from calling 'Gemini URL Search' or any other tool until 'News Scrapper' has finished returning results for the topic.\n2. STEP 2 IS ALWAYS 'Gemini URL Search'. Only execute this call AFTER receiving the output from 'News Scrapper'.\n3. STEP 3 IS DEDUPLICATION. Compare SET B against SET A to create SET C.\n4. STEP 4 IS SET C FETCHING. Use 'NewsAPI - URL to URI Mapper' and 'NewsAPI - Get Article by URI' ONLY for URLs in SET C.\n\nSTRICT EXECUTION BUDGET & BATCHING RULES:\n1. You have a hard budget of 40 total iterations. Efficiency is still critical, but plan against the real cost below, not an optimistic one.\n2. Real per-topic cost: a single topic can cost up to 8 tool calls -- 1 'News Scrapper' + 1 'Gemini URL Search' + up to 3 'NewsAPI - URL to URI Mapper' + up to 3 'NewsAPI - Get Article by URI'.\n3. 'NewsAPI - URL to URI Mapper' and 'NewsAPI - Get Article by URI' each accept exactly ONE url/uri per call -- they cannot be batched into a single call. \"Batch\" here only means: call each of them once per SET C url, back-to-back, without interleaving unrelated tool calls in between, so you don't waste iterations re-establishing context.\n4. Strict limit: Limit SET C to a maximum of 3 URLs per topic to prevent iteration overflow.\n5. If you are handling an OR-list (CASE A) and are running low on remaining iterations, prefer stopping the search early over risking truncation -- a partial but complete result is better than a cut-off run.\n\nNEWS TOPIC HANDLING (SET A / SET B / SET C):\nWhenever you decide a topic needs news-article coverage, follow this exact procedure:\n\n1. Call 'News Scrapper' FIRST with the topic keyword. Its results are SET A. Note the 'url' field of every SET A article.\n2. Call 'Gemini URL Search' SECOND with the SAME topic keyword (identical string). This tool returns the full Gemini generateContent response envelope, NOT a clean array. To get SET B: read response.candidates[0].content.parts[0].text -- this is itself a JSON-encoded string, not an object -- and JSON.parse it to get the array of URLs. If that field is missing, empty, or fails to parse, treat SET B as an empty array and continue (do not retry the call and do not treat this as an error).\n3. Compare SET B against the SET A urls. Remove from SET B any url that already appears (case-insensitive, ignoring a trailing slash) in SET A. Whatever remains is SET C.\n4. If SET C is empty, skip directly to step 6.\n5. Take AT MOST 3 URLs from SET C:\n   - Call 'NewsAPI - URL to URI Mapper' once per SET C url, back-to-back (one call per url -- this tool takes a single url per call, it cannot be batched).\n   - Immediately after, call 'NewsAPI - Get Article by URI' once per URI returned above, back-to-back (again, one call per uri).\n   - Add each successfully fetched article to your working article pool.\n6. Your working article pool for this topic is SET A plus every article you fetched in step 5. Classify every article in this pool for relevance using the rules below. Do not reprocess or duplicate an article that appears in both SET A and a fetched SET C result.\n\nCASE A — Single Group A with OR-list (e.g., \"topic1 OR topic2 OR topic3\"):\n- Try each topic ONE AT A TIME, in order, as a single-term call: keyword = [topic].\n- If a topic returns relevant articles, STOP immediately — do not search any remaining topics in the list. Proceed directly to processing those results.\n- If a topic returns 0 articles (or no relevant results), move on to the next topic in the list.\n- If ALL topics in the list return 0 relevant articles, proceed to the final step and output an empty array: {\"output\": []}.\n\nCASE B — Two OR-groups joined by AND (e.g., \"(topicA1 OR topicA2) AND (topicB1 OR topicB2)\"):\n- Pair terms by POSITION: 1st term of Group A with 1st term of Group B, 2nd term of Group A with 2nd term of Group B, and so on.\n- Combine positional pairs into a single string joined by \" AND \".\n- Run EVERY positional pair regardless of whether previous pairs returned results or not — do NOT stop early.\n- Collect and keep results from every successful pair.\n\nIMPORTANT RULES FOR TOOL CALLS & FINAL OUTPUT:\n1. Process EVERY relevant article returned by the scraper across all attempted queries.\n2. Deduplicate results by articleId before generating the final output.\n3. Output RAW JSON ONLY as your final response message.\n4. Do NOT call or execute any formatting function/tool (such as format_final_json_response) during or after the final step.\n5. Do NOT log intermediate tool execution text (e.g., \"Calling News_Scrapper with input...\") in your final text output.\n6. Do NOT use markdown code fences (like ```json or ```).\n\nREQUIRED JSON STRUCTURE:\n{\n  \"output\": [\n    {\n      \"articleId\": \"string\",\n      \"relevant\": true,\n      \"relevance_confidence\": 1.0,\n      \"relevance_reason\": \"One sentence summary explanation.\"\n    }\n  ]\n}\n\nField mapping:\n- articleId → unique identifier from scraper (copied exactly).\n- relevant → boolean indicating if article answers the query.\n- relevance_confidence → number between 0 and 1.\n- relevance_reason → short one-sentence reason.\n\nIf zero relevant articles are found across all attempted searches, return EXACTLY:\n{\"output\": []}",
+          "maxIterations": 40,
           "returnIntermediateSteps": true
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -912,
-        1520
+        -3232,
+        1936
       ],
-      "id": "691b5e46-ffb2-48b0-bdca-ee7eddf97244",
+      "id": "30cedf87-ff4e-40a8-bd57-f70733f9032c",
       "name": "AI Agent"
     },
     {
@@ -26,10 +27,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1456,
-        1872
+        -3776,
+        2288
       ],
-      "id": "bc4aaf29-c6e6-4956-bda4-0266cf63bbee",
+      "id": "00a3a815-c0bf-43b7-80b7-6de36fd20be8",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
@@ -43,10 +44,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -1296,
-        1872
+        -3616,
+        2288
       ],
-      "id": "195a7583-2321-4bb6-b9a5-f0104ec6c4b0",
+      "id": "8939aa75-7a27-44d3-9dd3-66fc97c43a55",
       "name": "Simple Memory"
     },
     {
@@ -64,10 +65,10 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.4,
       "position": [
-        -1056,
-        1856
+        -3376,
+        2272
       ],
-      "id": "d99564c9-5c47-4912-aba9-23749da33d54",
+      "id": "084af471-54a2-4949-b9b6-d1fac0b4006c",
       "name": "News Scrapper",
       "credentials": {
         "httpQueryAuth": {
@@ -86,10 +87,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1440,
-        1376
+        -3760,
+        1792
       ],
-      "id": "89c17436-86bc-45a3-86de-73ffbed0f273",
+      "id": "38a3d8be-cb5a-48c9-ac94-872fda913139",
       "name": "Webhook",
       "webhookId": "1a1bf627-6f3a-4c7b-8a4e-c7eca910bb98"
     },
@@ -100,10 +101,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1136,
-        1520
+        -3456,
+        1936
       ],
-      "id": "9d844dfd-cd60-4971-a06a-03e5e3a4729b",
+      "id": "f7259682-bd67-447e-b36c-15e51f21bea6",
       "name": "DATA"
     },
     {
@@ -114,10 +115,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -144,
-        1840
+        -2464,
+        2256
       ],
-      "id": "77e45616-318c-4f5e-82c1-9203eac5f3a5",
+      "id": "48852ea0-86e3-4b85-81d8-e3d00901924f",
       "name": "Structured Output Parser"
     },
     {
@@ -136,37 +137,11 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -1440,
-        1584
+        -3760,
+        2000
       ],
-      "id": "5792ae8d-5cb9-442d-b043-bf2bd077a59e",
+      "id": "872c6c6c-e1e2-4629-bbbe-83785ccf1576",
       "name": "Executed by AI Agent"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.dropboxapi.com/2/files/list_folder",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "dropboxOAuth2Api",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"path\": \"/{{ $('DATA').item.json.dropbox_root }}/Inputs/articles\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.4,
-      "position": [
-        -512,
-        1520
-      ],
-      "id": "52bb4bb6-ef7b-458a-b358-ce00620466eb",
-      "name": "Check existing folder - Dropbox",
-      "credentials": {
-        "dropboxOAuth2Api": {
-          "id": "rwWdO8aRuGu5ni83",
-          "name": "Dropbox account"
-        }
-      }
     },
     {
       "parameters": {
@@ -177,10 +152,10 @@
       "type": "n8n-nodes-base.dropbox",
       "typeVersion": 1,
       "position": [
-        416,
-        1536
+        -1728,
+        1936
       ],
-      "id": "af854cbb-69c3-4412-a2be-332265196e81",
+      "id": "3b9b6a2a-1a5d-47f9-bdb3-114411740368",
       "name": "Upload a file",
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -199,10 +174,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        224,
-        1360
+        -1920,
+        1760
       ],
-      "id": "a31e349f-c68c-4151-853e-2875ec6c9e91",
+      "id": "63969122-4c52-49a0-ba2f-23bdedc10ade",
       "name": "Respond to Webhook"
     },
     {
@@ -212,10 +187,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        240,
-        1536
+        -1904,
+        1936
       ],
-      "id": "6ed42f12-9932-4a11-8603-56ccc8a3b9bd",
+      "id": "0d9ef8bd-c6fb-402b-9888-6cf168164cfb",
       "name": "Wait",
       "webhookId": "a50479d8-c5f6-4db9-8769-2c4f63a880a2"
     },
@@ -248,23 +223,23 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -240,
-        1520
+        -2384,
+        1920
       ],
-      "id": "16eea04a-8e3e-4c79-8328-f26f907302df",
+      "id": "cb6bc045-5358-44d0-9cb3-a29d49fb208c",
       "name": "If"
     },
     {
       "parameters": {
-        "jsCode": "return [\n  {\n    json: {\n      articles: []\n    }\n  }\n];"
+        "jsCode": "const sessionId = $('DATA').first().json.sessionId;\n\nreturn [\n  {\n    json: {\n      sessionId,\n      status: \"no_articles\",\n      articleCount: 0,\n      articles: [],\n      error: null\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        16,
-        1360
+        -2128,
+        1760
       ],
-      "id": "8fbce02a-c4f9-4a80-b5db-cc1f456b06fe",
+      "id": "96a5b628-14ae-493d-8a1f-fcda7ced2e9c",
       "name": "No Articles found"
     },
     {
@@ -275,50 +250,46 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        608,
-        1536
+        -1536,
+        1936
       ],
-      "id": "674fdaf9-d629-4c86-8868-fa6189295bfb",
+      "id": "1cb6de8f-eadc-4c7a-84f9-2cc98008e7c3",
       "name": "Loop Over Items"
     },
     {
       "parameters": {
-        "jsCode": "const sessionId = $('DATA').first().json.sessionId;\n\nreturn [\n  {\n    json: {\n      sessionId,\n      status: \"completed\",\n      articleCount: $('Response').all().length,\n      error: null\n    }\n  }\n];"
+        "jsCode": "const sessionId = $('DATA').first().json.sessionId;\n\nreturn [\n  {\n    json: {\n      sessionId,\n      status: \"completed\",\n      articleCount: $('Response').all().length,\n      articles: [],\n      error: null\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        816,
-        1520
+        -1328,
+        1920
       ],
-      "id": "b07d02b7-50cd-4002-a834-11e9df556bc8",
+      "id": "a68b22ba-35fa-4452-bcc3-e20594e28995",
       "name": "Rebuild Response Items"
     },
     {
       "parameters": {
-        "toolDescription": "SET B TOOL. Use this only for topics where you have ALREADY called News Scrapper for the same keyword (that call produced SET A). This tool asks Gemini (with live Google Search grounding) for a second, independent list of candidate article URLs on the same topic. Input 'keyword' must be the exact same topic string you used in the News Scrapper call. Returns a raw JSON array of URLs (SET B) -- no article content, URLs only.",
+        "toolDescription": "SET B TOOL. Use this only for topics where you have ALREADY called News Scrapper for the same keyword (that call produced SET A). This tool asks Gemini (with live Google Search grounding) for a second, independent list of candidate article URLs on the same topic. Input 'keyword' must be the exact same topic string you used in the News Scrapper call. IMPORTANT -- output shape: this returns the raw Gemini generateContent response, not a clean array. The URL list is JSON-encoded text at response.candidates[0].content.parts[0].text; you must read that string and JSON.parse it yourself to get SET B (an array of URL strings, e.g. [\"https://example.com/a\"]). If that path is missing or does not parse as JSON, treat SET B as an empty array.",
         "method": "POST",
-        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "googlePalmApi",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": {{ JSON.stringify('Search the web for recent, real news articles about: ' + $fromAI('keyword', 'The exact same topic/keyword string used in the News Scrapper (Set A) call for this topic', 'string') + '. Return ONLY a raw JSON array of clean, direct article URLs (e.g. [\\\"https://example.com/article-slug\\\"]). Do not include main homepages, index pages, or markdown formatting. Example output: [\\\"https://example.com/article-1\\\", \\\"https://example.com/article-2\\\"]') }}\n        }\n      ]\n    }\n  ],\n  \"tools\": [\n    { \"google_search\": {} }\n  ]\n}",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": {{ JSON.stringify('Search the web for recent, real news articles about: ' + $fromAI('keyword', 'The exact same topic/keyword string used in the News Scrapper (Set A) call for this topic', 'string') + '. Return ONLY a raw JSON array of clean, direct article URLs (e.g. [\\\"https://example.com/article-slug\\\"]). Do not include main homepages, index pages, or markdown formatting -- no ```json fences, no commentary, no trailing text. Respond with ONLY the raw JSON array. Example output: [\\\"https://example.com/article-1\\\", \\\"https://example.com/article-2\\\"]') }}\n        }\n      ]\n    }\n  ],\n  \"tools\": [\n    { \"google_search\": {} }\n  ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.4,
       "position": [
-        -864,
-        1840
+        -3184,
+        2256
       ],
-      "id": "f42efcdc-a337-4710-9d10-581b9a861e25",
+      "id": "86789d9d-f462-4554-b069-63e109d6d3e8",
       "name": "Gemini URL Search",
       "credentials": {
-        "httpQueryAuth": {
-          "id": "eOPHxZKfiScJDN8E",
-          "name": "News API Key"
-        },
         "googlePalmApi": {
           "id": "tgdTueYtJYyG64jy",
           "name": "Google Gemini Api account"
@@ -340,10 +311,10 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.4,
       "position": [
-        -624,
-        1840
+        -2944,
+        2256
       ],
-      "id": "1c7b978c-cd98-4d2f-b565-505b4042e1f7",
+      "id": "6e3f6846-194d-4aac-9481-24847922d35c",
       "name": "NewsAPI - URL to URI Mapper",
       "credentials": {
         "httpQueryAuth": {
@@ -367,10 +338,10 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.4,
       "position": [
-        -368,
-        1840
+        -2688,
+        2256
       ],
-      "id": "aecc909b-234c-4517-91de-449d03035457",
+      "id": "ccd4c5c9-e5a9-486e-8118-2e0c83285380",
       "name": "NewsAPI - Get Article by URI",
       "credentials": {
         "httpQueryAuth": {
@@ -381,16 +352,89 @@
     },
     {
       "parameters": {
-        "jsCode": "// ============================================================\n// 1. FETCH AI AGENT DATA SAFELY\n// ============================================================\n\nconst aiAgentData = $('AI Agent').first().json || {};\n\nconst items =\n  Array.isArray(aiAgentData.output)\n    ? aiAgentData.output\n    : [];\n\nconst intermediateSteps =\n  Array.isArray(aiAgentData.intermediateSteps)\n    ? aiAgentData.intermediateSteps\n    : [];\n\n\n// ============================================================\n// 2. EXTRACT RAW ARTICLE RESULTS\n//\n// Supports:\n//   A. News Scrapper\n//   B. NewsAPI_-_Get_Article_by_URI\n// ============================================================\n\nconst rawArticleMap = {};\n\nfor (const step of intermediateSteps) {\n\n  const toolName =\n    String(step?.action?.tool || \"\")\n      .trim()\n      .toLowerCase();\n\n  let obs = step?.observation;\n\n  if (!obs) {\n    continue;\n  }\n\n\n  // ----------------------------------------------------------\n  // Observation may be returned as a JSON string\n  // ----------------------------------------------------------\n\n  if (typeof obs === \"string\") {\n\n    try {\n      obs = JSON.parse(obs);\n    } catch (error) {\n      continue;\n    }\n  }\n\n\n  // ----------------------------------------------------------\n  // Normalize array wrapper\n  // ----------------------------------------------------------\n\n  const payloads =\n    Array.isArray(obs)\n      ? obs\n      : [obs];\n\n\n  for (const payload of payloads) {\n\n    if (\n      !payload ||\n      typeof payload !== \"object\"\n    ) {\n      continue;\n    }\n\n\n    // ========================================================\n    // A. NEWS SCRAPPER\n    //\n    // Expected:\n    //\n    // {\n    //   \"articles\": {\n    //     \"results\": [\n    //       {\n    //         \"uri\": \"...\",\n    //         \"title\": \"...\",\n    //         \"body\": \"...\"\n    //       }\n    //     ]\n    //   }\n    // }\n    // ========================================================\n\n    if (\n      toolName === \"news_scrapper\" &&\n      payload.articles &&\n      Array.isArray(payload.articles.results)\n    ) {\n\n      for (const article of payload.articles.results) {\n\n        if (\n          !article ||\n          typeof article !== \"object\"\n        ) {\n          continue;\n        }\n\n\n        const id =\n          article.uri ||\n          article.articleId ||\n          article.id;\n\n\n        if (!id) {\n          continue;\n        }\n\n\n        rawArticleMap[String(id)] = article;\n      }\n\n      continue;\n    }\n\n\n    // ========================================================\n    // B. NEWSAPI - GET ARTICLE BY URI\n    //\n    // Actual NewsAPI.ai response:\n    //\n    // [\n    //   {\n    //     \"9428707710\": {\n    //       \"info\": {\n    //         \"uri\": \"9428707710\",\n    //         \"title\": \"...\",\n    //         \"body\": \"...\"\n    //       }\n    //     }\n    //   }\n    // ]\n    //\n    // We extract:\n    //\n    // payload\n    //   ↓\n    // payload[\"9428707710\"]\n    //   ↓\n    // .info\n    //   ↓\n    // article\n    // ========================================================\n\n    if (\n      toolName === \"newsapi_-_get_article_by_uri\"\n    ) {\n\n      for (\n        const [uri, value]\n        of Object.entries(payload)\n      ) {\n\n        if (\n          !value ||\n          typeof value !== \"object\"\n        ) {\n          continue;\n        }\n\n\n        const article =\n          value.info;\n\n\n        if (\n          !article ||\n          typeof article !== \"object\"\n        ) {\n          continue;\n        }\n\n\n        const id =\n          article.uri ||\n          uri;\n\n\n        if (!id) {\n          continue;\n        }\n\n\n        rawArticleMap[String(id)] =\n          article;\n      }\n\n      continue;\n    }\n  }\n}\n\n\n// ============================================================\n// 3. OUTPUT ARRAYS\n// ============================================================\n\nconst outputItems = [];\n\nconst quarantineItems = [];\n\n\n// ============================================================\n// 4. PROCESS AI CLASSIFICATIONS\n// ============================================================\n\nitems.forEach(c => {\n\n  if (\n    !c ||\n    !c.articleId\n  ) {\n    return;\n  }\n\n\n  const articleId =\n    String(c.articleId);\n\n\n  // ==========================================================\n  // 5. FIND MATCHING RAW ARTICLE\n  // ==========================================================\n\n  const raw =\n    rawArticleMap[articleId];\n\n\n  // ==========================================================\n  // 6. EMPTY-SHELL DETECTION\n  //\n  // If AI Agent returned an articleId but the matching\n  // article was not found in either:\n  //\n  //   - News Scrapper\n  //   - Get Article by URI\n  //\n  // quarantine it.\n  // ==========================================================\n\n  if (\n    !raw ||\n    typeof raw !== \"object\" ||\n    Object.keys(raw).length === 0\n  ) {\n\n    quarantineItems.push({\n\n      articleId:\n        articleId,\n\n      dataType:\n        c.dataType || \"news\",\n\n      relevant:\n        c.relevant ?? false,\n\n      relevance_confidence:\n        c.relevance_confidence ?? 0,\n\n      relevance_reason:\n        c.relevance_reason || \"\",\n\n      articleDataStatus:\n        \"quarantined_missing_scraper_data\",\n\n      quarantineReason:\n        \"AI classification exists but matching raw article was not found in News Scrapper or NewsAPI Get Article by URI.\"\n\n    });\n\n    return;\n  }\n\n\n  // ==========================================================\n  // 7. SOURCE INFORMATION\n  // ==========================================================\n\n  const source =\n    raw.source || {};\n\n  const sourceLocation =\n    source.location || {};\n\n\n  // ==========================================================\n  // 8. PUBLISHER LOCATION\n  //\n  // ONLY the location returned by the API.\n  //\n  // Example:\n  //   San Francisco\n  //   Kuala Lumpur\n  //   London\n  //\n  // Do NOT convert this into country.\n  // ==========================================================\n\n  const publisherLocation =\n    sourceLocation?.label?.eng || \"\";\n\n\n  // ==========================================================\n  // 9. PUBLISHER COUNTRY\n  //\n  // ONLY take country from:\n  //\n  // source.location.country.label.eng\n  //\n  // NEVER:\n  //\n  // publisherCountry = publisherLocation\n  // ==========================================================\n\n  const publisherCountry =\n    sourceLocation?.country?.label?.eng || \"\";\n\n\n  // ==========================================================\n  // 10. PUBLISHER LOCATION VALIDATED\n  //\n  // Preserve the API value exactly.\n  // ==========================================================\n\n  const publisherLocationValidated =\n    source?.locationValidated ?? false;\n\n\n  // ==========================================================\n  // 11. PUBLISHER TYPE / CATEGORY\n  //\n  // Capture only values actually returned by API.\n  // ==========================================================\n\n  const publisherType =\n    source?.type ||\n    source?.sourceType ||\n    source?.mediaType ||\n    source?.category ||\n    \"\";\n\n\n  const publisherGroup =\n    source?.group ||\n    source?.groupUri ||\n    \"\";\n\n\n  // ==========================================================\n  // 12. STANDARDIZED ARTICLE OBJECT\n  // ==========================================================\n\n  const article = {\n\n    articleId:\n      articleId,\n\n\n    articleTitle:\n      raw.title || \"\",\n\n\n    url:\n      raw.url || \"\",\n\n\n    language:\n      raw.lang || \"\",\n\n\n    author:\n      (\n        raw.authors &&\n        raw.authors[0] &&\n        raw.authors[0].name\n      ) || \"\",\n\n\n    dataType:\n      raw.dataType || \"news\",\n\n\n    publishedDate:\n      raw.dateTimePub ||\n      raw.dateTime ||\n      raw.date ||\n      \"\",\n\n\n    publisherName:\n      source.title || \"\",\n\n\n    publisherDomain:\n      source.uri || \"\",\n\n\n    // --------------------------------------------------------\n    // Publisher Location\n    // --------------------------------------------------------\n\n    publisherLocation:\n      publisherLocation,\n\n\n    // --------------------------------------------------------\n    // Publisher Country\n    // --------------------------------------------------------\n\n    publisherCountry:\n      publisherCountry,\n\n\n    // --------------------------------------------------------\n    // API validation status\n    // --------------------------------------------------------\n\n    publisherLocationValidated:\n      publisherLocationValidated,\n\n\n    // --------------------------------------------------------\n    // Publisher type/category\n    // --------------------------------------------------------\n\n    publisherType:\n      publisherType,\n\n\n    publisherGroup:\n      publisherGroup,\n\n\n    // --------------------------------------------------------\n    // Other article metadata\n    // --------------------------------------------------------\n\n    concepts:\n      raw.concepts || [],\n\n\n    categories:\n      raw.categories || [],\n\n\n    articleLocation:\n      raw.location\n        ? String(raw.location)\n        : \"null\",\n\n\n    duplicateList:\n      raw.duplicateList || [],\n\n\n    duplicateFlag:\n      String(\n        raw.isDuplicate ?? false\n      ),\n\n\n    originalArticleReference:\n      raw.originalArticle\n        ? String(raw.originalArticle)\n        : \"null\",\n\n\n    // --------------------------------------------------------\n    // Preserve complete raw NewsAPI response\n    // --------------------------------------------------------\n\n    rawNewsApiResponse:\n      raw,\n\n\n    // --------------------------------------------------------\n    // Article body\n    // --------------------------------------------------------\n\n    body:\n      raw.body || \"\",\n\n\n    // --------------------------------------------------------\n    // AI relevance classification\n    // --------------------------------------------------------\n\n    relevant:\n      c.relevant !== undefined\n        ? c.relevant\n        : false,\n\n\n    relevance_confidence:\n      c.relevance_confidence !== undefined\n        ? c.relevance_confidence\n        : 0,\n\n\n    relevance_reason:\n      c.relevance_reason || \"\",\n\n\n    // --------------------------------------------------------\n    // Article data status\n    // --------------------------------------------------------\n\n    articleDataStatus:\n      \"complete\"\n  };\n\n\n  // ==========================================================\n  // 13. CREATE FRONTMATTER\n  // ==========================================================\n\n  const frontmatterFields = {\n    ...article\n  };\n\n\n  // Body is added separately\n  delete frontmatterFields.body;\n\n\n  // Raw response is added separately\n  delete frontmatterFields.rawNewsApiResponse;\n\n\n  let frontmatter =\n    \"---\\n\";\n\n\n  for (\n    const [key, value]\n    of Object.entries(frontmatterFields)\n  ) {\n\n    let safeValue;\n\n\n    if (\n      value !== null &&\n      typeof value === \"object\"\n    ) {\n\n      safeValue =\n        JSON.stringify(value)\n          .replace(\n            /'/g,\n            \"''\"\n          );\n\n    } else {\n\n      safeValue =\n        String(value ?? \"\")\n          .replace(\n            /'/g,\n            \"''\"\n          );\n    }\n\n\n    frontmatter +=\n      `${key}: '${safeValue}'\\n`;\n  }\n\n\n  // ==========================================================\n  // 14. ADD RAW NEWSAPI.AI RESPONSE\n  // ==========================================================\n\n  const safeRawResponse =\n    JSON.stringify(\n      article.rawNewsApiResponse || {}\n    )\n      .replace(\n        /'/g,\n        \"''\"\n      );\n\n\n  frontmatter +=\n    `rawNewsApiResponse: '${safeRawResponse}'\\n`;\n\n\n  frontmatter +=\n    \"---\\n\\n\";\n\n\n  // ==========================================================\n  // 15. FINAL MARKDOWN CONTENT\n  // ==========================================================\n\n  const finalMarkdownFile =\n    frontmatter +\n    article.body;\n\n\n  // ==========================================================\n  // 16. SAFE FILE NAME\n  // ==========================================================\n\n  const cleanId =\n    String(article.articleId)\n      .replace(\n        /[^a-zA-Z0-9]/g,\n        \"_\"\n      );\n\n\n  const cleanSlug =\n    (\n      article.articleTitle ||\n      \"untitled\"\n    )\n      .toLowerCase()\n      .replace(\n        /[^a-z0-9]/g,\n        \"-\"\n      )\n      .replace(\n        /-+/g,\n        \"-\"\n      )\n      .replace(\n        /^-|-$/g,\n        \"\"\n      )\n      .slice(\n        0,\n        50\n      )\n      .replace(\n        /-$/,\n        \"\"\n      );\n\n\n  const fileName =\n    `${cleanId}-${cleanSlug}.md`\n      .trim();\n\n\n  // ==========================================================\n  // 17. PUSH FINAL ARTICLE\n  // ==========================================================\n\n  outputItems.push({\n\n    json: {\n      fileName,\n      ...article\n    },\n\n\n    binary: {\n\n      data: {\n\n        data:\n          Buffer\n            .from(\n              finalMarkdownFile,\n              \"utf-8\"\n            )\n            .toString(\"base64\"),\n\n\n        mimeType:\n          \"text/markdown\",\n\n\n        fileName:\n          fileName\n      }\n    }\n  });\n\n});\n\n\n// ============================================================\n// 18. RETURN NORMAL ARTICLES\n//\n// Empty-shell articles are NOT returned to normal pipeline.\n// ============================================================\n\nreturn outputItems;"
+        "jsCode": "// ============================================================\n// 1. FETCH AI AGENT DATA SAFELY\n// ============================================================\n\nconst aiAgentData = $('AI Agent').first().json || {};\n\nconst items =\n  Array.isArray(aiAgentData.output)\n    ? aiAgentData.output\n    : [];\n\nconst intermediateSteps =\n  Array.isArray(aiAgentData.intermediateSteps)\n    ? aiAgentData.intermediateSteps\n    : [];\n\n\n// ============================================================\n// 2. EXTRACT RAW ARTICLE RESULTS\n//\n// Supports:\n//   A. News Scrapper\n//   B. NewsAPI_-_Get_Article_by_URI\n// ============================================================\n\nconst rawArticleMap = {};\n\nfor (const step of intermediateSteps) {\n\n  // NOTE: n8n's exact sanitisation of a node's display name into an LLM-facing\n  // tool name is not something we can verify without a live test run (it may\n  // lowercase, it may replace spaces only, it may replace all non-alphanumerics,\n  // etc). Rather than hardcode one guessed sanitised string, we normalise BOTH\n  // sides down to \"letters and digits only, lowercase\" so the match holds no\n  // matter which sanitisation scheme n8n actually applies.\n  const normalizeToolName = (raw) =>\n    String(raw || \"\")\n      .toLowerCase()\n      .replace(/[^a-z0-9]/g, \"\");\n\n  const toolName = normalizeToolName(step?.action?.tool);\n\n  let obs = step?.observation;\n\n  if (!obs) {\n    continue;\n  }\n\n\n  // ----------------------------------------------------------\n  // Observation may be returned as a JSON string\n  // ----------------------------------------------------------\n\n  if (typeof obs === \"string\") {\n\n    try {\n      obs = JSON.parse(obs);\n    } catch (error) {\n      continue;\n    }\n  }\n\n\n  // ----------------------------------------------------------\n  // Normalize array wrapper\n  // ----------------------------------------------------------\n\n  const payloads =\n    Array.isArray(obs)\n      ? obs\n      : [obs];\n\n\n  for (const payload of payloads) {\n\n    if (\n      !payload ||\n      typeof payload !== \"object\"\n    ) {\n      continue;\n    }\n\n\n    // ========================================================\n    // A. NEWS SCRAPPER\n    //\n    // Expected:\n    //\n    // {\n    //   \"articles\": {\n    //     \"results\": [\n    //       {\n    //         \"uri\": \"...\",\n    //         \"title\": \"...\",\n    //         \"body\": \"...\"\n    //       }\n    //     ]\n    //   }\n    // }\n    // ========================================================\n\n    if (\n      toolName === normalizeToolName(\"News Scrapper\") &&\n      payload.articles &&\n      Array.isArray(payload.articles.results)\n    ) {\n\n      for (const article of payload.articles.results) {\n\n        if (\n          !article ||\n          typeof article !== \"object\"\n        ) {\n          continue;\n        }\n\n\n        const id =\n          article.uri ||\n          article.articleId ||\n          article.id;\n\n\n        if (!id) {\n          continue;\n        }\n\n\n        rawArticleMap[String(id)] = article;\n      }\n\n      continue;\n    }\n\n\n    // ========================================================\n    // B. NEWSAPI - GET ARTICLE BY URI\n    //\n    // Actual NewsAPI.ai response:\n    //\n    // [\n    //   {\n    //     \"9428707710\": {\n    //       \"info\": {\n    //         \"uri\": \"9428707710\",\n    //         \"title\": \"...\",\n    //         \"body\": \"...\"\n    //       }\n    //     }\n    //   }\n    // ]\n    //\n    // We extract:\n    //\n    // payload\n    //   ↓\n    // payload[\"9428707710\"]\n    //   ↓\n    // .info\n    //   ↓\n    // article\n    // ========================================================\n\n    if (\n      toolName === normalizeToolName(\"NewsAPI - Get Article by URI\")\n    ) {\n\n      for (\n        const [uri, value]\n        of Object.entries(payload)\n      ) {\n\n        if (\n          !value ||\n          typeof value !== \"object\"\n        ) {\n          continue;\n        }\n\n\n        const article =\n          value.info;\n\n\n        if (\n          !article ||\n          typeof article !== \"object\"\n        ) {\n          continue;\n        }\n\n\n        const id =\n          article.uri ||\n          uri;\n\n\n        if (!id) {\n          continue;\n        }\n\n\n        rawArticleMap[String(id)] =\n          article;\n      }\n\n      continue;\n    }\n  }\n}\n\n\n// ============================================================\n// 3. OUTPUT ARRAYS\n// ============================================================\n\nconst outputItems = [];\n\nconst quarantineItems = [];\n\n\n// ============================================================\n// 4. PROCESS AI CLASSIFICATIONS\n// ============================================================\n\nitems.forEach(c => {\n\n  if (\n    !c ||\n    !c.articleId\n  ) {\n    return;\n  }\n\n\n  const articleId =\n    String(c.articleId);\n\n\n  // ==========================================================\n  // 5. FIND MATCHING RAW ARTICLE\n  // ==========================================================\n\n  const raw =\n    rawArticleMap[articleId];\n\n\n  // ==========================================================\n  // 6. EMPTY-SHELL DETECTION\n  //\n  // If AI Agent returned an articleId but the matching\n  // article was not found in either:\n  //\n  //   - News Scrapper\n  //   - Get Article by URI\n  //\n  // quarantine it.\n  // ==========================================================\n\n  if (\n    !raw ||\n    typeof raw !== \"object\" ||\n    Object.keys(raw).length === 0\n  ) {\n\n    quarantineItems.push({\n\n      articleId:\n        articleId,\n\n      dataType:\n        c.dataType || \"news\",\n\n      relevant:\n        c.relevant ?? false,\n\n      relevance_confidence:\n        c.relevance_confidence ?? 0,\n\n      relevance_reason:\n        c.relevance_reason || \"\",\n\n      articleDataStatus:\n        \"quarantined_missing_scraper_data\",\n\n      quarantineReason:\n        \"AI classification exists but matching raw article was not found in News Scrapper or NewsAPI Get Article by URI.\"\n\n    });\n\n    return;\n  }\n\n\n  // ==========================================================\n  // 7. SOURCE INFORMATION\n  // ==========================================================\n\n  const source =\n    raw.source || {};\n\n  const sourceLocation =\n    source.location || {};\n\n\n  // ==========================================================\n  // 8. PUBLISHER LOCATION\n  //\n  // ONLY the location returned by the API.\n  //\n  // Example:\n  //   San Francisco\n  //   Kuala Lumpur\n  //   London\n  //\n  // Do NOT convert this into country.\n  // ==========================================================\n\n  const publisherLocation =\n    sourceLocation?.label?.eng || \"\";\n\n\n  // ==========================================================\n  // 9. PUBLISHER COUNTRY\n  //\n  // ONLY take country from:\n  //\n  // source.location.country.label.eng\n  //\n  // NEVER:\n  //\n  // publisherCountry = publisherLocation\n  // ==========================================================\n\n  const publisherCountry =\n    sourceLocation?.country?.label?.eng || \"\";\n\n\n  // ==========================================================\n  // 10. PUBLISHER LOCATION VALIDATED\n  //\n  // Preserve the API value exactly.\n  // ==========================================================\n\n  const publisherLocationValidated =\n    source?.locationValidated ?? false;\n\n\n  // ==========================================================\n  // 11. PUBLISHER TYPE / CATEGORY\n  //\n  // Capture only values actually returned by API.\n  // ==========================================================\n\n  const publisherType =\n    source?.type ||\n    source?.sourceType ||\n    source?.mediaType ||\n    source?.category ||\n    \"\";\n\n\n  const publisherGroup =\n    source?.group ||\n    source?.groupUri ||\n    \"\";\n\n\n  // ==========================================================\n  // 12. STANDARDIZED ARTICLE OBJECT\n  // ==========================================================\n\n  const article = {\n\n    articleId:\n      articleId,\n\n\n    articleTitle:\n      raw.title || \"\",\n\n\n    url:\n      raw.url || \"\",\n\n\n    language:\n      raw.lang || \"\",\n\n\n    author:\n      (\n        raw.authors &&\n        raw.authors[0] &&\n        raw.authors[0].name\n      ) || \"\",\n\n\n    dataType:\n      raw.dataType || \"news\",\n\n\n    publishedDate:\n      raw.dateTimePub ||\n      raw.dateTime ||\n      raw.date ||\n      \"\",\n\n\n    publisherName:\n      source.title || \"\",\n\n\n    publisherDomain:\n      source.uri || \"\",\n\n\n    // --------------------------------------------------------\n    // Publisher Location\n    // --------------------------------------------------------\n\n    publisherLocation:\n      publisherLocation,\n\n\n    // --------------------------------------------------------\n    // Publisher Country\n    // --------------------------------------------------------\n\n    publisherCountry:\n      publisherCountry,\n\n\n    // --------------------------------------------------------\n    // API validation status\n    // --------------------------------------------------------\n\n    publisherLocationValidated:\n      publisherLocationValidated,\n\n\n    // --------------------------------------------------------\n    // Publisher type/category\n    // --------------------------------------------------------\n\n    publisherType:\n      publisherType,\n\n\n    publisherGroup:\n      publisherGroup,\n\n\n    // --------------------------------------------------------\n    // Other article metadata\n    // --------------------------------------------------------\n\n    concepts:\n      raw.concepts || [],\n\n\n    categories:\n      raw.categories || [],\n\n\n    articleLocation:\n      raw.location\n        ? String(raw.location)\n        : \"null\",\n\n\n    duplicateList:\n      raw.duplicateList || [],\n\n\n    duplicateFlag:\n      String(\n        raw.isDuplicate ?? false\n      ),\n\n\n    originalArticleReference:\n      raw.originalArticle\n        ? String(raw.originalArticle)\n        : \"null\",\n\n\n    // --------------------------------------------------------\n    // Preserve complete raw NewsAPI response\n    // --------------------------------------------------------\n\n    rawNewsApiResponse:\n      raw,\n\n\n    // --------------------------------------------------------\n    // Article body\n    // --------------------------------------------------------\n\n    body:\n      raw.body || \"\",\n\n\n    // --------------------------------------------------------\n    // AI relevance classification\n    // --------------------------------------------------------\n\n    relevant:\n      c.relevant !== undefined\n        ? c.relevant\n        : false,\n\n\n    relevance_confidence:\n      c.relevance_confidence !== undefined\n        ? c.relevance_confidence\n        : 0,\n\n\n    relevance_reason:\n      c.relevance_reason || \"\",\n\n\n    // --------------------------------------------------------\n    // Article data status\n    // --------------------------------------------------------\n\n    articleDataStatus:\n      \"complete\"\n  };\n\n\n  // ==========================================================\n  // 13. CREATE FRONTMATTER\n  // ==========================================================\n\n  const frontmatterFields = {\n    ...article\n  };\n\n\n  // Body is added separately\n  delete frontmatterFields.body;\n\n\n  // Raw response is added separately\n  delete frontmatterFields.rawNewsApiResponse;\n\n\n  let frontmatter =\n    \"---\\n\";\n\n\n  for (\n    const [key, value]\n    of Object.entries(frontmatterFields)\n  ) {\n\n    let safeValue;\n\n\n    if (\n      value !== null &&\n      typeof value === \"object\"\n    ) {\n\n      safeValue =\n        JSON.stringify(value)\n          .replace(\n            /'/g,\n            \"''\"\n          );\n\n    } else {\n\n      safeValue =\n        String(value ?? \"\")\n          .replace(\n            /'/g,\n            \"''\"\n          );\n    }\n\n\n    frontmatter +=\n      `${key}: '${safeValue}'\\n`;\n  }\n\n\n  // ==========================================================\n  // 14. ADD RAW NEWSAPI.AI RESPONSE\n  // ==========================================================\n\n  const safeRawResponse =\n    JSON.stringify(\n      article.rawNewsApiResponse || {}\n    )\n      .replace(\n        /'/g,\n        \"''\"\n      );\n\n\n  frontmatter +=\n    `rawNewsApiResponse: '${safeRawResponse}'\\n`;\n\n\n  frontmatter +=\n    \"---\\n\\n\";\n\n\n  // ==========================================================\n  // 15. FINAL MARKDOWN CONTENT\n  // ==========================================================\n\n  const finalMarkdownFile =\n    frontmatter +\n    article.body;\n\n\n  // ==========================================================\n  // 16. SAFE FILE NAME\n  // ==========================================================\n\n  const cleanId =\n    String(article.articleId)\n      .replace(\n        /[^a-zA-Z0-9]/g,\n        \"_\"\n      );\n\n\n  const cleanSlug =\n    (\n      article.articleTitle ||\n      \"untitled\"\n    )\n      .toLowerCase()\n      .replace(\n        /[^a-z0-9]/g,\n        \"-\"\n      )\n      .replace(\n        /-+/g,\n        \"-\"\n      )\n      .replace(\n        /^-|-$/g,\n        \"\"\n      )\n      .slice(\n        0,\n        50\n      )\n      .replace(\n        /-$/,\n        \"\"\n      );\n\n\n  const fileName =\n    `${cleanId}-${cleanSlug}.md`\n      .trim();\n\n\n  // ==========================================================\n  // 17. PUSH FINAL ARTICLE\n  // ==========================================================\n\n  outputItems.push({\n\n    json: {\n      fileName,\n      ...article\n    },\n\n\n    binary: {\n\n      data: {\n\n        data:\n          Buffer\n            .from(\n              finalMarkdownFile,\n              \"utf-8\"\n            )\n            .toString(\"base64\"),\n\n\n        mimeType:\n          \"text/markdown\",\n\n\n        fileName:\n          fileName\n      }\n    }\n  });\n\n});\n\n\n// ============================================================\n// 18. RETURN NORMAL ARTICLES\n//\n// Empty-shell articles are NOT returned to normal pipeline.\n// ============================================================\n\nreturn outputItems;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        0,
-        1536
+        -2144,
+        1936
       ],
-      "id": "8f1f77d2-7b88-4ee1-9a10-492fd7860f2d",
+      "id": "a25ea0fb-d8bf-4fa7-b697-6262b94ef25f",
       "name": "Response"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.dropboxapi.com/2/files/list_folder",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "dropboxOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"path\": \"/{{ $('DATA').item.json.dropbox_root }}/Inputs/articles\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2832,
+        1936
+      ],
+      "id": "f7592648-2c0d-48ff-8e0d-3939d4e8519c",
+      "name": "Check existing folder - Dropbox",
+      "credentials": {
+        "dropboxOAuth2Api": {
+          "id": "rwWdO8aRuGu5ni83",
+          "name": "Dropbox account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d1b2f3a4-1111-4a2b-9c3d-000000000001",
+              "leftValue": "={{ $json.error.description }}",
+              "rightValue": "path/not_found/",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2624,
+        1760
+      ],
+      "id": "007b923d-cafc-451b-937e-c040f78458cb",
+      "name": "Is Folder Missing?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sessionId = $('DATA').first().json.sessionId;\nconst dropboxRoot = $('DATA').first().json.dropbox_root;\n\nreturn [\n  {\n    json: {\n      sessionId,\n      status: \"error\",\n      articleCount: 0,\n      articles: [],\n      error: `Folder not found: /${dropboxRoot}/Inputs/articles`\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2400,
+        1680
+      ],
+      "id": "8b6dcaa0-5348-47f3-9b5a-9a2384466c2a",
+      "name": "Build Folder Missing Error"
     }
   ],
   "pinData": {},
@@ -477,17 +521,6 @@
         [
           {
             "node": "DATA",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Check existing folder - Dropbox": {
-      "main": [
-        [
-          {
-            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -617,6 +650,53 @@
           }
         ]
       ]
+    },
+    "Check existing folder - Dropbox": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Is Folder Missing?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Folder Missing?": {
+      "main": [
+        [
+          {
+            "node": "Build Folder Missing Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Folder Missing Error": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -625,7 +705,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "4f68e33b-bf4a-48f9-bdd2-6b88defdf896",
+  "versionId": "c47a9b98-7390-4b69-a8b0-e0061d985eca",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "025c12f6d470c0458007a91be0ecef0cb06a1e6edd9f435210167183803d03ce"
