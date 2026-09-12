@@ -1,221 +1,215 @@
 ---
 type: plan
-name: topic-date-range-crawl
+name: topic-crawl
 status: ready
 created: 2026-09-06
+updated: 2026-09-12
 owner: ChatGPT Codex
 ---
 
-# Topic Date-Range Crawl Plan
+# Topic Crawl Plan
 
 ## Purpose
 
-Run a reusable, governed crawl for one Topic Entity across one inclusive publication-date range.
-The plan discovers any number of candidate article URLs, maps each unique URL to a NewsAPI.ai
-article URI, retrieves the article by that URI, normalizes complete source-backed results into the
-vault's raw article contract, enriches them, and compiles/cascades the accepted batch.
+Run a governed, restartable crawl **by topic** using a **two-source union** so coverage is broader
+than any single discovery path. For each selected canonical Topic Entity, over one inclusive
+publication-date range:
 
-The plan contains no fixed issue, topic, query, or date. Each invocation supplies those values.
+- **SET A** — crawl the topic with **NewsAPI.ai keyword search**; the returned articles are SET A,
+  and their canonical URLs/URIs are remembered.
+- **SET B** — ask **Claude** for all article URLs related to the topic, then **remove any URL
+  already in SET A**; the remainder is SET B.
+- **Crawl SET B** — fetch every SET B article through NewsAPI.ai (URL → URI → article), gated the
+  same way as SET A.
 
-## Required invocation inputs
+The accepted result is **SET A ∪ (validated SET B)** — the full set of articles crawled about the
+topic over the date range. Accepted articles are then normalized into the raw article contract,
+enriched, and compiled/cascaded, and the topic checkpoint is advanced.
 
-The invoking Goal must provide only:
+The plan is reusable and contains no fixed topic, query, or date. A goal prompt supplies the
+run-specific topic(s) and date range. It handles **one topic per pass** and loops over multiple
+topics with per-topic isolation and checkpoints, so a run can stop partway and resume without
+duplicating completed work.
 
-1. `topic` — one Topic Entity ID, exact display name, wikilink, or unambiguous entity path;
-2. `dateStart` — inclusive `YYYY-MM-DD` publication-date boundary; and
-3. `dateEnd` — inclusive `YYYY-MM-DD` publication-date boundary.
+> This file supersedes the former single-topic `topic_crawl_plan.md` and the
+> `multi_step_topic_crawl_plan.md`, which have been merged here.
 
-Optional inputs:
+## Invocation inputs
 
-- `timezone` — defaults to `Asia/Singapore`;
-- `maxCandidates` — a safety ceiling on unique canonical URLs;
-- `languages` or named source constraints; and
-- `runLabel` — a short run identifier.
+Required:
+- **`topics`** — one canonical Topic (ID, exact display name, wikilink, or unambiguous path), an
+  explicit list of them, or "the next N eligible topics".
+- **`dateStart`** / **`dateEnd`** — inclusive `YYYY-MM-DD` publication-date boundaries.
 
-Stop before crawling if the Topic cannot be resolved to exactly one canonical Topic Entity, either
-date is absent or invalid, `dateStart` is later than `dateEnd`, or the requested scope conflicts
-with the Topic's stored crawl instructions.
+Optional:
+- **`timezone`** — defaults to `Asia/Singapore`. Never infer a default date window.
+- **`maxCandidates`** — safety ceiling on unique canonical URLs per topic (applies to SET B).
+- **`languages`** / named source constraints; **`runLabel`** — short run identifier.
+- **`retryPolicy`** — finite retry count and backoff (else the runtime default).
 
 ## Goal prompt
 
-Use this minimal prompt to execute the plan without duplicating its instructions:
-
-> Execute `scripts/topic_crawl_plan.md` with topic `<TOPIC>`, dateStart `<YYYY-MM-DD>`, and dateEnd
-> `<YYYY-MM-DD>`. Follow the plan through completion.
-
-Add any optional invocation inputs from the preceding section to the same prompt only when needed.
+> Execute `scripts/topic_crawl_plan.md` (with `scripts/start_topic_crawl.md` for the endpoint call).
+> Topics: `<topic IDs, or "the next N eligible topics">`. Date range `<YYYY-MM-DD>` to
+> `<YYYY-MM-DD>`, inclusive. Timezone `Asia/Singapore`. Use the runtime endpoint and
+> `NEWSAPI_AI_API_KEY` without exposing secrets. Build SET A from NewsAPI.ai keyword search, SET B
+> from Claude's related-URL list minus SET A, then crawl SET B. Run every step and gate in order;
+> produce per-topic manifests and a run receipt; advance checkpoints only after validation; rebuild
+> the Topic catalog; and report per-topic SET A / SET B / accepted / rejected / duplicate counts,
+> failures, elapsed time, and average time per topic. Do not mark complete until all required gates
+> pass.
 
 ## Governing rules
 
 - Follow `README.md`, `scripts/entity_cascade_procedure.md`, and
   `scripts/enriched_radar_load_procedure.md` where applicable.
-- Markdown notes are the source of truth. Databases, indexes, catalogs, dashboards, and radar
+- Markdown notes are the source of truth; databases, indexes, catalogs, dashboards, and radar
   outputs are derived surfaces.
-- Preserve provenance from discovery through cascade. Do not enrich article claims or complete
-  missing article text from model background knowledge.
-- Treat credentials as runtime-only secrets. Read the NewsAPI.ai key from
-  `NEWSAPI_AI_API_KEY`; never persist the key, credential-bearing headers, or credential-bearing
-  URLs in the repository, article notes, receipts, manifests, or logs.
-- Treat URL discovery, NewsAPI.ai URI mapping, body retrieval, normalization, enrichment, and
-  compile/cascade as separate checkpoints.
-- Never overwrite an existing raw or compiled article note.
-- Time every compile/cascade run and report elapsed time, processed count, and average processing
-  time per article. If zero articles are processed, report zero without a misleading average.
+- Preserve provenance from discovery through cascade. Never enrich article claims or complete
+  missing body text from model knowledge or live lookups outside the provider response and
+  preserved source evidence.
+- **Claude's URL list is candidate discovery only, and must be grounded** (live web/tool, not
+  recalled from memory). Every SET B URL must pass URI mapping, in-range date, identity, and
+  completeness gates; unmappable or unverifiable URLs are held or rejected, **never fabricated**.
+- Credentials are runtime-only. Read the key from `NEWSAPI_AI_API_KEY`; never persist the key,
+  credential-bearing headers, or credential-bearing URLs in the repository, notes, receipts,
+  manifests, or logs. Verify credential presence with safe booleans only.
+- Treat SET A discovery, Claude discovery, URI mapping, retrieval, normalization, enrichment, and
+  compile/cascade as **separate checkpoints**. Never overwrite an existing raw or compiled note.
+- Record how each article was discovered (SET A keyword vs SET B Claude-suggested) in the run
+  manifests, not in new frontmatter fields.
+- Time every compile/cascade run and report elapsed time, processed count, and average per article
+  (report zero honestly rather than a misleading average).
 
-## Completion definition
+---
 
-The run is complete when every discovered candidate has a recorded disposition and every accepted
-article has either:
+## Step 0 — Preflight (once per run)
 
-1. passed URL-to-URI mapping, URI-based retrieval, completeness, identity, date, deduplication,
-   normalization, enrichment, compile, cascade, and validation; or
-2. been rejected, deduplicated, or held with a specific evidence-backed reason.
+1. Read the current Topic Entity notes and canonical taxonomy.
+2. Select only **active** canonical topics; exclude archived notes, legacy `Imported article topic`
+   notes, and topics already `Queued` or `In progress`.
+3. Validate the date range and timezone; stop if a boundary is absent/invalid or `dateStart` >
+   `dateEnd`.
+4. Verify the runtime endpoint, `NEWSAPI_AI_API_KEY`, and Claude grounded-discovery availability
+   (safe booleans only).
+5. Freeze the selected topic IDs, checkpoints, prompts, and invocation parameters in a run manifest
+   under `runs/YYYY-MM-DD/artifacts/topic-crawls/`.
 
-A zero-result run is valid only after all configured discovery paths complete successfully. A zero
-from one crawler or endpoint is not proof that no public articles exist.
+**Gate:** stop before any endpoint call if topic selection, dates, or runtime readiness fails.
 
-## Stage 1 — Resolve and freeze the Topic
+Then run Steps 1–10 **per topic**, isolating failures to the affected topic.
 
-1. Resolve `topic` to exactly one file under `entities/topic/`.
-2. Read its canonical `topicId`, exact `displayName`, aliases, status, `## Crawl Prompt`,
-   `crawlStatus`, and `lastCrawledAt`.
-3. Require an active Topic and one usable Crawl Prompt. Do not silently substitute a broader or
-   similarly named classification Topic.
-4. Create a run directory under `runs/YYYY-MM-DD/artifacts/topic-crawls/` using the Topic ID,
-   requested date range, and a unique timestamp or suffix.
-5. Freeze the Topic file, invocation inputs, resolved timezone, current crawl checkpoint, search
-   scope, maximum-candidate limit, and starting loose-input inventory in the run directory.
-6. Apply the governed `Queued` and `In progress` Topic transitions immediately around the physical
-   crawl. Do not advance `lastCrawledAt` until all required crawl stages succeed.
+## Step 1 — Resolve and freeze the topic
 
-## Stage 2 — Discover candidate article URLs
+1. Resolve the topic to exactly one file under `entities/topic/`; read its `topicId`, exact
+   `displayName`, aliases, status, `## Crawl Prompt`, `crawlStatus`, and `lastCrawledAt`.
+2. Require an active Topic and one usable Crawl Prompt — never silently substitute a broader or
+   similarly named Topic.
+3. Freeze the Topic file, invocation inputs, resolved timezone, current checkpoint, search scope,
+   `maxCandidates`, and starting loose-input inventory in the run directory.
+4. Apply the governed `Queued` → `In progress` transitions immediately around the physical crawl. Do
+   not advance `lastCrawledAt` yet.
 
-Use both the Topic Entity and its Crawl Prompt to construct multiple search variants rather than
-depending on one literal query.
+## Step 2 — Prepare and validate the crawl prompt
 
-1. Search the public web using:
-   - the exact Topic `displayName`;
-   - meaningful aliases and named entities recorded in the Topic;
-   - required inclusions and exclusions from `## Crawl Prompt`; and
-   - the inclusive date range and requested timezone.
-2. Where configured, call the development media-scanner webhook once for this Topic using:
+1. Validate exactly one usable `## Crawl Prompt` for the topic.
+2. If missing/invalid, build one from the canonical definition, aliases, scope, inclusions, and
+   exclusions per the topic-crawl procedure; record its version/hash in the manifest.
 
+**Gate:** only a topic with a validated prompt proceeds to discovery.
+
+## Step 3 — SET A: crawl the topic with NewsAPI.ai keyword search
+
+Call `POST https://eventregistry.org/api/v1/article/getArticles` once per topic (paging as needed):
+```json
+{
+  "action": "getArticles",
+  "keyword": "<exact Topic displayName or a validated prompt keyword>",
+  "lang": ["eng"],
+  "dateStart": "<YYYY-MM-DD>",
+  "dateEnd": "<YYYY-MM-DD>",
+  "articlesSortBy": "date",
+  "articleBodyLen": -1,
+  "dataType": ["news"],
+  "isDuplicateFilter": "keepAll",
+  "resultType": "articles",
+  "apiKey": "<runtime NEWSAPI_AI_API_KEY>"
+}
+```
+1. Page through results until no new in-range articles remain or `maxCandidates` is reached.
+2. For every returned article, record the canonical URL, NewsAPI.ai article URI, title, source,
+   publication timestamp, language, and body — and **remember the canonical URLs and URIs as SET A**.
+3. Canonicalize URLs (resolve redirects, strip non-identity tracking params) and deduplicate SET A by
+   canonical URL and by URI.
+4. SET A articles are already retrieved; carry them forward to the gates in Step 7 (no mapping
+   needed).
+
+**Gate:** a zero SET A result is valid only when the keyword search itself completed successfully — a
+zero is not proof that no coverage exists (SET B may still find articles).
+
+## Step 4 — SET B candidates: ask Claude for related URLs
+
+1. Ask **Claude** (grounded with live web/tool access) for **all article URLs related to the topic**
+   within the date range, using the Topic `displayName`, aliases, and the Crawl Prompt's inclusions/
+   exclusions. Request a plain list of direct article URLs only — no homepages, index/category pages,
+   snippets, or commentary.
+2. Record the exact request and Claude's raw returned list in the run manifest.
+3. Canonicalize every returned URL (resolve redirects, strip non-identity tracking params); drop
+   obvious non-article URLs.
+
+## Step 5 — Compute SET B = Claude URLs − SET A
+
+1. Remove from Claude's canonicalized list every URL already present in SET A, comparing on the
+   **canonical** URL (case-insensitive, trailing slash ignored, tracking params removed).
+2. Deduplicate the remainder among itself. The result is **SET B**.
+3. Apply `maxCandidates` to SET B if set. Record SET B and the removed-as-duplicate count.
+
+## Step 6 — Crawl SET B: map to URI and retrieve
+
+For each SET B URL:
+1. Map it to a NewsAPI.ai URI: `POST https://eventregistry.org/api/v1/articleMapper`
+   ```json
+   { "articleUrl": "<canonical article URL>", "apiKey": "<runtime NEWSAPI_AI_API_KEY>" }
+   ```
+   Validate HTTP status, content type, and structure before reading the URI. One attempt per URL
+   unless a transient error justifies a retry.
+2. **Deduplicate by URI**, including against SET A — if a SET B URL maps to a URI already in SET A,
+   it is the same article; drop it.
+3. Retrieve each remaining unique URI: `POST https://eventregistry.org/api/v1/article/getArticle`
    ```json
    {
-     "sessionId": "topic-crawl-<topicId>-<unique-run-suffix>",
-     "query": "<exact Topic displayName>\n\nOnly include articles published between <dateStart> and <dateEnd> (<timezone>)."
+     "action": "getArticle",
+     "articleUri": "<NewsAPI.ai article URI>",
+     "infoArticleBodyLen": -1,
+     "resultType": "info",
+     "apiKey": "<runtime NEWSAPI_AI_API_KEY>"
    }
    ```
+4. If a URL cannot be mapped or the URI body is missing/partial, try
+   `POST https://analytics.eventregistry.org/api/v1/extractArticleInfo` with the canonical `url`, then
+   an approved direct publisher-URL retrieval. Record the exact route. If a complete source-backed
+   body still isn't available, **hold** the candidate — never synthesize text.
 
-3. Treat webhook output as an additional candidate source. Until it passes a known-positive test,
-   do not treat a zero webhook result as proof of zero coverage.
-4. For every search hit, record the search provider, exact query, result rank, discovered URL,
-   apparent title, apparent publisher, apparent publication timestamp, Topic ID, and discovery
-   time.
-5. Follow only public article-result URLs. Search pages, topic indexes, category pages, homepages,
-   snippets, social posts without an underlying article, and non-article documents are discovery
-   evidence only.
-6. Resolve redirects, remove non-identity tracking parameters, and retain both discovered and
-   canonical URLs.
-7. Deduplicate canonical URLs before consuming NewsAPI.ai calls. Continue through available result
-   pages until there are no new in-range URLs or `maxCandidates` is reached.
+## Step 7 — Gate SET A ∪ SET B (identity, in-range date, complete body)
 
-## Stage 3 — Map every unique URL to a NewsAPI.ai URI
-
-For each unique canonical URL, call:
-
-`POST https://eventregistry.org/api/v1/articleMapper`
-
-with a JSON body assembled programmatically:
-
-```json
-{
-  "articleUrl": "<canonical article URL>",
-  "apiKey": "<runtime NEWSAPI_AI_API_KEY>"
-}
-```
-
-Rules:
-
-1. Make one mapping attempt per canonical URL unless a retry is justified by a transient transport
-   or server error.
-2. Validate the HTTP status, response content type, and response structure before reading the URI.
-3. Record the returned NewsAPI.ai article URI against the canonical URL in the mapping manifest.
-4. Deduplicate again by NewsAPI.ai article URI. Several discovered URLs that map to one URI are one
-   article, not several articles.
-5. A URL that cannot be mapped may be checked with NewsAPI.ai's direct URL extraction endpoint to
-   diagnose indexing or canonicalization, but it must not be described as URI-retrieved unless a
-   URI is actually obtained. Hold or reject it under the explicit fallback rules below.
-
-## Stage 4 — Retrieve each mapped article by NewsAPI.ai URI
-
-For every unique mapped URI, call:
-
-`POST https://eventregistry.org/api/v1/article/getArticle`
-
-with:
-
-```json
-{
-  "action": "getArticle",
-  "articleUri": "<NewsAPI.ai article URI>",
-  "infoArticleBodyLen": -1,
-  "resultType": "info",
-  "apiKey": "<runtime NEWSAPI_AI_API_KEY>"
-}
-```
-
-This URI-based call is the primary article retrieval path. `infoArticleBodyLen: -1` requests the
-maximum body stored by NewsAPI.ai, but does not by itself prove that the publisher's complete body
-was captured.
-
-For each response, safely record:
-
-- canonical URL and all mapped discovered URLs;
-- NewsAPI.ai article URI;
-- endpoint, request time, HTTP status, content type, and retrieval disposition;
-- returned title, outlet/source, publication timestamp, language, and duplicate status;
-- body character count, word count, paragraph count, and SHA-256 hash; and
-- whether identity, date, and completeness gates passed.
-
-Never retain the API key or sensitive request headers in these artifacts.
-
-## Stage 5 — Apply identity, date, and complete-body gates
-
-An article is eligible only when:
-
-1. its returned URL, title, source, and publication event correspond to the discovered article;
-2. its source publication timestamp, converted to the invocation timezone, falls inside the
-   inclusive `dateStart` to `dateEnd` range;
-3. its lead and paragraph structure are coherent and its ending is plausible rather than abruptly
-   truncated;
-4. the body is non-empty source text; and
+Apply the same gates to every candidate from both sets. Accept only when:
+1. its returned URL/title/source/event correspond to the discovered article;
+2. its publication timestamp, in the invocation timezone, falls inside `dateStart`..`dateEnd`
+   **(this date gate is essential for SET B, whose URLs are not date-bounded at discovery)**;
+3. its structure is coherent and not abruptly truncated;
+4. the body is non-empty source text (a character/word count alone is not proof of completeness);
+   and
 5. it is not already present in `Inputs/articles/` or `entities/article/` by article ID, canonical
-   URL, NewsAPI.ai URI in the run evidence, or source identity.
+   URL, URI, or source identity.
 
-A character or word count alone is not evidence that a body is complete.
+Drop out-of-range, hallucinated, non-article, or incomplete candidates with a recorded reason. The
+surviving set is the topic's accepted articles = **SET A ∪ validated SET B**.
 
-If URI retrieval is missing or apparently partial, call
-`POST https://analytics.eventregistry.org/api/v1/extractArticleInfo` with the canonical `url` and
-the runtime API key for comparison or recovery. If that still does not produce a complete body,
-use an approved direct publisher-URL retrieval method and repeat the identity and completeness
-checks. Record the exact retrieval route and outcome.
+## Step 8 — Normalize accepted articles
 
-If a complete source-backed body remains unavailable, hold the candidate. Never synthesize or
-infer omitted text, and never pass a partial body downstream as a complete article.
-
-## Stage 6 — Normalize each accepted article
-
-Write each accepted result to `Inputs/articles/YYYY-MM/`, where `YYYY-MM` comes from its verified
-publication date in the invocation timezone.
-
-Use:
-
-- `articleId`: `crawl-` plus the lowercase SHA-256 digest of the canonical URL; and
-- filename: `<articleId>-<slugified-title>.md`.
-
-Each raw note must use the frozen intake contract:
-
+Write each accepted result to `Inputs/articles/YYYY-MM/` (month from its verified publication date in
+the invocation timezone), with `articleId: crawl-<sha256-of-canonical-url>` and filename
+`<articleId>-<slugified-title>.md`, using the frozen intake contract:
 ```markdown
 ---
 articleId: crawl-<sha256-of-canonical-url>
@@ -240,122 +234,100 @@ url: <canonical article URL>
 
 <complete retrieved source body as plain narrative text, without wikilinks or compiled sections>
 ```
+Provider IDs, discovery method (SET A / SET B), queries, mapping/retrieval records, hashes, and
+completeness decisions belong in the run manifests, not in new frontmatter fields. A normalized note
+is staged, not cascade-ready, until enrichment is reviewed. Preserve existing input files unless this
+run owns the same unique article ID.
 
-Provider IDs, discovery queries, mapping records, retrieval methods, hashes, and completeness
-decisions belong in the run manifests, not in new frontmatter fields. Serialize YAML safely. A
-normalized note is staged, not cascade-ready, until all required enrichment values are reviewed.
-
-## Stage 7 — Enrich and validate the frozen batch
+## Step 9 — Enrich and validate the frozen batch
 
 1. Freeze a newline-delimited manifest of only the newly normalized filenames.
-2. Run `scripts/enrich_radar_inputs.py` against that manifest to assess existing-vocabulary tags,
-   outlet, outlet country, institutional category, tone, sentiment, and event type.
-3. Require the configured independent classification agreement and confidence threshold before
-   applying judgment-heavy values.
-4. Send disagreements, low-confidence results, missing evidence, and invalid values to attributed
-   review.
-5. Apply only reviewed results to the raw notes.
-6. Run:
-
+2. Run `scripts/enrich_radar_inputs.py` to assess existing-vocabulary tags, outlet, outlet country,
+   institutional category, tone, sentiment, and event type.
+3. Require the configured independent-agreement and confidence thresholds before applying
+   judgment-heavy values; send disagreements/low-confidence/missing evidence to attributed review;
+   apply only reviewed results.
+4. Confirm completeness:
    ```bash
-   python3 scripts/enrich_radar_inputs.py \
-     --input-dir Inputs/articles/<YYYY-MM> \
-     --manifest <frozen-manifest-path> \
-     --check-complete
+   python3 scripts/enrich_radar_inputs.py --input-dir Inputs/articles/<YYYY-MM> --manifest <frozen-manifest-path> --check-complete
    ```
+   Process separate publication months separately when the range crosses a month boundary.
 
-7. Require every selected raw note to pass the shared completeness contract before compile/cascade.
-   Process separate publication months separately when the requested date range crosses a month
-   boundary.
-
-## Stage 8 — Compile and cascade
+## Step 10 — Compile, cascade, and close the topic
 
 For each affected month:
+1. Dry preview: `python3 scripts/ingest_cascade.py --month <YYYY-MM> --manifest <month-manifest> --dry-run`
+2. Resolve every preview error or hold the affected article.
+3. Real run: the same command without `--dry-run`.
+4. Confirm articles moved to `entities/article/YYYY-MM/` and that backlinks, coverage, catalogs,
+   logs, and validation updated per the cascade procedure.
+5. Report input/processed/created/held/failure counts, elapsed time, and average seconds per article.
 
-1. Run a dry preview against the frozen month-specific manifest:
+Then close the topic:
+- Mark the topic crawl `Complete` and advance `lastCrawledAt` **only** if SET A search, SET B
+  discovery, and all required retrieval/bookkeeping succeeded (via the governed completion procedure).
+- On any required-service failure, mark it `Failed`, retain all recoverable evidence, and leave
+  `lastCrawledAt` unchanged.
+- A zero-result topic may close complete only when both SET A search and SET B discovery were
+  verified operational and the report states that zero in-range articles were found.
 
-   ```bash
-   python3 scripts/ingest_cascade.py \
-     --month <YYYY-MM> \
-     --manifest <month-manifest-path> \
-     --dry-run
-   ```
+Do not project to UAT, run the Issue Radar, or edit Issue entities unless the invoking goal
+explicitly adds that downstream work. This plan's default boundary ends at a validated Markdown
+cascade.
 
-2. Resolve every preview error or place the affected article on hold.
-3. Run the same command without `--dry-run` for the approved manifest.
-4. Confirm that successful articles moved to `entities/article/YYYY-MM/` and that all required
-   entity backlinks, coverage data, generated catalogs, logs, and validation results were updated
-   according to the cascade procedure.
-5. Report input count, processed count, created count, held count, failure count, total elapsed
-   time, and average seconds per processed article from the timed receipt.
+## Step 11 — Complete the run (once per run)
 
-Do not project to UAT, run the Issue Radar, or edit Issue entities unless the invoking Goal
-explicitly adds that downstream work. This generic plan's default boundary ends with a validated
-Markdown cascade.
+1. Reconcile SET A, Claude-discovery, SET B, mapping, retrieval, normalization, enrichment, and
+   cascade manifests so every candidate has exactly one terminal disposition.
+2. Rebuild `entities/topic/catalog.md` from source notes.
+3. Write the run receipt: selected topics, per-topic SET A / SET B / accepted / rejected / duplicate
+   counts, failures, elapsed time, and average time per topic.
 
-## Stage 9 — Close the Topic crawl
+## Failure, retry, and resume rules
 
-1. Reconcile the URL-discovery, URI-mapping, retrieval, normalization, enrichment, and cascade
-   manifests so every candidate has exactly one terminal disposition.
-2. Mark the Topic crawl `Complete` and advance `lastCrawledAt` only if all required discovery paths
-   and bookkeeping succeeded.
-3. If a required service failed, mark the Topic crawl `Failed`, retain all recoverable evidence,
-   and leave `lastCrawledAt` unchanged.
-4. A successful zero-result run may close as complete only when the discovery paths themselves were
-   verified operational and the final report explicitly states that zero in-range candidates were
-   found.
-
-## Acceptance checklist
-
-- [ ] Exactly one canonical Topic Entity was resolved and frozen.
-- [ ] Both inclusive dates and the timezone were validated.
-- [ ] All public-search and configured crawler queries are recorded.
-- [ ] All candidate URLs are canonicalized and deduplicated.
-- [ ] Every unique URL has a NewsAPI.ai URI-mapping disposition.
-- [ ] Every accepted URI was retrieved through `article/getArticle` with
-      `infoArticleBodyLen: -1`.
-- [ ] Multiple URLs mapping to one URI are treated as one article.
-- [ ] The API key was obtained at runtime and never persisted.
-- [ ] Every accepted article passed identity, in-range date, complete-body, provenance, and
-      duplicate gates.
-- [ ] Missing or partial bodies were recovered from a source-backed route or held without generated
-      completion.
-- [ ] Every accepted raw note uses the frozen input contract and plain source narrative.
-- [ ] Every frozen raw note passed `enrich_radar_inputs.py --check-complete` after review.
-- [ ] Compile/cascade validation passed for every processed month.
-- [ ] The timed receipt reports totals, elapsed time, and average processing time where applicable.
-- [ ] Every discovered candidate has one final disposition.
-- [ ] Topic status and checkpoint reflect verified completion rather than request submission.
+- Isolate failures by topic and by article wherever possible; one candidate's hold/rejection does not
+  stop independent candidates unless it signals a systemic discovery/credential/endpoint/schema/
+  provenance problem.
+- Retry only the configured finite number of times with the configured backoff. Never retry
+  indefinitely, and never treat a timeout as a successful zero-result crawl.
+- Never advance a checkpoint from an incomplete, mismatched, or malformed provider response.
+- If a run stops partway, resume from the run manifest and per-topic checkpoints (SET A captured,
+  SET B computed, SET B fetched) rather than duplicating completed work.
 
 ## Stop conditions
 
-Stop the affected stage without fabricating success when:
+Stop the affected stage without fabricating success when: the topic is absent/ambiguous/inactive or
+lacks usable crawl instructions; a date boundary is absent/invalid; `NEWSAPI_AI_API_KEY` is
+unavailable/rejected; Claude grounded discovery is unavailable when SET B is required; a response
+cannot be attributed to the submitted topic/URL/URI; URL-to-URI mapping fails and approved fallback
+cannot resolve it; identity/date evidence conflicts irreconcilably; a body is missing/partial and no
+approved source-backed retrieval recovers it; the article already exists or conflicts with an existing
+source identity; required enrichment stays invalid; the input contract / article-quality / tag / link
+checks fail; or continuing would require a production write or an unauthorized schema/rule change.
 
-- the Topic is absent, ambiguous, inactive, or lacks usable crawl instructions;
-- a date boundary is absent or invalid;
-- `NEWSAPI_AI_API_KEY` is unavailable or rejected;
-- a discovery or retrieval response cannot be attributed to the submitted Topic, URL, or URI;
-- URL-to-URI mapping fails and approved fallback handling cannot resolve it;
-- returned identity or publication-date evidence conflicts and cannot be reconciled;
-- a body is missing or partial and no approved source-backed retrieval can recover it;
-- the article already exists or conflicts with an existing source identity;
-- required enrichment fields remain invalid or unresolved;
-- the frozen input contract, article-quality checks, tag checks, or link checks fail; or
-- continuing would require a production write or an unauthorized schema/rule change.
+## Acceptance checklist (per topic)
 
-One candidate's rejection or hold does not stop independent candidates unless the failure indicates
-a systemic discovery, credential, endpoint, schema, or provenance problem.
+- [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated.
+- [ ] SET A built from NewsAPI.ai keyword search; its URLs/URIs recorded, canonicalized, deduplicated.
+- [ ] Claude related-URL list captured (grounded) and canonicalized.
+- [ ] SET B computed as Claude URLs minus SET A (canonical dedup), then deduped by URI against SET A.
+- [ ] Every SET B URL has a URI-mapping disposition; multiple URLs → one URI treated as one article.
+- [ ] Every retrieved article used `article/getArticle` with `infoArticleBodyLen: -1`; key never
+      persisted.
+- [ ] SET A ∪ SET B passed identity, in-range date, complete-body, provenance, and duplicate gates;
+      partial/missing bodies source-recovered or held (never generated); hallucinated/out-of-range
+      SET B URLs dropped with reasons.
+- [ ] Every accepted raw note uses the frozen input contract and plain source narrative.
+- [ ] Every frozen note passed `enrich_radar_inputs.py --check-complete` after review.
+- [ ] Compile/cascade validation passed for every processed month; timed receipt reports totals.
+- [ ] Every candidate has one final disposition; topic status/checkpoint reflect verified completion.
 
 ## Final report
 
-Return one run report containing:
-
-1. Topic ID, display name, date range, timezone, run directory, and final Topic crawl status;
-2. discovery queries and counts by provider;
-3. URLs found, canonicalized, deduplicated, rejected, and admitted;
-4. NewsAPI.ai mapping attempts, unique URIs, URI retrievals, extraction fallbacks, and failures;
-5. complete, partial, missing, held, normalized, enriched, and cascaded article counts;
-6. per-month compile/cascade totals, elapsed time, and average processing time;
-7. validation outcomes and any unresolved limitations; and
-8. paths to receipts, manifests, assessments, held-item evidence, created article notes, and
-   affected entity notes.
+Return one run report with: topics (IDs, names, date range, timezone, run directory, final statuses);
+SET A keyword queries and counts; Claude discovery request and returned-URL count; SET B size after
+removing SET A and after URI dedup; NewsAPI.ai mapping attempts, unique URIs, retrievals, extraction
+fallbacks, and failures; complete/partial/missing/held/normalized/enriched/cascaded counts split by
+SET A vs SET B; per-month compile/cascade totals, elapsed time, and average processing time;
+validation outcomes and unresolved limitations; and paths to receipts, manifests, assessments,
+held-item evidence, created article notes, and affected entity notes.
