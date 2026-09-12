@@ -54,6 +54,7 @@ COUNT_FIELD = {
     "country": "mentionCount",
     "place": "mentionCount",
     "topic": "articleCount",
+    "tag": "articleCount",
     "outlet": None,
 }
 
@@ -85,7 +86,7 @@ def find_coverage_block(text):
     """Return (start_idx, end_idx, block_text) spanning the '## Coverage'
     section (header line through the line before the next '## ' header,
     or EOF). Returns None if no ## Coverage header exists."""
-    m = re.search(r"^## Coverage\s*$", text, re.MULTILINE)
+    m = re.search(r"^## Coverage[ \t]*$", text, re.MULTILINE)
     if not m:
         return None
     start = m.end()
@@ -172,7 +173,9 @@ def apply_update(domain, entity_id, updates, dry_run):
         for i, ln in enumerate(block_lines):
             if ln.strip().startswith("- "):
                 last_entry = i
-        insert_at = last_entry + 1  # -1 -> 0 when the block has no entries yet
+        # The block begins immediately after the heading, so its leading empty
+        # line supplies the heading's newline. Never insert ahead of that line.
+        insert_at = max(last_entry + 1, 1)
         block_lines = block_lines[:insert_at] + new_lines + block_lines[insert_at:]
         rest = rest[:rel_start] + "\n".join(block_lines) + rest[rel_end:]
     elif not cov and new_lines:

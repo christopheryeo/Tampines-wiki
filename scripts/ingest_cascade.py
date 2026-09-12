@@ -8,6 +8,11 @@ domain, create or update the linked entity notes, rebuild generated catalogs,
 validate the hard failure classes, update the article-domain status table, and
 write a timed run receipt.
 
+This runner is deliberately local-only. It never connects to UAT, applies a
+UAT bundle, or loads a database. A governed loose-input batch prepares and
+verifies one final UAT bundle only after every selected month has cascaded and
+the batch-wide quality and link gates have passed.
+
 Use this when a monthly folder already exists under ``Inputs/articles/YYYY-MM/``
 and each file is a raw feed/crawl Markdown item. The script intentionally does
 not fetch articles, edit preserved ``raw/`` exports, enrich summaries from the
@@ -35,6 +40,8 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -47,6 +54,12 @@ from typing import Any
 
 from patch_coverage import apply_update as patch_apply_update
 from run_logger import RunLogger
+from input_article_contract import complete_input_findings
+from topic_consolidation import classify as classify_canonical_topics
+from topic_consolidation import load_taxonomy
+from tag_registry import load_registry as load_tag_registry
+from tag_registry import normalize_tag as normalize_issue_tag
+from tag_registry import registry_lookup as build_tag_lookup
 
 try:
     import yaml
@@ -59,7 +72,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INPUT_ROOT = ROOT / "Inputs" / "articles"
 ARTICLE_ROOT = ROOT / "entities" / "article"
 SYSTEM_FILES = {"index.md", "catalog.md", "log.md", "_template.md", ".DS_Store"}
-CATALOG_DOMAINS = ["article", "outlet", "country", "topic", "organisations", "people", "place"]
+CATALOG_DOMAINS = ["article", "outlet", "country", "topic", "tag", "organisations", "people", "place"]
 
 DOMAIN_DIRS = {
     "outlets": ROOT / "entities" / "outlet",
@@ -68,6 +81,7 @@ DOMAIN_DIRS = {
     "organisations": ROOT / "entities" / "organisations",
     "people": ROOT / "entities" / "people",
     "places": ROOT / "entities" / "place",
+    "tags": ROOT / "entities" / "tag",
 }
 LOGS = {
     "article": ROOT / "entities" / "article" / "log.md",
@@ -77,6 +91,7 @@ LOGS = {
     "organisations": ROOT / "entities" / "organisations" / "log.md",
     "people": ROOT / "entities" / "people" / "log.md",
     "places": ROOT / "entities" / "place" / "log.md",
+    "tags": ROOT / "entities" / "tag" / "log.md",
 }
 DOMAIN_LINK_PREFIX = {
     "outlets": "outlet",
@@ -120,6 +135,29 @@ SENSITIVE_TERMS = [
 ]
 
 
+def canonical_topic_selection(
+    title: str,
+    source_body: str,
+    frontmatter: dict[str, Any],
+    source_tags: list[str],
+) -> list[tuple[str, str]]:
+    """Assign one to three existing AI-controlled canonical topics."""
+
+    _, taxonomy = load_taxonomy()
+    result = classify_canonical_topics({
+        "projectionTopic": yaml_scalar(canonical_field(frontmatter, "topic", "subjects")),
+        "issueTags": source_tags,
+        "title": title,
+        "topicLinks": [],
+        "category": yaml_scalar(frontmatter.get("category")),
+        "summary": source_body,
+        "keyPoints": "",
+    }, taxonomy)
+    by_id = {row["topicId"]: row["displayName"] for row in taxonomy}
+    topic_ids = [result["primary"], *result["secondary"]]
+    return [(topic_id, by_id[topic_id]) for topic_id in topic_ids]
+
+
 @dataclass
 class EntityRecord:
     """A loaded entity note plus the names that can resolve back to it."""
@@ -136,6 +174,16 @@ def slugify(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     normalized = normalized.lower().replace("&", " and ")
     return re.sub(r"[^a-z0-9]+", "-", normalized).strip("-") or "untitled"
+
+
+def bounded_slug(value: str, max_length: int = 120) -> str:
+    """Create a bounded filesystem-safe slug with a stable suffix."""
+
+    slug = slugify(value)
+    if len(slug) <= max_length:
+        return slug
+    digest = hashlib.sha256(slug.encode("utf-8")).hexdigest()[:12]
+    return f"{slug[:max_length - 13].rstrip('-')}-{digest}"
 
 
 def title_from_slug(slug: str) -> str:
@@ -213,9 +261,11 @@ def dump_note(path: Path, frontmatter_lines: list[str], body: str) -> None:
 def load_entities() -> tuple[dict[str, dict[str, EntityRecord]], dict[str, dict[str, str]]]:
     """Load existing entity notes and build lowercase alias lookup tables.
 
-    The cascade can create outlets, countries, and topics from raw metadata.
-    People, organisations, and places are only linked when an existing note or
-    alias is already present, because creating those entities requires judgment.
+    The cascade can create outlets and countries from raw metadata. Topics must
+    already exist in the canonical registry and entities/topic; register a new
+    one through scripts/add_topic.md. People, organisations, and places are only
+    linked when an existing note or alias is already present, because creating
+    those entities requires judgment.
     """
 
     records: dict[str, dict[str, EntityRecord]] = {}
@@ -299,7 +349,7 @@ def ensure_outlet(
     """Create or update the outlet note for the article's publishing outlet."""
 
     display = yaml_scalar(name) or "Unknown Outlet"
-    slug = aliases["outlets"].get(display.lower()) or slugify(display)
+    slug = aliases["outlets"].get(display.lower()) or bounded_slug(display)
     path = DOMAIN_DIRS["outlets"] / f"{slug}.md"
     if slug not in records["outlets"]:
         body = f"# {display}\n\n## Coverage\n- {article_link}\n"
@@ -415,6 +465,42 @@ def update_existing_entity(
     return False
 
 
+def source_sentences(body: str) -> list[str]:
+    """Split source prose without treating initials or common titles as stops."""
+    clean = re.sub(r"\s+", " ", body).strip()
+    abbreviations = {
+        "mr", "mrs", "ms", "dr", "prof", "sgt", "cpl", "lt", "col",
+        "maj", "gen", "cmdr", "cdr", "capt", "sen", "rep", "st",
+        "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sep", "sept",
+        "oct", "nov", "dec", "no", "vs", "etc",
+    }
+    sentences = []
+    start = 0
+    for boundary in re.finditer(r"(?<=[.!?])\s+", clean):
+        prefix = clean[:boundary.start()]
+        token = prefix.rsplit(" ", 1)[-1]
+        if token.endswith(".") and (
+            token[:-1].lower() in abbreviations
+            or re.fullmatch(r"(?:[A-Za-z]\.)+", token)
+        ):
+            continue
+        sentences.append(clean[start:boundary.start()].strip())
+        start = boundary.end()
+    if clean[start:].strip():
+        sentences.append(clean[start:].strip())
+    return sentences
+
+
+def excerpt(text: str, limit: int) -> str:
+    """Make truncation explicit and avoid splitting the last word."""
+    if len(text) <= limit:
+        return text
+    head = text[:limit - 1]
+    if " " in head:
+        head = head.rsplit(" ", 1)[0]
+    return head.rstrip() + "…"
+
+
 def first_sentence(body: str) -> str:
     """Derive a short summary from the source body without adding new facts."""
 
@@ -422,8 +508,12 @@ def first_sentence(body: str) -> str:
     clean = re.sub(r"^#.*?(?=[A-Z0-9])", "", clean).strip()
     if not clean:
         return "Summary unavailable in source item."
-    match = re.search(r"(.{80,450}?[.!?])\s", clean)
-    return match.group(1).strip() if match else clean[:450].strip()
+    selected = []
+    for sentence in source_sentences(clean):
+        selected.append(sentence)
+        if len(" ".join(selected)) >= 80:
+            break
+    return excerpt(" ".join(selected), 450)
 
 
 def key_points(body: str) -> list[str]:
@@ -434,25 +524,168 @@ def key_points(body: str) -> list[str]:
     for match in re.finditer(r"\(([ivx]+)\)\s*(.*?)(?=\s*\([ivx]+\)|$)", clean, flags=re.I):
         point = match.group(2).strip(" ;")
         if len(point) > 20:
-            points.append(point[:350])
+            points.append(excerpt(point, 350))
         if len(points) >= 3:
             break
     if not points:
-        points = [p.strip()[:350] for p in re.split(r"(?<=[.!?])\s+", clean) if len(p.strip()) > 40][:3]
+        points = [excerpt(p, 350) for p in source_sentences(clean) if len(p) > 40][:3]
     return points or ["No further key points were available in the source item."]
 
 
-def issue_tag_lines(source_tags: list[str]) -> str:
-    """Preserve exact enriched issue-tag values in the compiled article body."""
+_TAG_LOOKUP = None
 
-    values = []
+
+def resolve_issue_tags(source_tags: list[str]):
+    """Resolve input values to unique active canonical Tag entities."""
+
+    global _TAG_LOOKUP
+    if _TAG_LOOKUP is None:
+        _TAG_LOOKUP = build_tag_lookup(load_tag_registry())
+    records = []
     seen = set()
     for raw in source_tags:
         value = re.sub(r"[\r\n]+", " ", str(raw)).strip()
-        if value and value.casefold() not in seen:
-            seen.add(value.casefold())
-            values.append(value)
-    return "\n".join(f"- {value}" for value in values) or "- None recorded"
+        if not value:
+            continue
+        record = _TAG_LOOKUP.get(normalize_issue_tag(value))
+        if record is None:
+            raise ValueError(f"issue tag has no Tag entity: {value!r}")
+        if record.status != "active":
+            raise ValueError(f"issue tag is not active: {value!r} ({record.status})")
+        if record.tag_id not in seen:
+            seen.add(record.tag_id)
+            records.append(record)
+    return records
+
+
+def issue_tag_lines(tag_records) -> str:
+    """Render canonical piped links to active Tag entities."""
+
+    return "\n".join(
+        f"- [[tag/{record.tag_id}|{record.display_name}]]" for record in tag_records
+    ) or "- None recorded"
+
+
+DATABASE_PROJECTION_HEADING = "## Database Projection"
+DATABASE_PROJECTION_PATTERN = re.compile(
+    r"(?:^|\n)## Database Projection\s*\n+```json\s*\n"
+    r"(?P<json>.*?)\n```\s*(?=\n## |\Z)",
+    re.DOTALL,
+)
+
+
+def split_database_projection(body: str) -> tuple[str, str | None]:
+    """Remove and validate an optional database projection from source prose."""
+
+    match = DATABASE_PROJECTION_PATTERN.search(body)
+    if not match:
+        if DATABASE_PROJECTION_HEADING in body:
+            raise ValueError("Database Projection must contain one fenced JSON object")
+        return body.strip(), None
+
+    projection = json.loads(match.group("json"))
+    if not isinstance(projection, dict):
+        raise ValueError("Database Projection JSON must be an object")
+    if projection.get("schemaVersion") != "wiki-uat-projection.v1":
+        raise ValueError("Database Projection schemaVersion must be wiki-uat-projection.v1")
+    if DATABASE_PROJECTION_PATTERN.search(body, match.end()):
+        raise ValueError("Article contains more than one Database Projection section")
+
+    source_body = (body[: match.start()] + body[match.end() :]).strip()
+    rendered = json.dumps(
+        projection,
+        ensure_ascii=True,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return source_body, rendered
+
+
+def build_provisional_database_projection(
+    frontmatter: dict[str, Any],
+    source_id: str,
+    title: str,
+    source_body: str,
+    outlet_names: list[str],
+    countries: list[str],
+    source_tags: list[str],
+    source_url: str,
+    source_type: str,
+    published: str,
+) -> str:
+    """Build the complete unallocated UAT projection for an ordinary input."""
+
+    coverage = []
+    for index, outlet in enumerate(outlet_names):
+        coverage.append({
+            "coverage_id": None,
+            "coverage_type": yaml_scalar(frontmatter.get("coverageType")) or "online",
+            "display_name": outlet,
+            "country": countries[index] if index < len(countries) else (countries[0] if countries else None),
+            "media_outlet_category": yaml_scalar(frontmatter.get("mediaOutletCategory")) or None,
+            "url": source_url if index == 0 and source_url else None,
+        })
+    media = frontmatter.get("media") if isinstance(frontmatter.get("media"), list) else []
+    normalized_media = []
+    for item in media:
+        if not isinstance(item, dict):
+            continue
+        normalized_media.append({
+            "media_id": item.get("media_id") or item.get("mediaId"),
+            "file_name": item.get("file_name") or item.get("fileName"),
+            "media_url": item.get("media_url") or item.get("mediaUrl"),
+            "media_type": item.get("media_type") or item.get("mediaType"),
+            "source": item.get("source"),
+        })
+    user_groups = frontmatter.get("userGroupIds")
+    if not isinstance(user_groups, list):
+        user_groups = []
+    topic = yaml_scalar(canonical_field(frontmatter, "topic", "subjects")) or title
+    category = yaml_scalar(frontmatter.get("category")) or "Non-institutional"
+    created = yaml_scalar(frontmatter.get("indexedDateTime")) or published
+    projection = {
+        "schemaVersion": "wiki-uat-projection.v1",
+        "identity": {
+            "wikiSourceId": source_id,
+            "uatArticleId": None,
+            "origin": "wiki",
+        },
+        "article": {
+            "article_id": None,
+            "document_id": None,
+            "vendor_article_id": yaml_scalar(frontmatter.get("vendorArticleId")) or source_id,
+            "article_title": title,
+            "content_title": yaml_scalar(frontmatter.get("contentTitle")) or title,
+            "content_description": yaml_scalar(frontmatter.get("contentDescription")) or source_body,
+            "topic": topic,
+            "category": category,
+            "tone": yaml_scalar(frontmatter.get("tone")) or "Factual",
+            "tone_sentiment": yaml_scalar(frontmatter.get("toneSentiment")) or "Neutral",
+            "event_type": yaml_scalar(frontmatter.get("eventType")) or "Unfacilitated",
+            "document_type_id": int(frontmatter.get("documentTypeId") or 2),
+            "document_type_name": yaml_scalar(frontmatter.get("documentTypeName")) or "Article",
+            "product_type": yaml_scalar(frontmatter.get("productType")) or "NEWS",
+            "article_status": yaml_scalar(frontmatter.get("articleStatus")) or "A",
+            "group_title": yaml_scalar(frontmatter.get("groupTitle")) or None,
+            "news_type": source_type or "news",
+            "published_date": published or None,
+            "vendor_indexed_time": yaml_scalar(frontmatter.get("vendorIndexedTime")) or published or None,
+            "indexed_date_time": created or None,
+            "last_updated": yaml_scalar(frontmatter.get("lastUpdated")) or created or None,
+            "uploaded_by": yaml_scalar(frontmatter.get("uploadedBy")) or "wiki-projection",
+            "last_updated_by": yaml_scalar(frontmatter.get("lastUpdatedBy")) or "wiki-projection",
+        },
+        "coverage": sorted(coverage, key=lambda row: json.dumps(row, sort_keys=True)),
+        "media": sorted(normalized_media, key=lambda row: json.dumps(row, sort_keys=True)),
+        "tags": sorted(str(tag) for tag in source_tags if str(tag).strip()),
+        "userGroups": sorted(int(value) for value in user_groups),
+    }
+    return json.dumps(
+        projection,
+        ensure_ascii=True,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
 
 
 def article_filename(frontmatter: dict[str, Any], raw_path: Path) -> str:
@@ -501,24 +734,25 @@ def compile_one(
 
     text = raw_path.read_text(encoding="utf-8")
     frontmatter, body = parse_frontmatter(text)
+    source_body, database_projection = split_database_projection(body)
     title = yaml_scalar(canonical_field(frontmatter, "title", "headline", "articleTitle")) or raw_path.stem
     out_path = ARTICLE_ROOT / month / article_filename(frontmatter, raw_path)
+    if out_path.exists():
+        raise FileExistsError(
+            f"refusing to overwrite compiled article: {out_path.relative_to(ROOT)}"
+        )
     article_slug = out_path.stem
     article_link = wikilink(f"article/{month}/{article_slug}", title)
     metrics = defaultdict(int)
 
     outlet_names = yaml_list(canonical_field(frontmatter, "outlets", "outlet", "sourceOutlet")) or ["Unknown Outlet"]
     countries = yaml_list(canonical_field(frontmatter, "countries", "country"))
-    topics = yaml_list(canonical_field(frontmatter, "topics", "topic", "subjects", "category"))
-    source_tags = yaml_list(frontmatter.get("tags"))
-    for tag in source_tags:
-        cleaned = tag.strip("#")
-        if cleaned and cleaned.lower() not in {"source", "article"} and cleaned not in topics:
-            topics.append(cleaned.replace("-", " "))
-    if not topics:
-        topics = ["Uncategorised"]
+    tag_records = resolve_issue_tags(yaml_list(frontmatter.get("tags")))
+    source_tags = [record.display_name for record in tag_records]
+    topics = canonical_topic_selection(title, source_body, frontmatter, source_tags)
+    frontmatter["topic"] = topics[0][1]
 
-    raw_search = " ".join([title, body, " ".join(source_tags)]).lower()
+    raw_search = " ".join([title, source_body, " ".join(source_tags)]).lower()
     if not countries:
         countries = infer_countries(raw_search)
 
@@ -537,16 +771,32 @@ def compile_one(
             country_links.append(wikilink(f"country/{slug}", display))
 
     topic_links = []
-    seen_topics = set()
-    for topic in topics[:12]:
-        if topic.lower() in seen_topics:
-            continue
-        seen_topics.add(topic.lower())
-        result = ensure_topic(topic, article_link, records, aliases, timestamp, today, batch, dry_run)
-        if result:
-            slug, display, was_created = result
-            metrics["topics_created" if was_created else "topics_updated"] += 1
-            topic_links.append(wikilink(f"topic/{slug}", display))
+    for slug, display in topics:
+        record = records["topics"].get(slug)
+        if record is None:
+            raise ValueError(f"canonical topic is missing from entities/topic: {slug}")
+        if append_coverage("topics", record, article_link, timestamp, dry_run):
+            append_log("topics", f"- {today} - Added coverage {article_link} to [[{slug}|{display}]].", dry_run)
+        metrics["topics_updated"] += 1
+        topic_links.append(wikilink(f"topic/{slug}", display))
+
+    for tag_record in tag_records:
+        result = patch_apply_update(
+            "tag",
+            tag_record.tag_id,
+            [{"article": f"article/{month}/{article_slug}", "label": title}],
+            dry_run,
+        )
+        if result.get("error"):
+            raise ValueError(f"Tag coverage update failed for {tag_record.tag_id}: {result['error']}")
+        if not result.get("noop"):
+            append_log(
+                "tags",
+                f"- {today} - Added coverage {article_link} to "
+                f"[[tag/{tag_record.tag_id}|{tag_record.display_name}]].",
+                dry_run,
+            )
+        metrics["tags_updated"] += 1
 
     related_links = []
     for domain in ["organisations", "people", "places"]:
@@ -569,6 +819,19 @@ def compile_one(
     source_id = yaml_scalar(canonical_field(frontmatter, "id", "sourceId", "articleId")) or article_slug
     published = yaml_scalar(canonical_field(frontmatter, "published", "publishedDate", "date"))
     source_type = yaml_scalar(frontmatter.get("sourceType")) or "feed"
+    if not database_projection:
+        database_projection = build_provisional_database_projection(
+            frontmatter,
+            source_id,
+            title,
+            source_body,
+            outlet_names,
+            countries,
+            source_tags,
+            source_url,
+            source_type,
+            published,
+        )
 
     article_frontmatter = [
         "type: source", "subtype: article", "domain: Sources", "status: active", "aliases: []",
@@ -588,13 +851,13 @@ def compile_one(
     article_body = f"""# {title}
 
 ## Summary
-{first_sentence(body)}
+{first_sentence(source_body)}
 
 ## Key Points
-{chr(10).join(f"- {point}" for point in key_points(body))}
+{chr(10).join(f"- {point}" for point in key_points(source_body))}
 
 ## Issue Tags
-{issue_tag_lines(source_tags)}
+{issue_tag_lines(tag_records)}
 
 ## Covered By
 {chr(10).join(f"- {link}" for link in outlet_links) or "- None recorded"}
@@ -606,8 +869,14 @@ def compile_one(
 Compiled from the raw source item in `Inputs/articles/{month}/` during the {batch}. No live-web enrichment was used.
 
 ## Source Text
-{body.strip()}
+{source_body}
 """
+    article_body += (
+        "\n## Database Projection\n"
+        "```json\n"
+        f"{database_projection}\n"
+        "```\n"
+    )
     if not dry_run:
         dump_note(out_path, article_frontmatter, article_body)
         append_log(
@@ -665,6 +934,13 @@ def focused_validation(month: str) -> dict[str, int | list[str]]:
         rel = path.relative_to(ROOT / "entities").with_suffix("").as_posix()
         valid.add(rel)
         valid.add(path.stem)
+    # Topic consolidation preserves retired notes as recovery targets. Existing
+    # article links to those notes remain valid Obsidian links and must not be
+    # misreported as cascade-introduced failures.
+    topic_archive = ROOT / "archive" / "topic-legacy"
+    if topic_archive.exists():
+        for path in topic_archive.rglob("*.md"):
+            valid.add(path.stem)
 
     errors = []
     links_checked = 0
@@ -714,7 +990,12 @@ def count_months() -> dict[str, tuple[int, int]]:
     return counts
 
 
-def update_article_status(month: str, processed_count: int, dry_run: bool) -> dict[str, int]:
+def update_article_status(
+    month: str,
+    processed_count: int,
+    dry_run: bool,
+    manifest_scoped: bool = False,
+) -> dict[str, int]:
     """Refresh the article-domain cascade status table in ``index.md``."""
 
     counts = count_months()
@@ -741,7 +1022,13 @@ def update_article_status(month: str, processed_count: int, dry_run: bool) -> di
         "|---|---:|---:|---:|---:|\n"
         + "\n".join(rows)
     )
-    text = re.sub(r"\*\*Last counted:\*\*.*", f"**Last counted:** {today} ({processed_count:,}-article full-folder batch from `Inputs/articles/{month}/`; see note below)", text, count=1)
+    batch_kind = "manifest-scoped" if manifest_scoped else "full-folder"
+    text = re.sub(
+        r"\*\*Last counted:\*\*.*",
+        f"**Last counted:** {today} ({processed_count:,}-article {batch_kind} batch from `Inputs/articles/{month}/`; see note below)",
+        text,
+        count=1,
+    )
     text = re.sub(
         r"\| Month \| Cascaded \| Inputs remaining \| Total \| % cascaded \|\n"
         r"\|---\|---:\|---:\|---:\|---:\|\n"
@@ -750,12 +1037,84 @@ def update_article_status(month: str, processed_count: int, dry_run: bool) -> di
         text,
         count=1,
     )
-    note = f"A full-folder batch of {processed_count:,} files from `Inputs/articles/{month}/` was compiled/cascaded on {today}; the folder is now empty and the {month} row is fully cascaded."
+    remaining = counts.get(month, (0, 0))[1]
+    if manifest_scoped:
+        note = (
+            f"A manifest-scoped batch of {processed_count:,} files from `Inputs/articles/{month}/` "
+            f"was compiled/cascaded on {today}; {remaining:,} input files remain in that month."
+        )
+    else:
+        note = (
+            f"A full-folder batch of {processed_count:,} files from `Inputs/articles/{month}/` "
+            f"was compiled/cascaded on {today}; {remaining:,} input files remain in that month."
+        )
     marker = "Note:"
     if note not in text and marker in text:
         text = text.replace(marker, marker + " " + note + " ", 1)
     index_path.write_text(text, encoding="utf-8")
     return {"cascaded": cascaded_total, "inputs": input_total, "total": total}
+
+
+def load_manifest_names(manifest: Path) -> set[str]:
+    """Load and validate the unique Markdown filenames in a frozen batch manifest."""
+
+    if not manifest.is_file():
+        raise SystemExit(f"Manifest does not exist: {manifest}")
+    names = [
+        Path(line.strip()).name
+        for line in manifest.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if not names:
+        raise SystemExit(f"Manifest contains no paths: {manifest}")
+    if any(not name.endswith(".md") for name in names):
+        raise SystemExit(f"Manifest contains a non-Markdown path: {manifest}")
+    if len(names) != len(set(names)):
+        raise SystemExit(f"Manifest contains duplicate filenames: {manifest}")
+    return set(names)
+
+
+def validate_cascade_inputs(paths: list[Path]) -> list[dict[str, str]]:
+    """Validate every selected input before the cascade can mutate the vault."""
+
+    findings: list[dict[str, str]] = []
+    for path in paths:
+        try:
+            display_path = str(path.relative_to(ROOT))
+        except ValueError:
+            display_path = str(path)
+        try:
+            frontmatter, body = parse_frontmatter(path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, yaml.YAMLError) as exc:
+            findings.append({
+                "path": display_path,
+                "field": "frontmatter",
+                "issue": f"unreadable or invalid YAML: {exc}",
+            })
+            continue
+        findings.extend(
+            {"path": display_path, **finding}
+            for finding in complete_input_findings(frontmatter, body)
+        )
+    return findings
+
+
+def require_cascade_ready_inputs(paths: list[Path]) -> None:
+    """Stop the whole batch before writes when any input fails enrichment."""
+
+    findings = validate_cascade_inputs(paths)
+    if not findings:
+        return
+    sample = "; ".join(
+        f"{item['path']} [{item['field']}: {item['issue']}]"
+        for item in findings[:10]
+    )
+    remainder = len(findings) - min(len(findings), 10)
+    suffix = f"; plus {remainder} more finding(s)" if remainder else ""
+    raise ValueError(
+        f"cascade-ready input gate failed with {len(findings)} finding(s): "
+        f"{sample}{suffix}. Run enrich_radar_inputs.py --check-complete over the exact manifest."
+    )
 
 
 def run_batch(args: argparse.Namespace) -> int:
@@ -775,6 +1134,13 @@ def run_batch(args: argparse.Namespace) -> int:
         raise SystemExit(f"Input directory does not exist: {input_dir}")
 
     raw_files = sorted(path for path in input_dir.glob("*.md") if path.name != ".DS_Store")
+    manifest_names_set: set[str] | None = None
+    if args.manifest:
+        manifest_path = Path(args.manifest)
+        if not manifest_path.is_absolute():
+            manifest_path = ROOT / manifest_path
+        manifest_names_set = load_manifest_names(manifest_path)
+        raw_files = [path for path in raw_files if path.name in manifest_names_set]
     timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     today = datetime.now().strftime("%Y-%m-%d")
     batch = args.batch_label or f"{month} full-folder cascade batch"
@@ -784,12 +1150,27 @@ def run_batch(args: argparse.Namespace) -> int:
         print("No articles to process.")
         return 0
 
+    # Batch-wide preflight: no article, entity, catalog, log, projection, or
+    # input file is changed unless every selected article is policy-complete.
+    require_cascade_ready_inputs(raw_files)
+
     records, aliases = load_entities()
     aggregate = defaultdict(int)
     status = "ok"
     errors: list[dict[str, str]] = []
-    notes = f"Full-folder cascade from Inputs/articles/{month}."
-    with RunLogger("ingest_cascade", trigger="manual", notes=notes, metadata={"month": month, "dryRun": args.dry_run}) as run:
+    scope = "manifest-scoped" if manifest_names_set is not None else "full-folder"
+    notes = f"{scope.capitalize()} cascade from Inputs/articles/{month}."
+    with RunLogger(
+        "ingest_cascade",
+        trigger="manual",
+        notes=notes,
+        metadata={
+            "month": month,
+            "dryRun": args.dry_run,
+            "scope": scope,
+            "manifest": str(args.manifest) if args.manifest else None,
+        },
+    ) as run:
         try:
             with run.stage("compile_cascade", article_count=len(raw_files), file_count=len(raw_files)):
                 for raw_path in raw_files:
@@ -803,7 +1184,12 @@ def run_batch(args: argparse.Namespace) -> int:
                 if validation["errors"]:
                     status = "failed"
                     errors.extend({"message": sample} for sample in validation["error_samples"])
-            status_counts = update_article_status(month, int(aggregate["processed"]), args.dry_run)
+            status_counts = update_article_status(
+                month,
+                int(aggregate["processed"]),
+                args.dry_run,
+                manifest_scoped=manifest_names_set is not None,
+            )
             run.set_article_metrics(
                 inputCount=len(raw_files),
                 processedCount=int(aggregate["processed"]),
@@ -844,6 +1230,10 @@ def main() -> int:
     group.add_argument("--month", help="Month folder under Inputs/articles, e.g. 2026-07.")
     group.add_argument("--input-dir", help="Explicit input folder ending in YYYY-MM.")
     parser.add_argument("--batch-label", help="Human-readable batch label for notes/logs.")
+    parser.add_argument(
+        "--manifest",
+        help="Newline-delimited frozen intake manifest; process only matching filenames in the selected month.",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Preview counts without writing notes or moving inputs.")
     args = parser.parse_args()
     return run_batch(args)

@@ -33,18 +33,17 @@ except ImportError:
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_FILES = {"index.md", "catalog.md", "_template.md", "log.md"}
+CONFLICTED_COPY_MARKER = "conflicted copy"
 
 
 def parse_frontmatter(path):
     with open(path, encoding="utf-8") as f:
         text = f.read()
-    if not text.startswith("---"):
-        return {}
-    parts = text.split("---", 2)
-    if len(parts) < 3:
+    match = re.match(r"\A---[ \t]*\n(.*?)^---[ \t]*$", text, re.MULTILINE | re.DOTALL)
+    if match is None:
         return {}
     try:
-        fm = yaml.safe_load(parts[1]) or {}
+        fm = yaml.safe_load(match[1]) or {}
     except yaml.YAMLError as exc:
         raise ValueError(f"invalid YAML frontmatter in {path}: {exc}") from exc
     if not isinstance(fm, dict):
@@ -66,7 +65,12 @@ def scalar(value):
 def find_notes(domain_dir):
     paths = []
     for path in glob.glob(os.path.join(domain_dir, "**", "*.md"), recursive=True):
-        if os.path.basename(path) in SKIP_FILES:
+        name = os.path.basename(path)
+        if (
+            name in SKIP_FILES
+            or (name.startswith("log-") and name.endswith(".md"))
+            or CONFLICTED_COPY_MARKER in name.lower()
+        ):
             continue
         paths.append(path)
     return sorted(paths)

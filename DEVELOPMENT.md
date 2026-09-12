@@ -2,10 +2,13 @@
 
 Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the wiki constitution. Wiki rules stay in `AGENTS.md` and `README.md`. Shipped features stay in the Features section of `../../Alex (Dev)/Knowledge/Product Inventory.md`. Human-blocked work stays on Owen’s ClickUp.
 
+Process map (who/what/where): `docs/development-process.md`.
+
+
 **Project home (Dropbox):** `/Users/chrisyeo/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki`  
 **Git remote:** `https://github.com/christopheryeo/Tampines-wiki`  
 **Journal (Drive only):** https://docs.google.com/document/d/1LsucY9zwEWXukVwGftmpzUhfuguSj1VRxs_zK7EU6lw/edit  
-**Updated:** 2026-09-04 SGT (formal project home + DEVELOPMENT.md)
+**Updated:** 2026-09-10 SGT (development-process map)
 
 ## Roles
 
@@ -47,6 +50,7 @@ Format: tool — surface — files it may touch — files it must not touch — 
 
 ## Done
 
+- 2026-09-10 SGT — maintenance — Morgan — Added `docs/development-process.md` (living who/what/where map) and linked it from this file and Project Home.
 - 2026-09-04 SGT — maintenance — Morgan — Added this DEVELOPMENT.md and CLAUDE.md to formalize Tampines Wiki as the project home with git (`christopheryeo/Tampines-wiki`).
 - 2026-09-04 SGT — wiki — ChatGPT Codex — Audited the Tampines vault, repaired malformed Tag Coverage labels, and hardened link QA and repair logging.
 - 2026-09-04 SGT — wiki — ChatGPT Codex — Audited all 2,258 parked input files, separated 1,808 correctly parked records from 450 source-recovery candidates, and documented a safe fix path for every hold bucket.

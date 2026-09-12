@@ -4,6 +4,7 @@
 **Dropbox home:** `/Users/chrisyeo/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki`  
 **Git:** https://github.com/christopheryeo/Tampines-wiki  
 **Build log:** `../DEVELOPMENT.md`  
+**Process map:** `../docs/development-process.md`  
 **Journal (Drive only):** https://docs.google.com/document/d/1LsucY9zwEWXukVwGftmpzUhfuguSj1VRxs_zK7EU6lw/edit  
 **ClickUp:** Tampines Wiki List (Owen)  
 **Room:** Tampines

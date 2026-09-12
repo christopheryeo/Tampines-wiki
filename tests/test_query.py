@@ -12,6 +12,26 @@ QUERY = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(QUERY)
 
 
+def test_source_url_hyphens_preserve_query_metadata_and_summary(tmp_path, monkeypatch):
+    entities = tmp_path / "entities"
+    article = entities / "article" / "example.md"
+    article.parent.mkdir(parents=True)
+    article.write_text(
+        "---\nsourceUrl: https://example.test/story---official\n"
+        "publishedDate: '2026-05-31'\ntoneSentiment: Neutral\n---\n"
+        "## Summary\nA report with --- in its body.\n## Key Points\n- A fact.\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(QUERY, "ROOT", tmp_path)
+    monkeypatch.setattr(QUERY, "ENTITIES", entities)
+    parsed = QUERY._parse_note("article", "example.md")
+    assert parsed["frontmatter"]["sourceUrl"] == "https://example.test/story---official"
+    assert parsed["frontmatter"]["publishedDate"] == "2026-05-31"
+    assert parsed["frontmatter"]["toneSentiment"] == "Neutral"
+    assert parsed["sections"]["summary"] == "A report with --- in its body."
+    assert parsed["sections"]["key points"] == "- A fact."
+
+
 def answered(answer="ok"):
     return {
         "answer": answer,
@@ -64,17 +84,39 @@ class QueryFastPathTests(unittest.TestCase):
         self.assertNotIn("## Coverage", encoded)
         self.assertLessEqual(len(encoded), QUERY.FAST_CONTEXT_CHAR_CAP)
 
-    def test_roster_renders_live_related_people_locally(self):
-        question = "Give me a list of people who are related to defense"
-        matches = QUERY._catalog_entity_matches(question)
-        result = QUERY._direct_roster_answer(question, matches)
+    def test_roster_renders_related_people_locally(self):
+        """The roster fast path renders a note's ## Related Entities / ### People.
+
+        The note is supplied directly rather than read from the vault: the topic
+        consolidation retired the broad hand-curated topic notes this test used
+        to read, so pinning it to live vault data made it a taxonomy canary
+        rather than a test of the rendering logic.
+        """
+        question = "Give me a list of people who are related to air capabilities"
+        anchor = {
+            "domain": "topic", "id": "air-capabilities",
+            "displayName": "Air Capabilities", "file": "air-capabilities.md",
+            "matched": "air-capabilities", "score": "0",
+        }
+        note = {
+            "path": "entities/topic/air-capabilities.md",
+            "frontmatter": {},
+            "sections": {"related entities": (
+                "### People\n"
+                "- [[chan-chun-sing|Chan Chun Sing]]\n"
+                "- [[kelvin-fan|Kelvin Fan]]\n\n"
+                "### Organisations\n"
+                "- [[rsaf|RSAF]]\n"
+            )},
+        }
+        with mock.patch.object(QUERY, "_parse_note", return_value=note):
+            result = QUERY._direct_roster_answer(question, [anchor])
         self.assertIsNotNone(result)
-        defence = QUERY._parse_note("topic", "defence")
-        expected_count = len(QUERY._WIKILINK_RE.findall(
-            QUERY._subsection(QUERY._section(defence, "Related Entities"), "People")
-        ))
-        self.assertTrue(result["answer"].startswith(f"{expected_count} people"))
-        self.assertEqual(result["entities_resolved"], ["defence"])
+        self.assertTrue(result["answer"].startswith("2 people"))
+        self.assertIn("1. Chan Chun Sing", result["answer"])
+        self.assertIn("2. Kelvin Fan", result["answer"])
+        self.assertNotIn("RSAF", result["answer"])
+        self.assertEqual(result["entities_resolved"], ["air-capabilities"])
         self.assertEqual(result["sources_cited"], [])
 
     def test_appointment_renders_current_holder_locally(self):
@@ -83,22 +125,28 @@ class QueryFastPathTests(unittest.TestCase):
             question, QUERY._catalog_entity_matches(question)
         )
         self.assertIn("VADM Aaron Beng", result["answer"])
+        self.assertIn("As of 2026-03-31", result["answer"])
         self.assertEqual(result["entities_resolved"], ["cdf", "aaron-beng"])
         self.assertTrue(result["time_sensitive"])
 
-    def test_negative_existence_context_expands_relevant_organisation_graph(self):
+    @mock.patch.object(QUERY, "_issue_catalog_matches", return_value=[])
+    def test_negative_existence_context_expands_relevant_organisation_graph(self, issue_matches):
         context = QUERY.build_fast_context(
             "So there is no cyber security breach in your wiki?"
         )
+        # No catalog entity matches this phrasing — the organisation graph is
+        # discovered entirely by _existence_expansions. build_fast_context must
+        # therefore not bail out on an empty match list for the existence shape.
+        self.assertEqual(QUERY._catalog_entity_matches(
+            "So there is no cyber security breach in your wiki?"
+        ), [])
+        self.assertIsNotNone(context)
         ids = {item["id"] for item in context["resolved_entities"]}
         self.assertEqual(
             ids,
             {"csa", "csit", "mindef", "sectoral-cyber-defence-team"},
         )
-        self.assertIn(
-            "cyber-security",
-            {item["id"] for item in context["entities"]},
-        )
+        self.assertEqual({item["id"] for item in context["entities"]}, ids)
         self.assertEqual(context["filed_issue_matches"], [])
         self.assertEqual(
             [target.split("-", 1)[0] for target in context["shared_coverage"]],
@@ -108,6 +156,21 @@ class QueryFastPathTests(unittest.TestCase):
             len(json.dumps(context, ensure_ascii=False)),
             QUERY.FAST_CONTEXT_CHAR_CAP,
         )
+
+    def test_existence_context_preserves_a_filed_issue(self):
+        filed = [{"id": "cyber-resilience", "displayName": "Cyber resilience", "matched_tokens": ["cyber"]}]
+        with mock.patch.object(QUERY, "_issue_catalog_matches", return_value=filed):
+            context = QUERY.build_fast_context("So there is no cyber security breach in your wiki?")
+        self.assertEqual(context["filed_issue_matches"], filed)
+
+    def test_undated_appointment_does_not_claim_verified_current_holder(self):
+        note = {"frontmatter": {"currentHolder": "example-person"}, "sections": {
+            "holders": "- [[example-person|Example Person]]", "office": "An office."}}
+        with mock.patch.object(QUERY, "_parse_note", return_value=note):
+            answer = QUERY._direct_appointment_answer("Who is the current holder?", [
+                {"domain": "appointments", "file": "example.md", "id": "example", "displayName": "Example Office"}])
+        self.assertIn("no verification date", answer["answer"])
+        self.assertNotIn("is the current", answer["answer"])
 
     def test_golden_context_keeps_curated_source_anchors(self):
         cases = {

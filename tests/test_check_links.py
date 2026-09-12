@@ -17,6 +17,22 @@ SPEC.loader.exec_module(MODULE)
 
 
 class FindUnlinkedEntitiesTests(unittest.TestCase):
+    def test_coverage_heading_corruption_fails_cli_gate(self):
+        for text in ("## Coverage- [[example|Example]]\n", "## Coverage\n\n## Coverage\n"):
+            with self.subTest(text=text), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                note = root / "entities" / "people" / "example.md"
+                note.parent.mkdir(parents=True)
+                note.write_text(text)
+                output = io.StringIO()
+                with mock.patch.object(MODULE, "ROOT", str(root)), mock.patch.object(
+                    sys, "argv", ["check_links.py", "--no-run-log", "--no-unlinked"]
+                ), contextlib.redirect_stdout(output):
+                    with self.assertRaises(SystemExit) as result:
+                        MODULE.main()
+                self.assertEqual(result.exception.code, 1)
+                self.assertIn("INVALID COVERAGE HEADINGS", output.getvalue())
+
     def test_skips_runtime_dependencies_and_run_artifacts(self):
         self.assertTrue(MODULE.is_doc_file("issue-radar-site/node_modules/pkg/readme.md"))
         self.assertTrue(MODULE.is_doc_file("runs/2026-09-04/artifacts/report.md"))

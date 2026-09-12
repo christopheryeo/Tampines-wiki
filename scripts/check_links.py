@@ -55,8 +55,8 @@ Usage (cont.):
   python3 scripts/check_links.py --no-unlinked      # skip the UNLINKED ENTITY scan (faster)
   python3 scripts/check_links.py --no-run-log       # suppress canonical run receipt
 
-Exit code: 1 if any BROKEN link, target-embedded NESTED link, or YAML ERROR was found (these
-break a link's target), 0 otherwise. Advisory findings never fail the exit code on their own:
+Exit code: 1 if any BROKEN link, target-embedded NESTED link, YAML ERROR, or malformed/duplicate
+Coverage heading in an active cascade entity was found, 0 otherwise. Advisory findings never fail the exit code on their own:
 ALIAS-ONLY, UNLINKED ENTITY, and the display-embedded NESTED / UNBALANCED "malformed Coverage
 label" class (whose target still resolves — the label just needs regenerating).
 """
@@ -285,6 +285,23 @@ def find_all_notes(domain_filter=None):
     return sorted(paths)
 
 
+def find_coverage_header_defects(paths):
+    """Check active cascade entities for headings that hide their backlinks."""
+    domains = {"people", "organisations", "country", "place", "outlet", "topic", "tag"}
+    findings = []
+    for path in paths:
+        parts = path.replace(os.sep, "/").split("/")
+        if len(parts) != 3 or parts[0] != "entities" or parts[1] not in domains or is_doc_file(path):
+            continue
+        with open(os.path.join(ROOT, path), encoding="utf-8") as handle:
+            text = handle.read()
+        malformed = re.findall(r"^## Coverage-.*$", text, re.MULTILINE)
+        count = len(re.findall(r"^## Coverage[ \t]*$", text, re.MULTILINE))
+        if malformed or count > 1:
+            findings.append((path, len(malformed), count))
+    return findings
+
+
 def main():
     args = sys.argv[1:]
     include_docs = "--include-docs" in args
@@ -353,6 +370,7 @@ def main():
     broken = [(p, t) for p, t in broken if "..." not in t]
 
     nested_target, nested_display, unbalanced = find_structural_defects(scan_notes, include_docs)
+    coverage_headers = find_coverage_header_defects(scan_notes)
     unlinked = []
     if check_unlinked:
         name_to_slug = build_entity_name_index(live_notes)
@@ -420,7 +438,13 @@ def main():
             print(f"  ... and {len(unlinked) - 15} more")
         print()
 
-    hard_fail = bool(broken or yaml_errors or nested_target)
+    if coverage_headers:
+        print(f"INVALID COVERAGE HEADINGS ({len(coverage_headers)} notes):")
+        for path, malformed, count in coverage_headers:
+            print(f"  {path}: malformed={malformed}, Coverage sections={count}")
+        print()
+
+    hard_fail = bool(broken or yaml_errors or nested_target or coverage_headers)
     warnings = bool(nested_display or unbalanced or broken_truncated or alias_only or unlinked)
     if not (hard_fail or warnings):
         print("CLEAN: no broken, nested, or alias-only links, no YAML errors, "
@@ -439,15 +463,16 @@ def main():
         run.set_article_metrics(
             inputCount=article_count,
             processedCount=article_count,
-            failedCount=len(broken) + len(yaml_errors) + len(nested_target),
+            failedCount=len(broken) + len(yaml_errors) + len(nested_target) + len(coverage_headers),
         )
         run.set_file_metrics(
             scannedCount=len(scanned_note_paths),
-            failedCount=len(broken) + len(yaml_errors) + len(nested_target),
+            failedCount=len(broken) + len(yaml_errors) + len(nested_target) + len(coverage_headers),
         )
         run.add_output("brokenLinks", len(broken))
         run.add_output("yamlErrors", len(yaml_errors))
         run.add_output("nestedTargetLinks", len(nested_target))
+        run.add_output("invalidCoverageHeadings", len(coverage_headers))
         run.add_output("warnings", warning_count)
         run.add_output("aliasOnlyLinks", len(alias_only))
         run.add_output("unlinkedEntityMentions", len(unlinked))
