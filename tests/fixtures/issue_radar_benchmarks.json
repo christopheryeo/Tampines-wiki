@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "issue-radar-benchmarks.v1",
+  "benchmarks": [
+    {
+      "issueId": "ns-enforcement-enlistment-act",
+      "expectedDisposition": "confirmed",
+      "expectedMinimumRamification": "high",
+      "referenceAsOf": "2026-03-31"
+    },
+    {
+      "issueId": "sg-germany-defence-tkms-procurement",
+      "expectedDisposition": "confirmed",
+      "expectedMinimumRamification": "moderate",
+      "referenceAsOf": "2026-03-31"
+    },
+    {
+      "issueId": "sg-neutrality-narrative",
+      "expectedDisposition": "confirmed",
+      "expectedMinimumRamification": "moderate",
+      "referenceAsOf": "2026-03-31"
+    },
+    {
+      "issueId": "singaporeans-israel-gaza-conflict",
+      "expectedDisposition": "confirmed",
+      "expectedMinimumRamification": "severe",
+      "referenceAsOf": "2026-03-31"
+    },
+    {
+      "issueId": "us-force-posture-regional-escalation",
+      "expectedDisposition": "confirmed",
+      "expectedMinimumRamification": "moderate",
+      "referenceAsOf": "2026-03-31"
+    },
+    {
+      "issueId": "water-climate-coverage-mar-2026",
+      "expectedDisposition": "dismissed",
+      "expectedMinimumRamification": "low",
+      "referenceAsOf": "2026-03-31"
+    }
+  ]
+}

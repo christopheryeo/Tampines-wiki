@@ -84,14 +84,17 @@ def article_paths(explicit: list[str]) -> list[Path]:
 
 def expected_source_id(path: Path, current: str) -> str:
     stem = path.stem
+    # Crawler IDs may themselves contain hyphens (for example
+    # 2026-08-1251622954). Preserve the registered ID when the filename begins
+    # with that exact ID before applying legacy numeric-prefix inference.
+    if current and (stem == current or stem.startswith(current + "-")):
+        return current
     numeric = re.match(r"^(\d+)-", stem)
     if numeric:
         return numeric.group(1)
     uuid = UUID_PREFIX.match(stem)
     if uuid:
         return uuid.group(1)
-    if current and (stem == current or stem.startswith(current + "-")):
-        return current
     hashed = HASH_ID_PREFIX.match(stem)
     if hashed:
         return hashed.group(1)

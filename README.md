@@ -367,10 +367,13 @@ python3 scripts/repair_stranded_coverage.py --write --log
 #### Dashboards
 
 ##### `dashboards/site/scripts/generate_dashboard_data.py` — build the dashboard payload
-Reads the compiled vault and writes `dashboards/site/app/dashboard-data.json`. It covers ten entity
-domains — `people`, `organisations`, `place`, `country`, `outlet`, `topic`, `appointments`, `issues`,
-`search`, `decisions` — and deliberately **excludes** the `article` domain, so the dashboard is built
-from entity notes rather than from the article corpus itself.
+Reads the compiled vault and writes `dashboards/site/app/dashboard-data.json`. Article notes supply
+coverage counts, dates, classifications, authored relationship counts and recent summaries. Ten
+non-article domains — `people`, `organisations`, `place`, `country`, `outlet`, `topic`, `appointments`,
+`issues`, `search`, `decisions` — supply entity counts, rankings and issue assessments. Article notes
+are excluded from the entity total, not from the dashboard dataset. Relationship counts resolve
+domain-qualified links and unambiguous bare filenames in authored article sections; retained
+Source Text and Database Projection copies are excluded.
 
 #### Entity review and inference
 

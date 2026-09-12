@@ -141,6 +141,24 @@ def thirty_word_summary(text: str) -> str:
     return f"{excerpt}…" if len(words) > 30 else excerpt
 
 
+def article_link_domains(body: str, path_domains: dict[str, str], stem_domains: dict[str, set[str]]) -> Counter[str]:
+    """Count resolvable authored wikilink occurrences, excluding retained evidence."""
+    authored = re.split(r"^## (?:Source Text|Database Projection)\b", body, maxsplit=1, flags=re.MULTILINE)[0]
+    counts: Counter[str] = Counter()
+    for target in re.findall(r"\[\[([^\]|]+)(?:\|[^\]]*)?\]\]", authored):
+        target = target.split("#", 1)[0].removesuffix(".md")
+        if target.startswith("entities/"):
+            target = target[len("entities/"):]
+        domain = path_domains.get(target)
+        if domain is None and "/" not in target:
+            candidates = stem_domains.get(target, set())
+            if len(candidates) == 1:
+                domain = next(iter(candidates))
+        if domain is not None:
+            counts[domain] += 1
+    return counts
+
+
 def main() -> None:
     counts = {domain: len(note_files(domain)) for domain in DOMAINS}
     article_paths = note_files("article")
@@ -157,10 +175,12 @@ def main() -> None:
     with_event = 0
     dated_articles = []
 
-    filename_domain = {}
+    path_domains = {}
+    stem_domains: dict[str, set[str]] = defaultdict(set)
     for domain in DOMAINS:
         for path in note_files(domain):
-            filename_domain[path.stem] = domain
+            path_domains[path.relative_to(ENTITIES).with_suffix("").as_posix()] = domain
+            stem_domains[path.stem].add(domain)
 
     for path in article_paths:
         meta, body = read_note(path)
@@ -185,10 +205,7 @@ def main() -> None:
             tag = str(tag).lstrip("#").strip()
             if tag and tag != "source":
                 tags[tag] += 1
-        for target in re.findall(r"\[\[([^\]|/#]+)(?:\|[^\]]+)?\]\]", body):
-            domain = filename_domain.get(target)
-            if domain:
-                links_by_domain[domain] += 1
+        links_by_domain.update(article_link_domains(body, path_domains, stem_domains))
         if raw_date:
             try:
                 parsed = datetime.fromisoformat(raw_date.replace("Z", "+00:00"))

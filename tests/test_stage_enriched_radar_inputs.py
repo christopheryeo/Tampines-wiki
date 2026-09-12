@@ -153,9 +153,10 @@ class EnrichedRadarStagerTests(unittest.TestCase):
             self.assertEqual(manifest["counts"].get("reviewArticles", 0), 0)
 
     def test_compiled_article_body_preserves_exact_issue_tags(self):
+        records = CASCADE.resolve_issue_tags(["Aircraft", "Defence Spending", "aircraft"])
         self.assertEqual(
-            CASCADE.issue_tag_lines(["AI Safety", "Defence Spending", "ai safety"]),
-            "- AI Safety\n- Defence Spending",
+            CASCADE.issue_tag_lines(records),
+            "- [[tag/aircraft|Aircraft]]\n- [[tag/defence-spending|Defence Spending]]",
         )
 
 

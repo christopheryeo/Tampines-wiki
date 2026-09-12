@@ -378,14 +378,13 @@ def _parse_note(domain: str, note: str) -> dict[str, Any] | None:
     text = path.read_text(encoding="utf-8")
     frontmatter: dict[str, Any] = {}
     body = text
-    if text.startswith("---"):
-        parts = text.split("---", 2)
-        if len(parts) == 3:
-            try:
-                frontmatter = yaml.safe_load(parts[1]) or {}
-            except yaml.YAMLError:
-                frontmatter = {}
-            body = parts[2]
+    frontmatter_match = re.match(r"\A---[ \t]*\n(.*?)^---[ \t]*$", text, re.MULTILINE | re.DOTALL)
+    if frontmatter_match is not None:
+        try:
+            frontmatter = yaml.safe_load(frontmatter_match[1]) or {}
+        except yaml.YAMLError:
+            frontmatter = {}
+        body = text[frontmatter_match.end():]
     sections: dict[str, str] = {}
     matches = list(re.finditer(r"^##\s+(.+?)\s*$", body, re.MULTILINE))
     for index, match in enumerate(matches):
@@ -585,6 +584,98 @@ def _subsection(text: str, heading: str) -> str:
     return match.group(1).strip() if match else ""
 
 
+def _direct_coverage_answer(question: str, matches: list[dict[str, str]]) -> dict[str, Any] | None:
+    """Answer explicit complete article lists from canonical Coverage, without a sampled packet."""
+    lowered = question.lower()
+    if not re.search(r"\barticles?\b", lowered) or not re.search(r"\b(list|all|every|which)\b", lowered):
+        return None
+    # Date-window and topical filtering still require the general query workflow.
+    if re.search(r"\b(19\d{2}|20\d{2}|today|yesterday|last|past|since|before|after|recent|latest)\b", lowered):
+        return None
+    shared = bool(re.search(r"\b(shared|both|common)\b", lowered))
+    if not matches or (shared and len(matches) != 2) or (not shared and len(matches) != 1):
+        return None
+    article_root = (ENTITIES / "article").resolve()
+    sets: list[set[str]] = []
+    paths: dict[str, Path] = {}
+    unresolved: set[str] = set()
+    sensitive = False
+    for item in matches:
+        note = _parse_note(item["domain"], item["file"])
+        if note is None:
+            return None
+        sensitive |= "#saf" in (note["frontmatter"].get("tags") or [])
+        targets: set[str] = set()
+        for link in _coverage_links(note):
+            target = link["target"].split("#", 1)[0].removesuffix(".md")
+            target = target.removeprefix("entities/")
+            if target.startswith("article/"):
+                candidates = [ENTITIES / (target + ".md")]
+            elif "/" not in target:
+                candidates = list(article_root.rglob(target + ".md"))
+            else:
+                candidates = []
+            candidates = [p.resolve() for p in candidates if p.is_file() and p.resolve().is_relative_to(article_root)]
+            if len(candidates) != 1:
+                unresolved.add(link["target"])
+                continue
+            path = candidates[0]
+            key = path.relative_to(ENTITIES.resolve()).with_suffix("").as_posix()
+            paths[key] = path
+            targets.add(key)
+        sets.append(targets)
+    if unresolved:
+        return {
+            "answer": "A complete article list could not be established because some coverage references are missing or ambiguous.",
+            "entities_resolved": [item["id"] for item in matches], "sources_cited": [],
+            "status": "unresolved", "time_sensitive": False, "saf": sensitive, "reused_query_id": None,
+        }
+    selected = set.intersection(*sets) if shared else sets[0]
+    rows = []
+    for target in selected:
+        note = _parse_note("article", paths[target].relative_to(article_root).as_posix())
+        if note is None:
+            return None
+        meta = note["frontmatter"]
+        sensitive |= "#saf" in (meta.get("tags") or [])
+        text = paths[target].read_text(encoding="utf-8")
+        heading = re.search(r"(?m)^# (.+)$", text)
+        title = str(meta.get("articleTitle") or meta.get("title") or (heading[1] if heading else ""))
+        if not title:
+            projection = re.search(r"(?s)^## Database Projection\s*\n```json\n(.*?)\n```", text, re.MULTILINE)
+            try:
+                title = str(json.loads(projection[1])["article"]["article_title"]) if projection else target
+            except (KeyError, TypeError, ValueError):
+                title = target
+        raw_date = str(meta.get("publishedDate") or "")
+        try:
+            date = datetime.fromisoformat(raw_date.replace("Z", "+00:00"))
+            date = date.replace(tzinfo=timezone.utc) if date.tzinfo is None else date
+            sort_date = date.astimezone(timezone.utc).isoformat()
+        except ValueError:
+            sort_date = ""
+        rows.append((sort_date, target, title, raw_date))
+    newest_first = bool(re.search(r"\b(newest|descending)\b", lowered))
+    dated = sorted((r for r in rows if r[0]), key=lambda r: (r[0], r[1]), reverse=newest_first)
+    undated = sorted((r for r in rows if not r[0]), key=lambda r: r[1])
+    rows = dated + undated
+    names = " and ".join(item["displayName"] for item in matches)
+    label = "shared coverage articles" if shared else "coverage articles"
+    answer = f"{len(rows)} {label} for {names}."
+    if rows:
+        answer += "\n\n" + "\n".join(
+            f"{index}. {date or 'Date unavailable'} — {title}"
+            for index, (_, _, title, date) in enumerate(rows, 1)
+        )
+    if undated:
+        answer += "\n\nEntries without a usable publication date appear last."
+    return {
+        "answer": answer, "entities_resolved": [item["id"] for item in matches],
+        "sources_cited": [row[1] for row in rows], "status": "answered",
+        "time_sensitive": False, "saf": sensitive, "reused_query_id": None,
+    }
+
+
 def _direct_roster_answer(question: str, matches: list[dict[str, str]]) -> dict[str, Any] | None:
     lowered = question.lower()
     domain_words = {
@@ -652,13 +743,23 @@ def _direct_appointment_answer(question: str,
         return None
     holders = _section(note, "Holders")
     holder_label = holder_id.replace("-", " ").title()
+    holder_as_of = None
+    for line in holders.splitlines():
+        if any(target == holder_id for target, _ in _WIKILINK_RE.findall(line)):
+            dated = re.search(r"\bas of\s+(\d{4}-\d{2}-\d{2})\b", line, re.IGNORECASE)
+            if dated:
+                holder_as_of = dated[1]
+                break
     for target, label in _WIKILINK_RE.findall(holders):
         if target == holder_id:
             holder_label = label or holder_label
             break
     office = re.sub(r"\[\[([^\]|]+)\|([^\]]+)\]\]", r"\2", _section(note, "Office"))
     office = re.sub(r"\[\[([^\]]+)\]\]", r"\1", office).strip()
-    answer = f"{holder_label} is the current {appointment['displayName']}."
+    if holder_as_of:
+        answer = f"As of {holder_as_of}, {holder_label} was listed as {appointment['displayName']}."
+    else:
+        answer = f"{holder_label} is listed as {appointment['displayName']}; the holder entry has no verification date."
     if office:
         answer += f" {office}"
     return {
@@ -677,7 +778,8 @@ def _compact_entity_context(item: dict[str, str], note: dict[str, Any],
     frontmatter = note["frontmatter"]
     keep_fields = (
         "displayName", "role", "affiliation", "country", "orgType", "category",
-        "currentHolder", "articleCount", "mentionCount", "status", "ramification",
+        "currentHolder", "articleCount", "mentionCount", "status", "crawlStatus",
+        "crawlStatusAt", "lastCrawledAt", "ramification",
     )
     shape = _query_shape(question, [item])
     if shape == "identity":
@@ -828,15 +930,21 @@ def _existence_expansions(
 def build_fast_context(question: str) -> dict[str, Any] | None:
     """Build a bounded, source-backed context packet for one-call query answering."""
     matches = _catalog_entity_matches(question)
-    if not matches:
-        return None
     shape = _query_shape(question, matches)
+    # An existence check ("is there any X in the wiki?") legitimately resolves no
+    # catalog entity — answering it is precisely the job of _existence_expansions
+    # below, which discovers the relevant organisation graph from the question's
+    # anchor tokens. Bailing out here on an empty match list silently disabled
+    # that path once the topic consolidation retired the broad topic notes that
+    # used to supply an incidental seed match.
+    if not matches and shape != "existence":
+        return None
     notes: list[tuple[dict[str, str], dict[str, Any]]] = []
     for item in matches:
         note = _parse_note(item["domain"], item["file"])
         if note is not None:
             notes.append((item, note))
-    if not notes:
+    if not notes and shape != "existence":
         return None
 
     # Appointment questions about remarks need both dated holders' person notes.
@@ -873,6 +981,8 @@ def build_fast_context(question: str) -> dict[str, Any] | None:
             if (item["domain"], item["id"]) not in known:
                 notes.append((item, note))
                 known.add((item["domain"], item["id"]))
+        if not notes:
+            return None
 
     coverage_sets = [
         {link["target"] for link in _coverage_links(note)}
@@ -936,6 +1046,8 @@ def build_fast_context(question: str) -> dict[str, Any] | None:
             existence_shared if shape == "existence"
             else sorted(shared_targets)[:20]
         ),
+        "shared_coverage_total": len(existence_shared if shape == "existence" else shared_targets),
+        "shared_coverage_truncated": shape != "existence" and len(shared_targets) > 20,
         "shared_evidence": shared_evidence,
         "entities": entity_contexts,
     }
@@ -1426,22 +1538,24 @@ def run_query(question: str, cache_read: bool | None = None,
     model = model or DEFAULT_MODEL
 
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
-    if not api_key:
-        raise QueryError("OPENAI_API_KEY is not set (checked env and .env.local).")
-
     final: dict[str, Any] | None = None
     if fast_path_enabled() and not read:
         matches = _catalog_entity_matches(question)
         shape = _query_shape(question, matches)
-        if shape == "roster":
+        final = _direct_coverage_answer(question, matches)
+        if final is None and shape == "roster":
             final = _direct_roster_answer(question, matches)
-        elif shape == "appointment":
+        elif final is None and shape == "appointment":
             final = _direct_appointment_answer(question, matches)
         if final is None and _fast_matches_supported(shape, matches):
             context = build_fast_context(question)
             if context is not None:
+                if not api_key:
+                    raise QueryError("OPENAI_API_KEY is not set (checked env and .env.local).")
                 final = _run_fast_model(api_key, model, question, context)
     if final is None:
+        if not api_key:
+            raise QueryError("OPENAI_API_KEY is not set (checked env and .env.local).")
         final = _run_legacy_model(api_key, model, question, read, write)
 
     result: dict[str, Any] = {

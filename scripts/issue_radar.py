@@ -8,11 +8,11 @@ Markdown vault.
 
 Authentication is delegated to the MySQL client. Prefer ``--defaults-file`` or
 ``--login-path`` with a SELECT-only account. Environment variables are also
-supported; see ``--help``. Any ``ISSUE_RADAR_MYSQL_*`` variable, or
-``ISSUE_RADAR_MYSQL_DEFAULTS_FILE``/``ISSUE_RADAR_MYSQL_LOGIN_PATH`` pointing at
-an external option file, may also be placed in the Git-ignored ``.env.local``
-(see ``scripts/local_env.py``) instead of exported in the shell. A real shell
-export always takes precedence over ``.env.local``.
+supported; see ``--help``. Source-specific
+``ISSUE_RADAR_UAT_MYSQL_*``/``ISSUE_RADAR_PRODUCTION_MYSQL_*`` values override
+generic ``ISSUE_RADAR_MYSQL_*`` and ``DB_*`` values. They may be placed in the
+Git-ignored ``.env.local`` (see ``scripts/local_env.py``). A real shell export
+always takes precedence over ``.env.local``.
 """
 
 import argparse
@@ -20,6 +20,7 @@ import collections
 import csv
 import datetime
 import getpass
+import hashlib
 import json
 import os
 import re
@@ -32,6 +33,8 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from local_env import load_local_env  # noqa: E402
+from tag_registry import load_registry as load_tag_registry  # noqa: E402
+from tag_registry import normalize_tag, radar_status_at, status_at  # noqa: E402
 
 
 INSTITUTIONAL = {
@@ -132,21 +135,37 @@ COMMIT;
 """
 
 
+def source_setting(args, suffix, fallback=None):
+    """Return a source-specific connection value before a generic fallback."""
+    source = getattr(args, "source", None)
+    if source:
+        value = os.environ.get(f"ISSUE_RADAR_{source.upper()}_MYSQL_{suffix}")
+        if value:
+            return value
+    return fallback
+
+
 def mysql_command(args):
-    command = [args.mysql_program]
-    if args.defaults_file:
-        command.append(f"--defaults-extra-file={args.defaults_file}")
-    if args.login_path:
-        command.append(f"--login-path={args.login_path}")
+    command = [source_setting(args, "PROGRAM", args.mysql_program)]
+    defaults_file = source_setting(args, "DEFAULTS_FILE", args.defaults_file)
+    login_path = source_setting(args, "LOGIN_PATH", args.login_path)
+    host = source_setting(args, "HOST", args.mysql_host)
+    port = source_setting(args, "PORT", args.mysql_port)
+    user = source_setting(args, "USER", args.mysql_user)
+    ssl_mode = source_setting(args, "SSL_MODE", args.ssl_mode)
+    if defaults_file:
+        command.append(f"--defaults-extra-file={defaults_file}")
+    if login_path:
+        command.append(f"--login-path={login_path}")
     command.extend(["--batch", "--raw", "--skip-column-names", "--default-character-set=utf8mb4"])
-    if args.mysql_host:
-        command.extend(["--host", args.mysql_host])
-    if args.mysql_port:
-        command.extend(["--port", str(args.mysql_port)])
-    if args.mysql_user:
-        command.extend(["--user", args.mysql_user])
-    if args.ssl_mode:
-        command.append(f"--ssl-mode={args.ssl_mode}")
+    if host:
+        command.extend(["--host", str(host)])
+    if port:
+        command.extend(["--port", str(port)])
+    if user:
+        command.extend(["--user", str(user)])
+    if ssl_mode:
+        command.append(f"--ssl-mode={ssl_mode}")
     return command
 
 
@@ -189,7 +208,12 @@ def run_mysql(args, query):
     environment = os.environ.copy()
     password = (
         getpass.getpass("MySQL password: ")
-        if args.prompt_password else os.environ.get("ISSUE_RADAR_MYSQL_PASSWORD")
+        if args.prompt_password
+        else (
+            source_setting(args, "PASSWORD")
+            or os.environ.get("ISSUE_RADAR_MYSQL_PASSWORD")
+            or os.environ.get("DB_PASSWORD")
+        )
     )
     if password:
         environment["MYSQL_PWD"] = password
@@ -210,6 +234,35 @@ def load_articles(args):
     database, prefix = resolve_source(args)
     output = run_mysql(args, product_query(database, prefix))
     return parse_product_rows(output), database, prefix
+
+
+def apply_tag_registry(
+    articles, asof, records=None, radar_statuses=None, use_current_radar_status=False,
+):
+    """Reject unknown tags and retain lifecycle-active tags in selected radar states."""
+
+    records = load_tag_registry() if records is None else records
+    radar_statuses = {"enabled"} if radar_statuses is None else set(radar_statuses)
+    lookup = {normalize_tag(record.display_name): record for record in records}
+    output = []
+    for article in articles:
+        active_tags = set()
+        for raw in article["tags"]:
+            key = normalize_tag(raw)
+            record = lookup.get(key)
+            if record is None:
+                raise RadarError(
+                    f"database tag has no Tag entity: article={article['id']} tag={raw!r}"
+                )
+            if (
+                status_at(record, asof) == "active"
+                and (
+                    record.radar_status if use_current_radar_status else radar_status_at(record, asof)
+                ) in radar_statuses
+            ):
+                active_tags.add(normalize_tag(record.display_name))
+        output.append({**article, "tags": active_tags})
+    return output
 
 
 def export_tags(args, destination):
@@ -262,6 +315,14 @@ def waves(dates, asof):
     return count
 
 
+def classify_tier(score, recent_volume):
+    """Return the configured tier for a score/volume pair."""
+    return next(
+        (name for name, minimum, volume in TIERS if score >= minimum and recent_volume >= volume),
+        None,
+    )
+
+
 def score_issue(selected, asof):
     history = [article for article in selected if article["date"] <= asof]
     if not history:
@@ -304,10 +365,7 @@ def score_issue(selected, asof):
         "recur": recurrence, "unfac": unfacilitated, "opin": opinionated,
     }
     score = sum(WEIGHTS[name] * value for name, value in parts.items())
-    tier = next(
-        (name for name, minimum, volume in TIERS if score >= minimum and recent_volume >= volume),
-        None,
-    )
+    tier = classify_tier(score, recent_volume)
     reasons = []
     if acceleration > 0.3:
         reasons.append(f"volume {prior_volume}->{recent_volume} over two {WINDOW}d windows")
@@ -328,6 +386,97 @@ def score_issue(selected, asof):
     return {"score": score, "tier": tier, "vol": recent_volume, "parts": parts, "why": reasons}
 
 
+def structured_run(
+    articles, database, prefix, asof, candidate_count, ranked, min_tier, selections=None,
+    registry_metadata=None, radar_mode="operational",
+):
+    """Return deterministic structured output for audit and run comparison."""
+    selections = selections or {}
+    recent_start = asof - datetime.timedelta(days=WINDOW)
+    return {
+        "schemaVersion": "issue-radar-run.v1",
+        "asOf": asof.isoformat(),
+        "source": {
+            "database": database,
+            "tablePrefix": prefix,
+            "articleTable": f"{prefix}articles",
+            "tagTable": f"{prefix}article_tags",
+            "coverageTable": f"{prefix}article_coverage",
+            "readOnly": True,
+        },
+        "articleCount": len(articles),
+        "candidateCount": candidate_count,
+        "flagCount": len(ranked),
+        "minimumTier": min_tier,
+        "radarMode": radar_mode,
+        "tagRegistry": registry_metadata or {},
+        "configuration": {
+            "windowDays": WINDOW,
+            "minimumArticles": MIN_ARTICLES,
+            "minimumWeeks": MIN_WEEKS,
+            "genericFraction": GENERIC_FRACTION,
+            "weights": dict(sorted(WEIGHTS.items())),
+            "tiers": [
+                {"name": name, "minimumScore": minimum, "minimumRecentVolume": volume}
+                for name, minimum, volume in TIERS
+            ],
+        },
+        "flags": [
+            {
+                "tag": tag,
+                "tier": result["tier"],
+                "score": result["score"],
+                "recentVolume": result["vol"],
+                "signals": dict(sorted(result["parts"].items())),
+                "reasons": result["why"],
+                "articleIds": sorted(
+                    article["id"]
+                    for article in selections.get(tag, [])
+                    if article["date"] <= asof
+                ),
+                "recentArticleIds": sorted(
+                    article["id"]
+                    for article in selections.get(tag, [])
+                    if recent_start < article["date"] <= asof
+                ),
+            }
+            for tag, result in ranked
+        ],
+    }
+
+
+def write_structured_run(path, payload):
+    destination = Path(path).expanduser().resolve()
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_text_output(path, content):
+    destination = Path(path).expanduser().resolve()
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(content, encoding="utf-8")
+
+
+def ranked_report(asof, ranked, article_count, top, source_label):
+    lines = [
+        (
+            f"# Issue radar as of {asof} "
+            f"({len(ranked)} flagged from {article_count} articles, showing top {top}; "
+            f"source {source_label})"
+        ),
+        "",
+    ]
+    for tag, result in ranked[:top]:
+        lines.append(f"[{result['tier']:<5}] {result['score']:.2f}  {tag}  (vol {result['vol']}/28d)")
+        lines.extend(f"         - {reason}" for reason in result["why"])
+    if not ranked:
+        lines.append("nothing flagged")
+    return "\n".join(lines) + "\n"
+
+
 def series(selected, asof):
     weekly = collections.defaultdict(lambda: [0, set(), set()])
     for article in selected:
@@ -344,8 +493,10 @@ def build_parser():
     parser = argparse.ArgumentParser(
         description="Read-only issue radar over canonical MySQL product tables",
         epilog=(
-            "Connection values may also come from ISSUE_RADAR_MYSQL_HOST, _PORT, _USER, "
-            "_PASSWORD, _DEFAULTS_FILE, _LOGIN_PATH, _PROGRAM, and _SSL_MODE. "
+            "Connection values may also come from source-specific "
+            "ISSUE_RADAR_UAT_MYSQL_* or ISSUE_RADAR_PRODUCTION_MYSQL_* variables, then "
+            "generic ISSUE_RADAR_MYSQL_HOST, _PORT, _USER, _PASSWORD, _DEFAULTS_FILE, "
+            "_LOGIN_PATH, _PROGRAM, and _SSL_MODE. "
             "Prefer a MySQL option file or login path over a password environment variable."
         ),
     )
@@ -358,9 +509,23 @@ def build_parser():
                         help="MySQL option file; preferred for automation")
     parser.add_argument("--login-path", default=os.environ.get("ISSUE_RADAR_MYSQL_LOGIN_PATH"),
                         help="mysql_config_editor login path")
-    parser.add_argument("--mysql-host", default=os.environ.get("ISSUE_RADAR_MYSQL_HOST"))
-    parser.add_argument("--mysql-port", type=int, default=int(os.environ.get("ISSUE_RADAR_MYSQL_PORT", "0")) or None)
-    parser.add_argument("--mysql-user", default=os.environ.get("ISSUE_RADAR_MYSQL_USER"))
+    parser.add_argument(
+        "--mysql-host",
+        default=os.environ.get("ISSUE_RADAR_MYSQL_HOST") or os.environ.get("DB_HOST"),
+    )
+    parser.add_argument(
+        "--mysql-port",
+        type=int,
+        default=int(
+            os.environ.get("ISSUE_RADAR_MYSQL_PORT")
+            or os.environ.get("DB_PORT")
+            or "0"
+        ) or None,
+    )
+    parser.add_argument(
+        "--mysql-user",
+        default=os.environ.get("ISSUE_RADAR_MYSQL_USER") or os.environ.get("DB_USER"),
+    )
     parser.add_argument("--prompt-password", action="store_true",
                         help="securely prompt for the MySQL password without putting it in arguments")
     parser.add_argument("--ssl-mode", choices=["DISABLED", "PREFERRED", "REQUIRED", "VERIFY_CA", "VERIFY_IDENTITY"],
@@ -371,15 +536,66 @@ def build_parser():
     parser.add_argument("--min-tier", default="WATCH", choices=[tier[0] for tier in TIERS])
     parser.add_argument("--export-tags", metavar="CSV_PATH",
                         help="export every distinct source tag and article count, then exit")
+    parser.add_argument("--json-output", metavar="JSON_PATH",
+                        help="write the complete deterministic structured radar result")
+    parser.add_argument("--text-output", metavar="TEXT_PATH",
+                        help="write the complete readable radar report as text")
+    parser.add_argument("--shadow-json-output", metavar="JSON_PATH",
+                        help="write comparison-only results for shadow tags")
+    parser.add_argument("--shadow-text-output", metavar="TEXT_PATH",
+                        help="write the readable comparison report for shadow tags")
+    parser.add_argument("--comparison-json-output", metavar="JSON_PATH",
+                        help="write enabled-plus-shadow pre-optimization comparison results")
+    parser.add_argument("--comparison-text-output", metavar="TEXT_PATH",
+                        help="write enabled-plus-shadow readable comparison results")
+    parser.add_argument("--use-current-radar-status", action="store_true",
+                        help="backtest the current eligibility state at a historical evaluation date")
     return parser
+
+
+def tag_registry_metadata(records):
+    rows = [
+        {
+            "tagId": record.tag_id,
+            "lifecycleStatus": record.status,
+            "radarStatus": record.radar_status,
+            "radarStatusEffectiveAt": record.radar_status_effective_at,
+        }
+        for record in sorted(records, key=lambda item: item.tag_id)
+    ]
+    encoded = json.dumps(rows, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+    return {
+        "sha256": hashlib.sha256(encoded).hexdigest(),
+        "tagCount": len(records),
+        "radarStatusCounts": dict(sorted(collections.Counter(r.radar_status for r in records).items())),
+    }
+
+
+def rank_articles(articles, asof, min_tier):
+    selected_candidates = candidates(articles, asof)
+    ranked = []
+    for tag, selected in selected_candidates.items():
+        result = score_issue(selected, asof)
+        if result and result["tier"]:
+            ranked.append((tag, result))
+    order = {tier[0]: index for index, tier in enumerate(TIERS)}
+    keep = order[min_tier]
+    ranked = [item for item in ranked if order[item[1]["tier"]] <= keep]
+    ranked.sort(key=lambda item: (-item[1]["score"], item[0]))
+    return selected_candidates, ranked
 
 
 def run(args):
     if args.export_tags:
         export_tags(args, args.export_tags)
         return
-    articles, database, prefix = load_articles(args)
-    asof = datetime.date.fromisoformat(args.asof) if args.asof else max(article["date"] for article in articles)
+    raw_articles, database, prefix = load_articles(args)
+    asof = datetime.date.fromisoformat(args.asof) if args.asof else max(article["date"] for article in raw_articles)
+    records = load_tag_registry()
+    registry_meta = tag_registry_metadata(records)
+    articles = apply_tag_registry(
+        raw_articles, asof, records, {"enabled"}, args.use_current_radar_status,
+    )
     source_label = f"{database}.{prefix}articles"
 
     if args.issue:
@@ -399,27 +615,65 @@ def run(args):
             print(f"\nscore={result['score']:.2f} tier={result['tier']}  " + "; ".join(result["why"]))
         return
 
-    ranked = []
-    for tag, selected in candidates(articles, asof).items():
-        result = score_issue(selected, asof)
-        if result and result["tier"]:
-            ranked.append((tag, result))
-    order = {tier[0]: index for index, tier in enumerate(TIERS)}
-    keep = order[args.min_tier]
-    ranked = [item for item in ranked if order[item[1]["tier"]] <= keep]
-    ranked.sort(key=lambda item: (-item[1]["score"], item[0]))
+    selected_candidates, ranked = rank_articles(articles, asof, args.min_tier)
+    if args.json_output:
+        write_structured_run(
+            args.json_output,
+            structured_run(
+                articles, database, prefix, asof, len(selected_candidates), ranked, args.min_tier,
+                selected_candidates,
+                registry_meta,
+                "operational",
+            ),
+        )
 
-    print(
-        f"# Issue radar as of {asof} "
-        f"({len(ranked)} flagged from {len(articles)} articles, showing top {args.top}; "
-        f"source {source_label})\n"
-    )
-    for tag, result in ranked[:args.top]:
-        print(f"[{result['tier']:<5}] {result['score']:.2f}  {tag}  (vol {result['vol']}/28d)")
-        for reason in result["why"]:
-            print(f"         - {reason}")
-    if not ranked:
-        print("nothing flagged")
+    report = ranked_report(asof, ranked, len(articles), args.top, source_label)
+    if args.text_output:
+        write_text_output(args.text_output, report)
+    print(report, end="")
+
+    if args.shadow_json_output or args.shadow_text_output:
+        shadow_articles = apply_tag_registry(
+            raw_articles, asof, records, {"shadow"}, args.use_current_radar_status,
+        )
+        shadow_candidates, shadow_ranked = rank_articles(shadow_articles, asof, args.min_tier)
+        if args.shadow_json_output:
+            write_structured_run(
+                args.shadow_json_output,
+                structured_run(
+                    shadow_articles, database, prefix, asof, len(shadow_candidates),
+                    shadow_ranked, args.min_tier, shadow_candidates, registry_meta, "shadow",
+                ),
+            )
+        if args.shadow_text_output:
+            write_text_output(
+                args.shadow_text_output,
+                ranked_report(asof, shadow_ranked, len(shadow_articles), args.top, source_label),
+            )
+    if args.comparison_json_output or args.comparison_text_output:
+        comparison_articles = apply_tag_registry(
+            raw_articles, asof, records, {"enabled", "shadow"},
+            args.use_current_radar_status,
+        )
+        comparison_candidates, comparison_ranked = rank_articles(
+            comparison_articles, asof, args.min_tier
+        )
+        if args.comparison_json_output:
+            write_structured_run(
+                args.comparison_json_output,
+                structured_run(
+                    comparison_articles, database, prefix, asof,
+                    len(comparison_candidates), comparison_ranked, args.min_tier,
+                    comparison_candidates, registry_meta, "enabled-plus-shadow-comparison",
+                ),
+            )
+        if args.comparison_text_output:
+            write_text_output(
+                args.comparison_text_output,
+                ranked_report(
+                    asof, comparison_ranked, len(comparison_articles), args.top, source_label,
+                ),
+            )
 
 
 def main():
