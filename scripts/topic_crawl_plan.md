@@ -82,6 +82,9 @@ Optional:
   compile/cascade as **separate checkpoints**. Never overwrite an existing raw or compiled note.
 - Record how each article was discovered (SET A keyword vs SET B Claude-suggested) in the run
   manifests, not in new frontmatter fields.
+- Both discovery paths over-collect. **Never ingest a keyword or URL match without a topical-relevance
+  judgement** (Step 7): each candidate is judged relevant/off-topic from its own content against the
+  topic definition, and only relevant articles are cascaded.
 - Time every compile/cascade run and report elapsed time, processed count, and average per article
   (report zero honestly rather than a misleading average).
 
@@ -196,7 +199,7 @@ For each SET B URL:
    an approved direct publisher-URL retrieval. Record the exact route. If a complete source-backed
    body still isn't available, **hold** the candidate — never synthesize text.
 
-## Step 7 — Gate SET A ∪ SET B (identity, in-range date, complete body)
+## Step 7 — Gate SET A ∪ SET B (identity, in-range date, complete body, topical relevance)
 
 Apply the same gates to every candidate from both sets. Accept only when:
 1. its returned URL/title/source/event correspond to the discovered article;
@@ -204,12 +207,23 @@ Apply the same gates to every candidate from both sets. Accept only when:
    **(this date gate is essential for SET B, whose URLs are not date-bounded at discovery)**;
 3. its structure is coherent and not abruptly truncated;
 4. the body is non-empty source text (a character/word count alone is not proof of completeness);
-   and
 5. it is not already present in `Inputs/articles/` or `entities/article/` by article ID, canonical
-   URL, URI, or source identity.
+   URL, URI, or source identity; and
+6. **it is topically relevant to the resolved Topic Entity** (see relevance classification below).
 
-Drop out-of-range, hallucinated, non-article, or incomplete candidates with a recorded reason. The
-surviving set is the topic's accepted articles = **SET A ∪ validated SET B**.
+**Relevance classification (required).** Keyword search (SET A) and URL discovery (SET B) both
+over-collect: short tokens match unrelated coverage — e.g. "NS" matches railroads (Norfolk Southern,
+Nederlandse Spoorwegen), "enlisted" matches *listed* firms, and bare "policy"/"system" match generic
+news. So every candidate must be judged for topical relevance against the resolved topic's
+`displayName`, `aliases`, definition, and `## Crawl Prompt` scope (its inclusions/exclusions), using
+**only** the article's own title, body, and metadata — never live web or model background knowledge.
+For each candidate record, in the run manifest, a boolean `relevant`, a 0–1 `relevanceConfidence`,
+and a one-line `relevanceReason`. Accept only `relevant: true` candidates that also clear gates 1–5;
+drop the rest with reason `off-topic`. When relevance is genuinely borderline, **hold** rather than
+guess. These judgements are run evidence and are **not** written into article frontmatter.
+
+Drop out-of-range, hallucinated, non-article, incomplete, or **off-topic** candidates with a recorded
+reason. The surviving set is the topic's accepted articles = **SET A ∪ validated SET B**.
 
 ## Step 8 — Normalize accepted articles
 
@@ -332,6 +346,8 @@ is written — and **every selected topic** passes all of the following:
 - [ ] Every accepted raw note uses the frozen input contract and plain source narrative.
 - [ ] Every frozen note passed `enrich_radar_inputs.py --check-complete` after review.
 - [ ] Compile/cascade validation passed for every processed month; timed receipt reports totals.
+- [ ] Every accepted article passed the topical-relevance gate; off-topic keyword/URL matches (e.g. a
+      "NS" railroad hit) were dropped with `off-topic` reasons, not ingested.
 - [ ] Every candidate has one final disposition; topic status/checkpoint reflect verified completion.
 
 ## Tests / Verification
@@ -361,6 +377,7 @@ Return one run report with: topics (IDs, names, date range, timezone, run direct
 SET A keyword queries and counts; Claude discovery request and returned-URL count; SET B size after
 removing SET A and after URI dedup; NewsAPI.ai mapping attempts, unique URIs, retrievals, extraction
 fallbacks, and failures; complete/partial/missing/held/normalized/enriched/cascaded counts split by
-SET A vs SET B; per-month compile/cascade totals, elapsed time, and average processing time;
+SET A vs SET B; the relevance split (relevant vs `off-topic` dropped, with example off-topic titles);
+per-month compile/cascade totals, elapsed time, and average processing time;
 validation outcomes and unresolved limitations; and paths to receipts, manifests, assessments,
 held-item evidence, created article notes, and affected entity notes.
