@@ -87,10 +87,13 @@ gh pr create --base main --head codex/short-change-description
 Creating a PR does **not** merge it. Describe the scoped change, the validation
 performed, and any material limitations in the PR.
 
-### 8. Merge the PR — the deliberate integration step
+### 8. Merge — Giselle merges the PR
 
-Review the PR and its checks, then merge it on GitHub when it is approved and
-ready. A PR is not shipped until this step is complete.
+Do **not** merge your own PR or push to `main`. **Giselle** watches implementer
+PRs on `christopheryeo/Tampines-wiki` and performs the merge under preapproval
+once CI is green (per `DEVELOPMENT.md` / `docs/development-process.md`). Your
+responsibility ends at opening a clear, correctly scoped PR; leave the merge to
+Giselle. A PR is not shipped until Giselle has merged it.
 
 ### 9. Sync and tidy — update local `main`
 
@@ -100,14 +103,15 @@ git pull
 git branch -d codex/short-change-description
 ```
 
-Only delete the local branch after confirming the PR was merged. The remote
+Only delete the local branch after confirming Giselle merged the PR. The remote
 branch is normally deleted by GitHub during the merge.
 
 ## Quick reference
 
 ```
-read rules → branch → change & validate → review → stage → commit → push → PR → merge → sync & tidy
+read rules → branch → change & validate → review → stage → commit → push → PR → (Giselle merges) → sync & tidy
 ```
 
-`DEVELOPMENT.md` is intentionally outside this workflow. This document governs
-only the Git and PR path for a scoped Tampines Wiki change.
+This document governs the Git and PR path for a scoped Tampines Wiki change up to
+opening the PR. The merge is owned by **Giselle**, as defined in `DEVELOPMENT.md`
+and `docs/development-process.md`.
