@@ -108,10 +108,10 @@ snapshot restoration as specified above. It must not invoke Python, shell comman
 checkpoint program anywhere in the topic-crawl completion path.
 
 Existing vault maintenance utilities may still be used independently for scheduled maintenance or
-engineering checks, but `start_topic_crawl.md` and this procedure do not call them.
+engineering checks, but `scripts/topic_crawl_plan.md` and this procedure do not call them.
 
 ## Important rule
 
-Only call this procedure after a crawl has completed. `start_topic_crawl.md` calls it only after a
-valid endpoint response with `status: completed`. The procedure treats the call itself as
-confirmation and requires no separate evidence or approval.
+Only call this procedure after a crawl has completed. `scripts/topic_crawl_plan.md` calls it at
+Step 10 only after the crawl's discovery, retrieval, and bookkeeping stages have succeeded. The
+procedure treats the call itself as confirmation and requires no separate evidence or approval.

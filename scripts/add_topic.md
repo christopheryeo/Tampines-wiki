@@ -15,7 +15,7 @@ active taxonomy:
 
 Registration does not crawl the topic, alter article assignments, cascade coverage, prepare a UAT
 delta, or write to any database. To crawl the topic after registration, separately follow
-`scripts/start_topic_crawl.md` with an article date range.
+`scripts/topic_crawl_plan.md` with an article date range.
 
 > **USER OR CALLER INSTRUCTIONS — use this form:**
 >
@@ -152,7 +152,7 @@ or existing repository maintenance utilities, provided their behaviour satisfies
 
 - Use `scripts/topic_list.md` to inspect the current roster without mutation.
 - Use this procedure for registration only.
-- Use `scripts/start_topic_crawl.md` to crawl a registered topic.
+- Use `scripts/topic_crawl_plan.md` to crawl a registered topic.
 - Use `scripts/update_topic_crawl_status.md` or `scripts/end_topic_crawl.md` for crawl state.
 - Topic merge, retirement, article reassignment, cap changes, UAT projection, and production writes
   require their own authorized workflows.
