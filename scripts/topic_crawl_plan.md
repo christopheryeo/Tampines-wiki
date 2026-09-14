@@ -12,7 +12,7 @@ owner: ChatGPT Codex
 ## Objective
 
 Produce the complete, source-backed set of in-range news articles for each selected canonical Topic
-Entity — via a two-source union (NewsAPI.ai keyword search ∪ Claude-discovered backfill) — and land
+Entity — via a two-source union (NewsAPI.ai keyword search ∪ environment-grounded URL backfill) — and land
 them as enriched, cascaded vault articles, advancing each topic's crawl checkpoint.
 
 Run a governed, restartable crawl **by topic** using a **two-source union** so coverage is broader
@@ -21,8 +21,10 @@ publication-date range:
 
 - **SET A** — crawl the topic with **NewsAPI.ai keyword search**; the returned articles are SET A,
   and their canonical URLs/URIs are remembered.
-- **SET B** — ask **Claude** for all article URLs related to the topic, then **remove any URL
-  already in SET A**; the remainder is SET B.
+- **SET B** — use the grounded URL-discovery capability of the current execution environment for
+  all article URLs related to the topic, then **remove any URL already in SET A**; the remainder is
+  SET B. In a Claude environment use Claude-grounded discovery; in a Codex environment use
+  Codex-grounded discovery.
 - **Crawl SET B** — fetch every SET B article through NewsAPI.ai (URL → URI → article), gated the
   same way as SET A.
 
@@ -57,7 +59,8 @@ Optional:
 > Topics: `<topic IDs, or "the next N eligible topics">`. Date range `<YYYY-MM-DD>` to
 > `<YYYY-MM-DD>`, inclusive. Timezone `Asia/Singapore`. Use the runtime endpoint and
 > `NEWSAPI_AI_API_KEY` without exposing secrets. Build SET A from NewsAPI.ai keyword search, SET B
-> from Claude's related-URL list minus SET A, then crawl SET B. Run every step and gate in order;
+> from the current environment's grounded related-URL list minus SET A (Claude-grounded in Claude;
+> Codex-grounded in Codex), then crawl SET B. Run every step and gate in order;
 > produce per-topic manifests and a run receipt; advance checkpoints only after validation; rebuild
 > the Topic catalog; and report per-topic SET A / SET B / accepted / rejected / duplicate counts,
 > failures, elapsed time, and average time per topic. Do not mark complete until all required gates
@@ -72,21 +75,30 @@ Optional:
 - Preserve provenance from discovery through cascade. Never enrich article claims or complete
   missing body text from model knowledge or live lookups outside the provider response and
   preserved source evidence.
-- **Claude's URL list is candidate discovery only, and must be grounded** (live web/tool, not
-  recalled from memory). Every SET B URL must pass URI mapping, in-range date, identity, and
-  completeness gates; unmappable or unverifiable URLs are held or rejected, **never fabricated**.
+- The environment's grounded URL list is candidate discovery only and must use live web/tool
+  access, not recalled knowledge. In a Claude environment use Claude-grounded discovery; in a
+  Codex environment use Codex-grounded discovery. Every SET B URL must pass URI mapping,
+  in-range date, identity, and completeness gates; unmappable or unverifiable URLs are held or
+  rejected, **never fabricated**.
 - Credentials are runtime-only. Read the key from `NEWSAPI_AI_API_KEY`; never persist the key,
   credential-bearing headers, or credential-bearing URLs in the repository, notes, receipts,
   manifests, or logs. Verify credential presence with safe booleans only.
-- Treat SET A discovery, Claude discovery, URI mapping, retrieval, normalization, enrichment, and
-  compile/cascade as **separate checkpoints**. Never overwrite an existing raw or compiled note.
-- Record how each article was discovered (SET A keyword vs SET B Claude-suggested) in the run
-  manifests, not in new frontmatter fields.
+- Treat SET A discovery, grounded environment discovery, URI mapping, retrieval, normalization,
+  enrichment, and compile/cascade as **separate checkpoints**. Never overwrite an existing raw or
+  compiled note.
+- Record how each article was discovered (SET A keyword vs SET B environment-grounded suggestion)
+  and the environment used (Claude or Codex) in the run manifests, not in new frontmatter fields.
 - Both discovery paths over-collect. **Never ingest a keyword or URL match without a topical-relevance
   judgement** (Step 7): each candidate is judged relevant/off-topic from its own content against the
   topic definition, and only relevant articles are cascaded.
 - Time every compile/cascade run and report elapsed time, processed count, and average per article
   (report zero honestly rather than a misleading average).
+- Keep outcome levels separate: a candidate that passes its identity, date, completeness, duplicate,
+  normalization, enrichment, and article-quality gates remains `succeeded` even if an unrelated
+  repository-wide validation or bookkeeping check later fails. Record `held` or `rejected` only for
+  that candidate's own failed gate. The topic crawl status is run-level and may be `Failed` or
+  incomplete while individual articles remain successful; never relabel successfully processed
+  articles as failed because the overall topic run failed.
 
 ---
 
@@ -97,8 +109,8 @@ Optional:
    notes, and topics already `Queued` or `In progress`.
 3. Validate the date range and timezone; stop if a boundary is absent/invalid or `dateStart` >
    `dateEnd`.
-4. Verify the runtime endpoint, `NEWSAPI_AI_API_KEY`, and Claude grounded-discovery availability
-   (safe booleans only).
+4. Verify the runtime endpoint, `NEWSAPI_AI_API_KEY`, and the current environment's grounded URL
+   discovery availability (safe booleans only).
 5. Freeze the selected topic IDs, checkpoints, prompts, and invocation parameters in a run manifest
    under `runs/YYYY-MM-DD/artifacts/topic-crawls/`.
 
@@ -156,19 +168,20 @@ Call `POST https://eventregistry.org/api/v1/article/getArticles` once per topic 
 **Gate:** a zero SET A result is valid only when the keyword search itself completed successfully — a
 zero is not proof that no coverage exists (SET B may still find articles).
 
-## Step 4 — SET B candidates: ask Claude for related URLs
+## Step 4 — SET B candidates: environment-grounded related URLs
 
-1. Ask **Claude** (grounded with live web/tool access) for **all article URLs related to the topic**
-   within the date range, using the Topic `displayName`, aliases, and the Crawl Prompt's inclusions/
-   exclusions. Request a plain list of direct article URLs only — no homepages, index/category pages,
-   snippets, or commentary.
-2. Record the exact request and Claude's raw returned list in the run manifest.
+1. Use the grounded URL-discovery capability of the current environment for **all article URLs
+   related to the topic** within the date range, using the Topic `displayName`, aliases, and the
+   Crawl Prompt's inclusions/exclusions. In Claude use Claude-grounded discovery; in Codex use
+   Codex-grounded discovery. Request a plain list of direct article URLs only — no homepages,
+   index/category pages, snippets, or commentary.
+2. Record the exact request, environment name, and raw returned list in the run manifest.
 3. Canonicalize every returned URL (resolve redirects, strip non-identity tracking params); drop
    obvious non-article URLs.
 
-## Step 5 — Compute SET B = Claude URLs − SET A
+## Step 5 — Compute SET B = grounded URLs − SET A
 
-1. Remove from Claude's canonicalized list every URL already present in SET A, comparing on the
+1. Remove from the environment's canonicalized list every URL already present in SET A, comparing on the
    **canonical** URL (case-insensitive, trailing slash ignored, tracking params removed).
 2. Deduplicate the remainder among itself. The result is **SET B**.
 3. Apply `maxCandidates` to SET B if set. Record SET B and the removed-as-duplicate count.
@@ -283,6 +296,10 @@ For each affected month:
    logs, and validation updated per the cascade procedure.
 5. Report input/processed/created/held/failure counts, elapsed time, and average seconds per article.
 
+The control tags `#source` and `#saf` remain on compiled article notes but are not issue tags and do
+not need corresponding `entities/tag/` notes. Only issue tags from the active tag vocabulary are
+resolved during cascade.
+
 Then close the topic:
 - Mark the topic crawl `Complete` and advance `lastCrawledAt` **only** if SET A search, SET B
   discovery, and all required retrieval/bookkeeping succeeded — via `scripts/end_topic_crawl.md`, the
@@ -299,7 +316,7 @@ cascade.
 
 ## Step 11 — Complete the run (once per run)
 
-1. Reconcile SET A, Claude-discovery, SET B, mapping, retrieval, normalization, enrichment, and
+1. Reconcile SET A, environment-grounded discovery, SET B, mapping, retrieval, normalization, enrichment, and
    cascade manifests so every candidate has exactly one terminal disposition.
 2. Rebuild `entities/topic/catalog.md` from source notes.
 3. Write the run receipt: selected topics, per-topic SET A / SET B / accepted / rejected / duplicate
@@ -320,7 +337,7 @@ cascade.
 ### Stop triggers
 Stop the affected stage without fabricating success when: the topic is absent/ambiguous/inactive or
 lacks usable crawl instructions; a date boundary is absent/invalid; `NEWSAPI_AI_API_KEY` is
-unavailable/rejected; Claude grounded discovery is unavailable when SET B is required; a response
+unavailable/rejected; grounded URL discovery is unavailable when SET B is required; a response
 cannot be attributed to the submitted topic/URL/URI; URL-to-URI mapping fails and approved fallback
 cannot resolve it; identity/date evidence conflicts irreconcilably; a body is missing/partial and no
 approved source-backed retrieval recovers it; the article already exists or conflicts with an existing
@@ -335,8 +352,9 @@ is written — and **every selected topic** passes all of the following:
 
 - [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated.
 - [ ] SET A built from NewsAPI.ai keyword search; its URLs/URIs recorded, canonicalized, deduplicated.
-- [ ] Claude related-URL list captured (grounded) and canonicalized.
-- [ ] SET B computed as Claude URLs minus SET A (canonical dedup), then deduped by URI against SET A.
+- [ ] Environment-grounded related-URL list captured and canonicalized (Claude in Claude;
+      Codex in Codex).
+- [ ] SET B computed as grounded URLs minus SET A (canonical dedup), then deduped by URI against SET A.
 - [ ] Every SET B URL has a URI-mapping disposition; multiple URLs → one URI treated as one article.
 - [ ] Every retrieved article used `article/getArticle` with `infoArticleBodyLen: -1`; key never
       persisted.
@@ -374,7 +392,7 @@ treat it as proof the whole batch will pass.
 ## Final report
 
 Return one run report with: topics (IDs, names, date range, timezone, run directory, final statuses);
-SET A keyword queries and counts; Claude discovery request and returned-URL count; SET B size after
+SET A keyword queries and counts; grounded discovery environment, request, and returned-URL count; SET B size after
 removing SET A and after URI dedup; NewsAPI.ai mapping attempts, unique URIs, retrievals, extraction
 fallbacks, and failures; complete/partial/missing/held/normalized/enriched/cascaded counts split by
 SET A vs SET B; the relevance split (relevant vs `off-topic` dropped, with example off-topic titles);
