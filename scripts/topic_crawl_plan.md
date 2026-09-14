@@ -107,8 +107,9 @@ Then run Steps 1–10 **per topic**, isolating failures to the affected topic.
    similarly named Topic.
 3. Freeze the Topic file, invocation inputs, resolved timezone, current checkpoint, search scope,
    `maxCandidates`, and starting loose-input inventory in the run directory.
-4. Apply the governed `Queued` → `In progress` transitions immediately around the physical crawl. Do
-   not advance `lastCrawledAt` yet.
+4. Apply the governed `Queued` → `In progress` transitions immediately around the physical crawl via
+   `scripts/update_topic_crawl_status.md` (one call per transition). Do not advance `lastCrawledAt`
+   yet — only `scripts/end_topic_crawl.md` may advance it, at completion (Step 10).
 
 ## Step 2 — Prepare and validate the crawl prompt
 
@@ -265,9 +266,11 @@ For each affected month:
 
 Then close the topic:
 - Mark the topic crawl `Complete` and advance `lastCrawledAt` **only** if SET A search, SET B
-  discovery, and all required retrieval/bookkeeping succeeded (via the governed completion procedure).
-- On any required-service failure, mark it `Failed`, retain all recoverable evidence, and leave
-  `lastCrawledAt` unchanged.
+  discovery, and all required retrieval/bookkeeping succeeded — via `scripts/end_topic_crawl.md`, the
+  only procedure that advances `lastCrawledAt` (`scripts/update_topic_crawl_status.md` routes a
+  `Completed` target through it automatically).
+- On any required-service failure, set the topic to `Failed` via `scripts/update_topic_crawl_status.md`,
+  retain all recoverable evidence, and leave `lastCrawledAt` unchanged.
 - A zero-result topic may close complete only when both SET A search and SET B discovery were
   verified operational and the report states that zero in-range articles were found.
 
