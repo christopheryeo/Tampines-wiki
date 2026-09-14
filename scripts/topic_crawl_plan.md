@@ -49,7 +49,7 @@ Optional:
 
 ## Goal prompt
 
-> Execute `scripts/topic_crawl_plan.md` (with `scripts/start_topic_crawl.md` for the endpoint call).
+> Execute `scripts/topic_crawl_plan.md`.
 > Topics: `<topic IDs, or "the next N eligible topics">`. Date range `<YYYY-MM-DD>` to
 > `<YYYY-MM-DD>`, inclusive. Timezone `Asia/Singapore`. Use the runtime endpoint and
 > `NEWSAPI_AI_API_KEY` without exposing secrets. Build SET A from NewsAPI.ai keyword search, SET B
@@ -104,7 +104,8 @@ Then run Steps 1–10 **per topic**, isolating failures to the affected topic.
 1. Resolve the topic to exactly one file under `entities/topic/`; read its `topicId`, exact
    `displayName`, aliases, status, `## Crawl Prompt`, `crawlStatus`, and `lastCrawledAt`.
 2. Require an active Topic and one usable Crawl Prompt — never silently substitute a broader or
-   similarly named Topic.
+   similarly named Topic. If the topic does not resolve to exactly one active Topic Entity, register
+   it first via `scripts/add_topic.md`, then re-run the plan for it (this plan never creates a topic).
 3. Freeze the Topic file, invocation inputs, resolved timezone, current checkpoint, search scope,
    `maxCandidates`, and starting loose-input inventory in the run directory.
 4. Apply the governed `Queued` → `In progress` transitions immediately around the physical crawl via

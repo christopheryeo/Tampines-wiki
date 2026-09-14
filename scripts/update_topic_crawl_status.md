@@ -140,8 +140,8 @@ does not require or invoke a dedicated Python or shell program.
 
 ## Boundaries
 
-- Use `scripts/start_topic_crawl.md` for the normal automated sequence from selection through the
-  endpoint attempt.
+- Use `scripts/topic_crawl_plan.md` for the normal automated crawl sequence from selection through
+  cascade.
 - Use `scripts/end_topic_crawl.md` for a directly confirmed successful completion.
 - Use this procedure for explicit operational transitions, including manual queueing, failure
   recording, cancellation, and retry queueing.
