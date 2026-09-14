@@ -4,6 +4,7 @@ import pathlib
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -56,6 +57,11 @@ class IngestCascadeInputGateTests(unittest.TestCase):
 
     def test_unknown_outlet_country_may_remain_empty(self):
         self.assertEqual(self.validate(self.note(countries=[])), [])
+
+    def test_system_article_tags_are_not_resolved_as_issue_tags(self):
+        # Control tags are required on article notes but do not have Tag entities.
+        with mock.patch.object(CASCADE, "_TAG_LOOKUP", {}):
+            self.assertEqual(CASCADE.resolve_issue_tags(["#source", "#saf"]), [])
 
     def test_missing_sentiment_is_rejected(self):
         findings = self.validate(self.note(toneSentiment=None))

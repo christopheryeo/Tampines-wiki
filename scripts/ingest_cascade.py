@@ -533,6 +533,10 @@ def key_points(body: str) -> list[str]:
 
 
 _TAG_LOOKUP = None
+# These are article-level control tags, not entries in the issue Tag registry.
+# They must remain in article frontmatter (the quality gate requires #source),
+# but must not be sent through issue-tag entity resolution during cascade.
+SYSTEM_ARTICLE_TAGS = {"#source", "#saf"}
 
 
 def resolve_issue_tags(source_tags: list[str]):
@@ -546,6 +550,8 @@ def resolve_issue_tags(source_tags: list[str]):
     for raw in source_tags:
         value = re.sub(r"[\r\n]+", " ", str(raw)).strip()
         if not value:
+            continue
+        if normalize_issue_tag(value) in SYSTEM_ARTICLE_TAGS:
             continue
         record = _TAG_LOOKUP.get(normalize_issue_tag(value))
         if record is None:

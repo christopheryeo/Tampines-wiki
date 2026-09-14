@@ -71,6 +71,10 @@ For each entity that doesn't yet exist:
      closing `]` and the *entire frontmatter block fails to parse* (not just `tags` — `aliases`,
      every field, gone). Always write `tags: ['#saf']` / `tags: ['#source', '#saf']`. This is the
      single most expensive bug found while building this procedure.
+   - `#source` and `#saf` are article-level control tags, not issue `Tag` entities. Keep them in
+     article frontmatter (they are used by quality and export rules), but do not require matching
+     notes in `entities/tag/`; the cascade resolver skips these two values. All other tags must
+     resolve to an active `Tag` entity.
    - **No live web enrichment.** Populate the body only from what the citing article(s) actually
      say — never from a live internet search or model background knowledge. If genuine external
      enrichment is wanted, land the source in `Inbox/Links/` first (URL + fetch timestamp) and cite
