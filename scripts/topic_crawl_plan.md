@@ -9,7 +9,11 @@ owner: ChatGPT Codex
 
 # Topic Crawl Plan
 
-## Purpose
+## Objective
+
+Produce the complete, source-backed set of in-range news articles for each selected canonical Topic
+Entity — via a two-source union (NewsAPI.ai keyword search ∪ Claude-discovered backfill) — and land
+them as enriched, cascaded vault articles, advancing each topic's crawl checkpoint.
 
 Run a governed, restartable crawl **by topic** using a **two-source union** so coverage is broader
 than any single discovery path. For each selected canonical Topic Entity, over one inclusive
@@ -287,8 +291,9 @@ cascade.
 3. Write the run receipt: selected topics, per-topic SET A / SET B / accepted / rejected / duplicate
    counts, failures, elapsed time, and average time per topic.
 
-## Failure, retry, and resume rules
+## Breakout conditions
 
+### Retry and resume
 - Isolate failures by topic and by article wherever possible; one candidate's hold/rejection does not
   stop independent candidates unless it signals a systemic discovery/credential/endpoint/schema/
   provenance problem.
@@ -298,8 +303,7 @@ cascade.
 - If a run stops partway, resume from the run manifest and per-topic checkpoints (SET A captured,
   SET B computed, SET B fetched) rather than duplicating completed work.
 
-## Stop conditions
-
+### Stop triggers
 Stop the affected stage without fabricating success when: the topic is absent/ambiguous/inactive or
 lacks usable crawl instructions; a date boundary is absent/invalid; `NEWSAPI_AI_API_KEY` is
 unavailable/rejected; Claude grounded discovery is unavailable when SET B is required; a response
@@ -309,7 +313,11 @@ approved source-backed retrieval recovers it; the article already exists or conf
 source identity; required enrichment stays invalid; the input contract / article-quality / tag / link
 checks fail; or continuing would require a production write or an unauthorized schema/rule change.
 
-## Acceptance checklist (per topic)
+## End conditions (success)
+
+The run succeeds only when the Step 11 run-level completion is done — every candidate across all
+topics has exactly one final disposition, `entities/topic/catalog.md` is rebuilt, and the run receipt
+is written — and **every selected topic** passes all of the following:
 
 - [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated.
 - [ ] SET A built from NewsAPI.ai keyword search; its URLs/URIs recorded, canonicalized, deduplicated.
@@ -325,6 +333,27 @@ checks fail; or continuing would require a production write or an unauthorized s
 - [ ] Every frozen note passed `enrich_radar_inputs.py --check-complete` after review.
 - [ ] Compile/cascade validation passed for every processed month; timed receipt reports totals.
 - [ ] Every candidate has one final disposition; topic status/checkpoint reflect verified completion.
+
+## Tests / Verification
+
+The plan is validated at two levels:
+
+1. **Tooling tests (existing).** The plan orchestrates already-tested scripts — their unit tests are
+   the mechanical safety net: `enrich_radar_inputs.py`, `ingest_cascade.py`, `article_quality.py`,
+   `check_links.py`, and `generate_catalog.py` (see `tests/`). Run the repository test suite before
+   relying on any change to them.
+2. **End-to-end dry run (before a real crawl).** Validate the plan itself against a known topic and a
+   narrow date range in an isolated run directory:
+   - Pick one active canonical topic with known crawl history and a 2–3 day window.
+   - Execute Steps 0–9, then Step 10 with `ingest_cascade.py --dry-run` only (do **not** cascade).
+   - Record expected vs actual for **SET A count**, **SET B size** (after A-minus and URI dedup),
+     **accepted count**, and rejected/held reasons; assert the dedup and in-range date gate behaved —
+     no SET B URL already in SET A survived, and no out-of-range article was accepted.
+   - Pass only if every candidate has exactly one disposition and the dry-run cascade preview is
+     clean; then the same topic may be run for real.
+
+A passing dry run on one topic validates the plan's mechanics, not every topic's coverage — do not
+treat it as proof the whole batch will pass.
 
 ## Final report
 
