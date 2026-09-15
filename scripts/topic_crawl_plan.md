@@ -49,7 +49,10 @@ Required:
 
 Optional:
 - **`timezone`** — defaults to `Asia/Singapore`. Never infer a default date window.
-- **`maxCandidates`** — safety ceiling on unique canonical URLs per topic (applies to SET B).
+- **`maxCandidates`** — safety ceiling on unique canonical URLs per topic. Defaults to
+  **500** for both SET A and SET B, independently. Record the provider total, retrieved count,
+  and any uncollected remainder in the manifest; a ceiling is never evidence that the provider
+  returned no further coverage.
 - **`languages`** / named source constraints; **`runLabel`** — short run identifier.
 - **`retryPolicy`** — finite retry count and backoff (else the runtime default).
 
@@ -110,7 +113,8 @@ Optional:
 3. Validate the date range and timezone; stop if a boundary is absent/invalid or `dateStart` >
    `dateEnd`.
 4. Verify the runtime endpoint, `NEWSAPI_AI_API_KEY`, and the current environment's grounded URL
-   discovery availability (safe booleans only).
+   discovery availability (safe booleans only). Default an omitted `maxCandidates` to 500 and
+   record it explicitly.
 5. Freeze the selected topic IDs, checkpoints, prompts, and invocation parameters in a run manifest
    under `runs/YYYY-MM-DD/artifacts/topic-crawls/`.
 
@@ -157,7 +161,11 @@ Call `POST https://eventregistry.org/api/v1/article/getArticles` once per topic 
   "apiKey": "<runtime NEWSAPI_AI_API_KEY>"
 }
 ```
-1. Page through results until no new in-range articles remain or `maxCandidates` is reached.
+1. Page through results using the provider's `articlesPage` parameter until no new in-range
+   articles remain or `maxCandidates` is reached. Request at most 100 articles per page; validate
+   the returned `articles.page`, `articles.pages`, `articles.count`, and `articles.totalResults`
+   before accepting each page. A provider response that repeats page 1 for a requested later page
+   is a paging failure, not a duplicate page or a complete result.
 2. For every returned article, record the canonical URL, NewsAPI.ai article URI, title, source,
    publication timestamp, language, and body — and **remember the canonical URLs and URIs as SET A**.
 3. Canonicalize URLs (resolve redirects, strip non-identity tracking params) and deduplicate SET A by
@@ -167,6 +175,19 @@ Call `POST https://eventregistry.org/api/v1/article/getArticles` once per topic 
 
 **Gate:** a zero SET A result is valid only when the keyword search itself completed successfully — a
 zero is not proof that no coverage exists (SET B may still find articles).
+
+## Step 3A — SET A relevance gate
+
+Before any SET B discovery, assess every unique SET A article against the resolved Topic Entity's
+definition, aliases, inclusions/exclusions, title, metadata, and returned source body. Record
+`relevant`, `relevanceConfidence`, `relevanceReason`, and one terminal outcome for each candidate:
+
+- **relevant** — carries forward to the identity/date/completeness/duplicate gates in Step 7;
+- **off-topic** — rejected immediately and never proceeds to enrichment, staging, or cascade;
+- **held** — insufficient or conflicting source evidence; never infer relevance from model knowledge.
+
+The SET A relevance decision is mandatory before calling grounded URL discovery. Retain every SET A
+canonical URL and URI for SET B deduplication even when the article is off-topic or held.
 
 ## Step 4 — SET B candidates: environment-grounded related URLs
 
@@ -178,6 +199,19 @@ zero is not proof that no coverage exists (SET B may still find articles).
 2. Record the exact request, environment name, and raw returned list in the run manifest.
 3. Canonicalize every returned URL (resolve redirects, strip non-identity tracking params); drop
    obvious non-article URLs.
+
+## Step 4A — SET B URL relevance gate
+
+Before URI mapping or provider retrieval, assess each remaining grounded URL using the discovery
+result's attributable title, snippet, publication evidence, and URL path against the resolved Topic
+Entity. Record `urlRelevant`, `urlRelevanceConfidence`, and `urlRelevanceReason`:
+
+- reject clearly off-topic, non-article, duplicate, or out-of-range candidates immediately;
+- hold candidates without sufficient attributable evidence;
+- map and retrieve only URLs assessed as plausibly relevant.
+
+This is a cost-control gate, not the final relevance decision. A URL that passes it must still pass
+the source-body relevance gate in Step 7.
 
 ## Step 5 — Compute SET B = grounded URLs − SET A
 
@@ -212,7 +246,7 @@ For each SET B URL:
    an approved direct publisher-URL retrieval. Record the exact route. If a complete source-backed
    body still isn't available, **hold** the candidate — never synthesize text.
 
-## Step 7 — Gate SET A ∪ SET B (identity, in-range date, complete body, topical relevance)
+## Step 7 — Final source-body gate for SET A ∪ SET B
 
 Apply the same gates to every candidate from both sets. Accept only when:
 1. its returned URL/title/source/event correspond to the discovered article;
@@ -222,7 +256,8 @@ Apply the same gates to every candidate from both sets. Accept only when:
 4. the body is non-empty source text (a character/word count alone is not proof of completeness);
 5. it is not already present in `Inputs/articles/` or `entities/article/` by article ID, canonical
    URL, URI, or source identity; and
-6. **it is topically relevant to the resolved Topic Entity** (see relevance classification below).
+6. **it is topically relevant to the resolved Topic Entity**. SET A must already have passed Step
+   3A; this is the final source-body check for SET B and a consistency check for SET A.
 
 **Relevance classification (required).** Keyword search (SET A) and URL discovery (SET B) both
 over-collect: short tokens match unrelated coverage — e.g. "NS" matches railroads (Norfolk Southern,
@@ -236,7 +271,8 @@ drop the rest with reason `off-topic`. When relevance is genuinely borderline, *
 guess. These judgements are run evidence and are **not** written into article frontmatter.
 
 Drop out-of-range, hallucinated, non-article, incomplete, or **off-topic** candidates with a recorded
-reason. The surviving set is the topic's accepted articles = **SET A ∪ validated SET B**.
+reason. The surviving set is the topic's accepted articles = **relevant SET A ∪ validated relevant
+SET B**. No candidate may reach Step 8 without passing its applicable relevance gate(s).
 
 ## Step 8 — Normalize accepted articles
 
@@ -323,8 +359,9 @@ cascade.
 
 ## Step 11 — Complete the run (once per run)
 
-1. Reconcile SET A, environment-grounded discovery, SET B, mapping, retrieval, normalization, enrichment, and
-   cascade manifests so every candidate has exactly one terminal disposition.
+1. Reconcile SET A, its relevance gate, environment-grounded discovery, the SET B URL relevance
+   gate, SET B mapping/retrieval/source-body relevance, normalization, enrichment, and cascade
+   manifests so every candidate has exactly one terminal disposition.
 2. Rebuild `entities/topic/catalog.md` from source notes.
 3. Write the run receipt: selected topics, per-topic SET A / SET B / accepted / rejected / duplicate
    counts, failures, elapsed time, and average time per topic.
@@ -358,10 +395,15 @@ topics has exactly one final disposition, `entities/topic/catalog.md` is rebuilt
 is written — and **every selected topic** passes all of the following:
 
 - [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated.
-- [ ] SET A built from NewsAPI.ai keyword search; its URLs/URIs recorded, canonicalized, deduplicated.
+- [ ] SET A built from NewsAPI.ai keyword search; every page was verified with `articlesPage`, and
+      its URLs/URIs recorded, canonicalized, deduplicated.
+- [ ] Every SET A candidate passed the Set A relevance gate before SET B discovery, or has an
+      explicit off-topic/held disposition.
 - [ ] Environment-grounded related-URL list captured and canonicalized (Claude in Claude;
       Codex in Codex).
 - [ ] SET B computed as grounded URLs minus SET A (canonical dedup), then deduped by URI against SET A.
+- [ ] Every SET B URL passed the URL relevance gate before URI mapping/retrieval, then passed the
+      final source-body relevance gate after retrieval.
 - [ ] Every SET B URL has a URI-mapping disposition; multiple URLs → one URI treated as one article.
 - [ ] Every retrieved article used `article/getArticle` with `infoArticleBodyLen: -1`; key never
       persisted.
