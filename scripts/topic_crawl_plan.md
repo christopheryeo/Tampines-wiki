@@ -272,6 +272,13 @@ completeness decisions belong in the run manifests, not in new frontmatter field
 is staged, not cascade-ready, until enrichment is reviewed. Preserve existing input files unless this
 run owns the same unique article ID.
 
+**YAML safety (required).** Serialize every string frontmatter value safely — headline text routinely
+contains colons, quotes, or a leading `#`/`[`, and an unquoted value breaks the whole YAML block
+(the cascade's input gate then rejects the batch). Double-quote `articleTitle` and any string
+`outlets`/`countries` value (JSON string form is valid YAML), or emit them with a YAML-safe
+serializer. This is the same class of failure as the unquoted `#`-tag hazard in
+`scripts/entity_cascade_procedure.md`.
+
 ## Step 9 — Enrich and validate the frozen batch
 
 1. Freeze a newline-delimited manifest of only the newly normalized filenames.
