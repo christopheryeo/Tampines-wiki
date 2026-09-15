@@ -692,7 +692,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--model", default="gpt-5.6")
-    parser.add_argument("--confidence", type=float, default=0.82)
+    # Default lowered 0.82 -> 0.78: auto-apply already requires BOTH independent passes to AGREE,
+    # which is the primary quality guard; requiring min-confidence >= 0.82 on top over-held ~50% of
+    # agreed classifications in batch crawls. 0.78 keeps the agreement requirement while cascading
+    # more genuinely-classified articles. Tune via --confidence.
+    parser.add_argument("--confidence", type=float, default=0.78)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--article-id")
     parser.add_argument(
