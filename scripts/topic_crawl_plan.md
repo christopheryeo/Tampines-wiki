@@ -329,6 +329,17 @@ serializer. This is the same class of failure as the unquoted `#`-tag hazard in
    ```
    Process separate publication months separately when the range crosses a month boundary.
 
+### Step 9A — policy resolution and resilient execution
+
+Apply `schemas/topic_crawl_resolution_policy.yaml` before human review. Record
+the policy version, field-level rationale, and a distinct `policy-resolved`
+outcome. Cascade only items whose every enrichment field has a terminal
+decision; retain unsupported or conflicting evidence as `held`.
+
+Before the full run, perform an authenticated one-article preflight. Use
+bounded concurrency, per-item checkpoints, finite retries, and a live progress
+receipt so a transient API or quota failure can resume without redoing work.
+
 ## Step 10 — Compile, cascade, and close the topic
 
 For each affected month:
@@ -362,6 +373,8 @@ cascade.
 1. Reconcile SET A, its relevance gate, environment-grounded discovery, the SET B URL relevance
    gate, SET B mapping/retrieval/source-body relevance, normalization, enrichment, and cascade
    manifests so every candidate has exactly one terminal disposition.
+   Deduplicate by canonical URL/provider URI before counting, while retaining all
+   matched topics on the unique article record.
 2. Rebuild `entities/topic/catalog.md` from source notes.
 3. Write the run receipt: selected topics, per-topic SET A / SET B / accepted / rejected / duplicate
    counts, failures, elapsed time, and average time per topic.
