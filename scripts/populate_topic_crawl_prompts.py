@@ -23,6 +23,15 @@ SINGAPORE_CONTEXT = "(Singapore OR MINDEF OR SAF)"
 NS_CONTEXT = "(Singapore OR national service OR NS OR NSF OR NSmen)"
 REGIONAL_CONTEXT = "(security OR defence OR defense OR military OR conflict OR armed forces)"
 
+# Singapore-anchored guards. Unlike DEFENCE_CONTEXT / REGIONAL_CONTEXT (which admit any defence or
+# generic-security coverage, foreign included), these require a Singapore nexus — the nation or a
+# named Singapore ministry / force / agency. They are applied to Singapore-domestic topics whose
+# subject keywords are common words, where a keyword search otherwise pulls in large volumes of
+# foreign or generic security news. Regional / foreign-by-design topics stay on REGIONAL_CONTEXT.
+SG_DEFENCE_CONTEXT = "(Singapore OR MINDEF OR SAF OR RSN OR RSAF OR SCDF)"
+SG_HOMELAND_CONTEXT = "(Singapore OR Singaporean OR MHA OR ISD OR SPF OR MINDEF OR SAF)"
+SG_MARITIME_CONTEXT = "(Singapore OR Singapore Strait OR MINDEF OR RSN OR MPA OR Police Coast Guard)"
+
 # These prompts require a contextual guard because at least one taxonomy keyword is broad in normal
 # news. Narrow, already-specific topics use their taxonomy expressions without an extra clause.
 CONTEXT_BY_TOPIC = {
@@ -45,7 +54,10 @@ CONTEXT_BY_TOPIC = {
     "military-logistics": DEFENCE_CONTEXT,
     "military-exercises": DEFENCE_CONTEXT,
     "operational-readiness": DEFENCE_CONTEXT,
-    "border-territorial-security": REGIONAL_CONTEXT,
+    "border-territorial-security": SG_DEFENCE_CONTEXT,
+    "maritime-security": SG_MARITIME_CONTEXT,
+    "ns-safety-wellbeing": NS_CONTEXT,
+    "national-service-policy": NS_CONTEXT,
     "peacekeeping-humanitarian": "(military OR armed forces OR peacekeeping OR United Nations OR conflict OR disaster)",
     "evacuation-repatriation": "(Singapore OR military OR armed forces OR conflict OR crisis OR disaster)",
     "military-safety-incidents": DEFENCE_CONTEXT,
@@ -61,14 +73,16 @@ CONTEXT_BY_TOPIC = {
     "middle-east-security": REGIONAL_CONTEXT,
     "iran-regional-conflict": REGIONAL_CONTEXT,
     "nuclear-security": REGIONAL_CONTEXT,
-    "espionage-foreign-interference": REGIONAL_CONTEXT,
+    "espionage-foreign-interference": SG_HOMELAND_CONTEXT,
+    "disinformation-information-warfare": SG_HOMELAND_CONTEXT,
+    "terrorism-radicalisation": SG_HOMELAND_CONTEXT,
     "supply-chain-energy-security": REGIONAL_CONTEXT,
     "climate-water-security": REGIONAL_CONTEXT,
     "military-law-justice": DEFENCE_CONTEXT,
-    "public-confidence-reputation": DEFENCE_CONTEXT,
+    "public-confidence-reputation": SG_DEFENCE_CONTEXT,
     "civil-military-relations": DEFENCE_CONTEXT,
     "international-law-rules-order": REGIONAL_CONTEXT,
-    "defence-cooperation-agreements": DEFENCE_CONTEXT,
+    "defence-cooperation-agreements": SG_DEFENCE_CONTEXT,
     "emerging-weapons-technology": DEFENCE_CONTEXT,
 }
 
