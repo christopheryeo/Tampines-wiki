@@ -69,6 +69,11 @@ Optional:
 > failures, elapsed time, and average time per topic. Do not mark complete until all required gates
 > pass.
 
+For an autonomous Goal Mode run, use the stricter invocation and durable-state
+requirements in `scripts/topic_crawl_goal_contract.md`. That contract replaces
+routine review handoffs with the approved policy and a candidate-level terminal
+ledger; it does **not** relax this plan's source, relevance, or validation gates.
+
 ## Governing rules
 
 - Follow `README.md`, `scripts/entity_cascade_procedure.md`, and
@@ -140,6 +145,11 @@ Then run Steps 1–10 **per topic**, isolating failures to the affected topic.
 1. Validate exactly one usable `## Crawl Prompt` for the topic.
 2. If missing/invalid, build one from the canonical definition, aliases, scope, inclusions, and
    exclusions per the topic-crawl procedure; record its version/hash in the manifest.
+3. Build and freeze a `search-profile.json` in the run directory. It must contain the exact SET A
+   keyword variants derived from the topic's display name, aliases, and Crawl Prompt, plus the
+   approved official publisher domains implied by the topic scope. It is a run artifact, not a
+   change to the frozen Topic schema. Use the recorded keyword variants within one independent
+   500-candidate ceiling per topic, deduplicating results by canonical URL and URI.
 
 **Gate:** only a topic with a validated prompt proceeds to discovery.
 
@@ -199,6 +209,11 @@ canonical URL and URI for SET B deduplication even when the article is off-topic
 2. Record the exact request, environment name, and raw returned list in the run manifest.
 3. Canonicalize every returned URL (resolve redirects, strip non-identity tracking params); drop
    obvious non-article URLs.
+4. When SET A is operational but returns zero or materially weak coverage, run the same bounded,
+   attributable direct-article discovery against the frozen official-domain list in the search
+   profile. Treat those URLs as SET B; retain the query, source domain, and results. This improves
+   recall for official Singapore security coverage without treating a provider zero as proof of no
+   coverage.
 
 ## Step 4A — SET B URL relevance gate
 
@@ -227,7 +242,9 @@ For each SET B URL:
    ```json
    { "articleUrl": "<canonical article URL>", "apiKey": "<runtime NEWSAPI_AI_API_KEY>" }
    ```
-   Validate HTTP status, content type, and structure before reading the URI. One attempt per URL
+   Validate HTTP status, content type, and structure before reading the URI. A `200` response whose
+   requested URL maps to `null`, an empty string, or an unrecognised value is `mapping-unusable`,
+   not success: record it and immediately take the Step 6 extraction fallback. One attempt per URL
    unless a transient error justifies a retry.
 2. **Deduplicate by URI**, including against SET A — if a SET B URL maps to a URI already in SET A,
    it is the same article; drop it.
@@ -348,7 +365,14 @@ For each affected month:
 3. Real run: the same command without `--dry-run`.
 4. Confirm articles moved to `entities/article/YYYY-MM/` and that backlinks, coverage, catalogs,
    logs, and validation updated per the cascade procedure.
-5. Report input/processed/created/held/failure counts, elapsed time, and average seconds per article.
+5. Assert that each cascaded article is linked in the intended canonical Topic's `## Coverage` block.
+   Where the article's recorded topic identity is unambiguous, repair the missing backlink only with
+   `scripts/patch_coverage.py`, then validate it; otherwise hold it.
+6. Persist both the dry-run and real `ingest_cascade` receipts in the durable goal state. The real
+   receipt must show the month, `status: ok`, non-zero processed count, zero failures, elapsed time,
+   and average seconds per article. A file existing under `entities/article/` does not replace this
+   receipt.
+7. Report input/processed/created/held/failure counts, elapsed time, and average seconds per article.
 
 The control tags `#source` and `#saf` remain on compiled article notes but are not issue tags and do
 not need corresponding `entities/tag/` notes. Only issue tags from the active tag vocabulary are
@@ -377,7 +401,9 @@ cascade.
    matched topics on the unique article record.
 2. Rebuild `entities/topic/catalog.md` from source notes.
 3. Write the run receipt: selected topics, per-topic SET A / SET B / accepted / rejected / duplicate
-   counts, failures, elapsed time, and average time per topic.
+   counts, mapping-unusable/extraction-fallback counts, failures, per-month dry-run and real cascade
+   receipt paths, elapsed time, and average time per topic. Use a single canonical `status` field in
+   both durable state and receipt; do not introduce an alternate `goalStatus` field.
 
 ## Breakout conditions
 
@@ -401,6 +427,16 @@ approved source-backed retrieval recovers it; the article already exists or conf
 source identity; required enrichment stays invalid; the input contract / article-quality / tag / link
 checks fail; or continuing would require a production write or an unauthorized schema/rule change.
 
+### Autonomous Goal Mode handoff rule
+
+When invoked under `scripts/topic_crawl_goal_contract.md`, do **not** pause for ordinary candidate
+judgement. Record individual retrieval, source-body, enrichment, identity, and relevance uncertainty
+as an evidence-backed `held`, `rejected`, `off-topic`, or `duplicate` terminal disposition and continue
+with independent candidates and topics. Handoff is required only for an unresolved credential or
+required-discovery failure, systemic provider failure, provenance/manifest conflict, required rule or
+schema change, unauthorized/destructive/production action, or unrecoverable validation failure. The
+goal may close with held items, but never with an unreconciled candidate or unresolved critical event.
+
 ## End conditions (success)
 
 The run succeeds only when the Step 11 run-level completion is done — every candidate across all
@@ -418,6 +454,8 @@ is written — and **every selected topic** passes all of the following:
 - [ ] Every SET B URL passed the URL relevance gate before URI mapping/retrieval, then passed the
       final source-body relevance gate after retrieval.
 - [ ] Every SET B URL has a URI-mapping disposition; multiple URLs → one URI treated as one article.
+- [ ] Every `200` mapper response with no usable URI is explicitly `mapping-unusable` and follows the
+      approved extraction fallback or receives a terminal hold.
 - [ ] Every retrieved article used `article/getArticle` with `infoArticleBodyLen: -1`; key never
       persisted.
 - [ ] SET A ∪ SET B passed identity, in-range date, complete-body, provenance, and duplicate gates;
@@ -426,6 +464,8 @@ is written — and **every selected topic** passes all of the following:
 - [ ] Every accepted raw note uses the frozen input contract and plain source narrative.
 - [ ] Every frozen note passed `enrich_radar_inputs.py --check-complete` after review.
 - [ ] Compile/cascade validation passed for every processed month; timed receipt reports totals.
+- [ ] Each cascaded article is backlinked from its intended canonical topic's Coverage block; every
+      affected month has a valid dry-run and real cascade receipt in durable goal state.
 - [ ] Every accepted article passed the topical-relevance gate; off-topic keyword/URL matches (e.g. a
       "NS" railroad hit) were dropped with `off-topic` reasons, not ingested.
 - [ ] Every candidate has one final disposition; topic status/checkpoint reflect verified completion.
