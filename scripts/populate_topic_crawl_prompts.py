@@ -113,6 +113,10 @@ TERM_OVERRIDES = {
 
 PROMPT_OVERRIDES = {
     "general-defence-security": "(defence OR defense OR military OR armed forces OR national security)",
+    "malaysia-defence-institutions-relations": "(Malaysia OR Malaysian OR Johor OR \"Khaled Nordin\" OR \"Mohamed Khaled Nordin\") AND (defence OR defense OR \"armed forces\" OR military) AND (Singapore OR MINDEF OR SAF OR bilateral OR visit OR cooperation)",
+    "singapore-defence-leadership-international-engagement": "(\"Ng Eng Hen\" OR \"Singapore defence minister\" OR \"former Singapore defence minister\") AND (MINDEF OR SAF OR defence OR defense) AND (Australia OR bilateral OR award OR recognition OR visit OR \"strategic partnership\")",
+    "saf-personnel-conduct-discipline": "(\"Singapore Armed Forces\" OR SAF OR MINDEF OR \"SAF regular\" OR \"regular serviceman\") AND (disciplinary OR misconduct OR charged OR investigation OR fraud OR theft OR gambling)",
+    "ns-recognition-support": "(Singapore OR MINDEF OR SAF OR SAFRA) AND (\"National Service\" OR NSmen OR NSF OR \"full-time national serviceman\") AND (allowance OR benefit OR support OR retirement OR recognition OR transition)",
 }
 
 

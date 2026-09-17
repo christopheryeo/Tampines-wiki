@@ -54,7 +54,7 @@ Jimmy is Influential Brands account only — not on Tampines Wiki.
 | `wiki.yaml` | Wiki config |
 | `docs/development-process.md` | This file |
 | `Knowledge/Project Home.md` | Project stamp (git, ClickUp, room, delivery next) |
-| `../../Alex (Dev)/Knowledge/Product Inventory.md` | Features catalogue (Felix) |
+| `../../Felix (Product Manager)/Knowledge/Product Inventory.md` | Features catalogue (Felix) |
 
 ### Vault surfaces (summary)
 

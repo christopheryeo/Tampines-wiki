@@ -698,6 +698,7 @@ def build_parser() -> argparse.ArgumentParser:
     # more genuinely-classified articles. Tune via --confidence.
     parser.add_argument("--confidence", type=float, default=0.78)
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--offset", type=int, default=0, help="skip this many matched manifest inputs before --limit")
     parser.add_argument("--article-id")
     parser.add_argument(
         "--manifest",
@@ -855,6 +856,10 @@ def select_input_paths(args: argparse.Namespace) -> list[Path]:
                 f"{len(missing_entries)} manifest articles are not present under "
                 f"{args.input_dir}: {sample}"
             )
+    if args.offset < 0:
+        raise EnrichmentError("--offset must not be negative")
+    if args.offset:
+        paths = paths[args.offset:]
     if args.limit is not None:
         paths = paths[: args.limit]
     if not paths:
