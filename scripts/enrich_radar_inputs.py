@@ -595,7 +595,13 @@ def consensus(
     }
 
 
-def apply_result(path: Path, lines: list[str], body: str, result: dict[str, Any]) -> list[str]:
+def apply_result(
+    path: Path,
+    lines: list[str],
+    body: str,
+    result: dict[str, Any],
+    preserve_topic: bool = False,
+) -> list[str]:
     updates: dict[str, Any] = {}
     auto = result["autoApplicable"]
     ready = result.get("readyForCascade", all(
@@ -616,16 +622,47 @@ def apply_result(path: Path, lines: list[str], body: str, result: dict[str, Any]
         updates["coverageCount"] = 1
         updates["mediaCount"] = 0
         updates["category"] = result["institutionalCategory"]
-        updates["topic"] = (
-            result["issueTags"][0]
-            if result["issueTags"]
-            else result["institutionalCategory"]
-        )
+        # The topic-crawl flow sets `topic` to the canonical Topic displayName so
+        # ingest_cascade routes coverage to the intended topic. Overwriting it with
+        # the first issue tag (the issue-radar default) silently mis-routes that
+        # backlink, so `--preserve-topic` keeps the note's existing topic.
+        if not preserve_topic:
+            updates["topic"] = (
+                result["issueTags"][0]
+                if result["issueTags"]
+                else result["institutionalCategory"]
+            )
         updates["sourceType"] = "crawl"
     if updates:
         updated = replace_fields(lines, updates)
         path.write_text("---\n" + "\n".join(updated) + "\n---\n\n" + body.rstrip() + "\n", encoding="utf-8")
     return sorted(updates)
+
+
+def _cache_path(cache_dir: Path, key: str) -> Path:
+    return cache_dir / f"{key}.json"
+
+
+def _cache_key(input_sha256: str, primary_model: str, review_model: str) -> str:
+    raw = f"{input_sha256}|{primary_model}|{review_model}|{PROMPT_VERSION}"
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _primary_confident(primary: dict[str, Any], floor: float) -> bool:
+    """True when a single pass is confident enough to skip the review pass.
+
+    Requires every judgement-heavy confidence at or above ``floor`` and no
+    model-requested review. This is the opt-in ``--conditional-review`` gate:
+    the two-pass agreement guard is preserved for every article that is *not*
+    unambiguously high-confidence.
+    """
+    if primary.get("review_required"):
+        return False
+    return all(
+        float(primary.get(field, 0.0)) >= floor
+        for field in ["tone_confidence", "sentiment_confidence",
+                      "event_confidence", "metadata_confidence"]
+    )
 
 
 def process_one(
@@ -639,28 +676,77 @@ def process_one(
     lines, body = split_note(text)
     metadata = parse_frontmatter(lines)
     url = str(metadata.get("url") or "")
-    fetched_text, site_name, fetch_status = (
-        fetch_article(url, args.fetch_timeout) if not args.no_fetch else ("", "", "fetch-disabled")
-    )
-    combined = " ".join([
-        str(metadata.get("articleTitle") or ""),
-        str(metadata.get("topic") or ""),
-        body,
-        fetched_text,
-    ])
-    candidates = shortlist_tags(combined, inventory)
-    primary = call_model(
-        api_key, args.model,
-        article_prompt(metadata, body, fetched_text, site_name, candidates),
-        args.api_timeout,
-    )
-    review = call_model(
-        api_key, args.model,
-        article_prompt(metadata, body, fetched_text, site_name, candidates, primary),
-        args.api_timeout,
-    )
+    review_model = getattr(args, "review_model", None) or args.model
+
+    # #10 Assessment cache: reuse the model passes for a byte-identical input note
+    # under the same model(s) and prompt version, so reruns/resumes cost no API
+    # calls. Keyed on input hash + models + PROMPT_VERSION; a changed note misses.
+    cache_dir = getattr(args, "cache_dir", None)
+    cache_file = None
+    cached = None
+    if cache_dir:
+        cache_dir = Path(cache_dir)
+        cache_file = _cache_path(cache_dir, _cache_key(input_sha256, args.model, review_model))
+        if cache_file.is_file():
+            try:
+                cached = json.loads(cache_file.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                cached = None
+
+    if cached:
+        primary = cached["primary"]
+        review = cached["review"]
+        candidates = cached.get("candidateTags", [])
+        fetch_status = cached.get("sourceTextStatus", "from-cache")
+        review_skipped = cached.get("reviewSkipped", False)
+        from_cache = True
+    else:
+        from_cache = False
+        fetched_text, site_name, fetch_status = (
+            fetch_article(url, args.fetch_timeout) if not args.no_fetch else ("", "", "fetch-disabled")
+        )
+        combined = " ".join([
+            str(metadata.get("articleTitle") or ""),
+            str(metadata.get("topic") or ""),
+            body,
+            fetched_text,
+        ])
+        candidates = shortlist_tags(combined, inventory)
+        primary = call_model(
+            api_key, args.model,
+            article_prompt(metadata, body, fetched_text, site_name, candidates),
+            args.api_timeout,
+        )
+        # #9 Conditional second pass (opt-in): only spend the review call when the
+        # primary pass is not unambiguously high-confidence. Default off preserves
+        # the two-pass agreement guard for every article.
+        review_skipped = (
+            getattr(args, "conditional_review", False)
+            and _primary_confident(primary, args.review_skip_confidence)
+        )
+        if review_skipped:
+            review = primary
+        else:
+            review = call_model(
+                api_key, review_model,
+                article_prompt(metadata, body, fetched_text, site_name, candidates, primary),
+                args.api_timeout,
+            )
+        if cache_file is not None:
+            try:
+                cache_dir.mkdir(parents=True, exist_ok=True)
+                cache_file.write_text(json.dumps({
+                    "primary": primary, "review": review, "candidateTags": candidates,
+                    "sourceTextStatus": fetch_status, "reviewSkipped": review_skipped,
+                }, ensure_ascii=False), encoding="utf-8")
+            except OSError:
+                pass
+
     result = consensus(primary, review, args.confidence, set(candidates))
-    changed = apply_result(path, lines, body, result) if args.apply else []
+    changed = (
+        apply_result(path, lines, body, result, getattr(args, "preserve_topic", False))
+        if args.apply else []
+    )
     return {
         "path": str(path.relative_to(ROOT)),
         "articleId": str(metadata.get("articleId") or ""),
@@ -678,6 +764,8 @@ def process_one(
         "candidateTags": candidates,
         "primary": primary,
         "review": review,
+        "reviewSkipped": review_skipped,
+        "fromCache": from_cache,
         "consensus": result,
         "appliedFields": changed,
     }
@@ -709,6 +797,32 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument(
+        "--preserve-topic", action="store_true",
+        help="(topic-crawl flow) keep the note's existing canonical `topic` instead of "
+             "overwriting it with the first issue tag, so cascade routes coverage correctly",
+    )
+    parser.add_argument(
+        "--cache-dir", type=Path, default=None,
+        help="reuse model passes for byte-identical inputs (same models + prompt version) "
+             "from this directory, and write new ones there; zero API calls on a cache hit",
+    )
+    parser.add_argument(
+        "--conditional-review", action="store_true",
+        help="opt-in: skip the second (review) pass when the primary pass is unambiguously "
+             "high-confidence (see --review-skip-confidence). Off by default; validate via A/B "
+             "before relying on it, as it trades the two-pass agreement guard for fewer calls",
+    )
+    parser.add_argument(
+        "--review-skip-confidence", type=float, default=0.92,
+        help="confidence floor (all judgement fields) above which --conditional-review skips "
+             "the review pass; default 0.92",
+    )
+    parser.add_argument(
+        "--review-model", default=None,
+        help="opt-in: model for the review pass (default: same as --model). Allows a two-tier "
+             "cheap-primary / strong-review or strong-primary / cheap-review configuration",
+    )
     parser.add_argument(
         "--check-complete", action="store_true",
         help="validate that selected inputs have the complete normalized intake schema",
@@ -898,6 +1012,8 @@ def run(args: argparse.Namespace) -> int:
         raise EnrichmentError("OPENAI_API_KEY is not configured")
     if not 0 <= args.confidence <= 1:
         raise EnrichmentError("--confidence must be between 0 and 1")
+    if not 0 <= args.review_skip_confidence <= 1:
+        raise EnrichmentError("--review-skip-confidence must be between 0 and 1")
     if args.workers < 1:
         raise EnrichmentError("--workers must be at least 1")
     if args.workers > 1 and args.delay:
@@ -951,6 +1067,8 @@ def run(args: argparse.Namespace) -> int:
         "inputCount": len(paths),
         "assessedCount": len(assessments),
         "failedCount": len(failures),
+        "reviewSkippedCount": sum(bool(item.get("reviewSkipped")) for item in assessments),
+        "fromCacheCount": sum(bool(item.get("fromCache")) for item in assessments),
         "autoApplicableCounts": {
             field: sum(bool(item["consensus"]["autoApplicable"][field]) for item in assessments)
             for field in ["tone", "toneSentiment", "eventType", "metadata", "tags"]
