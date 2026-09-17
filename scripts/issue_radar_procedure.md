@@ -2,7 +2,7 @@
 type: procedure
 name: issue-radar
 status: active
-last_updated: 2026-08-19
+last_updated: 2026-09-17
 ---
 
 # Issue Radar Procedure
@@ -31,31 +31,40 @@ values beginning with `#`; append-only logs.
    `python3 scripts/issue_radar.py --source production --defaults-file <read-only-client.cnf>`.
    Add `--asof <date>` for reconstruction. Capture every flag at WARM or above; WATCH flags are
    optional at analyst discretion. The script never writes to either database.
-2. Do not edit, reweight, or suppress the script's output by hand. If the thresholds seem wrong,
+2. Before scoring, freeze and validate Markdown-to-UAT article, tag-multiset, and coverage-multiset
+   parity, the Tag-registry eligibility snapshot, and the event-family manifest. Stop on an
+   unexplained parity difference; a local/UAT count mismatch is not a harmless aggregate warning.
+3. Do not edit, reweight, or suppress the script's output by hand. If the thresholds seem wrong,
    that is a Decision-note conversation, not an in-pass adjustment.
-3. Save both `--json-output` and `--text-output`, repeat the run, and require identical hashes.
+4. Save both `--json-output` and `--text-output`, repeat the run, and require identical hashes.
    Independently verify the structured output with
    `python3 scripts/verify_issue_radar_output.py <radar.json> --output <verification.json>`.
+   Any tag-eligibility, assignment, projection, or event-family change invalidates this checkpoint:
+   freeze new inputs and rerun it before clustering.
 
 ## Step 2 — Cluster flags into issue objects (judgment)
 
-4. Build the complete flag-disposition ledger, non-transitive article-overlap clusters, compiled
+5. Build the complete flag-disposition ledger, non-transitive article/entity/topic-overlap clusters,
+   event-family composition, compiled
    evidence pack, and frozen article manifest:
    `python3 scripts/review_issue_radar_run.py --radar-json <radar.json> --json-output
    <review-pack.json> --markdown-output <review-pack.md> --manifest-output <manifest.json>`.
    This helper never uses tag-name similarity and never decides ramification.
-5. Retrieve the complete current roster by following `scripts/issues_list.md` with
+6. Retrieve the complete current roster by following `scripts/issues_list.md` with
    `scope: all`, `format: json`, and `verified: true`; stop if its `complete` value is false. For
    each flag, decide: does this tag belong to an issue already on the watchlist? Updating an
    existing note is the default; minting a new issue is the exception. (Backtest reference:
    `amos yee`, `enlistment act`, `cmpb`, `deportation`, `fines`, `chicago` were six flags but one
    issue.)
-6. To test whether two flags are one issue, open a sample of each flag's recent citing articles
+7. To test whether two flags are one issue, open a sample of each flag's recent citing articles
    (via the shared article database or the article catalog) and check overlap of articles and entities — shared
    articles means same issue. Never cluster on tag-name similarity alone.
-7. Name the issue by its risk, not its keyword (`ns-enforcement-enlistment-act`, not `amos-yee` —
+8. Require both meaningful shared article/entity/topic evidence and a coherent event family. A
+   generic descriptor or a named individual that crosses unrelated stories is non-cohesive, not an
+   issue candidate; route it to a shadow-review or dismissal record with its evidence.
+9. Name the issue by its risk, not its keyword (`ns-enforcement-enlistment-act`, not `amos-yee` —
    people are carriers of issues, not issues).
-8. When article content must remain local, record any accepted judgment overrides in a run-specific
+10. When article content must remain local, record any accepted judgment overrides in a run-specific
    decision JSON and run `local_issue_radar_review.py`. Its two local rubric passes may retain or
    dismiss candidates but cannot surface an alert without the separate, evidence-cited decision
    record. Do not transmit compiled article content to an external model without explicit approval.

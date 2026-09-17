@@ -2,7 +2,7 @@
 type: operating-plan
 name: issue-radar-generation-quality
 status: active
-last_updated: 2026-07-31
+last_updated: 2026-09-17
 ---
 
 # Reusable Issue Radar Generation and Quality Plan
@@ -29,6 +29,9 @@ This plan supplements, and does not replace:
 5. Update existing issues instead of creating duplicates.
 6. Measure false alarms, missed issues, reviewer disagreements, and warning lead time.
 7. Preserve sufficient evidence to reproduce and audit every run.
+8. Prevent generic, entity-like, or syndicated coverage from becoming autonomous issue alerts.
+9. Let a goal-mode run resolve bounded data-quality noise without silently changing the
+   operational signal set.
 
 ## Run parameters
 
@@ -44,6 +47,9 @@ Record these values before every run:
 | Corpus scope | All eligible articles dated on or before the evaluation date |
 | Previous run | Most recent completed issue-radar run, if one exists |
 | Radar version | Code revision plus the active weights and thresholds |
+| Input-parity manifest | Source-ID article, tag-multiset, and coverage-multiset comparison of Markdown and UAT |
+| Tag-registry snapshot | SHA-256 plus active/enabled/shadow/disabled counts and effective eligibility state |
+| Event-family rule | Versioned deterministic grouping used to prevent syndicated copies from inflating signals |
 | Quality threshold | At least 80% precision for surfaced alerts |
 | Alert rule | WARM or HOT with MODERATE-or-higher ramification |
 
@@ -58,7 +64,9 @@ Start only when all of the following are true:
 1. The latest article batch has completed enrichment, compilation, and cascade.
 2. The corresponding UAT projection bundle has been prepared and verified.
 3. Any required UAT load has explicit attributed approval tied to that exact verified bundle ID.
-4. Compiled Markdown and UAT have no unexplained article, tag, or coverage differences.
+4. A frozen Markdown-to-UAT parity manifest records article IDs, tag multisets, and coverage
+   multisets. Every difference is either bound to the approved UAT bundle or explicitly held;
+   an unexplained difference is a hard stop.
 5. Every included article has a valid publication date and usable issue tags.
 6. Outlet, country, category, tone, and event type are valid or explicitly marked for review.
 7. No uncertain AI classification has been silently applied.
@@ -80,6 +88,22 @@ operational radar results.
 6. Do not change weights, thresholds, stop lists, or individual results during a run.
 7. Treat tag flags as candidates, not confirmed issues.
 8. Freeze the Tag registry status state used for the evaluation date with the run artifacts.
+9. Any change to tag eligibility, article-to-tag assignments, UAT projection, or event-family
+   grouping invalidates the signal checkpoint. Freeze a new input manifest and repeat the full
+   two-run/verification sequence before clustering.
+
+### Autonomy envelope
+
+Goal-mode autonomy is permitted only for reversible, evidence-preserving work. A run may
+automatically prepare and, when its initiating goal contains explicit approval, apply an
+`enabled` → `shadow` transition for a tag that is demonstrated to be generic or entity-like and
+to conflate unrelated article families. It must retain the article assignment and UAT row, append
+the Tag history and log, and immediately run enabled, shadow, and enabled-plus-shadow comparisons.
+
+The run must stop rather than transition when a candidate is linked to a known high/severe issue,
+the evidence is ambiguous, a schema or projection change is required, comparison loses an existing
+flag, or the approval scope is absent. `shadow` → `disabled`, article-tag reassignment, UAT writes,
+and all production actions remain separately approved actions.
 
 ### Issue-acceptance conditions
 
@@ -106,9 +130,10 @@ Do not file or surface a result when:
 6. Schema, wikilink, catalog, or append-only-log validation fails.
 7. The quality acceptance criteria below are not met.
 
-## One-time implementation prerequisites
+## Required implementation prerequisites
 
-Implemented and regression-tested as of 2026-07-31. Preserve these capabilities in later changes:
+The original signal controls are implemented. The following capabilities are required before the
+new parity, event-family, coherence, and roster-handoff controls may be claimed as operational:
 
 1. Add structured JSON output to `scripts/issue_radar.py` while preserving its current readable
    output. Include run metadata, article counts, candidates, six signal components, scores, tiers,
@@ -119,7 +144,14 @@ Implemented and regression-tested as of 2026-07-31. Preserve these capabilities 
 3. Maintain a labelled benchmark set containing confirmed historical issues, correctly dismissed
    candidates, and difficult borderline cases from different subjects and time periods.
 4. Add every later false alert, missed issue, or disputed classification to that benchmark set.
-5. Do not change radar weights, thresholds, or schemas while completing these prerequisites.
+5. Add deterministic event-family grouping and expose both raw-article and event-family counts in
+   radar artifacts. Syndicated copies may retain outlet breadth, but may not multiply volume or
+   recurrence.
+6. Extend `review_issue_radar_run.py` to emit shared entities, shared canonical topics, event-family
+   composition, and a coherence status for every proposed cluster.
+7. Provide a deterministic Issue-roster handoff that returns the documented `issue-list.v1`
+   envelope, including `complete`, validation warnings, and a catalog-to-note freshness check.
+8. Do not change radar weights, thresholds, or schemas while completing these prerequisites.
 
 ## Recurring run procedure
 
@@ -128,8 +160,11 @@ Implemented and regression-tested as of 2026-07-31. Preserve these capabilities 
 1. Assign the run ID and evaluation date.
 2. Record the latest completed ingest receipt and verified UAT bundle.
 3. Create a manifest of every included article ID.
-4. Record article, tag, outlet, country, category, tone, and event-type totals.
-5. Record the previous completed radar run for comparison.
+4. Record article, tag, outlet, country, category, tone, event-type, and event-family totals.
+5. Freeze the source-ID article, tag-multiset, and coverage-multiset parity result; record every
+   approved exception with its source bundle and rationale.
+6. Freeze the Tag-registry SHA-256, eligibility counts, and the event-family algorithm version.
+7. Record the previous completed radar run for comparison.
 
 ### 2. Validate the expanded corpus
 
@@ -144,6 +179,10 @@ Require:
 3. No invalid category, tone, or event-type values.
 4. No unexplained missing tags.
 5. No unexplained compiled-Markdown-to-UAT projection differences.
+6. No event-family grouping may join unrelated stories; every family must retain its member IDs and
+   matching basis for review.
+7. Any UAT/local count difference must be reported as a scoped, explained exception rather than
+   treated as a harmless aggregate mismatch.
 
 ### 3. Run the mechanical radar
 
@@ -155,6 +194,9 @@ Require:
 5. Recompute a rotating sample of WATCH results.
 6. Confirm that every candidate satisfies the eligibility rules.
 7. Confirm that every displayed reason matches its underlying signal values.
+8. Record both raw-article and event-family contributions to volume, breadth, and recurrence.
+   Stop if the event-family control is unavailable; do not describe a syndicated spike as
+   independent escalation.
 
 ### 4. Compare with the previous run
 
@@ -179,9 +221,17 @@ before filing.
 Create the initial disposition ledger and evidence pack with
 `scripts/review_issue_radar_run.py`, then complete the judgment fields. The record for every flag
 must contain its tag, tier, score, reasons, supporting articles, overlapping entities,
-existing-issue match, proposed cluster, disposition, and reasoning.
+overlapping canonical topics, event-family composition, existing-issue match, proposed cluster,
+disposition, and reasoning.
 
-Cluster using article and entity overlap. Never cluster solely because tag names look similar.
+Cluster using article and entity overlap plus coherent event-family context. A shared generic tag,
+or article overlap across unrelated event families, is insufficient: mark it `non-cohesive` and
+route it to shadow-review or dismissal rather than minting an issue. Never cluster solely because
+tag names look similar.
+
+Before disposition, retrieve the full verified issue roster through an `issue-list.v1` envelope.
+Stop if `complete` is false, the catalog-to-note freshness check fails, or the required fields are
+missing. Do not substitute an ad-hoc catalog parse for a verified roster handoff.
 
 ### 7. Assess ramifications
 
@@ -263,6 +313,9 @@ review. Everything else remains on the quiet watchlist.
 3. Every catalyst date has an article citation.
 4. Every new or materially escalated issue receives a second review.
 5. No cluster relies only on tag-name similarity.
+6. Every proposed cluster has recorded article, entity, topic, and event-family overlap; every
+   non-cohesive cluster is dismissed or shadow-reviewed with a reason.
+7. The Issue-roster handoff is complete and freshness-verified before any existing/new decision.
 
 ### Accuracy quality
 
@@ -276,6 +329,8 @@ Acceptance requires:
 2. No known Severe or High benchmark issue is missed.
 3. Every maintained benchmark case produces its expected result.
 4. Every missed or incorrect case is added to the maintained benchmark set.
+5. Event-family control does not remove a known high/severe benchmark and does not increase the
+   surfaced false-alert rate.
 
 ## Failure and correction
 
@@ -284,7 +339,9 @@ When a quality gate fails:
 1. Mark the run `FAIL` or `CONDITIONAL PASS`.
 2. Do not surface unverified issues.
 3. Identify whether the cause is source data, enrichment, projection, scoring, or judgment.
-4. Correct source data through the normal Markdown and UAT projection process.
+4. Classify the defect as assignment provenance, eligibility, event grouping, projection parity,
+   scoring, or judgment. Correct source data through the normal Markdown and UAT projection process;
+   use the bounded shadow path only for approved eligibility noise.
 5. Rerun using the same evaluation date and a new run ID.
 6. Compare the corrected and failed results.
 7. Add the failure as a permanent regression or benchmark case.
@@ -302,3 +359,5 @@ When a quality gate fails:
 8. Updated issue notes, Issues catalog, and audit log.
 9. Quality report marked `PASS`, `CONDITIONAL PASS`, or `FAIL`.
 10. Plain-language surfaced-issue report.
+11. Input-parity manifest, tag-eligibility snapshot, event-family manifest, and any shadow
+    comparison/transition receipt.
