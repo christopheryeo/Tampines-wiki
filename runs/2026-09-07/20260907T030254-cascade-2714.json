@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260907T030254-cascade-2714",
+  "operation": "cascade",
+  "status": "partial",
+  "trigger": "manual",
+  "startedAt": "2026-09-07T03:00:14+08:00",
+  "endedAt": "2026-09-07T03:02:54+08:00",
+  "durationSec": 159.692,
+  "articleMetrics": {
+    "inputCount": 2073,
+    "processedCount": 2073,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.077034
+  },
+  "fileMetrics": {
+    "scannedCount": 365,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.437512,
+    "updatedCount": 365
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "backlinksAdded": 2359,
+    "verification": "all added links in Coverage; valid YAML; idempotent repeats; catalogs regenerated and membership verified; final vault-wide audit pending"
+  },
+  "errors": [],
+  "notes": "Wiki QC missing-backlink repair, no new article ingestion; existing compile/cascade scope only.",
+  "metadata": {
+    "auditRun": "20260907T024304-wiki-qc",
+    "artifactPath": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260729T142833-ingest_cascade-a1af",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-07-29T14:28:33+08:00",
+  "endedAt": "2026-07-29T14:30:58+08:00",
+  "durationSec": 144.907,
+  "articleMetrics": {
+    "inputCount": 1629,
+    "processedCount": 1629,
+    "createdCount": 1629,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.088955
+  },
+  "fileMetrics": {
+    "scannedCount": 13965,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.010376
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-07-29T14:28:33+08:00",
+      "endedAt": "2026-07-29T14:30:32+08:00",
+      "durationSec": 118.316,
+      "articleCount": 1629,
+      "avgSecPerArticle": 0.072631,
+      "fileCount": 1629,
+      "avgSecPerFile": 0.072631,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-07-29T14:30:51+08:00",
+      "endedAt": "2026-07-29T14:30:58+08:00",
+      "durationSec": 7.596,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 13965,
+      "wikilinks_checked": 340219,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 6560,
+      "countries_updated": 5149,
+      "topics_created": 147,
+      "places_updated": 232,
+      "processed": 1629,
+      "topics_updated": 5909,
+      "organisations_updated": 865,
+      "people_updated": 105
+    },
+    "statusCounts": {
+      "cascaded": 19947,
+      "inputs": 0,
+      "total": 19947
+    }
+  },
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2026-04.",
+  "metadata": {
+    "month": "2026-04",
+    "dryRun": false
+  }
+}

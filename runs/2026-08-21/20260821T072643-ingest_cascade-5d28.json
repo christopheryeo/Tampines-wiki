@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260821T072643-ingest_cascade-5d28",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-21T07:26:43+00:00",
+  "endedAt": "2026-08-21T07:26:49+00:00",
+  "durationSec": 5.98,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-21T07:26:43+00:00",
+      "endedAt": "2026-08-21T07:26:49+00:00",
+      "durationSec": 5.98,
+      "articleCount": 25,
+      "avgSecPerArticle": 0.2392,
+      "fileCount": 25,
+      "avgSecPerFile": 0.2392,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "canonical taxonomy count 83 is outside 60–90 or maximum exceeds 80",
+          "type": "ConsolidationError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "canonical taxonomy count 83 is outside 60–90 or maximum exceeds 80",
+      "type": "ConsolidationError"
+    },
+    {
+      "message": "canonical taxonomy count 83 is outside 60–90 or maximum exceeds 80",
+      "type": "ConsolidationError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-21/artifacts/20260821T151837+0800-africa-security/accepted-manifest.txt"
+  }
+}

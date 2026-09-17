@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260818T133428-ingest_cascade-41bc",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-18T13:34:28+08:00",
+  "endedAt": "2026-08-18T13:34:50+08:00",
+  "durationSec": 22.625,
+  "articleMetrics": {
+    "inputCount": 2,
+    "processedCount": 2,
+    "createdCount": 2,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 11.3125
+  },
+  "fileMetrics": {
+    "scannedCount": 3908,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.005789
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-18T13:34:28+08:00",
+      "endedAt": "2026-08-18T13:34:30+08:00",
+      "durationSec": 2.513,
+      "articleCount": 2,
+      "avgSecPerArticle": 1.2565,
+      "fileCount": 2,
+      "avgSecPerFile": 1.2565,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-08-18T13:34:48+08:00",
+      "endedAt": "2026-08-18T13:34:50+08:00",
+      "durationSec": 2.6,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 3908,
+      "wikilinks_checked": 255264,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 2,
+      "countries_updated": 8,
+      "topics_updated": 3,
+      "tags_updated": 8,
+      "organisations_updated": 4,
+      "places_updated": 1,
+      "processed": 2
+    },
+    "statusCounts": {
+      "cascaded": 23746,
+      "inputs": 3383,
+      "total": 27129
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-01.",
+  "metadata": {
+    "month": "2026-01",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/accepted-manifest.txt"
+  }
+}

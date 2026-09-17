@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260814T214355-ingest_cascade-54c8",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-14T21:43:55+08:00",
+  "endedAt": "2026-08-14T21:43:56+08:00",
+  "durationSec": 0.656,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-14T21:43:55+08:00",
+      "endedAt": "2026-08-14T21:43:56+08:00",
+      "durationSec": 0.654,
+      "articleCount": 156,
+      "avgSecPerArticle": 0.004192,
+      "fileCount": 156,
+      "avgSecPerFile": 0.004192,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "refusing to overwrite compiled article: entities/article/2026-08/2026-08-1251636596-trump-administration-releases-fifth-batch-of-ufo-files-including-new-v.md",
+          "type": "FileExistsError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-08/2026-08-1251636596-trump-administration-releases-fifth-batch-of-ufo-files-including-new-v.md",
+      "type": "FileExistsError"
+    },
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-08/2026-08-1251636596-trump-administration-releases-fifth-batch-of-ufo-files-including-new-v.md",
+      "type": "FileExistsError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-14/artifacts/20260814T210304+0800-loose-goal/final-accepted-manifest.txt"
+  }
+}

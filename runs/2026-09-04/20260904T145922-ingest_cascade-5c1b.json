@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260904T145922-ingest_cascade-5c1b",
+  "operation": "ingest_cascade",
+  "status": "partial",
+  "trigger": "manual",
+  "startedAt": "2026-09-04T14:59:22+08:00",
+  "endedAt": "2026-09-04T14:59:55+08:00",
+  "durationSec": 33.094,
+  "articleMetrics": {
+    "inputCount": 13,
+    "processedCount": 13,
+    "createdCount": 13,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 6,
+    "avgSecPerArticle": 2.545692
+  },
+  "fileMetrics": {
+    "scannedCount": 13279,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.002492
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-04T14:59:22+08:00",
+      "endedAt": "2026-09-04T14:59:24+08:00",
+      "durationSec": 1.855,
+      "articleCount": 13,
+      "avgSecPerArticle": 0.142692,
+      "fileCount": 13,
+      "avgSecPerFile": 0.142692,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-04T14:59:47+08:00",
+      "endedAt": "2026-09-04T14:59:55+08:00",
+      "durationSec": 8.189,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 13279,
+      "wikilinks_checked": 375301,
+      "errors": 6,
+      "error_samples": [
+        "entities/article/2026-08/9435785930-asiaone.md :: broken wikilink: nid:742603",
+        "entities/article/2026-08/9435785930-asiaone.md :: broken wikilink: nid:742603",
+        "entities/article/2026-08/9443959488-asiaone.md :: broken wikilink: nid:743454",
+        "entities/article/2026-08/9443959488-asiaone.md :: broken wikilink: nid:743454",
+        "entities/article/2026-08/9441057268-asiaone.md :: broken wikilink: nid:742415",
+        "entities/article/2026-08/9441057268-asiaone.md :: broken wikilink: nid:742415"
+      ]
+    },
+    "entityUpdates": {
+      "outlets_updated": 13,
+      "countries_updated": 13,
+      "topics_updated": 41,
+      "topics_created": 57,
+      "organisations_updated": 29,
+      "places_updated": 20,
+      "processed": 13,
+      "people_updated": 14
+    },
+    "statusCounts": {
+      "cascaded": 32329,
+      "inputs": 2,
+      "total": 32331
+    }
+  },
+  "errors": [
+    {
+      "message": "entities/article/2026-08/9435785930-asiaone.md :: broken wikilink: nid:742603"
+    },
+    {
+      "message": "entities/article/2026-08/9435785930-asiaone.md :: broken wikilink: nid:742603"
+    },
+    {
+      "message": "entities/article/2026-08/9443959488-asiaone.md :: broken wikilink: nid:743454"
+    },
+    {
+      "message": "entities/article/2026-08/9443959488-asiaone.md :: broken wikilink: nid:743454"
+    },
+    {
+      "message": "entities/article/2026-08/9441057268-asiaone.md :: broken wikilink: nid:742415"
+    },
+    {
+      "message": "entities/article/2026-08/9441057268-asiaone.md :: broken wikilink: nid:742415"
+    }
+  ],
+  "notes": "Full-folder cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false
+  }
+}

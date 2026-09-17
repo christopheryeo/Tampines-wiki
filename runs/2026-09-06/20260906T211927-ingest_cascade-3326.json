@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260906T211927-ingest_cascade-3326",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-06T21:19:27+08:00",
+  "endedAt": "2026-09-06T21:19:30+08:00",
+  "durationSec": 2.979,
+  "articleMetrics": {
+    "inputCount": 2,
+    "processedCount": 2,
+    "createdCount": 2,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 1.4895
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-06T21:19:27+08:00",
+      "endedAt": "2026-09-06T21:19:30+08:00",
+      "durationSec": 2.767,
+      "articleCount": 2,
+      "avgSecPerArticle": 1.3835,
+      "fileCount": 2,
+      "avgSecPerFile": 1.3835,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 2,
+      "countries_updated": 2,
+      "topics_updated": 6,
+      "tags_updated": 16,
+      "organisations_updated": 7,
+      "processed": 2,
+      "places_updated": 6
+    },
+    "statusCounts": {
+      "cascaded": 32331,
+      "inputs": 2,
+      "total": 32333
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-09.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-06/artifacts/topic-crawls/singapore-neutrality-alignment-commentary-2026-09-01-to-2026-09-06-20260906T210427+0800/manifest-2026-09.txt"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260729T115231-ingest_cascade-efed",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-07-29T11:52:31+08:00",
+  "endedAt": "2026-07-29T11:52:48+08:00",
+  "durationSec": 17.296,
+  "articleMetrics": {
+    "inputCount": 721,
+    "processedCount": 721,
+    "createdCount": 721,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.023989
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-07-29T11:52:31+08:00",
+      "endedAt": "2026-07-29T11:52:48+08:00",
+      "durationSec": 17.184,
+      "articleCount": 721,
+      "avgSecPerArticle": 0.023834,
+      "fileCount": 721,
+      "avgSecPerFile": 0.023834,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 193,
+      "countries_updated": 714,
+      "topics_created": 331,
+      "topics_updated": 4467,
+      "organisations_updated": 311,
+      "processed": 721,
+      "places_updated": 158,
+      "outlets_updated": 528,
+      "countries_created": 7,
+      "people_updated": 187
+    },
+    "statusCounts": {
+      "cascaded": 16907,
+      "inputs": 721,
+      "total": 17628
+    }
+  },
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260831T220213-lint-134b",
+  "operation": "lint",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-31T22:02:13+08:00",
+  "endedAt": "2026-08-31T22:05:10+08:00",
+  "durationSec": 177.347,
+  "articleMetrics": {
+    "inputCount": 32316,
+    "processedCount": 32316,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.005488
+  },
+  "fileMetrics": {
+    "scannedCount": 50177,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.003534
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "structuralLinksNormalized": 0,
+    "yamlFixed": 0,
+    "aliasOnlyLinksRewritten": 0,
+    "articlesRelocated": 0,
+    "coverageLabelsRegenerated": 0,
+    "coverageLabelFilesChanged": 0,
+    "orphanEntityBodyLinksAdded": 0,
+    "proseEntityLinksAdded": 0,
+    "remainingYamlErrors": 0,
+    "remainingBrokenLinks": 0
+  },
+  "errors": [],
+  "notes": "",
+  "metadata": {
+    "script": "fix_links.py",
+    "dryRun": true,
+    "domain": null,
+    "skipRelocate": false,
+    "skipAlias": false,
+    "skipYaml": false,
+    "skipCoverageLabels": false,
+    "skipEntityBodyLinks": false,
+    "skipNormalize": false,
+    "linkEntities": false
+  }
+}

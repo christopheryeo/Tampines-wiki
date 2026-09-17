@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260729T115452-lint-a55b",
+  "operation": "lint",
+  "status": "partial",
+  "trigger": "manual",
+  "startedAt": "2026-07-29T11:54:52+08:00",
+  "endedAt": "2026-07-29T11:55:07+08:00",
+  "durationSec": 14.705,
+  "articleMetrics": {
+    "inputCount": 17628,
+    "processedCount": 17628,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 16907,
+    "duplicateCount": 0,
+    "failedCount": 2,
+    "avgSecPerArticle": 0.000834
+  },
+  "fileMetrics": {
+    "scannedCount": 17628,
+    "changedCount": 0,
+    "failedCount": 2,
+    "avgSecPerFile": 0.000834
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "summary": {
+      "scanned": 17628,
+      "changed": 721,
+      "errors": 2,
+      "warnings": 0,
+      "dryRun": true,
+      "findingCounts": {
+        "unsafe-source-type": 1,
+        "invalid-enum": 1
+      }
+    }
+  },
+  "errors": [
+    {
+      "message": "Article quality validation found errors",
+      "count": 2
+    }
+  ],
+  "notes": "Article schema validation and source-backed metadata repair.",
+  "metadata": {
+    "script": "article_quality.py",
+    "repair": true,
+    "dryRun": true
+  }
+}

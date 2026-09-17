@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260815T175334-ingest_cascade-4aba",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-15T17:53:34+08:00",
+  "endedAt": "2026-08-15T17:53:34+08:00",
+  "durationSec": 0.013,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-15T17:53:34+08:00",
+      "endedAt": "2026-08-15T17:53:34+08:00",
+      "durationSec": 0.012,
+      "articleCount": 7,
+      "avgSecPerArticle": 0.001714,
+      "fileCount": 7,
+      "avgSecPerFile": 0.001714,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "refusing to overwrite compiled article: entities/article/2026-07/9393567011-column-the-legacy-of-turkiye-s-most-contested-coup-attempt-hstoday.md",
+          "type": "FileExistsError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-07/9393567011-column-the-legacy-of-turkiye-s-most-contested-coup-attempt-hstoday.md",
+      "type": "FileExistsError"
+    },
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-07/9393567011-column-the-legacy-of-turkiye-s-most-contested-coup-attempt-hstoday.md",
+      "type": "FileExistsError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-15/artifacts/20260815T173433+0800-loose-goal/route-accepted-manifest.txt"
+  }
+}

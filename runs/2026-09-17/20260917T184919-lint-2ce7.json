@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260917T184919-lint-2ce7",
+  "operation": "lint",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-17T18:49:19+08:00",
+  "endedAt": "2026-09-17T18:49:57+08:00",
+  "durationSec": 38.392,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "brokenLinks": 0,
+    "yamlErrors": 0,
+    "nestedTargetLinks": 0,
+    "invalidCoverageHeadings": 0,
+    "warnings": 0,
+    "aliasOnlyLinks": 0,
+    "unlinkedEntityMentions": 0
+  },
+  "errors": [],
+  "notes": "",
+  "metadata": {
+    "script": "check_links.py",
+    "includeDocs": false,
+    "checkUnlinked": true,
+    "domain": "crawl-log"
+  }
+}

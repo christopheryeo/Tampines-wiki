@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260916T022353-ingest_cascade-8d64",
+  "operation": "ingest_cascade",
+  "status": "partial",
+  "trigger": "manual",
+  "startedAt": "2026-09-16T02:23:53+08:00",
+  "endedAt": "2026-09-16T02:24:52+08:00",
+  "durationSec": 58.842,
+  "articleMetrics": {
+    "inputCount": 78,
+    "processedCount": 78,
+    "createdCount": 78,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 2,
+    "avgSecPerArticle": 0.754385
+  },
+  "fileMetrics": {
+    "scannedCount": 5618,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.010474
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-16T02:23:53+08:00",
+      "endedAt": "2026-09-16T02:24:17+08:00",
+      "durationSec": 23.853,
+      "articleCount": 78,
+      "avgSecPerArticle": 0.305808,
+      "fileCount": 78,
+      "avgSecPerFile": 0.305808,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-16T02:24:49+08:00",
+      "endedAt": "2026-09-16T02:24:52+08:00",
+      "durationSec": 3.388,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 5618,
+      "wikilinks_checked": 296019,
+      "errors": 2,
+      "error_samples": [
+        "entities/article/2026-09/crawl-26c28b51dc9293316826a47c8ff3c516ddd2a9a3dbb237e40d0388ba22bfc049-asiaone.md :: broken wikilink: nid:740239",
+        "entities/article/2026-09/crawl-26c28b51dc9293316826a47c8ff3c516ddd2a9a3dbb237e40d0388ba22bfc049-asiaone.md :: broken wikilink: nid:740239"
+      ]
+    },
+    "entityUpdates": {
+      "outlets_updated": 67,
+      "countries_updated": 131,
+      "topics_updated": 223,
+      "tags_updated": 392,
+      "organisations_updated": 185,
+      "places_updated": 167,
+      "processed": 78,
+      "outlets_created": 11,
+      "people_updated": 46
+    },
+    "statusCounts": {
+      "cascaded": 33019,
+      "inputs": 24,
+      "total": 33043
+    }
+  },
+  "errors": [
+    {
+      "message": "entities/article/2026-09/crawl-26c28b51dc9293316826a47c8ff3c516ddd2a9a3dbb237e40d0388ba22bfc049-asiaone.md :: broken wikilink: nid:740239"
+    },
+    {
+      "message": "entities/article/2026-09/crawl-26c28b51dc9293316826a47c8ff3c516ddd2a9a3dbb237e40d0388ba22bfc049-asiaone.md :: broken wikilink: nid:740239"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-09.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-15/artifacts/topic-crawls/SEP2026-B02/manifests/2026-09-cascade.txt"
+  }
+}

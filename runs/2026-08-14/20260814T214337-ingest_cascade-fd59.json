@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260814T214337-ingest_cascade-fd59",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-14T21:43:37+08:00",
+  "endedAt": "2026-08-14T21:43:37+08:00",
+  "durationSec": 0.009,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-14T21:43:37+08:00",
+      "endedAt": "2026-08-14T21:43:37+08:00",
+      "durationSec": 0.007,
+      "articleCount": 1,
+      "avgSecPerArticle": 0.007,
+      "fileCount": 1,
+      "avgSecPerFile": 0.007,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "refusing to overwrite compiled article: entities/article/2020-08/9427329141-space-force-enlisted-ranks-from-specialist-to-chief-master-sergeant-of.md",
+          "type": "FileExistsError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2020-08/9427329141-space-force-enlisted-ranks-from-specialist-to-chief-master-sergeant-of.md",
+      "type": "FileExistsError"
+    },
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2020-08/9427329141-space-force-enlisted-ranks-from-specialist-to-chief-master-sergeant-of.md",
+      "type": "FileExistsError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2020-08.",
+  "metadata": {
+    "month": "2020-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-14/artifacts/20260814T210304+0800-loose-goal/final-accepted-manifest.txt"
+  }
+}

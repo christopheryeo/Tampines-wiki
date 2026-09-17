@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260814T185224-ingest_cascade-a8ac",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-14T18:52:24+08:00",
+  "endedAt": "2026-08-14T18:53:15+08:00",
+  "durationSec": 51.166,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-14T18:52:24+08:00",
+      "endedAt": "2026-08-14T18:52:33+08:00",
+      "durationSec": 9.511,
+      "articleCount": 51,
+      "avgSecPerArticle": 0.18649,
+      "fileCount": 51,
+      "avgSecPerFile": 0.18649,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-08-14T18:52:52+08:00",
+      "endedAt": "2026-08-14T18:52:54+08:00",
+      "durationSec": 1.591,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    },
+    {
+      "stage": "uat_delta_prepare_verify",
+      "startedAt": "2026-08-14T18:52:54+08:00",
+      "endedAt": "2026-08-14T18:53:15+08:00",
+      "durationSec": 21.077,
+      "articleCount": 51,
+      "avgSecPerArticle": 0.413275,
+      "fileCount": 51,
+      "avgSecPerFile": 0.413275,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "automatic UAT delta preparation failed: ERROR: ERROR 2003 (HY000): Can't connect to MySQL server on '34.126.103.218:3306' (1)",
+          "type": "RuntimeError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "automatic UAT delta preparation failed: ERROR: ERROR 2003 (HY000): Can't connect to MySQL server on '34.126.103.218:3306' (1)",
+      "type": "RuntimeError"
+    },
+    {
+      "message": "automatic UAT delta preparation failed: ERROR: ERROR 2003 (HY000): Can't connect to MySQL server on '34.126.103.218:3306' (1)",
+      "type": "RuntimeError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-14/artifacts/20260814T155332+0800-loose-goal/post-policy-accepted-manifest.txt"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260815T181042-ingest_cascade-2325",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-15T18:10:42+08:00",
+  "endedAt": "2026-08-15T18:13:32+08:00",
+  "durationSec": 170.558,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-15T18:10:42+08:00",
+      "endedAt": "2026-08-15T18:12:29+08:00",
+      "durationSec": 106.939,
+      "articleCount": 506,
+      "avgSecPerArticle": 0.211342,
+      "fileCount": 506,
+      "avgSecPerFile": 0.211342,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-08-15T18:12:46+08:00",
+      "endedAt": "2026-08-15T18:12:48+08:00",
+      "durationSec": 2.087,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    },
+    {
+      "stage": "uat_delta_prepare_verify",
+      "startedAt": "2026-08-15T18:12:48+08:00",
+      "endedAt": "2026-08-15T18:13:32+08:00",
+      "durationSec": 44.243,
+      "articleCount": 506,
+      "avgSecPerArticle": 0.087437,
+      "fileCount": 506,
+      "avgSecPerFile": 0.087437,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "automatic UAT delta preparation failed: ERROR: coverage display_name exceeds limit for 9431195129",
+          "type": "RuntimeError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "automatic UAT delta preparation failed: ERROR: coverage display_name exceeds limit for 9431195129",
+      "type": "RuntimeError"
+    },
+    {
+      "message": "automatic UAT delta preparation failed: ERROR: coverage display_name exceeds limit for 9431195129",
+      "type": "RuntimeError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-15/artifacts/20260815T173433+0800-loose-goal/route-accepted-manifest.txt"
+  }
+}

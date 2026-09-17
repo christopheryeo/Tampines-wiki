@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260914T200412-ingest_cascade-9a59",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-14T20:04:12+08:00",
+  "endedAt": "2026-09-14T20:04:14+08:00",
+  "durationSec": 2.598,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 2.598
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-14T20:04:12+08:00",
+      "endedAt": "2026-09-14T20:04:14+08:00",
+      "durationSec": 2.376,
+      "articleCount": 1,
+      "avgSecPerArticle": 2.376,
+      "fileCount": 1,
+      "avgSecPerFile": 2.376,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 1,
+      "countries_updated": 1,
+      "topics_updated": 1,
+      "tags_updated": 8,
+      "organisations_updated": 4,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 32434,
+      "inputs": 5,
+      "total": 32439
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-14/artifacts/topic-crawls/terrorism-radicalisation/step-8-manifest-2026-08.txt"
+  }
+}

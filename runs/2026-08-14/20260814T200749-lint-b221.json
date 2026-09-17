@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260814T200749-lint-b221",
+  "operation": "lint",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-14T20:07:49+08:00",
+  "endedAt": "2026-08-14T20:10:11+08:00",
+  "durationSec": 142.0,
+  "articleMetrics": {
+    "inputCount": 23116,
+    "processedCount": 23116,
+    "createdCount": 0,
+    "updatedCount": 1340,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.006143
+  },
+  "fileMetrics": {
+    "scannedCount": 23116,
+    "changedCount": 1340,
+    "failedCount": 0,
+    "avgSecPerFile": 0.006143
+  },
+  "stageMetrics": [],
+  "outputs": {},
+  "errors": [],
+  "notes": "Multi-pass article Summary/Key Points entity-link backfill; visible prose, frontmatter, and Database Projection unchanged; article quality, hard-link gate, and 76 tests passed.",
+  "metadata": {
+    "linksAdded": 1538,
+    "residualUnlinkedFindings": 0,
+    "strategy": "unique-then-trusted-disambiguation"
+  }
+}

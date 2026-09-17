@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260915T172952-cascade-b740",
+  "operation": "cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-15T17:29:52+08:00",
+  "endedAt": "2026-09-15T17:29:52+08:00",
+  "durationSec": 0.003,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 0,
+    "updatedCount": 1,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.003
+  },
+  "fileMetrics": {
+    "scannedCount": 1,
+    "changedCount": 1,
+    "failedCount": 0,
+    "avgSecPerFile": 0.003
+  },
+  "stageMetrics": [
+    {
+      "stage": "patch_coverage",
+      "startedAt": "2026-09-15T17:29:52+08:00",
+      "endedAt": "2026-09-15T17:29:52+08:00",
+      "durationSec": 0.002,
+      "articleCount": 1,
+      "avgSecPerArticle": 0.002,
+      "fileCount": 1,
+      "avgSecPerFile": 0.002,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "updateRows": 1,
+    "entitiesChanged": 1,
+    "entitiesNoop": 0,
+    "coveragePairsAdded": 1,
+    "coveragePairsSkipped": 0
+  },
+  "errors": [],
+  "notes": "",
+  "metadata": {
+    "script": "patch_coverage.py",
+    "dryRun": false,
+    "updatesPath": "runs/2026-09-15/artifacts/topic-crawls/SEP2026-B06/target-topic-coverage.json"
+  }
+}

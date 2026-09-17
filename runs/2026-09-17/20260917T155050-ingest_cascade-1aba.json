@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260917T155050-ingest_cascade-1aba",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-09-17T15:50:50+08:00",
+  "endedAt": "2026-09-17T15:50:52+08:00",
+  "durationSec": 2.134,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-17T15:50:50+08:00",
+      "endedAt": "2026-09-17T15:50:52+08:00",
+      "durationSec": 2.134,
+      "articleCount": 3,
+      "avgSecPerArticle": 0.711333,
+      "fileCount": 3,
+      "avgSecPerFile": 0.711333,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "canonical taxonomy count 96 is outside 60–105 or maximum exceeds 100",
+          "type": "ConsolidationError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "canonical taxonomy count 96 is outside 60–105 or maximum exceeds 100",
+      "type": "ConsolidationError"
+    },
+    {
+      "message": "canonical taxonomy count 96 is outside 60–105 or maximum exceeds 100",
+      "type": "ConsolidationError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-17/artifacts/topic-crawls/batch1/cascade-manifest-2026-08.txt"
+  }
+}

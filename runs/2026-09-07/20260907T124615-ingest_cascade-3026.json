@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260907T124615-ingest_cascade-3026",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-07T12:46:15+08:00",
+  "endedAt": "2026-09-07T12:46:58+08:00",
+  "durationSec": 42.917,
+  "articleMetrics": {
+    "inputCount": 29,
+    "processedCount": 29,
+    "createdCount": 29,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 1.479897
+  },
+  "fileMetrics": {
+    "scannedCount": 13364,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.003211
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-07T12:46:15+08:00",
+      "endedAt": "2026-09-07T12:46:25+08:00",
+      "durationSec": 10.095,
+      "articleCount": 29,
+      "avgSecPerArticle": 0.348103,
+      "fileCount": 29,
+      "avgSecPerFile": 0.348103,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-07T12:46:49+08:00",
+      "endedAt": "2026-09-07T12:46:57+08:00",
+      "durationSec": 8.286,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 13364,
+      "wikilinks_checked": 376888,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 26,
+      "countries_updated": 29,
+      "topics_updated": 64,
+      "tags_updated": 214,
+      "organisations_updated": 59,
+      "processed": 29,
+      "outlets_created": 3,
+      "people_updated": 13,
+      "places_updated": 65
+    },
+    "statusCounts": {
+      "cascaded": 32418,
+      "inputs": 11,
+      "total": 32429
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-07/artifacts/topic-crawls/issue-discovery-024704/resolution/cascade-2026-08.txt"
+  }
+}

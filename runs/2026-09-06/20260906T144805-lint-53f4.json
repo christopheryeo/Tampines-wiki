@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260906T144805-lint-53f4",
+  "operation": "lint",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-06T14:48:05+08:00",
+  "endedAt": "2026-09-06T14:49:46+08:00",
+  "durationSec": 100.502,
+  "articleMetrics": {
+    "inputCount": 32331,
+    "processedCount": 32331,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.003109
+  },
+  "fileMetrics": {
+    "scannedCount": 50267,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.001999
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "brokenLinks": 0,
+    "yamlErrors": 0,
+    "nestedTargetLinks": 0,
+    "warnings": 2529,
+    "aliasOnlyLinks": 0,
+    "unlinkedEntityMentions": 2514
+  },
+  "errors": [],
+  "notes": "",
+  "metadata": {
+    "script": "check_links.py",
+    "includeDocs": false,
+    "checkUnlinked": true,
+    "domain": null
+  }
+}

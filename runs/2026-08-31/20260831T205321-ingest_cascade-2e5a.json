@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260831T205321-ingest_cascade-2e5a",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-31T20:53:21+08:00",
+  "endedAt": "2026-08-31T20:53:24+08:00",
+  "durationSec": 3.127,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 3.127
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-31T20:53:21+08:00",
+      "endedAt": "2026-08-31T20:53:24+08:00",
+      "durationSec": 2.846,
+      "articleCount": 1,
+      "avgSecPerArticle": 2.846,
+      "fileCount": 1,
+      "avgSecPerFile": 2.846,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 1,
+      "countries_updated": 1,
+      "topics_updated": 3,
+      "tags_updated": 3,
+      "organisations_updated": 2,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 27155,
+      "inputs": 5443,
+      "total": 32598
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2015-11.",
+  "metadata": {
+    "month": "2015-11",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "/Users/chrisyeo/Library/CloudStorage/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki/runs/2026-08-31/artifacts/20260831T200105+0800-canonical-loose-ingest/accepted-manifest.txt"
+  }
+}

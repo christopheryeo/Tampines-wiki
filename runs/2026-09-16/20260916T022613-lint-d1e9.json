@@ -1,0 +1,565 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260916T022613-lint-d1e9",
+  "operation": "lint",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-09-16T02:26:13+08:00",
+  "endedAt": "2026-09-16T02:35:03+08:00",
+  "durationSec": 529.963,
+  "articleMetrics": {
+    "inputCount": 33019,
+    "processedCount": 33019,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 86,
+    "avgSecPerArticle": 0.01605
+  },
+  "fileMetrics": {
+    "scannedCount": 117728,
+    "changedCount": 697,
+    "failedCount": 86,
+    "avgSecPerFile": 0.004502
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "structuralLinksNormalized": 0,
+    "yamlFixed": 0,
+    "aliasOnlyLinksRewritten": 0,
+    "articlesRelocated": 0,
+    "coverageLabelsRegenerated": 27,
+    "coverageLabelFilesChanged": 25,
+    "orphanEntityBodyLinksAdded": 1008,
+    "proseEntityLinksAdded": 0,
+    "remainingYamlErrors": 5,
+    "remainingBrokenLinks": 81
+  },
+  "errors": [
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427462582-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427743913-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427749665-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427802958-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427814134-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "broken link remains",
+      "path": "Knowledge/30 Root Article Ingest 2026-09-04.md",
+      "target": "nid:...",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/callsites/readme.md",
+      "target": "Class",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/es-abstract/CHANGELOG.md",
+      "target": "NextMethod",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/es-abstract/CHANGELOG.md",
+      "target": "UnicodeSets",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/is-callable/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/is-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/is-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...segment",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...folder",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...file",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...folderName",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...segmentName",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-static-paths.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/object.entries/CHANGELOG.md",
+      "target": "Get",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/object.values/CHANGELOG.md",
+      "target": "Get",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/styled-jsx/readme.md",
+      "target": "\"styled-jsx/babel\", { \"optimizeForSpeed\": true }",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/undici/docs/docs/api/ContentType.md",
+      "target": "'charset', 'gbk'",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/undici/docs/docs/api/GlobalInstallation.md",
+      "target": "'content-type', 'application/json'",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/which-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/which-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9433731146-singaporean-man-62-loses-s-1-6m-stolen-by-son-including-s-533k-in-cpf-.md",
+      "target": "topic/disciplinary-action",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md",
+      "target": "topic/australian-defence-force",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md",
+      "target": "topic/awards",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md",
+      "target": "topic/defence-cooperation",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9437718564-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md",
+      "target": "topic/comprehensive-strategic-partnership",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9437718564-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md",
+      "target": "topic/defence-cooperation",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9441770191-maf-administrative-issues-khaled-nordin-to-have-an-audience-with-the-r.md",
+      "target": "topic/defence-minister",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md",
+      "target": "topic/bilateral-defence-cooperation",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md",
+      "target": "topic/chan-chun-sing",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md",
+      "target": "topic/defence-ties",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9445687407-singapore-awards-contract-to-evaluate-new-landing-craft-design.md",
+      "target": "topic/acquisition",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9445687407-singapore-awards-contract-to-evaluate-new-landing-craft-design.md",
+      "target": "topic/contract",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9445750150-coconut-water-distribution-haze-ward-among-s-pore-s-precautions-to-dea.md",
+      "target": "topic/climate-adaptation",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9445774025-coconut-water-distribution-haze-ward-among-s-pore-s-precautions-to-dea.md",
+      "target": "topic/climate-adaptation",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9446484324-haze-concerns-prompt-preparations-for-coconut-water-distribution-n95-m.md",
+      "target": "topic/climate-adaptation",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-08/9451720839-from-two-borrowed-cessnas-to-f-35s-58-years-of-the-rsaf-in-a-nutshell.md",
+      "target": "topic/air-defence",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-09/9451936265-mindef-looking-to-enhance-ns-milestone-awards-to-mark-60-years-of-nati.md",
+      "target": "topic/60-years",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-09/9451936265-mindef-looking-to-enhance-ns-milestone-awards-to-mark-60-years-of-nati.md",
+      "target": "topic/awards",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-09/9451936265-mindef-looking-to-enhance-ns-milestone-awards-to-mark-60-years-of-nati.md",
+      "target": "topic/chan-chun-sing",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-09/9451945548-mindef-looking-to-enhance-ns-milestone-awards-to-mark-60-years-of-nati.md",
+      "target": "topic/60-years",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-06/artifacts/issue-radar/20260906-current/projection-backup/entities/article/2026-09/9451945548-mindef-looking-to-enhance-ns-milestone-awards-to-mark-60-years-of-nati.md",
+      "target": "topic/defence-minister-chan-chun-sing",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/S002-completeness-followup-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/S002-extra-entity-creation-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/S002-link-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/S002-region-rollback-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/S002-terror-link-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/S002-us-link-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/relationship-removal-S002-air-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "runs/2026-09-07/artifacts/20260907T024304-wiki-qc/relationship-removal-S002-us-variant-before-images/entities/article/2015-11/9439958719-boko-haram-bombs-kill-49-as-ex-security-adviser-accused-of-embezzling-.md",
+      "target": "place/lake-chad-basin",
+      "kind": "wikilink"
+    }
+  ],
+  "notes": "",
+  "metadata": {
+    "script": "fix_links.py",
+    "dryRun": false,
+    "domain": null,
+    "skipRelocate": false,
+    "skipAlias": false,
+    "skipYaml": false,
+    "skipCoverageLabels": false,
+    "skipEntityBodyLinks": false,
+    "skipNormalize": false,
+    "linkEntities": false
+  }
+}

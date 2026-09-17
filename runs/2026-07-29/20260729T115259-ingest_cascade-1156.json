@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260729T115259-ingest_cascade-1156",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-07-29T11:52:59+08:00",
+  "endedAt": "2026-07-29T11:53:52+08:00",
+  "durationSec": 52.583,
+  "articleMetrics": {
+    "inputCount": 721,
+    "processedCount": 721,
+    "createdCount": 721,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.072931
+  },
+  "fileMetrics": {
+    "scannedCount": 11931,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.004407
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-07-29T11:52:59+08:00",
+      "endedAt": "2026-07-29T11:53:26+08:00",
+      "durationSec": 27.041,
+      "articleCount": 721,
+      "avgSecPerArticle": 0.037505,
+      "fileCount": 721,
+      "avgSecPerFile": 0.037505,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-07-29T11:53:45+08:00",
+      "endedAt": "2026-07-29T11:53:51+08:00",
+      "durationSec": 6.501,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 11931,
+      "wikilinks_checked": 275562,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 193,
+      "countries_updated": 714,
+      "topics_created": 331,
+      "topics_updated": 4467,
+      "organisations_updated": 311,
+      "processed": 721,
+      "places_updated": 158,
+      "outlets_updated": 528,
+      "countries_created": 7,
+      "people_updated": 187
+    },
+    "statusCounts": {
+      "cascaded": 17628,
+      "inputs": 0,
+      "total": 17628
+    }
+  },
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": false
+  }
+}

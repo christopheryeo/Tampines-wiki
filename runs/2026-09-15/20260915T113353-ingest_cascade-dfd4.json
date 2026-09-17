@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260915T113353-ingest_cascade-dfd4",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-15T11:33:53+08:00",
+  "endedAt": "2026-09-15T11:34:36+08:00",
+  "durationSec": 43.078,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 43.078
+  },
+  "fileMetrics": {
+    "scannedCount": 14554,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.00296
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-15T11:33:53+08:00",
+      "endedAt": "2026-09-15T11:33:56+08:00",
+      "durationSec": 2.628,
+      "articleCount": 1,
+      "avgSecPerArticle": 2.628,
+      "fileCount": 1,
+      "avgSecPerFile": 2.628,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-15T11:34:24+08:00",
+      "endedAt": "2026-09-15T11:34:36+08:00",
+      "durationSec": 11.623,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 14554,
+      "wikilinks_checked": 380205,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 1,
+      "countries_updated": 1,
+      "topics_updated": 1,
+      "tags_updated": 8,
+      "organisations_updated": 3,
+      "people_updated": 1,
+      "places_updated": 4,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 32444,
+      "inputs": 3,
+      "total": 32447
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-15/artifacts/topic-crawls/singapore-water-climate-controversy-run/cascade_2026-08.txt"
+  }
+}

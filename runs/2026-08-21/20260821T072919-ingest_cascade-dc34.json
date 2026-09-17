@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260821T072919-ingest_cascade-dc34",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-21T07:29:19+00:00",
+  "endedAt": "2026-08-21T07:29:24+00:00",
+  "durationSec": 5.656,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 5.656
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-21T07:29:19+00:00",
+      "endedAt": "2026-08-21T07:29:24+00:00",
+      "durationSec": 5.336,
+      "articleCount": 1,
+      "avgSecPerArticle": 5.336,
+      "fileCount": 1,
+      "avgSecPerFile": 5.336,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 1,
+      "countries_updated": 1,
+      "topics_updated": 3,
+      "tags_updated": 2,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 27129,
+      "inputs": 26,
+      "total": 27155
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-21/artifacts/20260821T151837+0800-africa-security/accepted-manifest.txt"
+  }
+}

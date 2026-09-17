@@ -1,0 +1,17 @@
+{
+  "operation": "topic_crawl",
+  "topic": "espionage-foreign-interference",
+  "dateRange": [
+    "2026-08-01",
+    "2026-09-15"
+  ],
+  "finalStatus": "Completed",
+  "accepted": 0,
+  "cascaded": 0,
+  "setA_total": 348,
+  "setA_evaluated": 100,
+  "dropped_offtopic": 100,
+  "setB_in_range": 0,
+  "elapsed": "0:22:41",
+  "endedAt": "2026-09-15T03:19:54Z"
+}

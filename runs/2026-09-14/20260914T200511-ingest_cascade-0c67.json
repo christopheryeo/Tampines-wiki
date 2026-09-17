@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260914T200511-ingest_cascade-0c67",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-14T20:05:11+08:00",
+  "endedAt": "2026-09-14T20:05:55+08:00",
+  "durationSec": 43.504,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 43.504
+  },
+  "fileMetrics": {
+    "scannedCount": 14552,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.00299
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-14T20:05:11+08:00",
+      "endedAt": "2026-09-14T20:05:14+08:00",
+      "durationSec": 2.542,
+      "articleCount": 1,
+      "avgSecPerArticle": 2.542,
+      "fileCount": 1,
+      "avgSecPerFile": 2.542,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-14T20:05:46+08:00",
+      "endedAt": "2026-09-14T20:05:55+08:00",
+      "durationSec": 8.958,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 14552,
+      "wikilinks_checked": 380147,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 1,
+      "countries_updated": 1,
+      "topics_updated": 1,
+      "tags_updated": 8,
+      "organisations_updated": 4,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 32439,
+      "inputs": 0,
+      "total": 32439
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-14/artifacts/topic-crawls/terrorism-radicalisation/step-8-manifest-2026-08.txt"
+  }
+}

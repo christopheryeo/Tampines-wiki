@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260906T211855-ingest_cascade-b7ef",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-09-06T21:18:55+08:00",
+  "endedAt": "2026-09-06T21:18:57+08:00",
+  "durationSec": 2.36,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-06T21:18:55+08:00",
+      "endedAt": "2026-09-06T21:18:57+08:00",
+      "durationSec": 2.357,
+      "articleCount": 2,
+      "avgSecPerArticle": 1.1785,
+      "fileCount": 2,
+      "avgSecPerFile": 1.1785,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "'tag'",
+          "type": "KeyError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "'tag'",
+      "type": "KeyError"
+    },
+    {
+      "message": "'tag'",
+      "type": "KeyError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-09.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-06/artifacts/topic-crawls/singapore-neutrality-alignment-commentary-2026-09-01-to-2026-09-06-20260906T210427+0800/manifest-2026-09.txt"
+  }
+}

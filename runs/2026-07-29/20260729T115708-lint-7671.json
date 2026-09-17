@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260729T115708-lint-7671",
+  "operation": "lint",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-07-29T11:57:08+08:00",
+  "endedAt": "2026-07-29T12:03:01+08:00",
+  "durationSec": 353.335,
+  "articleMetrics": {
+    "inputCount": 17628,
+    "processedCount": 17628,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 5,
+    "avgSecPerArticle": 0.020044
+  },
+  "fileMetrics": {
+    "scannedCount": 27845,
+    "changedCount": 77,
+    "failedCount": 5,
+    "avgSecPerFile": 0.012689
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "structuralLinksNormalized": 0,
+    "yamlFixed": 0,
+    "aliasOnlyLinksRewritten": 0,
+    "articlesRelocated": 0,
+    "coverageLabelsRegenerated": 0,
+    "coverageLabelFilesChanged": 0,
+    "orphanEntityBodyLinksAdded": 163,
+    "proseEntityLinksAdded": 0,
+    "remainingYamlErrors": 0,
+    "remainingBrokenLinks": 5
+  },
+  "errors": [
+    {
+      "message": "broken link remains",
+      "path": "entities/search/what-defence-events-took-place-in-singapore-e549114e.md",
+      "target": "1011277",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "entities/search/what-defence-events-took-place-in-singapore-e549114e.md",
+      "target": "1119259",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "entities/search/what-defence-events-took-place-in-singapore-e549114e.md",
+      "target": "810800",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "entities/search/what-defence-events-took-place-in-singapore-e549114e.md",
+      "target": "762673",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "entities/search/what-defence-events-took-place-in-singapore-e549114e.md",
+      "target": "785863",
+      "kind": "wikilink"
+    }
+  ],
+  "notes": "",
+  "metadata": {
+    "script": "fix_links.py",
+    "dryRun": true,
+    "domain": null,
+    "skipRelocate": false,
+    "skipAlias": false,
+    "skipYaml": false,
+    "skipCoverageLabels": false,
+    "skipEntityBodyLinks": false,
+    "skipNormalize": false,
+    "linkEntities": false
+  }
+}

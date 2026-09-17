@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260916T021829-ingest_cascade-4ae6",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-09-16T02:18:29+08:00",
+  "endedAt": "2026-09-16T02:18:37+08:00",
+  "durationSec": 7.499,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-16T02:18:29+08:00",
+      "endedAt": "2026-09-16T02:18:37+08:00",
+      "durationSec": 7.497,
+      "articleCount": 92,
+      "avgSecPerArticle": 0.081489,
+      "fileCount": 92,
+      "avgSecPerFile": 0.081489,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "refusing to overwrite compiled article: entities/article/2026-08/crawl-48bd6df63c93cc384f3fbc1ef32aac4824d2f5d80d4639d413c523165c9059f8-which-southeast-asian-country-spent-the-most-on-defense-in-2025-seasia.md",
+          "type": "FileExistsError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-08/crawl-48bd6df63c93cc384f3fbc1ef32aac4824d2f5d80d4639d413c523165c9059f8-which-southeast-asian-country-spent-the-most-on-defense-in-2025-seasia.md",
+      "type": "FileExistsError"
+    },
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-08/crawl-48bd6df63c93cc384f3fbc1ef32aac4824d2f5d80d4639d413c523165c9059f8-which-southeast-asian-country-spent-the-most-on-defense-in-2025-seasia.md",
+      "type": "FileExistsError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-15/artifacts/topic-crawls/SEP2026-B02/manifests/2026-08.txt"
+  }
+}

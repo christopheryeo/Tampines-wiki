@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260916T022858-ingest_cascade-6313",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual-remediation",
+  "startedAt": "2026-09-16T02:28:58+08:00",
+  "endedAt": "2026-09-16T02:29:01+08:00",
+  "durationSec": 3.868,
+  "articleMetrics": {
+    "inputCount": 78,
+    "processedCount": 78,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.04959
+  },
+  "fileMetrics": {
+    "scannedCount": 5618,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.000689
+  },
+  "stageMetrics": [
+    {
+      "stage": "post_cascade_remediation_validation",
+      "startedAt": "2026-09-16T02:28:58+08:00",
+      "endedAt": "2026-09-16T02:29:01+08:00",
+      "durationSec": 3.866,
+      "articleCount": 78,
+      "avgSecPerArticle": 0.049564,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok",
+      "metrics": {
+        "focusedValidation": {
+          "notes_scanned": 5618,
+          "wikilinks_checked": 296017,
+          "errors": 0,
+          "error_samples": []
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "focusedValidation": {
+      "notes_scanned": 5618,
+      "wikilinks_checked": 296017,
+      "errors": 0,
+      "error_samples": []
+    },
+    "remediation": {
+      "replacedInvalidWikilinks": 2,
+      "articlePath": "entities/article/2026-09/crawl-26c28b51dc9293316826a47c8ff3c516ddd2a9a3dbb237e40d0388ba22bfc049-asiaone.md"
+    }
+  },
+  "errors": [],
+  "notes": "Post-cascade remediation validation for the 2026-09 manifest-scoped Batch 2 cascade. The original receipt remains partial because it accurately captured the pre-repair broken legacy nid link.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-15/artifacts/topic-crawls/SEP2026-B02/manifests/2026-09-cascade.txt",
+    "remediatesReceipt": "runs/2026-09-16/20260916T022353-ingest_cascade-8d64.json"
+  }
+}

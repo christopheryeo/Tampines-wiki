@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260914T185941-ingest_cascade-bd81",
+  "operation": "ingest_cascade",
+  "status": "partial",
+  "trigger": "manual",
+  "startedAt": "2026-09-14T18:59:41+08:00",
+  "endedAt": "2026-09-14T19:00:27+08:00",
+  "durationSec": 45.835,
+  "articleMetrics": {
+    "inputCount": 2,
+    "processedCount": 2,
+    "createdCount": 2,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 16,
+    "avgSecPerArticle": 22.9175
+  },
+  "fileMetrics": {
+    "scannedCount": 14548,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.003151
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-14T18:59:41+08:00",
+      "endedAt": "2026-09-14T18:59:44+08:00",
+      "durationSec": 2.596,
+      "articleCount": 2,
+      "avgSecPerArticle": 1.298,
+      "fileCount": 2,
+      "avgSecPerFile": 1.298,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-14T19:00:16+08:00",
+      "endedAt": "2026-09-14T19:00:27+08:00",
+      "durationSec": 11.008,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 14548,
+      "wikilinks_checked": 380108,
+      "errors": 16,
+      "error_samples": [
+        "entities/article/2026-08/9445687407-singapore-awards-contract-to-evaluate-new-landing-craft-design.md :: broken wikilink: topic/acquisition",
+        "entities/article/2026-08/9445687407-singapore-awards-contract-to-evaluate-new-landing-craft-design.md :: broken wikilink: topic/contract",
+        "entities/article/2026-08/9445774025-coconut-water-distribution-haze-ward-among-s-pore-s-precautions-to-dea.md :: broken wikilink: topic/climate-adaptation",
+        "entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/australian-defence-force",
+        "entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/awards",
+        "entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/defence-cooperation",
+        "entities/article/2026-08/9437718564-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/comprehensive-strategic-partnership",
+        "entities/article/2026-08/9437718564-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/defence-cooperation",
+        "entities/article/2026-08/9451720839-from-two-borrowed-cessnas-to-f-35s-58-years-of-the-rsaf-in-a-nutshell.md :: broken wikilink: topic/air-defence",
+        "entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md :: broken wikilink: topic/bilateral-defence-cooperation",
+        "entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md :: broken wikilink: topic/chan-chun-sing",
+        "entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md :: broken wikilink: topic/defence-ties",
+        "entities/article/2026-08/9433731146-singaporean-man-62-loses-s-1-6m-stolen-by-son-including-s-533k-in-cpf-.md :: broken wikilink: topic/disciplinary-action",
+        "entities/article/2026-08/9446484324-haze-concerns-prompt-preparations-for-coconut-water-distribution-n95-m.md :: broken wikilink: topic/climate-adaptation",
+        "entities/article/2026-08/9441770191-maf-administrative-issues-khaled-nordin-to-have-an-audience-with-the-r.md :: broken wikilink: topic/defence-minister",
+        "entities/article/2026-08/9445750150-coconut-water-distribution-haze-ward-among-s-pore-s-precautions-to-dea.md :: broken wikilink: topic/climate-adaptation"
+      ]
+    },
+    "entityUpdates": {
+      "outlets_updated": 1,
+      "countries_updated": 2,
+      "topics_updated": 6,
+      "tags_updated": 13,
+      "organisations_updated": 2,
+      "processed": 2,
+      "outlets_created": 1,
+      "places_updated": 10
+    },
+    "statusCounts": {
+      "cascaded": 32431,
+      "inputs": 1,
+      "total": 32432
+    }
+  },
+  "errors": [
+    {
+      "message": "entities/article/2026-08/9445687407-singapore-awards-contract-to-evaluate-new-landing-craft-design.md :: broken wikilink: topic/acquisition"
+    },
+    {
+      "message": "entities/article/2026-08/9445687407-singapore-awards-contract-to-evaluate-new-landing-craft-design.md :: broken wikilink: topic/contract"
+    },
+    {
+      "message": "entities/article/2026-08/9445774025-coconut-water-distribution-haze-ward-among-s-pore-s-precautions-to-dea.md :: broken wikilink: topic/climate-adaptation"
+    },
+    {
+      "message": "entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/australian-defence-force"
+    },
+    {
+      "message": "entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/awards"
+    },
+    {
+      "message": "entities/article/2026-08/9437692205-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/defence-cooperation"
+    },
+    {
+      "message": "entities/article/2026-08/9437718564-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/comprehensive-strategic-partnership"
+    },
+    {
+      "message": "entities/article/2026-08/9437718564-former-defence-minister-ng-eng-hen-conferred-honorary-officer-of-the-o.md :: broken wikilink: topic/defence-cooperation"
+    },
+    {
+      "message": "entities/article/2026-08/9451720839-from-two-borrowed-cessnas-to-f-35s-58-years-of-the-rsaf-in-a-nutshell.md :: broken wikilink: topic/air-defence"
+    },
+    {
+      "message": "entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md :: broken wikilink: topic/bilateral-defence-cooperation"
+    },
+    {
+      "message": "entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md :: broken wikilink: topic/chan-chun-sing"
+    },
+    {
+      "message": "entities/article/2026-08/9443208418-malaysia-army-chief-general-azhan-md-othman-visits-singapore.md :: broken wikilink: topic/defence-ties"
+    },
+    {
+      "message": "entities/article/2026-08/9433731146-singaporean-man-62-loses-s-1-6m-stolen-by-son-including-s-533k-in-cpf-.md :: broken wikilink: topic/disciplinary-action"
+    },
+    {
+      "message": "entities/article/2026-08/9446484324-haze-concerns-prompt-preparations-for-coconut-water-distribution-n95-m.md :: broken wikilink: topic/climate-adaptation"
+    },
+    {
+      "message": "entities/article/2026-08/9441770191-maf-administrative-issues-khaled-nordin-to-have-an-audience-with-the-r.md :: broken wikilink: topic/defence-minister"
+    },
+    {
+      "message": "entities/article/2026-08/9445750150-coconut-water-distribution-haze-ward-among-s-pore-s-precautions-to-dea.md :: broken wikilink: topic/climate-adaptation"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-14/artifacts/topic-crawls/border-territorial-security/step-10-manifest-2026-08.txt"
+  }
+}

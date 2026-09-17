@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260815T175604-ingest_cascade-5a24",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-15T17:56:04+08:00",
+  "endedAt": "2026-08-15T17:59:05+08:00",
+  "durationSec": 181.043,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 181.043
+  },
+  "fileMetrics": {
+    "scannedCount": 2121,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.085357
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-15T17:56:04+08:00",
+      "endedAt": "2026-08-15T17:56:05+08:00",
+      "durationSec": 0.088,
+      "articleCount": 1,
+      "avgSecPerArticle": 0.088,
+      "fileCount": 1,
+      "avgSecPerFile": 0.088,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-08-15T17:56:20+08:00",
+      "endedAt": "2026-08-15T17:56:21+08:00",
+      "durationSec": 1.38,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    },
+    {
+      "stage": "uat_delta_prepare_verify",
+      "startedAt": "2026-08-15T17:56:21+08:00",
+      "endedAt": "2026-08-15T17:59:05+08:00",
+      "durationSec": 163.765,
+      "articleCount": 1,
+      "avgSecPerArticle": 163.765,
+      "fileCount": 1,
+      "avgSecPerFile": 163.765,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "uatDelta": {
+      "bundle": "runs/2026-08-15/artifacts/uat-projection-20260815175604-2016-06",
+      "status": "prepared-and-verified; database load not executed",
+      "commands": "Prepared current delta for 23214 wiki articles in 81.18 seconds\nDelta: 2 inserts, 0 updates, 0 deletes\nBundle: runs/2026-08-15/artifacts/uat-projection-20260815175604-2016-06\n\nVerified 23214 projections in 1.09 seconds\nAverage: 0.000048 seconds/article\n\nApplied 2 projection backfills in 18.97 seconds\nAverage: 9.485668 seconds/article\n\n{\n  \"averageSecondsPerArticle\": 0.00260627,\n  \"bundleId\": \"189fb03b92651f116b81c42dceae092a26ee535c702de61e533cb02e213a067b\",\n  \"deleteArticleIdSample\": [],\n  \"deletes\": 0,\n  \"elapsedSeconds\": 59.475084,\n  \"insertArticleIdSample\": [\n    1165933,\n    1165934\n  ],\n  \"inserts\": 2,\n  \"liveCount\": 23212,\n  \"mismatchSamples\": [],\n  \"projectedCount\": 23214,\n  \"targetDatabase\": \"MSM_dataset_UAT\",\n  \"updateArticleIdSample\": [],\n  \"updates\": 0\n}"
+    },
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 2121,
+      "wikilinks_checked": 203244,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 1,
+      "countries_updated": 1,
+      "topics_updated": 1,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 23214,
+      "inputs": 513,
+      "total": 23727
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2016-06.",
+  "metadata": {
+    "month": "2016-06",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-15/artifacts/20260815T173433+0800-loose-goal/route-accepted-manifest.txt"
+  }
+}

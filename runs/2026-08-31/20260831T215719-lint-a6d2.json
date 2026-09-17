@@ -1,0 +1,385 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260831T215719-lint-a6d2",
+  "operation": "lint",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-31T21:57:19+08:00",
+  "endedAt": "2026-08-31T22:00:32+08:00",
+  "durationSec": 192.602,
+  "articleMetrics": {
+    "inputCount": 32316,
+    "processedCount": 32316,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 56,
+    "avgSecPerArticle": 0.00596
+  },
+  "fileMetrics": {
+    "scannedCount": 56158,
+    "changedCount": 0,
+    "failedCount": 56,
+    "avgSecPerFile": 0.00343
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "structuralLinksNormalized": 0,
+    "yamlFixed": 0,
+    "aliasOnlyLinksRewritten": 0,
+    "articlesRelocated": 0,
+    "coverageLabelsRegenerated": 0,
+    "coverageLabelFilesChanged": 0,
+    "orphanEntityBodyLinksAdded": 0,
+    "proseEntityLinksAdded": 0,
+    "remainingYamlErrors": 5,
+    "remainingBrokenLinks": 51
+  },
+  "errors": [
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427462582-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427743913-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427749665-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427802958-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "unacceptable character #x0088: special characters are not allowed",
+      "path": "runs/2026-08-18/artifacts/20260818T113653+0800-loose-goal/remediation-cycle-1-backups/9427814134-north-america-carbon-fiber-market-size-to-reach-usd-222-billion-by-2030-driven-by-lightweighting-aerospace-advancements-and-growing-ev-adoption-report-by-marketsandmarkets.md",
+      "kind": "yaml"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/callsites/readme.md",
+      "target": "Class",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/es-abstract/CHANGELOG.md",
+      "target": "NextMethod",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/es-abstract/CHANGELOG.md",
+      "target": "UnicodeSets",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/is-callable/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/is-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/is-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...segment",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...folder",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md",
+      "target": "...file",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...folderName",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...segmentName",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-static-paths.md",
+      "target": "...slug",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/object.entries/CHANGELOG.md",
+      "target": "Get",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/object.values/CHANGELOG.md",
+      "target": "Get",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/styled-jsx/readme.md",
+      "target": "\"styled-jsx/babel\", { \"optimizeForSpeed\": true }",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/undici/docs/docs/api/ContentType.md",
+      "target": "'charset', 'gbk'",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/undici/docs/docs/api/GlobalInstallation.md",
+      "target": "'content-type', 'application/json'",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/which-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    },
+    {
+      "message": "broken link remains",
+      "path": "issue-radar-site/node_modules/which-typed-array/CHANGELOG.md",
+      "target": "Prototype",
+      "kind": "wikilink"
+    }
+  ],
+  "notes": "",
+  "metadata": {
+    "script": "fix_links.py",
+    "dryRun": true,
+    "domain": null,
+    "skipRelocate": false,
+    "skipAlias": false,
+    "skipYaml": false,
+    "skipCoverageLabels": false,
+    "skipEntityBodyLinks": false,
+    "skipNormalize": false,
+    "linkEntities": false
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260831T205607-ingest_cascade-ddf3",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-31T20:56:07+08:00",
+  "endedAt": "2026-08-31T20:56:34+08:00",
+  "durationSec": 27.493,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 1,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 27.493
+  },
+  "fileMetrics": {
+    "scannedCount": 3256,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.008444
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-31T20:56:07+08:00",
+      "endedAt": "2026-08-31T20:56:10+08:00",
+      "durationSec": 2.553,
+      "articleCount": 1,
+      "avgSecPerArticle": 2.553,
+      "fileCount": 1,
+      "avgSecPerFile": 2.553,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-08-31T20:56:32+08:00",
+      "endedAt": "2026-08-31T20:56:34+08:00",
+      "durationSec": 2.234,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 3256,
+      "wikilinks_checked": 237887,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 1,
+      "countries_updated": 1,
+      "topics_updated": 3,
+      "tags_updated": 4,
+      "organisations_updated": 2,
+      "people_updated": 1,
+      "processed": 1
+    },
+    "statusCounts": {
+      "cascaded": 27161,
+      "inputs": 5437,
+      "total": 32598
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2019-12.",
+  "metadata": {
+    "month": "2019-12",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "/Users/chrisyeo/Library/CloudStorage/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki/runs/2026-08-31/artifacts/20260831T200105+0800-canonical-loose-ingest/accepted-manifest.txt"
+  }
+}

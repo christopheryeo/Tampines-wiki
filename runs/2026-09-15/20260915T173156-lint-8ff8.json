@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260915T173156-lint-8ff8",
+  "operation": "lint",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-15T17:31:56+08:00",
+  "endedAt": "2026-09-15T17:31:56+08:00",
+  "durationSec": 0.002,
+  "articleMetrics": {
+    "inputCount": 1,
+    "processedCount": 1,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 1,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.002
+  },
+  "fileMetrics": {
+    "scannedCount": 1,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.002
+  },
+  "stageMetrics": [],
+  "outputs": {
+    "summary": {
+      "scanned": 1,
+      "changed": 0,
+      "errors": 0,
+      "warnings": 0,
+      "dryRun": false,
+      "findingCounts": {}
+    }
+  },
+  "errors": [],
+  "notes": "Article schema validation and source-backed metadata repair.",
+  "metadata": {
+    "script": "article_quality.py",
+    "repair": false,
+    "dryRun": false
+  }
+}

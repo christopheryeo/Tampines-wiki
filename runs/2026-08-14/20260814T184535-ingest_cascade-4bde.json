@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260814T184535-ingest_cascade-4bde",
+  "operation": "ingest_cascade",
+  "status": "partial",
+  "trigger": "manual",
+  "startedAt": "2026-08-14T18:45:35+08:00",
+  "endedAt": "2026-08-14T18:45:57+08:00",
+  "durationSec": 21.974,
+  "articleMetrics": {
+    "inputCount": 15,
+    "processedCount": 15,
+    "createdCount": 15,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 101,
+    "avgSecPerArticle": 1.464933
+  },
+  "fileMetrics": {
+    "scannedCount": 3775,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.005821
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-14T18:45:35+08:00",
+      "endedAt": "2026-08-14T18:45:38+08:00",
+      "durationSec": 2.627,
+      "articleCount": 15,
+      "avgSecPerArticle": 0.175133,
+      "fileCount": 15,
+      "avgSecPerFile": 0.175133,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-08-14T18:45:56+08:00",
+      "endedAt": "2026-08-14T18:45:57+08:00",
+      "durationSec": 0.566,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 3775,
+      "wikilinks_checked": 1079,
+      "errors": 101,
+      "error_samples": [
+        "entities/article/2026-07/1161773-mr-chan-to-make-working-visit-to-indonesia.md :: broken wikilink: mr-chan-to-make-working-visit-to-indonesia",
+        "entities/article/2026-07/1155076-is-it-wiser-for-middle-powers-not-to-take-sides-in-face-of-u.md :: broken wikilink: middle-powers-standings-amid-us-china-rivalry",
+        "entities/article/2026-07/1152631-us-says-approves-sale-of-another-24-hellfire-missiles-to-sin.md :: broken wikilink: us-potential-us-22-3-million-sale-of-additional-hellfire-missiles-to-rsaf",
+        "entities/article/2026-07/1158333-singapore-accepts-first-composite-superstructure-for-victory.md :: broken wikilink: first-composite-superstructure-for-rsns-mrcv",
+        "entities/article/2026-07/1153886-chan-chun-sing-public-services-must-make-good-use-of-ai-inst.md :: broken wikilink: public-service-festival-spark-2026-mr-chan-mention",
+        "entities/article/2026-07/1156514-prime-minister-wong-singapore-is-full-of-confidence-in-indon.md :: broken wikilink: sg-id-leaders-retreat-mr-wong-on-three-areas-of-singapore-indonesia-cooperation-rsaf-saf-defence-mention",
+        "entities/article/2026-07/1154078-machine-warfare-is-coming-us-china-urged-to-address-military.md :: broken wikilink: us-china-urged-to-address-military-ai-as-global-rules-stall",
+        "entities/article/2026-07/1152873-tabla-online-commentary-the-editor-s-beat-the-extraordinary.md :: broken wikilink: saf-day",
+        "entities/article/2026-07/1152873-tabla-online-commentary-the-editor-s-beat-the-extraordinary.md :: broken wikilink: saf-day-combined-rededication-ceremony",
+        "entities/article/2026-07/1154274-orang-laut-song-colours-ndp-2026-stage-reflects-singapore-s.md :: broken wikilink: ndp-2026",
+        "entities/article/2026-07/1154274-orang-laut-song-colours-ndp-2026-stage-reflects-singapore-s.md :: broken wikilink: ndp-2026-media-event-3",
+        "entities/article/2026-07/1151447-saf-day.md :: broken wikilink: saf-day-parade",
+        "entities/article/2026-07/1151447-saf-day.md :: broken wikilink: saf-day",
+        "entities/article/2026-07/1151018-chun-sing-soldier-unity-important-regardless-of-race-chun-si.md :: broken wikilink: saf-day",
+        "entities/article/2026-07/1151622-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day",
+        "entities/article/2026-07/1151622-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day-combined-rededication-ceremony",
+        "entities/article/2026-07/1159569-singapore-and-indonesia-reaffirm-commitment-to-keep-strait-o.md :: broken wikilink: sg-id-leaders-retreat-singapore-indonesia-reaffirm-commitment-to-strait-of-malacca",
+        "entities/article/2026-07/1151740-first-look-at-the-2026-ndp-packs-designed-by-various-artists.md :: broken wikilink: ndp-2026-media-feature-ndp-pack-design",
+        "entities/article/2026-07/1161720-saf-overseas-service-medal-ceremony.md :: broken wikilink: saf-overseas-service-medal-ceremony",
+        "entities/article/2026-07/1156342-singapore-indonesia-seek-closer-energy-and-sustainability-co.md :: broken wikilink: sg-id-leaders-retreat-indonesia-singapore-agree-on-three-cooperation-focuses-saf-dca-mention",
+        "entities/article/2026-07/1151969-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day",
+        "entities/article/2026-07/1151969-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day-combined-rededication-ceremony",
+        "entities/article/2026-07/1161267-military-exercise-held-in-kallang-area-saf-urges-public-to-k.md :: broken wikilink: military-training-exercise-in-kallang",
+        "entities/article/2026-07/1152744-saf-day-parade.md :: broken wikilink: saf-day",
+        "entities/article/2026-07/1152744-saf-day-parade.md :: broken wikilink: saf-day-parade",
+        "entities/article/2026-07/1156668-who-is-the-hyperactive-blue-mascot-that-stole-the-show-at-nd.md :: broken wikilink: ndp-2026",
+        "entities/article/2026-07/1156668-who-is-the-hyperactive-blue-mascot-that-stole-the-show-at-nd.md :: broken wikilink: ndp-2026-combined-rehearsal-2",
+        "entities/article/2026-07/1155847-prime-minister-wong-to-visit-jakarta-on-monday-for-annual-le.md :: broken wikilink: sg-id-leaders-retreat",
+        "entities/article/2026-07/1161959-defence-minister-chan-chun-sing-goes-to-jakarta-from-july-14.md :: broken wikilink: mr-chan-to-make-working-visit-to-indonesia",
+        "entities/article/2026-07/1151019-saf-day-a-reminder-not-to-take-peace-and-stability-for-grant.md :: broken wikilink: saf-day"
+      ]
+    },
+    "entityUpdates": {
+      "outlets_created": 11,
+      "countries_updated": 15,
+      "topics_updated": 40,
+      "organisations_updated": 26,
+      "places_updated": 27,
+      "processed": 15,
+      "people_updated": 10,
+      "outlets_updated": 4
+    },
+    "statusCounts": {
+      "cascaded": 22887,
+      "inputs": 229,
+      "total": 23116
+    }
+  },
+  "errors": [
+    {
+      "message": "entities/article/2026-07/1161773-mr-chan-to-make-working-visit-to-indonesia.md :: broken wikilink: mr-chan-to-make-working-visit-to-indonesia"
+    },
+    {
+      "message": "entities/article/2026-07/1155076-is-it-wiser-for-middle-powers-not-to-take-sides-in-face-of-u.md :: broken wikilink: middle-powers-standings-amid-us-china-rivalry"
+    },
+    {
+      "message": "entities/article/2026-07/1152631-us-says-approves-sale-of-another-24-hellfire-missiles-to-sin.md :: broken wikilink: us-potential-us-22-3-million-sale-of-additional-hellfire-missiles-to-rsaf"
+    },
+    {
+      "message": "entities/article/2026-07/1158333-singapore-accepts-first-composite-superstructure-for-victory.md :: broken wikilink: first-composite-superstructure-for-rsns-mrcv"
+    },
+    {
+      "message": "entities/article/2026-07/1153886-chan-chun-sing-public-services-must-make-good-use-of-ai-inst.md :: broken wikilink: public-service-festival-spark-2026-mr-chan-mention"
+    },
+    {
+      "message": "entities/article/2026-07/1156514-prime-minister-wong-singapore-is-full-of-confidence-in-indon.md :: broken wikilink: sg-id-leaders-retreat-mr-wong-on-three-areas-of-singapore-indonesia-cooperation-rsaf-saf-defence-mention"
+    },
+    {
+      "message": "entities/article/2026-07/1154078-machine-warfare-is-coming-us-china-urged-to-address-military.md :: broken wikilink: us-china-urged-to-address-military-ai-as-global-rules-stall"
+    },
+    {
+      "message": "entities/article/2026-07/1152873-tabla-online-commentary-the-editor-s-beat-the-extraordinary.md :: broken wikilink: saf-day"
+    },
+    {
+      "message": "entities/article/2026-07/1152873-tabla-online-commentary-the-editor-s-beat-the-extraordinary.md :: broken wikilink: saf-day-combined-rededication-ceremony"
+    },
+    {
+      "message": "entities/article/2026-07/1154274-orang-laut-song-colours-ndp-2026-stage-reflects-singapore-s.md :: broken wikilink: ndp-2026"
+    },
+    {
+      "message": "entities/article/2026-07/1154274-orang-laut-song-colours-ndp-2026-stage-reflects-singapore-s.md :: broken wikilink: ndp-2026-media-event-3"
+    },
+    {
+      "message": "entities/article/2026-07/1151447-saf-day.md :: broken wikilink: saf-day-parade"
+    },
+    {
+      "message": "entities/article/2026-07/1151447-saf-day.md :: broken wikilink: saf-day"
+    },
+    {
+      "message": "entities/article/2026-07/1151018-chun-sing-soldier-unity-important-regardless-of-race-chun-si.md :: broken wikilink: saf-day"
+    },
+    {
+      "message": "entities/article/2026-07/1151622-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day"
+    },
+    {
+      "message": "entities/article/2026-07/1151622-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day-combined-rededication-ceremony"
+    },
+    {
+      "message": "entities/article/2026-07/1159569-singapore-and-indonesia-reaffirm-commitment-to-keep-strait-o.md :: broken wikilink: sg-id-leaders-retreat-singapore-indonesia-reaffirm-commitment-to-strait-of-malacca"
+    },
+    {
+      "message": "entities/article/2026-07/1151740-first-look-at-the-2026-ndp-packs-designed-by-various-artists.md :: broken wikilink: ndp-2026-media-feature-ndp-pack-design"
+    },
+    {
+      "message": "entities/article/2026-07/1161720-saf-overseas-service-medal-ceremony.md :: broken wikilink: saf-overseas-service-medal-ceremony"
+    },
+    {
+      "message": "entities/article/2026-07/1156342-singapore-indonesia-seek-closer-energy-and-sustainability-co.md :: broken wikilink: sg-id-leaders-retreat-indonesia-singapore-agree-on-three-cooperation-focuses-saf-dca-mention"
+    },
+    {
+      "message": "entities/article/2026-07/1151969-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day"
+    },
+    {
+      "message": "entities/article/2026-07/1151969-saf-day-combined-rededication-ceremony.md :: broken wikilink: saf-day-combined-rededication-ceremony"
+    },
+    {
+      "message": "entities/article/2026-07/1161267-military-exercise-held-in-kallang-area-saf-urges-public-to-k.md :: broken wikilink: military-training-exercise-in-kallang"
+    },
+    {
+      "message": "entities/article/2026-07/1152744-saf-day-parade.md :: broken wikilink: saf-day"
+    },
+    {
+      "message": "entities/article/2026-07/1152744-saf-day-parade.md :: broken wikilink: saf-day-parade"
+    },
+    {
+      "message": "entities/article/2026-07/1156668-who-is-the-hyperactive-blue-mascot-that-stole-the-show-at-nd.md :: broken wikilink: ndp-2026"
+    },
+    {
+      "message": "entities/article/2026-07/1156668-who-is-the-hyperactive-blue-mascot-that-stole-the-show-at-nd.md :: broken wikilink: ndp-2026-combined-rehearsal-2"
+    },
+    {
+      "message": "entities/article/2026-07/1155847-prime-minister-wong-to-visit-jakarta-on-monday-for-annual-le.md :: broken wikilink: sg-id-leaders-retreat"
+    },
+    {
+      "message": "entities/article/2026-07/1161959-defence-minister-chan-chun-sing-goes-to-jakarta-from-july-14.md :: broken wikilink: mr-chan-to-make-working-visit-to-indonesia"
+    },
+    {
+      "message": "entities/article/2026-07/1151019-saf-day-a-reminder-not-to-take-peace-and-stability-for-grant.md :: broken wikilink: saf-day"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-07.",
+  "metadata": {
+    "month": "2026-07",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-14/artifacts/20260814T155332+0800-loose-goal/post-policy-accepted-manifest.txt"
+  }
+}

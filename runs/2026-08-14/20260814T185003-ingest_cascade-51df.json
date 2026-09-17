@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260814T185003-ingest_cascade-51df",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-14T18:50:03+08:00",
+  "endedAt": "2026-08-14T18:50:38+08:00",
+  "durationSec": 35.233,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-14T18:50:03+08:00",
+      "endedAt": "2026-08-14T18:50:38+08:00",
+      "durationSec": 35.23,
+      "articleCount": 229,
+      "avgSecPerArticle": 0.153843,
+      "fileCount": 229,
+      "avgSecPerFile": 0.153843,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "[Errno 63] File name too long: '/Users/chrisyeo/Library/CloudStorage/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki/entities/outlet/your-news-freddy-peralta-to-make-rays-debut-vs-rockies-the-tampa-bay-rays-were-active-right-up-to-monday-night-s-trade-deadline-and-their-most-significant-addition-is-set-to-debut-with-his-new-team-on-tuesday-right-hander-freddy-peralta-5-9-4-99-era-acquired-from-the-new-york-mets-on-sunday-will-be-on-the-mound-when-tampa-bay-plays-the-second-contest-of.md'",
+          "type": "OSError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "[Errno 63] File name too long: '/Users/chrisyeo/Library/CloudStorage/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki/entities/outlet/your-news-freddy-peralta-to-make-rays-debut-vs-rockies-the-tampa-bay-rays-were-active-right-up-to-monday-night-s-trade-deadline-and-their-most-significant-addition-is-set-to-debut-with-his-new-team-on-tuesday-right-hander-freddy-peralta-5-9-4-99-era-acquired-from-the-new-york-mets-on-sunday-will-be-on-the-mound-when-tampa-bay-plays-the-second-contest-of.md'",
+      "type": "OSError"
+    },
+    {
+      "message": "[Errno 63] File name too long: '/Users/chrisyeo/Library/CloudStorage/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki/entities/outlet/your-news-freddy-peralta-to-make-rays-debut-vs-rockies-the-tampa-bay-rays-were-active-right-up-to-monday-night-s-trade-deadline-and-their-most-significant-addition-is-set-to-debut-with-his-new-team-on-tuesday-right-hander-freddy-peralta-5-9-4-99-era-acquired-from-the-new-york-mets-on-sunday-will-be-on-the-mound-when-tampa-bay-plays-the-second-contest-of.md'",
+      "type": "OSError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-14/artifacts/20260814T155332+0800-loose-goal/post-policy-accepted-manifest.txt"
+  }
+}

@@ -473,6 +473,25 @@ cascade.
    receipt paths, elapsed time, and average time per topic. Use a single canonical `status` field in
    both durable state and receipt; do not introduce an alternate `goalStatus` field.
 
+## Step 12 — Write the daily Crawl Log (once per run; mandatory)
+
+After reconciliation and the run receipt, create or update the Singapore-date daily note in
+`entities/crawl-log/` named `YYYY-MM-DD Crawl Log.md`. Add the completed crawl as one entry in
+ascending actual-start-time order. The entry must include:
+
+1. `#### Cascaded articles by topic` — only topics with one or more successfully cascaded articles,
+   with each exact cascaded count.
+2. `#### Crawl review` — outcome, dispositions, validation state, and receipt evidence.
+3. `#### Lessons learned` — evidence-based operational learnings.
+4. `#### Recommendations to improve the topic crawl plan` — evidence, recommended change, expected
+   accuracy benefit, and expected OpenAI API-call reduction.
+
+Record zero-result, partial, or failed crawls honestly in the review even when the topic table has
+no rows. Treat each recorded recommendation as authorised for immediate implementation: apply the
+scoped code or crawl-plan change, validate it, and record the result in the same Crawl Log entry.
+Then update the daily note's aggregate frontmatter, append the domain audit `log.md` entry, and
+regenerate `entities/crawl-log/catalog.md`.
+
 ## Breakout conditions
 
 ### Retry and resume
@@ -508,8 +527,9 @@ goal may close with held items, but never with an unreconciled candidate or unre
 ## End conditions (success)
 
 The run succeeds only when the Step 11 run-level completion is done — every candidate across all
-topics has exactly one final disposition, `entities/topic/catalog.md` is rebuilt, and the run receipt
-is written — and **every selected topic** passes all of the following:
+topics has exactly one final disposition, `entities/topic/catalog.md` is rebuilt, the run receipt
+is written, and the Step 12 Crawl Log entry is recorded — and **every selected topic** passes all of
+the following:
 
 - [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated.
 - [ ] SET A built from NewsAPI.ai keyword search; every page was verified with `articlesPage`, and
@@ -537,6 +557,8 @@ is written — and **every selected topic** passes all of the following:
 - [ ] Every accepted article passed the topical-relevance gate; off-topic keyword/URL matches (e.g. a
       "NS" railroad hit) were dropped with `off-topic` reasons, not ingested.
 - [ ] Every candidate has one final disposition; topic status/checkpoint reflect verified completion.
+- [ ] The daily Crawl Log records the completed crawl, its positive cascaded-topic counts, review,
+      lessons, and autonomous improvement recommendations.
 
 ## Tests / Verification
 

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260815T011616-lint-859b",
+  "operation": "lint",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-15T01:16:16+08:00",
+  "endedAt": "2026-08-15T01:20:00+08:00",
+  "durationSec": 224.0,
+  "articleMetrics": {
+    "inputCount": 23212,
+    "processedCount": 23212,
+    "createdCount": 0,
+    "updatedCount": 1,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.00965
+  },
+  "fileMetrics": {
+    "scannedCount": 39619,
+    "changedCount": 5,
+    "failedCount": 0,
+    "avgSecPerFile": 0.005654
+  },
+  "stageMetrics": [],
+  "outputs": {},
+  "errors": [],
+  "notes": "Repaired GE Aerospace Coverage structure and topic monthly-log validator scope; 23,212 article quality clean, hard-link gate clean, 80 topic checkpoints valid, 77 tests passed, and live UAT zero-diff parity confirmed.",
+  "metadata": {
+    "coverageBacklinksRefiled": 37,
+    "residualUnlinkedFindings": 0,
+    "liveUatCount": 23212,
+    "uatInserts": 0,
+    "uatUpdates": 0,
+    "uatDeletes": 0,
+    "bundleId": "09e7a3ab9e99a74ad517f78caaee27629bb052d97fbb5addaff5896b8f21d295"
+  }
+}

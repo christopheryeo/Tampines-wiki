@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260821T072524-ingest_cascade-ca7c",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-08-21T07:25:24+00:00",
+  "endedAt": "2026-08-21T07:25:24+00:00",
+  "durationSec": 0.026,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-21T07:25:24+00:00",
+      "endedAt": "2026-08-21T07:25:24+00:00",
+      "durationSec": 0.026,
+      "articleCount": 30,
+      "avgSecPerArticle": 0.000867,
+      "fileCount": 30,
+      "avgSecPerFile": 0.000867,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "refusing to overwrite compiled article: entities/article/2026-08/9414854040-why-china-is-closely-watching-egypt-s-military-and-defense-strategy.md",
+          "type": "FileExistsError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-08/9414854040-why-china-is-closely-watching-egypt-s-military-and-defense-strategy.md",
+      "type": "FileExistsError"
+    },
+    {
+      "message": "refusing to overwrite compiled article: entities/article/2026-08/9414854040-why-china-is-closely-watching-egypt-s-military-and-defense-strategy.md",
+      "type": "FileExistsError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-08-21/artifacts/20260821T151837+0800-africa-security/accepted-manifest.txt"
+  }
+}

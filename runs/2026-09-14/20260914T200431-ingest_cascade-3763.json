@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260914T200431-ingest_cascade-3763",
+  "operation": "ingest_cascade",
+  "status": "failed",
+  "trigger": "manual",
+  "startedAt": "2026-09-14T20:04:31+08:00",
+  "endedAt": "2026-09-14T20:04:34+08:00",
+  "durationSec": 2.709,
+  "articleMetrics": {
+    "inputCount": 0,
+    "processedCount": 0,
+    "createdCount": 0,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": null
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-14T20:04:31+08:00",
+      "endedAt": "2026-09-14T20:04:34+08:00",
+      "durationSec": 2.707,
+      "articleCount": 4,
+      "avgSecPerArticle": 0.67675,
+      "fileCount": 4,
+      "avgSecPerFile": 0.67675,
+      "status": "failed",
+      "errors": [
+        {
+          "message": "issue tag has no Tag entity: '#source'",
+          "type": "ValueError"
+        }
+      ]
+    }
+  ],
+  "outputs": {},
+  "errors": [
+    {
+      "message": "issue tag has no Tag entity: '#source'",
+      "type": "ValueError"
+    },
+    {
+      "message": "issue tag has no Tag entity: '#source'",
+      "type": "ValueError"
+    }
+  ],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-09.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-14/artifacts/topic-crawls/terrorism-radicalisation/step-8-manifest-2026-09.txt"
+  }
+}

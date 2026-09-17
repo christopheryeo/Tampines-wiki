@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260831T211326-ingest_cascade-e46c",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-08-31T21:13:26+08:00",
+  "endedAt": "2026-08-31T21:29:37+08:00",
+  "durationSec": 970.907,
+  "articleMetrics": {
+    "inputCount": 5086,
+    "processedCount": 5086,
+    "createdCount": 5086,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.190898
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-08-31T21:13:26+08:00",
+      "endedAt": "2026-08-31T21:29:37+08:00",
+      "durationSec": 970.69,
+      "articleCount": 5086,
+      "avgSecPerArticle": 0.190855,
+      "fileCount": 5086,
+      "avgSecPerFile": 0.190855,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 4432,
+      "countries_updated": 8335,
+      "topics_updated": 11270,
+      "tags_updated": 12110,
+      "organisations_updated": 5575,
+      "people_updated": 3133,
+      "places_updated": 6774,
+      "processed": 5086,
+      "outlets_created": 654,
+      "countries_created": 5
+    },
+    "statusCounts": {
+      "cascaded": 27230,
+      "inputs": 5086,
+      "total": 32316
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-08.",
+  "metadata": {
+    "month": "2026-08",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "/Users/chrisyeo/Library/CloudStorage/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki/runs/2026-08-31/artifacts/20260831T200105+0800-canonical-loose-ingest/cascade-manifest.txt"
+  }
+}

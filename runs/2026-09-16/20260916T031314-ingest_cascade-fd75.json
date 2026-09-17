@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260916T031314-ingest_cascade-fd75",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-16T03:13:14+08:00",
+  "endedAt": "2026-09-16T03:13:17+08:00",
+  "durationSec": 3.393,
+  "articleMetrics": {
+    "inputCount": 5,
+    "processedCount": 5,
+    "createdCount": 5,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.6786
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-16T03:13:14+08:00",
+      "endedAt": "2026-09-16T03:13:17+08:00",
+      "durationSec": 3.156,
+      "articleCount": 5,
+      "avgSecPerArticle": 0.6312,
+      "fileCount": 5,
+      "avgSecPerFile": 0.6312,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 5,
+      "countries_updated": 5,
+      "topics_updated": 15,
+      "tags_updated": 37,
+      "organisations_updated": 14,
+      "places_updated": 3,
+      "processed": 5,
+      "people_updated": 2
+    },
+    "statusCounts": {
+      "cascaded": 33019,
+      "inputs": 29,
+      "total": 33048
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-09.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-15/artifacts/topic-crawls/SEP2026-B02/manifests/2026-09-setB.txt"
+  }
+}

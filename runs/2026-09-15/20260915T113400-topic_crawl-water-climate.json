@@ -1,0 +1,4 @@
+{
+  "operation":"topic_crawl","topic":"singapore-water-climate-controversy","dateRange":["2026-08-01","2026-09-15"],
+  "finalStatus":"Completed","setA_evaluated":57,"relevant":6,"cascaded":3,"held":3,"setB_in_range":0,"validationErrors":0
+}
