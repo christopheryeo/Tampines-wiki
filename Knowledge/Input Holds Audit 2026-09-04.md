@@ -87,3 +87,7 @@ Samples were checked against both the note content and their run evidence. The a
 ## Evidence sources
 
 The result was reconciled against the hold folders themselves; the corresponding source-empty, duplicate, already-compiled, normalized-collision, cascade-conflict, and Africa-security hold manifests under `runs/2026-08-14/`, `runs/2026-08-15/`, `runs/2026-08-18/`, `runs/2026-08-21/`, and `runs/2026-08-31/`; and the current compiled article notes under `entities/article/`. The ignored run artifacts and article corpus remain local evidence and are not added to this PR.
+
+## Christopher lock — 17 Sep 2026
+
+Leave the ~450 source-empty conditional recovery files / 438 unique IDs parked indefinitely. Do not open a Codex Now or recovery re-fetch. Empty stubs must not be requeued. Recorded on `DEVELOPMENT.md` by Felix; Product Inventory unchanged.

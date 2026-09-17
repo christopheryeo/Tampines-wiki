@@ -598,6 +598,16 @@ def split_database_projection(body: str) -> tuple[str, str | None]:
         raise ValueError("Article contains more than one Database Projection section")
 
     source_body = (body[: match.start()] + body[match.end() :]).strip()
+    # Source exports occasionally contain upstream numeric identifiers wrapped
+    # in Obsidian-style brackets (for example ``[[nid:740239]]``). They are
+    # identifiers, not vault notes, so preserve their text without emitting a
+    # broken wikilink into the compiled note or its projection.
+    source_body = re.sub(r"\[\[(nid:\d+)\]\]", r"\1", source_body)
+    article = projection.get("article")
+    if isinstance(article, dict) and isinstance(article.get("content_description"), str):
+        article["content_description"] = re.sub(
+            r"\[\[(nid:\d+)\]\]", r"\1", article["content_description"]
+        )
     rendered = json.dumps(
         projection,
         ensure_ascii=True,

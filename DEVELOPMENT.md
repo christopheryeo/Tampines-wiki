@@ -1,6 +1,6 @@
 # DEVELOPMENT.md
 
-Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the wiki constitution. Wiki rules stay in `AGENTS.md` and `README.md`. Shipped features stay in the Features section of `../../Alex (Dev)/Knowledge/Product Inventory.md`. Human-blocked work stays on Owen’s ClickUp.
+Handoff file for Tampines Wiki (`christopheryeo/Tampines-wiki`). This is not the wiki constitution. Wiki rules stay in `AGENTS.md` and `README.md`. Shipped features stay in the Features section of `../../Felix (Product Manager)/Knowledge/Product Inventory.md`. Human-blocked work stays on Owen’s ClickUp.
 
 Process map (who/what/where): `docs/development-process.md`.
 
@@ -34,7 +34,7 @@ Process map (who/what/where): `docs/development-process.md`.
 4. Do not copy wiki operating rules into this file. `AGENTS.md` and `README.md` stay the vault constitution, not a log.
 5. Native GitHub only. Merged PRs on `christopheryeo/Tampines-wiki` wake Felix and Giselle.
 6. Use Singapore Time (SGT, UTC+8) on Done lines.
-7. A merged PR is the gate, not the feature list. Felix writes a Features line in `../../Alex (Dev)/Knowledge/Product Inventory.md` only for a user-facing capability he can name. Bug fixes, refactors, docs, dependency bumps, and vault ingest do not go there. GitHub stays the source. A Done line never counts as shipped. Work that never gets a PR is not shipped. Claude Code and ChatGPT Codex do not write Product Inventory. Do not create another catalogue in this repo.
+7. A merged PR is the gate, not the feature list. Felix writes a Features line in `../../Felix (Product Manager)/Knowledge/Product Inventory.md` only for a user-facing capability he can name. Bug fixes, refactors, docs, dependency bumps, and vault ingest do not go there. GitHub stays the source. A Done line never counts as shipped. Work that never gets a PR is not shipped. Claude Code and ChatGPT Codex do not write Product Inventory. Do not create another catalogue in this repo.
 8. Done is one dated handoff list. Each line is tagged implement, wiki, or maintenance, then who, then what. Tags sit on the line. ChatGPT Codex uses wiki only. Claude Code uses implement or maintenance only. Do not make separate headings. Do not add a Feature tag. Done gets a line only when the named tool actually opened this file.
 9. `CLAUDE.md` imports `AGENTS.md` first, then this file.
 10. The tool named on a Now line commits that work to a branch and opens or updates a PR. Nobody pushes to `main`. Nobody commits secrets (`.env.local`) or derived junk that `.gitignore` excludes. Prefer committing tracked script, schema, and site files for the Now line — not bulk `runs/` receipts unless the Now line explicitly says so.
@@ -46,10 +46,15 @@ Format: tool — surface — files it may touch — files it must not touch — 
 
 ## Next
 
-- (none) — the 450 source-empty hold IDs need fresh upstream content before any requeue; not a Codex Now until Christopher names a recovery path.
+- (none) — Now stays empty for the source-empty holds.
+
+### Deferred (Christopher lock 17 Sep 2026)
+
+- Source-empty holds (~450 files / 438 unique article IDs under `Inputs/articles/holds/`, inventory in `Knowledge/Input Holds Audit 2026-09-04.md`): **leave parked indefinitely**. Do not open a Codex Now, do not run a recovery re-fetch, and do not requeue the empty stubs. No Product Inventory Features from this decision.
 
 ## Done
 
+- 2026-09-17 SGT — maintenance — Felix — Christopher lock: source-empty holds (~450 files / 438 IDs) stay parked indefinitely; no Codex Now, no recovery re-fetch; Now remains empty for this. Product Inventory unchanged.
 - 2026-09-10 SGT — maintenance — Morgan — Added `docs/development-process.md` (living who/what/where map) and linked it from this file and Project Home.
 - 2026-09-04 SGT — maintenance — Morgan — Added this DEVELOPMENT.md and CLAUDE.md to formalize Tampines Wiki as the project home with git (`christopheryeo/Tampines-wiki`).
 - 2026-09-04 SGT — wiki — ChatGPT Codex — Audited the Tampines vault, repaired malformed Tag Coverage labels, and hardened link QA and repair logging.
