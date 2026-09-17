@@ -177,8 +177,10 @@ def title_from_body(body: str, fallback: str) -> str:
 
 # Absolute ceiling on the configurable registry maximum. Raised to 100 under
 # entities/decisions/expand-canonical-topic-cap-to-100.md (accepted 2026-09-06) so dedicated,
-# issue-specific crawler Topics can coexist with the broader classification taxonomy.
-ABSOLUTE_MAXIMUM_ACTIVE_TOPICS = 100
+# issue-specific crawler Topics can coexist with the broader classification taxonomy. Raised to
+# 105 on 2026-09-17 to match maximumActiveTopics: 105 set in topics/canonical-topics.yaml (PR #31),
+# which added dedicated issue-specific topics; the yaml cap must not exceed this absolute ceiling.
+ABSOLUTE_MAXIMUM_ACTIVE_TOPICS = 105
 
 
 def load_taxonomy(path: Path = TAXONOMY_PATH) -> tuple[dict[str, Any], list[dict[str, Any]]]:
