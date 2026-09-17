@@ -3,7 +3,7 @@ type: plan
 name: topic-crawl
 status: ready
 created: 2026-09-06
-updated: 2026-09-12
+updated: 2026-09-17
 owner: ChatGPT Codex
 ---
 
@@ -183,6 +183,21 @@ Call `POST https://eventregistry.org/api/v1/article/getArticles` once per topic 
 4. SET A articles are already retrieved; carry them forward to the gates in Step 7 (no mapping
    needed).
 
+**Keyword selection (required).** NewsAPI.ai treats a multi-word `keyword` as a near-exact phrase, so
+the literal display name usually under-collects (e.g. `Taiwan Strait Security` → a handful; a
+Singapore-anchored multi-word phrase → zero). Derive the SET A keyword from the topic's **core subject
+phrase(s)** — a short phrase that genuinely appears in coverage — or pass a keyword **array** with
+`keywordOper: "or"`, not the whole display name. For a cluster of Singapore-specific topics, one broad
+Singapore-defence pool (`MINDEF`, `Singapore Armed Forces`, `Singapore defence`) that is then
+classified per sub-topic outperforms many narrow per-topic queries.
+
+**High-volume recall rule (required).** When the provider `totalResults` for the chosen keyword is
+much larger than `maxCandidates` (order of magnitude), the date-sorted first `maxCandidates` cover only
+the most recent few days, and relevant items earlier in the window fall past the cap. In that case do
+**not** trust the recent-N slice: add a Singapore/topic anchor to the SET A query (narrowing to the
+relevant sub-stream), and/or page by date buckets across the window. Record the provider total, the
+retrieved count, and the uncollected remainder in the manifest.
+
 **Gate:** a zero SET A result is valid only when the keyword search itself completed successfully — a
 zero is not proof that no coverage exists (SET B may still find articles).
 
@@ -262,6 +277,15 @@ For each SET B URL:
    `POST https://analytics.eventregistry.org/api/v1/extractArticleInfo` with the canonical `url`, then
    an approved direct publisher-URL retrieval. Record the exact route. If a complete source-backed
    body still isn't available, **hold** the candidate — never synthesize text.
+5. **Official Singapore sources (required path).** The highest-value SET B items are often official
+   releases on `mindef.gov.sg` / `mfa.gov.sg` that do not map in NewsAPI.ai; a *summarizing* fetch
+   (e.g. a small-model WebFetch) returns paraphrase, not the source body, and must never be normalized
+   as if verbatim — that is synthesis, and the candidate is **held**. Retrieve these only through an
+   approved **full-text** extractor for the whitelisted official domains that returns the complete
+   published text; otherwise hold. Always run `extractArticleInfo` (or equivalent) first to read the
+   **true publication date** and drop out-of-range items before any body work — a discovery snippet's
+   date is not authoritative (a "Singapore urges Israel on Gaza aid" item surfaced in a 2026 window was
+   in fact dated 2025 and was correctly dropped by this check).
 
 ## Step 7 — Final source-body gate for SET A ∪ SET B
 
@@ -286,6 +310,27 @@ For each candidate record, in the run manifest, a boolean `relevant`, a 0–1 `r
 and a one-line `relevanceReason`. Accept only `relevant: true` candidates that also clear gates 1–5;
 drop the rest with reason `off-topic`. When relevance is genuinely borderline, **hold** rather than
 guess. These judgements are run evidence and are **not** written into article frontmatter.
+
+**Vault relevance policy — Singapore-strategic (standing bar).** This is a Singapore (SAF / MINDEF)
+media-monitoring vault, and many canonical topics are *regional or foreign by definition*. Judging
+relevance against a topic's definition alone therefore admits enormous volumes of coverage with no
+bearing on Singapore (a broad keyword can return thousands of in-definition but off-mission articles).
+So relevance is judged against the topic definition **and** this vault bar: accept a candidate only
+when it has a **Singapore nexus** (Singapore / SAF / MINDEF / a named SG agency, or an
+ASEAN-neighbourhood matter that bears on Singapore) **or** is a **top-tier regional development** a
+Singapore defence desk would track (a major state-level agreement, acquisition, incident, exercise, or
+force-posture move). Drop routine third-country coverage, opinion/analysis/retrospective essays, and
+tangential keyword matches. Yield scales with a topic's Singapore-centricity — regional/foreign topics
+legitimately close with few or zero accepted, which is a correct result, not a failure. This bar is
+the standing policy; a run does not re-litigate it.
+
+**Duplicate gate (required, before normalization and enrichment).** Operationalize gate 5 as an
+explicit pre-normalization step: for every relevant candidate, hash its `articleId`
+(`crawl-<sha256-of-canonical-url>`) and canonical URL against existing `Inputs/articles/**` and
+`entities/article/**`. Drop matches with a terminal `duplicate` disposition **here** — before Step 8
+and before spending any enrichment call — rather than discovering them as an `ingest_cascade`
+`FileExistsError` after enrichment has already been paid for. A prior run's compiled article means the
+topic is already covered; record it as `duplicate`, not as a new cascade.
 
 Drop out-of-range, hallucinated, non-article, incomplete, or **off-topic** candidates with a recorded
 reason. The surviving set is the topic's accepted articles = **relevant SET A ∪ validated relevant
@@ -336,7 +381,23 @@ serializer. This is the same class of failure as the unquoted `#`-tag hazard in
 
 1. Freeze a newline-delimited manifest of only the newly normalized filenames.
 2. Run `scripts/enrich_radar_inputs.py` to assess existing-vocabulary tags, outlet, outlet country,
-   institutional category, tone, sentiment, and event type.
+   institutional category, tone, sentiment, and event type. Enrich **only** the frozen manifest of
+   accepted, relevance-passed, de-duplicated inputs — **never** raw SET A. Every model call is spent
+   after the relevance and duplicate gates, so off-topic and already-compiled articles cost nothing.
+   - **Preserve the canonical topic (required).** Pass `--preserve-topic`. Without it, enrichment
+     overwrites the note's `topic` with the first issue tag, and `ingest_cascade` then routes the
+     Coverage backlink to the wrong canonical topic. (Alternatively, re-assert `topic: <canonical
+     displayName>` on each accepted note after enrichment and before Step 10.)
+   - **Reuse unchanged work (fewer calls).** Pass `--cache-dir <run>/artifacts/enrich-cache` so a
+     rerun, resume, or re-crawl of a byte-identical input under the same model and prompt version
+     costs **zero** API calls. This directly serves the "resume without redoing work" requirement.
+   - **Optional call reducers (opt-in; validate before default).** `--conditional-review` skips the
+     second pass when the primary pass is unambiguously high-confidence (`--review-skip-confidence`),
+     and `--review-model` allows a cheaper/stronger review tier. Both trade the two-pass agreement
+     guard for fewer calls, so run an A/B (same inputs, with vs without) and confirm classifications do
+     not drift before relying on them. A future **batched** mode (N articles per structured request,
+     as two batched passes) is the larger call-count win and is the next enrichment enhancement,
+     gated behind the same A/B.
 3. Require the configured independent-agreement and confidence thresholds before applying
    judgment-heavy values; send disagreements/low-confidence/missing evidence to attributed review;
    apply only reviewed results.
@@ -377,6 +438,13 @@ For each affected month:
 The control tags `#source` and `#saf` remain on compiled article notes but are not issue tags and do
 not need corresponding `entities/tag/` notes. Only issue tags from the active tag vocabulary are
 resolved during cascade.
+
+**Readback-validate every status write (required).** After each `update_topic_crawl_status` /
+`end_topic_crawl` write, **re-read the note** and assert the frontmatter actually persisted the
+intended `crawlStatus` (and, for completion, that `lastCrawledAt` advanced) before reporting success.
+On this vault (Dropbox-synced), a write can be silently lost to a sync race — a completed crawl was
+observed with its completion logged but the note still `In progress`. Do not trust the log line or the
+write call; trust the re-read. Re-apply the transition if the readback disagrees.
 
 Then close the topic:
 - Mark the topic crawl `Complete` and advance `lastCrawledAt` **only** if SET A search, SET B
