@@ -15,9 +15,12 @@ This procedure updates crawl state only. It does not call the crawl-query endpoi
 articles, or change the topic's Crawl Prompt. A successful update sets `lastCrawledAt` and
 `crawlStatusAt` to the normalized completion time and sets `crawlStatus` to `Completed`.
 
-The calling environment performs the entire checkpoint update directly from this procedure. The
-runtime path must not hand work to Python, a shell command, or a dedicated checkpoint-updater
-program.
+The calling environment performs the entire checkpoint update directly from this procedure. For a
+single-topic completion the runtime path must not hand work to Python, a shell command, or a
+dedicated checkpoint-updater program. **Bulk-run exception:** a run closing many topics at once (e.g.
+an unattended crawl of all active canonical topics — hundreds of atomic writes) may use a compliant
+helper script, provided it implements every safety property this procedure specifies. See the
+Runtime requirement section for the exact conditions.
 
 > **USER OR CALLER INSTRUCTIONS — use one of these forms:**
 >
@@ -104,8 +107,31 @@ program.
 This procedure is runtime-neutral. An AI agent may use its native file tools, and an n8n workflow
 may use file/storage nodes plus a JavaScript Code node or equivalent native data operations. The
 implementation must provide complete catalog reconstruction, validation, atomic replacement, and
-snapshot restoration as specified above. It must not invoke Python, shell commands, or a separate
-checkpoint program anywhere in the topic-crawl completion path.
+snapshot restoration as specified above. For a **single-topic** completion it must not invoke Python,
+shell commands, or a separate checkpoint program anywhere in the topic-crawl completion path.
+
+**Bulk-run exception (added 2026-09-18).** Closing all active canonical topics in one unattended run
+is hundreds of atomic writes (each topic = 3 status transitions + audit appends), which is not
+feasible as per-file tool calls. Such a run **may** use a single compliant helper script for the
+completion path **only if** the script demonstrably enforces every safety property this procedure
+requires, per topic:
+
+- resolves exactly one Topic Entity and rejects a transition not permitted by the allowed-transition
+  table (a `Completed` target requires the topic be `In progress`);
+- validates and normalizes the completion timestamp to whole-second UTC, rejecting a value that is
+  not later than the existing non-null `lastCrawledAt` or is >5 minutes in the future
+  (monotonic checkpoints);
+- writes exactly one `lastCrawledAt`, one `crawlStatus: Completed`, and one `crawlStatusAt` atomically,
+  changing no other field or content;
+- appends exactly one audit line per topic to `entities/topic/log.md`, never rewriting an earlier line;
+- **re-reads each note after writing and asserts the frontmatter actually persisted** (readback
+  validation), rolling back on mismatch;
+- rebuilds `entities/topic/catalog.md` in full from source notes (never a single-row patch); and
+- records, in the run receipt, that the bulk path was used and that all per-topic gates passed.
+
+The single-topic tool-native path remains the default and the only path a manual completion uses. The
+bulk exception exists solely to make an all-topics unattended run tractable without weakening any
+guarantee. **Codex owns this procedure — this clause is a proposed amendment for his review.**
 
 Existing vault maintenance utilities may still be used independently for scheduled maintenance or
 engineering checks, but `scripts/topic_crawl_plan.md` and this procedure do not call them.
