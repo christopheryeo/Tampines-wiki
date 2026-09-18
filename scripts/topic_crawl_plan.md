@@ -417,6 +417,15 @@ serializer. This is the same class of failure as the unquoted `#`-tag hazard in
      overwrites the note's `topic` with the first issue tag, and `ingest_cascade` then routes the
      Coverage backlink to the wrong canonical topic. (Alternatively, re-assert `topic: <canonical
      displayName>` on each accepted note after enrichment and before Step 10.)
+   - **Preserve a same-event multi-outlet consolidation (required when Step 8 recorded more than
+     one outlet).** When several accepted candidates are verified as the same real-world event
+     reported by different outlets and normalized as one note with an `outlets` list of more than
+     one entry (so `coverageCount` reflects every corroborating outlet, per
+     `scripts/ingest_cascade.py`'s `coverageCount: len(outlet_links)` convention), pass
+     `--preserve-outlets`. Without it, enrichment's outlet-identity assessment overwrites `outlets`
+     down to its own single-outlet judgement, silently discarding the verified corroboration
+     (observed on the 2026-09-19 daily run: a 4-outlet consolidated note was reduced to 1 outlet
+     until caught by a post-enrichment diff against the normalization record).
    - **Reuse unchanged work (fewer calls).** Pass `--cache-dir <run>/artifacts/enrich-cache` so a
      rerun, resume, or re-crawl of a byte-identical input under the same model and prompt version
      costs **zero** API calls. This directly serves the "resume without redoing work" requirement.
