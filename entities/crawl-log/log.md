@@ -11,3 +11,4 @@ Append-only operational ledger. Never edit or delete prior entries; correct forw
 
 - 2026-09-17T18:48:51+08:00 | action: created domain scaffold | source: Christopher Yeo request | result: initialized `index.md`, `catalog.md`, and `log.md` for canonical crawl-operation records.
 - 2026-09-17T19:36:09+08:00 | action: created daily crawl record | record: [[2026-09-17 Crawl Log]] | result: recorded complete zero-result `SEP2026-CRAWLLOG-TEST-TKMS` with 0 cascaded articles, 0 failures, and goal receipt evidence.
+- 2026-09-18T04:05:00+08:00 | entity: [[2026-09-18 Crawl Log]] | action: crawl log created | reason: DAILY-2026-09-18 daily crawl of all 96 active canonical topics for 2026-09-18 (Asia/Singapore); 31 articles cascaded across 25 topics, 0 failures | source: scripts/topic_crawl_plan.md Step 12

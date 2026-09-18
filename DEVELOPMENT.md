@@ -8,7 +8,7 @@ Process map (who/what/where): `docs/development-process.md`.
 **Project home (Dropbox):** `/Users/chrisyeo/Dropbox/Work/CEO (Sentient)/Customer Folders/tampines-wiki`  
 **Git remote:** `https://github.com/christopheryeo/Tampines-wiki`  
 **Journal (Drive only):** https://docs.google.com/document/d/1LsucY9zwEWXukVwGftmpzUhfuguSj1VRxs_zK7EU6lw/edit  
-**Updated:** 2026-09-10 SGT (development-process map)
+**Updated:** 2026-09-18 SGT
 
 ## Roles
 
@@ -54,6 +54,7 @@ Format: tool — surface — files it may touch — files it must not touch — 
 
 ## Done
 
+- 2026-09-18 SGT — maintenance — Felix — Logged PR #34 Feature in Product Inventory (local crawl window → overlapping provider UTC days). Tip `f6fa0a0`, merge `6c3b8b4`. PR #35 docs-only (end_topic_crawl.md bulk-run exception), not a Feature.
 - 2026-09-17 SGT — maintenance — Felix — Christopher lock: source-empty holds (~450 files / 438 IDs) stay parked indefinitely; no Codex Now, no recovery re-fetch; Now remains empty for this. Product Inventory unchanged.
 - 2026-09-10 SGT — maintenance — Morgan — Added `docs/development-process.md` (living who/what/where map) and linked it from this file and Project Home.
 - 2026-09-04 SGT — maintenance — Morgan — Added this DEVELOPMENT.md and CLAUDE.md to formalize Tampines Wiki as the project home with git (`christopheryeo/Tampines-wiki`).
