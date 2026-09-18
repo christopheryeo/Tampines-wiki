@@ -3,7 +3,7 @@ type: plan
 name: topic-crawl
 status: ready
 created: 2026-09-06
-updated: 2026-09-17
+updated: 2026-09-18
 owner: ChatGPT Codex
 ---
 
@@ -45,7 +45,9 @@ duplicating completed work.
 Required:
 - **`topics`** — one canonical Topic (ID, exact display name, wikilink, or unambiguous path), an
   explicit list of them, or "the next N eligible topics".
-- **`dateStart`** / **`dateEnd`** — inclusive `YYYY-MM-DD` publication-date boundaries.
+- **`dateStart`** / **`dateEnd`** — inclusive `YYYY-MM-DD` publication-date boundaries, expressed
+  in the invocation **`timezone`** — not in the provider's timezone. See the Step 3 provider date
+  window rule before submitting them to NewsAPI.ai.
 
 Optional:
 - **`timezone`** — defaults to `Asia/Singapore`. Never infer a default date window.
@@ -182,6 +184,33 @@ Call `POST https://eventregistry.org/api/v1/article/getArticles` once per topic 
    canonical URL and by URI.
 4. SET A articles are already retrieved; carry them forward to the gates in Step 7 (no mapping
    needed).
+
+**Provider date window (required).** NewsAPI.ai's `dateStart`/`dateEnd` select **UTC** days, while
+`dateStart`/`dateEnd` as invoked — and the Step 7 date gate — are days in the invocation `timezone`.
+For `Asia/Singapore` (UTC+8) the two windows are offset by eight hours, so submitting the local dates
+verbatim silently crawls the wrong window. Instead:
+
+1. Convert the local window to UTC instants: `windowStart = dateStart 00:00` and
+   `windowEnd = dateEnd+1 00:00`, both in the invocation timezone, expressed as UTC.
+2. Submit the **UTC days that overlap** that span — `dateStart` = `windowStart`'s UTC date and
+   `dateEnd` = (`windowEnd` − 1s)'s UTC date. For a single Singapore day this is always a two-day
+   provider window.
+3. Keep Step 7 gate 2 as the authority: discard any returned article whose publication timestamp
+   falls outside `windowStart`..`windowEnd`. The widened provider window over-collects by design;
+   the gate, not the query, defines the result.
+4. Because `articlesSortBy: "date"` returns newest first, paging may stop as soon as a page's oldest
+   `dateTimePub` precedes `windowStart` — the window is then fully covered.
+
+Record the local window, the derived UTC provider window, and the scanned-vs-in-window counts in the
+manifest.
+
+> **Evidence (2026-09-18 daily run).** Submitting the local dates verbatim for a same-day Singapore
+> crawl (`dateStart` = `dateEnd` = `2026-09-18`, run at 03:00 SGT = 19:00 UTC on 2026-09-17) returned
+> `totalResults: 0` for **every** topic — and also for a `Trump` control keyword — because that UTC day
+> had not yet begun. Converting to the overlapping UTC window `2026-09-17`..`2026-09-18` and applying
+> the Step 7 gate returned 6,183 in-window candidates across 92 query groups. Left uncorrected, the
+> run would have closed all 96 canonical topics with a false zero. The same offset silently drops the
+> 00:00–08:00 SGT slice of **every** day-bounded crawl, whatever time of day it runs.
 
 **Keyword selection (required).** NewsAPI.ai treats a multi-word `keyword` as a near-exact phrase, so
 the literal display name usually under-collects (e.g. `Taiwan Strait Security` → a handful; a
@@ -531,7 +560,8 @@ topics has exactly one final disposition, `entities/topic/catalog.md` is rebuilt
 is written, and the Step 12 Crawl Log entry is recorded — and **every selected topic** passes all of
 the following:
 
-- [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated.
+- [ ] Exactly one canonical Topic Entity resolved and frozen; both dates and timezone validated,
+      and the provider date window derived from the invocation timezone per Step 3.
 - [ ] SET A built from NewsAPI.ai keyword search; every page was verified with `articlesPage`, and
       its URLs/URIs recorded, canonicalized, deduplicated.
 - [ ] Every SET A candidate passed the Set A relevance gate before SET B discovery, or has an
