@@ -135,6 +135,17 @@ class IssueRadarTests(unittest.TestCase):
         self.assertNotIn("too-generic", candidates)
         self.assertNotIn("security", candidates)
 
+    def test_exact_same_day_syndication_counts_as_one_event_family(self):
+        asof = datetime.date(2026, 7, 31)
+        rows = [self.article(asof - datetime.timedelta(days=index), "syndicated") for index in range(4)]
+        rows.append(self.article(asof, "syndicated"))
+        for row in rows:
+            row["title"] = "Same story"
+        rows[-1]["id"] = 999
+        families = RADAR.event_families(rows)
+        self.assertEqual(len(families), 4)
+        self.assertEqual(len(families[-1]["article_ids"]), 2)
+
     def test_wave_runs_require_more_than_two_weeks_of_separation(self):
         asof = datetime.date(2026, 7, 31)
         dates = [
