@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260919T040413-cascade-1e93",
+  "operation": "cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-19T04:04:13+08:00",
+  "endedAt": "2026-09-19T04:04:13+08:00",
+  "durationSec": 0.08,
+  "articleMetrics": {
+    "inputCount": 3,
+    "processedCount": 3,
+    "createdCount": 0,
+    "updatedCount": 3,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.026667
+  },
+  "fileMetrics": {
+    "scannedCount": 3,
+    "changedCount": 3,
+    "failedCount": 0,
+    "avgSecPerFile": 0.026667
+  },
+  "stageMetrics": [
+    {
+      "stage": "patch_coverage",
+      "startedAt": "2026-09-19T04:04:13+08:00",
+      "endedAt": "2026-09-19T04:04:13+08:00",
+      "durationSec": 0.08,
+      "articleCount": 3,
+      "avgSecPerArticle": 0.026667,
+      "fileCount": 3,
+      "avgSecPerFile": 0.026667,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "updateRows": 3,
+    "entitiesChanged": 3,
+    "entitiesNoop": 0,
+    "coveragePairsAdded": 3,
+    "coveragePairsSkipped": 0
+  },
+  "errors": [],
+  "notes": "",
+  "metadata": {
+    "script": "patch_coverage.py",
+    "dryRun": false,
+    "updatesPath": "../../../../../../../../../tmp/patch_updates.json"
+  }
+}

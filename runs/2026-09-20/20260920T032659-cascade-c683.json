@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260920T032659-cascade-c683",
+  "operation": "cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-20T03:26:59+08:00",
+  "endedAt": "2026-09-20T03:26:59+08:00",
+  "durationSec": 0.063,
+  "articleMetrics": {
+    "inputCount": 3,
+    "processedCount": 3,
+    "createdCount": 0,
+    "updatedCount": 1,
+    "skippedCount": 2,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 0.021
+  },
+  "fileMetrics": {
+    "scannedCount": 2,
+    "changedCount": 1,
+    "failedCount": 0,
+    "avgSecPerFile": 0.0315
+  },
+  "stageMetrics": [
+    {
+      "stage": "patch_coverage",
+      "startedAt": "2026-09-20T03:26:59+08:00",
+      "endedAt": "2026-09-20T03:26:59+08:00",
+      "durationSec": 0.062,
+      "articleCount": 3,
+      "avgSecPerArticle": 0.020667,
+      "fileCount": 2,
+      "avgSecPerFile": 0.031,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "updateRows": 3,
+    "entitiesChanged": 1,
+    "entitiesNoop": 1,
+    "coveragePairsAdded": 1,
+    "coveragePairsSkipped": 2
+  },
+  "errors": [],
+  "notes": "",
+  "metadata": {
+    "script": "patch_coverage.py",
+    "dryRun": false,
+    "updatesPath": "runs/2026-09-20/artifacts/topic-crawls/DAILY-2026-09-20/coverage-repair.json"
+  }
+}

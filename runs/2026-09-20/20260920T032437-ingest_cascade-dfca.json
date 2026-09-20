@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20260920T032437-ingest_cascade-dfca",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-09-20T03:24:37+08:00",
+  "endedAt": "2026-09-20T03:25:43+08:00",
+  "durationSec": 66.16,
+  "articleMetrics": {
+    "inputCount": 6,
+    "processedCount": 6,
+    "createdCount": 6,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 11.026667
+  },
+  "fileMetrics": {
+    "scannedCount": 5667,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.011675
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-09-20T03:24:37+08:00",
+      "endedAt": "2026-09-20T03:24:41+08:00",
+      "durationSec": 4.017,
+      "articleCount": 6,
+      "avgSecPerArticle": 0.6695,
+      "fileCount": 6,
+      "avgSecPerFile": 0.6695,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-09-20T03:25:30+08:00",
+      "endedAt": "2026-09-20T03:25:43+08:00",
+      "durationSec": 12.65,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 5667,
+      "wikilinks_checked": 299367,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 16,
+      "countries_updated": 17,
+      "topics_updated": 17,
+      "tags_updated": 28,
+      "organisations_updated": 14,
+      "people_updated": 5,
+      "processed": 6,
+      "outlets_created": 4,
+      "places_updated": 16
+    },
+    "statusCounts": {
+      "cascaded": 33096,
+      "inputs": 31,
+      "total": 33127
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-09.",
+  "metadata": {
+    "month": "2026-09",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-09-20/artifacts/topic-crawls/DAILY-2026-09-20/normalized-manifest.txt"
+  }
+}
