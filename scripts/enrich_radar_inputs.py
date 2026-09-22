@@ -841,12 +841,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--apply-assessment",
         type=Path,
         action="append",
-        help="apply high-confidence fields from an existing assessment JSON; repeatable",
+        help="apply high-confidence fields from an existing assessment JSON; repeatable. "
+             "Combine with --preserve-topic to keep each note's existing canonical topic "
+             "instead of overwriting it with the first issue tag.",
     )
     return parser
 
 
-def apply_assessments(paths: list[Path]) -> int:
+def apply_assessments(paths: list[Path], preserve_topic: bool = False) -> int:
     changed_files = 0
     field_counts: dict[str, int] = {}
     missing_files: list[str] = []
@@ -877,7 +879,7 @@ def apply_assessments(paths: list[Path]) -> int:
                     "reasons": assessment["consensus"].get("reviewReasons", []),
                 })
                 continue
-            changed = apply_result(path, lines, body, assessment["consensus"])
+            changed = apply_result(path, lines, body, assessment["consensus"], preserve_topic)
             if changed:
                 changed_files += 1
                 for field in changed:
@@ -1002,7 +1004,7 @@ def check_complete_inputs(paths: list[Path]) -> int:
 
 def run(args: argparse.Namespace) -> int:
     if args.apply_assessment:
-        return apply_assessments(args.apply_assessment)
+        return apply_assessments(args.apply_assessment, args.preserve_topic)
     paths = select_input_paths(args)
     if args.check_complete:
         return check_complete_inputs(paths)
