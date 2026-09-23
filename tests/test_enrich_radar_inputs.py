@@ -304,6 +304,55 @@ class RadarInputEnrichmentTests(unittest.TestCase):
                 ENRICH.ROOT = original_root
         self.assertEqual(code, 0)
 
+    def test_apply_assessment_honours_preserve_topic(self):
+        # Regression test: the --apply-assessment batch path (used by the
+        # topic-crawl flow to apply policy-resolved review outcomes) must
+        # honour --preserve-topic exactly like the direct --apply path does.
+        # It previously called apply_result() without forwarding the flag,
+        # so every canonical topic set by the topic-crawl normalizer was
+        # silently overwritten with the article's first issue tag as soon
+        # as a policy-resolved assessment went through --apply-assessment.
+        result = {
+            "tone": "Opinionated",
+            "toneSentiment": "Negative",
+            "eventType": "Facilitated",
+            "issueTags": ["AI Safety"],
+            "outletName": "Example News",
+            "outletCountry": "Singapore",
+            "institutionalCategory": "National Security",
+            "readyForCascade": True,
+            "autoApplicable": {
+                "tone": True, "toneSentiment": True, "eventType": True,
+                "metadata": True, "tags": True,
+            },
+        }
+        note_text = (
+            "---\narticleId: '42'\ntopic: 'Great-Power Competition'\ntone: 'Factual'\n"
+            "eventType: 'Unfacilitated'\ntags: []\noutlets: []\ncountries: []\n"
+            "category: 'Other'\ncoverageCount: 1\n---\n\nBody\n"
+        )
+        with tempfile.TemporaryDirectory() as folder:
+            relative = pathlib.Path(folder) / "article.md"
+            assessment = {"assessments": [{
+                "articleId": "42", "path": str(relative), "consensus": result,
+            }]}
+            assessment_path = pathlib.Path(folder) / "assessment.json"
+            assessment_path.write_text(__import__("json").dumps(assessment), encoding="utf-8")
+            original_root = ENRICH.ROOT
+            ENRICH.ROOT = pathlib.Path("/")
+            try:
+                relative.write_text(note_text, encoding="utf-8")
+                code = ENRICH.apply_assessments([assessment_path], preserve_topic=True)
+                self.assertEqual(code, 0)
+                self.assertIn("topic: 'Great-Power Competition'", relative.read_text(encoding="utf-8"))
+
+                relative.write_text(note_text, encoding="utf-8")
+                code = ENRICH.apply_assessments([assessment_path], preserve_topic=False)
+                self.assertEqual(code, 0)
+                self.assertIn("topic: 'AI Safety'", relative.read_text(encoding="utf-8"))
+            finally:
+                ENRICH.ROOT = original_root
+
     def test_incomplete_consensus_is_held_without_writing(self):
         lines = ["articleId: '42'", "tone: 'Factual'"]
         result = {
