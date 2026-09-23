@@ -2,7 +2,7 @@
 type: domain-log
 domain: Crawl Log
 status: active
-last_updated: 2026-09-21
+last_updated: 2026-09-22
 ---
 
 # Crawl Log
@@ -15,3 +15,4 @@ Append-only operational ledger. Never edit or delete prior entries; correct forw
 - 2026-09-19T04:10:00+08:00 | entity: [[2026-09-19 Crawl Log]] | action: crawl log created | reason: DAILY-2026-09-19 daily crawl of all 96 active canonical topics for 2026-09-19 (Asia/Singapore); 16 articles cascaded across 13 topics, 0 failures, 3 Coverage backlinks repaired via patch_coverage.py | source: scripts/topic_crawl_plan.md Step 12
 - 2026-09-20T03:28:00+08:00 | entity: [[2026-09-20 Crawl Log]] | action: crawl log created | reason: DAILY-2026-09-20 daily crawl of all 96 active canonical topics for 2026-09-20 (Asia/Singapore); 6 articles cascaded across 4 topics, 0 failures, 1 Coverage backlink repaired via patch_coverage.py, 1 sg-nexus-tiered false positive manually overridden as off-topic | source: scripts/topic_crawl_plan.md Step 12
 - 2026-09-21T03:40:00+08:00 | entity: [[2026-09-21 Crawl Log]] | action: crawl log created | reason: DAILY-2026-09-21 daily crawl of all 96 active canonical topics for 2026-09-21 (Asia/Singapore); 4 articles cascaded across 4 topics, 0 failures, 1 held (incomplete provider body), SET B run as a targeted official-domain check rather than a full per-topic sweep (recorded as a scope limitation) | source: scripts/topic_crawl_plan.md Step 12
+- 2026-09-22T03:40:00+08:00 | entity: [[2026-09-22 Crawl Log]] | action: crawl log created | reason: DAILY-2026-09-22 daily crawl of all 96 active canonical topics for 2026-09-22 (Asia/Singapore); 8 articles cascaded across 8 topics, 0 failures, 1 duplicate dropped (already-compiled Saudi F-35 sale), 0 held, found and fixed a YAML-corruption bug in scripts/enrich_radar_inputs.py's zero-indent block-list handling before cascade (PR #41) | source: scripts/topic_crawl_plan.md Step 12
