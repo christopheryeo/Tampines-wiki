@@ -601,6 +601,7 @@ def apply_result(
     body: str,
     result: dict[str, Any],
     preserve_topic: bool = False,
+    existing_outlets: list[str] | None = None,
 ) -> list[str]:
     updates: dict[str, Any] = {}
     auto = result["autoApplicable"]
@@ -617,9 +618,17 @@ def apply_result(
         updates["eventType"] = result["eventType"]
     updates["tags"] = result["issueTags"]
     if auto["metadata"] and result["outletName"]:
-        updates["outlets"] = [result.get("outletId") or slugify(result["outletName"])]
+        # A topic-crawl same-event consolidation records more than one corroborating
+        # outlet in `outlets` (driving `coverageCount`) before enrichment runs. The
+        # single-outlet assessment below would otherwise silently overwrite that
+        # verified multi-outlet list down to one outlet; `existing_outlets` preserves
+        # it, mirroring `--preserve-topic`'s protection of the `topic` field.
+        if existing_outlets and len(existing_outlets) > 1:
+            updates["coverageCount"] = len(existing_outlets)
+        else:
+            updates["outlets"] = [result.get("outletId") or slugify(result["outletName"])]
+            updates["coverageCount"] = 1
         updates["countries"] = [result["outletCountry"]] if result["outletCountry"] else []
-        updates["coverageCount"] = 1
         updates["mediaCount"] = 0
         updates["category"] = result["institutionalCategory"]
         # The topic-crawl flow sets `topic` to the canonical Topic displayName so
@@ -743,8 +752,9 @@ def process_one(
                 pass
 
     result = consensus(primary, review, args.confidence, set(candidates))
+    existing_outlets = metadata.get("outlets") if getattr(args, "preserve_outlets", False) else None
     changed = (
-        apply_result(path, lines, body, result, getattr(args, "preserve_topic", False))
+        apply_result(path, lines, body, result, getattr(args, "preserve_topic", False), existing_outlets)
         if args.apply else []
     )
     return {
@@ -801,6 +811,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--preserve-topic", action="store_true",
         help="(topic-crawl flow) keep the note's existing canonical `topic` instead of "
              "overwriting it with the first issue tag, so cascade routes coverage correctly",
+    )
+    parser.add_argument(
+        "--preserve-outlets", action="store_true",
+        help="(topic-crawl flow) when the note already lists more than one outlet "
+             "(a same-event multi-outlet consolidation done at normalization), keep that "
+             "`outlets` list and its `coverageCount` instead of overwriting them with the "
+             "single-outlet name/country assessment",
     )
     parser.add_argument(
         "--cache-dir", type=Path, default=None,
