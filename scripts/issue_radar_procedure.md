@@ -15,7 +15,9 @@ other: the radar over-generates by design (~20x at tag level), and the judgment 
 invent signals the radar did not report.
 
 **Cadence:** run after every ingest/cascade batch, before the nightly catalog rebuild. A pass with
-no new flags still updates `lastScored` on active (`hot`/`warm`) issues.
+no new flags still updates `lastScored` on every active (`hot`/`warm`/`watch`) issue. A completed
+ingest receipt without a same-or-later radar run receipt is an incomplete operating cycle, not an
+all-clear.
 
 **Hard rules (inherited from the cascade procedure):** piped `[[real-filename|Display]]` links
 only; no enrichment from live web or model background knowledge — every claim, and especially
@@ -31,9 +33,14 @@ values beginning with `#`; append-only logs.
    `python3 scripts/issue_radar.py --source production --defaults-file <read-only-client.cnf>`.
    Add `--asof <date>` for reconstruction. Capture every flag at WARM or above; WATCH flags are
    optional at analyst discretion. The script never writes to either database.
-2. Before scoring, freeze and validate Markdown-to-UAT article, tag-multiset, and coverage-multiset
-   parity, the Tag-registry eligibility snapshot, and the event-family manifest. Stop on an
-   unexplained parity difference; a local/UAT count mismatch is not a harmless aggregate warning.
+2. Freeze the source input at the same `--asof` date by adding
+   `--input-manifest-output <uat-input-manifest.json>` to the radar command. Build the Markdown
+   manifest with `review_issue_radar_run.py --manifest-output <markdown-manifest.json>`, then run
+   `python3 scripts/verify_issue_radar_parity.py --uat-manifest <uat-input-manifest.json>
+   --markdown-manifest <markdown-manifest.json> --output <parity.json>` and require `PASS` before
+   accepting scores for clustering or filing. This validates source-ID article, tag-multiset, and
+   coverage-multiset parity. Stop on an unexplained difference; a local/UAT count mismatch is not
+   a harmless aggregate warning.
 3. Do not edit, reweight, or suppress the script's output by hand. If the thresholds seem wrong,
    that is a Decision-note conversation, not an in-pass adjustment.
 4. Save both `--json-output` and `--text-output`, repeat the run, and require identical hashes.
@@ -45,7 +52,7 @@ values beginning with `#`; append-only logs.
 ## Step 2 — Cluster flags into issue objects (judgment)
 
 5. Build the complete flag-disposition ledger, non-transitive article/entity/topic-overlap clusters,
-   event-family composition, compiled
+   event-family composition, coherence status, compiled
    evidence pack, and frozen article manifest:
    `python3 scripts/review_issue_radar_run.py --radar-json <radar.json> --json-output
    <review-pack.json> --markdown-output <review-pack.md> --manifest-output <manifest.json>`.
@@ -71,7 +78,7 @@ values beginning with `#`; append-only logs.
 
 ## Step 3 — Ramification questionnaire (judgment, answered only from vault content)
 
-9. For each issue object, answer in writing, citing articles:
+11. For each issue object, answer in writing, citing articles:
    a. **Forced response** — if coverage doubles, who must respond: a minister, MINDEF, an agency,
       or no one? (Institutional-category migration is the strongest single predictor.)
    b. **Fault lines** — does it touch a standing sensitivity: NS fairness, sovereignty, foreign-
@@ -83,13 +90,13 @@ values beginning with `#`; append-only logs.
       future response?
    e. **Migration** — is a foreign story acquiring domestic institutional categories (the US-Iran
       → repatriation pattern)?
-10. Assign `ramification`: `severe` (multiple fault lines or forced minister-level response),
+12. Assign `ramification`: `severe` (multiple fault lines or forced minister-level response),
    `high` (one fault line, institutional response likely), `moderate` (contained but recurring),
    `low` (benign shape). Acceleration without ramification is a dismissal, not an alert.
 
 ## Step 4 — File (mechanical bookkeeping + judgment prose)
 
-11. Create or update the issue note per the `entities/issues/index.md` registry and template:
+13. Create or update the issue note per the `entities/issues/index.md` registry and template:
    frontmatter fields from the radar output (`score`, `status` from tier, `clusterTags`,
    `firstFlagged` preserved from first filing, `lastScored` = today); replace `## Signal Scores`
    with the latest basis-tag snapshot (evaluation date, tag, tier, recent volume, source artifact,
@@ -98,15 +105,15 @@ values beginning with `#`; append-only logs.
    component snapshot is tag-level, not an issue-wide recalculation. For a dismissed issue with no
    current qualifying flag, retain and label its latest qualifying snapshot rather than inventing
    zero components.
-12. Benign flags: file with `status: dismissed` and a one-line reason. Dismissals are calibration
+14. Benign flags: file with `status: dismissed` and a one-line reason. Dismissals are calibration
    data — never deleted, and a dismissed issue that re-flags later is reopened, not duplicated.
-13. Append one `log.md` entry per issue touched (full timestamp, wikilink, action, reasoning).
-14. Regenerate the domain catalog: `python3 scripts/generate_catalog.py issues`, then validate it
+15. Append one `log.md` entry per issue touched (full timestamp, wikilink, action, reasoning).
+16. Regenerate the domain catalog: `python3 scripts/generate_catalog.py issues`, then validate it
     with `python3 scripts/validate_issues.py`.
 
 ## Step 5 — Surface (delivery)
 
-15. Follow `scripts/issues_list.md` with `scope: alertable` to retrieve the issues eligible
+17. Follow `scripts/issues_list.md` with `scope: alertable` to retrieve the issues eligible
     for delivery, then report them in the domain's Producing a List order with plain-language "why"
     lines and catalysts. Everything else stays on the quiet watchlist. A radar that cries wolf gets
     muted — precision over recall at the alert layer, liberal filing at the watchlist layer.

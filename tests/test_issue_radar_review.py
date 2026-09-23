@@ -1,7 +1,7 @@
 import unittest
 
 from scripts.local_issue_radar_review import primary_review, second_review
-from scripts.review_issue_radar_run import cluster_flags
+from scripts.review_issue_radar_run import cluster_flags, make_outputs
 
 
 def flag(tag, score, article_ids, tier="HOT"):
@@ -55,6 +55,24 @@ class ReviewClusteringTests(unittest.TestCase):
         primary = primary_review(metrics)
         self.assertEqual(primary["disposition"], "quiet-watch")
         self.assertEqual(second_review(metrics, primary)["disposition"], "dismiss")
+
+    def test_review_pack_includes_event_family_and_coherence_evidence(self):
+        radar = {"source": {}, "asOf": "2026-09-20", "flags": [{
+            **flag("example", 0.8, [1]), "recentEventFamilyIds": ["2026-09-20:example"],
+        }]}
+        indexed = {1: {
+            "articleId": 1, "title": "Example", "publishedDate": "2026-09-20",
+            "category": "", "tone": "", "eventType": "", "tags": [], "outlets": [],
+            "countries": [], "summary": "", "path": "example.md",
+            "relatedEntities": ["topic/example", "people/example"],
+            "canonicalTopics": ["topic/example"],
+        }}
+        pack, _ = make_outputs(radar, indexed)
+        cluster = pack["clusters"][0]
+        self.assertEqual(cluster["eventFamilyCount"], 1)
+        self.assertEqual(cluster["coherenceStatus"], "evidence-ready")
+        self.assertIn("sharedEntities", cluster)
+        self.assertIn("sharedCanonicalTopics", cluster)
 
 
 if __name__ == "__main__":

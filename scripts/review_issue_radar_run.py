@@ -20,6 +20,8 @@ PROJECTION_RE = re.compile(
     r"## Database Projection\s*```json\s*(\{.*?\})\s*```", re.DOTALL
 )
 SUMMARY_RE = re.compile(r"## Summary\s*(.*?)(?=\n## |\Z)", re.DOTALL)
+RELATED_RE = re.compile(r"## Related Entities\s*(.*?)(?=\n## |\Z)", re.DOTALL)
+WIKILINK_RE = re.compile(r"\[\[([^|\]]+)(?:\|[^\]]+)?\]\]")
 TIER_ORDER = {"HOT": 3, "WARM": 2, "WATCH": 1}
 
 
@@ -60,6 +62,12 @@ def article_index(article_root: Path) -> dict[int, dict]:
                 if SUMMARY_RE.search(text)
                 else ""
             ),
+            "relatedEntities": sorted(WIKILINK_RE.findall(
+                RELATED_RE.search(text).group(1) if RELATED_RE.search(text) else ""
+            )),
+            "canonicalTopics": sorted(link for link in WIKILINK_RE.findall(
+                RELATED_RE.search(text).group(1) if RELATED_RE.search(text) else ""
+            ) if link.startswith("topic/")),
             "path": str(path),
         }
     return indexed
@@ -180,6 +188,29 @@ def make_outputs(radar: dict, indexed: dict[int, dict]) -> tuple[dict, str]:
         cluster["missingArticleIds"] = [
             article_id for article_id in article_ids if article_id not in indexed
         ]
+        family_ids = sorted({
+            family_id
+            for member in cluster["members"]
+            for family_id in member["flag"].get("recentEventFamilyIds", [])
+        })
+        cluster["eventFamilyIds"] = family_ids
+        cluster["eventFamilyCount"] = len(family_ids)
+        entity_counts = {}
+        topic_counts = {}
+        for article in cluster["evidenceArticles"]:
+            for entity in set(article["relatedEntities"]):
+                entity_counts[entity] = entity_counts.get(entity, 0) + 1
+            for topic in set(article["canonicalTopics"]):
+                topic_counts[topic] = topic_counts.get(topic, 0) + 1
+        cluster["sharedEntities"] = sorted(
+            entity for entity, count in entity_counts.items() if count >= 2
+        )
+        cluster["sharedCanonicalTopics"] = sorted(
+            topic for topic, count in topic_counts.items() if count >= 2
+        )
+        cluster["coherenceStatus"] = (
+            "blocked-missing-evidence" if cluster["missingArticleIds"] else "evidence-ready"
+        )
         cluster["reviewDisposition"] = (
             "evidence-review-required"
             if cluster["highestTier"] in {"WARM", "HOT"}
@@ -256,6 +287,9 @@ def make_outputs(radar: dict, indexed: dict[int, dict]) -> tuple[dict, str]:
                 f"- Tier/score: {cluster['highestTier']} / {cluster['highestScore']:.3f}",
                 f"- Tags: {tags}",
                 f"- Recent supporting articles: {len(cluster['recentArticleIds'])}",
+                f"- Event families: {cluster['eventFamilyCount']} ({cluster['coherenceStatus']})",
+                f"- Shared entities: {', '.join(cluster['sharedEntities']) or 'none'}",
+                f"- Shared topics: {', '.join(cluster['sharedCanonicalTopics']) or 'none'}",
             ]
         )
         for article in cluster["evidenceArticles"][:8]:
@@ -305,6 +339,13 @@ def main() -> int:
             "asOf": radar["asOf"],
             "articleCount": len(eligible),
             "articleIds": [article["articleId"] for article in eligible],
+            "articles": [{
+                "articleId": article["articleId"],
+                "publishedDate": article["publishedDate"],
+                "tags": sorted(tag.casefold() for tag in article["tags"]),
+                "outlets": sorted(outlet.casefold() for outlet in article["outlets"]),
+                "countries": sorted(country.casefold() for country in article["countries"]),
+            } for article in eligible],
             "totals": {
                 "tagOccurrences": sum(len(article["tags"]) for article in eligible),
                 "uniqueTags": len({

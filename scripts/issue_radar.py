@@ -55,6 +55,7 @@ WINDOW = 28
 WEIGHTS = dict(accel=0.25, breadth=0.20, inst=0.25, recur=0.15, unfac=0.10, opin=0.05)
 TIERS = [("HOT", 0.60, 8), ("WARM", 0.40, 4), ("WATCH", 0.25, 2)]
 IDENTIFIER = re.compile(r"^[A-Za-z0-9_]+$")
+EVENT_FAMILY_VERSION = "title-date-v1"
 
 SOURCE_DEFAULTS = {
     "uat": ("MSM_dataset_UAT", "UAT_"),
@@ -297,7 +298,8 @@ def candidates(articles, asof):
         if count < MIN_ARTICLES or count > cap or tag in STOP or len(tag) < 3:
             continue
         selected = [article for article in eligible if tag in article["tags"]]
-        if len({monday(article["date"]) for article in selected}) >= MIN_WEEKS:
+        families = event_families(selected)
+        if len(families) >= MIN_ARTICLES and len({monday(article["date"]) for article in families}) >= MIN_WEEKS:
             output[tag] = selected
     return output
 
@@ -323,8 +325,34 @@ def classify_tier(score, recent_volume):
     )
 
 
+def event_family_id(article):
+    """Conservatively collapse exact-title syndicated copies on the same date."""
+    title = re.sub(r"[^a-z0-9]+", " ", article["title"].casefold()).strip()
+    return f"{article['date'].isoformat()}:{title or 'untitled'}"
+
+
+def event_families(selected):
+    """Return one signal-bearing row per event while retaining coverage breadth."""
+    grouped = {}
+    for article in selected:
+        family_id = event_family_id(article)
+        family = grouped.setdefault(family_id, {
+            "id": family_id, "date": article["date"], "title": article["title"],
+            "cat": article["cat"], "outlets": set(), "countries": set(),
+            "unfac": False, "opin": False, "article_ids": [],
+        })
+        family["outlets"].update(article["outlets"])
+        family["countries"].update(article["countries"])
+        family["unfac"] = family["unfac"] or article["unfac"]
+        family["opin"] = family["opin"] or article["opin"]
+        family["article_ids"].append(article["id"])
+        if article["cat"] in INSTITUTIONAL:
+            family["cat"] = article["cat"]
+    return [grouped[key] for key in sorted(grouped)]
+
+
 def score_issue(selected, asof):
-    history = [article for article in selected if article["date"] <= asof]
+    history = [article for article in event_families(selected) if article["date"] <= asof]
     if not history:
         return None
     recent_start = asof - datetime.timedelta(days=WINDOW)
@@ -383,7 +411,8 @@ def score_issue(selected, asof):
         reasons.append(f"{unfacilitated:.0%} unfacilitated (story running on its own)")
     if opinionated > 0.15:
         reasons.append(f"{opinionated:.0%} opinionated pieces")
-    return {"score": score, "tier": tier, "vol": recent_volume, "parts": parts, "why": reasons}
+    return {"score": score, "tier": tier, "vol": recent_volume, "parts": parts,
+            "why": reasons, "eventFamilies": history}
 
 
 def structured_run(
@@ -420,6 +449,7 @@ def structured_run(
                 {"name": name, "minimumScore": minimum, "minimumRecentVolume": volume}
                 for name, minimum, volume in TIERS
             ],
+            "eventFamilyVersion": EVENT_FAMILY_VERSION,
         },
         "flags": [
             {
@@ -438,6 +468,15 @@ def structured_run(
                     article["id"]
                     for article in selections.get(tag, [])
                     if recent_start < article["date"] <= asof
+                ),
+                "eventFamilyCount": len(result.get(
+                    "eventFamilies", event_families(selections.get(tag, []))
+                )),
+                "recentEventFamilyIds": sorted(
+                    family["id"] for family in result.get(
+                        "eventFamilies", event_families(selections.get(tag, []))
+                    )
+                    if recent_start < family["date"] <= asof
                 ),
             }
             for tag, result in ranked
@@ -458,6 +497,22 @@ def write_text_output(path, content):
     destination = Path(path).expanduser().resolve()
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(content, encoding="utf-8")
+
+
+def write_input_manifest(path, articles, database, prefix, asof):
+    """Freeze raw article, tag, and coverage multisets for parity validation."""
+    records = [{
+        "articleId": article["id"],
+        "publishedDate": article["date"].isoformat(),
+        "tags": sorted(article["tags"]),
+        "outlets": sorted(article["outlets"]),
+        "countries": sorted(article["countries"]),
+    } for article in articles if article["date"] <= asof]
+    write_structured_run(path, {
+        "schemaVersion": "issue-radar-input-manifest.v1",
+        "source": {"database": database, "tablePrefix": prefix, "readOnly": True},
+        "asOf": asof.isoformat(), "articleCount": len(records), "articles": records,
+    })
 
 
 def ranked_report(asof, ranked, article_count, top, source_label):
@@ -540,6 +595,8 @@ def build_parser():
                         help="write the complete deterministic structured radar result")
     parser.add_argument("--text-output", metavar="TEXT_PATH",
                         help="write the complete readable radar report as text")
+    parser.add_argument("--input-manifest-output", metavar="JSON_PATH",
+                        help="write raw article/tag/coverage data for parity validation")
     parser.add_argument("--shadow-json-output", metavar="JSON_PATH",
                         help="write comparison-only results for shadow tags")
     parser.add_argument("--shadow-text-output", metavar="TEXT_PATH",
@@ -597,6 +654,9 @@ def run(args):
         raw_articles, asof, records, {"enabled"}, args.use_current_radar_status,
     )
     source_label = f"{database}.{prefix}articles"
+
+    if args.input_manifest_output:
+        write_input_manifest(args.input_manifest_output, raw_articles, database, prefix, asof)
 
     if args.issue:
         needle = args.issue.strip().lower()
