@@ -134,12 +134,23 @@ def parse_flow_list(raw: str) -> list[str]:
     return values
 
 
+# Matches a YAML block-sequence item at *any* indentation. PyYAML's own
+# ``yaml.safe_dump(..., default_flow_style=False)`` (and other standards-compliant
+# emitters) renders a top-level list with the dash at the SAME column as its key
+# (zero-indent), not indented under it. A hardcoded "  - " (exactly two spaces)
+# check missed that valid form entirely, silently dropping the list's values on
+# read and, on write, orphaning the un-consumed dash lines as trailing garbage
+# that corrupts the YAML block on the very next parse.
+LIST_ITEM_RE = re.compile(r"^\s*-\s?(.*)$")
+
+
 def parse_frontmatter(lines: list[str]) -> dict[str, Any]:
     result: dict[str, Any] = {}
     active_list: str | None = None
     for line in lines:
-        if line.startswith("  - ") and active_list:
-            result.setdefault(active_list, []).append(parse_scalar(line[4:]))
+        list_item = LIST_ITEM_RE.match(line)
+        if list_item and active_list:
+            result.setdefault(active_list, []).append(parse_scalar(list_item.group(1)))
             continue
         active_list = None
         if ":" not in line or line.startswith((" ", "\t")):
@@ -188,7 +199,7 @@ def replace_fields(lines: list[str], updates: dict[str, Any]) -> list[str]:
                 output.append(f"{key}: {rendered}")
                 replaced.add(key)
                 index += 1
-                while index < len(lines) and lines[index].startswith("  - "):
+                while index < len(lines) and LIST_ITEM_RE.match(lines[index]):
                     index += 1
                 continue
         output.append(line)

@@ -64,6 +64,24 @@ class RadarInputEnrichmentTests(unittest.TestCase):
         self.assertEqual(parsed["articleTitle"], "Writer's argument")
         self.assertEqual(parsed["tags"], ["AI Safety", "OpenAI"])
 
+    def test_frontmatter_parser_reads_zero_indent_block_lists(self):
+        # yaml.safe_dump(..., default_flow_style=False) -- and other standards-
+        # compliant YAML emitters -- renders a top-level block sequence with the
+        # dash at the SAME column as its key, not indented under it. A prior
+        # version of this parser only recognised a hardcoded two-space indent
+        # ("  - "), so this valid, common form silently parsed as an empty list.
+        lines = [
+            "articleId: '42'",
+            "outlets:",
+            "- Daily Tribune",
+            "countries:",
+            "- Philippines",
+            "- Japan",
+        ]
+        parsed = ENRICH.parse_frontmatter(lines)
+        self.assertEqual(parsed["outlets"], ["Daily Tribune"])
+        self.assertEqual(parsed["countries"], ["Philippines", "Japan"])
+
     def test_shortlist_uses_existing_tag_surface_values(self):
         inventory = [
             ("Artificial Intelligence", "artificial intelligence", 20),
@@ -194,6 +212,55 @@ class RadarInputEnrichmentTests(unittest.TestCase):
         self.assertNotIn("coverageCount: '1'", text)
         self.assertNotIn("mediaCount: '0'", text)
         self.assertNotIn("confidence", text)
+
+    def test_apply_overwrites_zero_indent_block_list_without_orphaning_lines(self):
+        # Regression for the 2026-09-22 daily crawl: a note whose `outlets` and
+        # `countries` were written as zero-indent block lists (the standard
+        # yaml.safe_dump default-flow-style=False output) got corrupted by
+        # apply_result -- the old field line was replaced with a flow-style
+        # rendering, but the un-consumed dash lines beneath it were left behind
+        # as trailing garbage, breaking the file's YAML on the very next parse.
+        lines = [
+            "articleId: '42'",
+            "category: 'Non-institutional'",
+            "tone: 'Factual'",
+            "eventType: 'Unfacilitated'",
+            "tags: []",
+            "outlets:",
+            "- Daily Tribune",
+            "countries:",
+            "- Philippines",
+            "- Japan",
+            "coverageCount: 1",
+        ]
+        result = {
+            "tone": "Factual",
+            "toneSentiment": "Neutral",
+            "eventType": "Facilitated",
+            "issueTags": ["ASEAN Defence"],
+            "outletName": "Daily Tribune",
+            "outletId": "daily-tribune",
+            "outletCountry": "Philippines",
+            "institutionalCategory": "Non-institutional",
+            "readyForCascade": True,
+            "autoApplicable": {
+                "tone": True, "toneSentiment": True, "eventType": True,
+                "metadata": True, "tags": True,
+            },
+        }
+        with tempfile.TemporaryDirectory() as folder:
+            path = pathlib.Path(folder) / "article.md"
+            path.write_text("---\n" + "\n".join(lines) + "\n---\n\nBody\n", encoding="utf-8")
+            ENRICH.apply_result(path, lines, "Body", result, preserve_topic=True)
+            text = path.read_text(encoding="utf-8")
+        self.assertIn("outlets: ['daily-tribune']", text)
+        self.assertIn("countries: ['Philippines']", text)
+        # The old orphaned dash lines must not survive into the rewritten file.
+        self.assertNotIn("- Daily Tribune", text)
+        self.assertNotIn("- Japan", text)
+        frontmatter = text.split("---", 2)[1]
+        import yaml
+        yaml.safe_load(frontmatter)  # must not raise
 
     def test_apply_assessment_deduplicates_articles_across_files(self):
         result = {
