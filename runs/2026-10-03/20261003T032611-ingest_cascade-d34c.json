@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20261003T032611-ingest_cascade-d34c",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-10-03T03:26:11+08:00",
+  "endedAt": "2026-10-03T03:27:46+08:00",
+  "durationSec": 95.185,
+  "articleMetrics": {
+    "inputCount": 6,
+    "processedCount": 6,
+    "createdCount": 6,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 15.864167
+  },
+  "fileMetrics": {
+    "scannedCount": 5258,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.018103
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-10-03T03:26:11+08:00",
+      "endedAt": "2026-10-03T03:26:18+08:00",
+      "durationSec": 7.109,
+      "articleCount": 6,
+      "avgSecPerArticle": 1.184833,
+      "fileCount": 6,
+      "avgSecPerFile": 1.184833,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-10-03T03:27:43+08:00",
+      "endedAt": "2026-10-03T03:27:46+08:00",
+      "durationSec": 3.264,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 5258,
+      "wikilinks_checked": 292021,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 5,
+      "countries_updated": 6,
+      "topics_updated": 16,
+      "tags_updated": 46,
+      "organisations_updated": 16,
+      "places_updated": 22,
+      "processed": 6,
+      "outlets_created": 1,
+      "people_updated": 10
+    },
+    "statusCounts": {
+      "cascaded": 33128,
+      "inputs": 35,
+      "total": 33163
+    }
+  },
+  "errors": [],
+  "notes": "Full-folder cascade from Inputs/articles/2026-10.",
+  "metadata": {
+    "month": "2026-10",
+    "dryRun": false,
+    "scope": "full-folder",
+    "manifest": null
+  }
+}
