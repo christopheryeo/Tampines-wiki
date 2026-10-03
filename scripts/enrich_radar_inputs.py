@@ -635,11 +635,15 @@ def apply_result(
         # verified multi-outlet list down to one outlet; `existing_outlets` preserves
         # it, mirroring `--preserve-topic`'s protection of the `topic` field.
         if existing_outlets and len(existing_outlets) > 1:
+            # The consolidation's `outlets` and `countries` are one verified
+            # record (one entry per corroborating outlet) -- preserve both
+            # together, not just `outlets`, or a 2-outlet/2-country note would
+            # keep its second outlet but lose its second country.
             updates["coverageCount"] = len(existing_outlets)
         else:
             updates["outlets"] = [result.get("outletId") or slugify(result["outletName"])]
             updates["coverageCount"] = 1
-        updates["countries"] = [result["outletCountry"]] if result["outletCountry"] else []
+            updates["countries"] = [result["outletCountry"]] if result["outletCountry"] else []
         updates["mediaCount"] = 0
         updates["category"] = result["institutionalCategory"]
         # The topic-crawl flow sets `topic` to the canonical Topic displayName so
@@ -871,12 +875,14 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         help="apply high-confidence fields from an existing assessment JSON; repeatable. "
              "Combine with --preserve-topic to keep each note's existing canonical topic "
-             "instead of overwriting it with the first issue tag.",
+             "instead of overwriting it with the first issue tag, and/or --preserve-outlets "
+             "to keep an existing multi-outlet consolidation instead of collapsing it to one "
+             "outlet.",
     )
     return parser
 
 
-def apply_assessments(paths: list[Path], preserve_topic: bool = False) -> int:
+def apply_assessments(paths: list[Path], preserve_topic: bool = False, preserve_outlets: bool = False) -> int:
     changed_files = 0
     field_counts: dict[str, int] = {}
     missing_files: list[str] = []
@@ -907,7 +913,12 @@ def apply_assessments(paths: list[Path], preserve_topic: bool = False) -> int:
                     "reasons": assessment["consensus"].get("reviewReasons", []),
                 })
                 continue
-            changed = apply_result(path, lines, body, assessment["consensus"], preserve_topic)
+            # Mirrors process_one()'s --apply path: a topic-crawl same-event
+            # consolidation recorded more than one corroborating outlet before
+            # enrichment ran, and that verified list must survive this path too
+            # (see apply_result()'s existing_outlets parameter).
+            existing_outlets = parse_frontmatter(lines).get("outlets") if preserve_outlets else None
+            changed = apply_result(path, lines, body, assessment["consensus"], preserve_topic, existing_outlets)
             if changed:
                 changed_files += 1
                 for field in changed:
@@ -1032,7 +1043,7 @@ def check_complete_inputs(paths: list[Path]) -> int:
 
 def run(args: argparse.Namespace) -> int:
     if args.apply_assessment:
-        return apply_assessments(args.apply_assessment, args.preserve_topic)
+        return apply_assessments(args.apply_assessment, args.preserve_topic, args.preserve_outlets)
     paths = select_input_paths(args)
     if args.check_complete:
         return check_complete_inputs(paths)
