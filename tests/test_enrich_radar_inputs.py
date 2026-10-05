@@ -353,6 +353,60 @@ class RadarInputEnrichmentTests(unittest.TestCase):
             finally:
                 ENRICH.ROOT = original_root
 
+    def test_apply_assessment_honours_preserve_outlets(self):
+        # Regression test: the --apply-assessment batch path must honour
+        # --preserve-outlets exactly like the direct --apply path does. It
+        # previously called apply_result() without forwarding existing_outlets,
+        # so a topic-crawl same-event multi-outlet consolidation (recorded at
+        # normalization time, before enrichment ever ran) was silently
+        # collapsed down to the single-outlet model assessment as soon as a
+        # policy-resolved assessment went through --apply-assessment.
+        result = {
+            "tone": "Factual",
+            "toneSentiment": "Negative",
+            "eventType": "Facilitated",
+            "issueTags": ["Missile Test"],
+            "outletName": "Example News",
+            "outletCountry": "Singapore",
+            "institutionalCategory": "National Security",
+            "readyForCascade": True,
+            "autoApplicable": {
+                "tone": True, "toneSentiment": True, "eventType": True,
+                "metadata": True, "tags": True,
+            },
+        }
+        note_text = (
+            "---\narticleId: '42'\ntopic: 'Great-Power Competition'\ntone: 'Factual'\n"
+            "eventType: 'Unfacilitated'\ntags: []\noutlets: ['outlet-a', 'outlet-b']\n"
+            "countries: ['Country A', 'Country B']\ncategory: 'Other'\ncoverageCount: 2\n---\n\nBody\n"
+        )
+        with tempfile.TemporaryDirectory() as folder:
+            relative = pathlib.Path(folder) / "article.md"
+            assessment = {"assessments": [{
+                "articleId": "42", "path": str(relative), "consensus": result,
+            }]}
+            assessment_path = pathlib.Path(folder) / "assessment.json"
+            assessment_path.write_text(__import__("json").dumps(assessment), encoding="utf-8")
+            original_root = ENRICH.ROOT
+            ENRICH.ROOT = pathlib.Path("/")
+            try:
+                relative.write_text(note_text, encoding="utf-8")
+                code = ENRICH.apply_assessments([assessment_path], preserve_outlets=True)
+                self.assertEqual(code, 0)
+                written = relative.read_text(encoding="utf-8")
+                self.assertIn("outlets: ['outlet-a', 'outlet-b']", written)
+                self.assertIn("countries: ['Country A', 'Country B']", written)
+                self.assertIn("coverageCount: 2", written)
+
+                relative.write_text(note_text, encoding="utf-8")
+                code = ENRICH.apply_assessments([assessment_path], preserve_outlets=False)
+                self.assertEqual(code, 0)
+                written = relative.read_text(encoding="utf-8")
+                self.assertNotIn("outlets: ['outlet-a', 'outlet-b']", written)
+                self.assertIn("coverageCount: 1", written)
+            finally:
+                ENRICH.ROOT = original_root
+
     def test_incomplete_consensus_is_held_without_writing(self):
         lines = ["articleId: '42'", "tone: 'Factual'"]
         result = {
