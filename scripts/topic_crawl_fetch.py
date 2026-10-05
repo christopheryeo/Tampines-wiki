@@ -39,9 +39,28 @@ def provider_window(date_start: str, date_end: str, timezone: str | None) -> tup
             (end.astimezone(UTC) - timedelta(seconds=1)).date().isoformat())
 
 
+def keyword_payload(keywords: list[str]) -> dict:
+    """Build the provider ``keyword``/``keywordOper`` fragment for one or more terms.
+
+    A single term is submitted as a phrase (the provider matches it near-exactly).
+    Multiple terms must be submitted as an array with ``keywordOper: "or"`` --
+    joining them into one string (e.g. "a OR b") is treated as a literal phrase
+    and matches nothing, which silently zeroed every multi-term Crawl Prompt.
+    """
+    if not keywords:
+        raise ValueError("keywords must be non-empty")
+    if len(keywords) == 1:
+        return {"keyword": keywords[0]}
+    return {"keyword": keywords, "keywordOper": "or"}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--keyword", required=True)
+    parser.add_argument(
+        "--keyword", required=True, action="append",
+        help="repeatable; multiple values are submitted as a provider keyword array with "
+             "keywordOper 'or' (a single value is submitted as a phrase, matched near-exactly)",
+    )
     parser.add_argument("--date-start", required=True)
     parser.add_argument("--date-end", required=True)
     parser.add_argument("--page", type=int, default=1)
@@ -60,11 +79,12 @@ def main() -> int:
     if not key:
         raise SystemExit("NEWSAPI_AI_API_KEY is unavailable")
     payload = {
-        "action": "getArticles", "keyword": args.keyword, "lang": ["eng"],
+        "action": "getArticles", "lang": ["eng"],
         "dateStart": date_start, "dateEnd": date_end, "articlesSortBy": "date",
         "articleBodyLen": -1, "dataType": ["news"], "isDuplicateFilter": "keepAll",
         "resultType": "articles", "articlesCount": 100, "articlesPage": args.page, "apiKey": key,
     }
+    payload.update(keyword_payload(args.keyword))
     request = urllib.request.Request(
         API_URL, data=json.dumps(payload).encode("utf-8"), method="POST",
         headers={"Content-Type": "application/json"},
