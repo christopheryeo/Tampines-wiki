@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20261004T032650-ingest_cascade-497b",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-10-04T03:26:50+08:00",
+  "endedAt": "2026-10-04T03:27:07+08:00",
+  "durationSec": 17.448,
+  "articleMetrics": {
+    "inputCount": 8,
+    "processedCount": 8,
+    "createdCount": 8,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 2.181
+  },
+  "fileMetrics": {
+    "scannedCount": 0,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": null
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-10-04T03:26:50+08:00",
+      "endedAt": "2026-10-04T03:27:01+08:00",
+      "durationSec": 11.66,
+      "articleCount": 8,
+      "avgSecPerArticle": 1.4575,
+      "fileCount": 8,
+      "avgSecPerFile": 1.4575,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [],
+    "focusedValidation": {
+      "notes_scanned": 0,
+      "wikilinks_checked": 0,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_updated": 8,
+      "countries_updated": 10,
+      "topics_updated": 19,
+      "tags_updated": 55,
+      "organisations_updated": 24,
+      "people_updated": 10,
+      "places_updated": 24,
+      "processed": 8,
+      "outlets_created": 2
+    },
+    "statusCounts": {
+      "cascaded": 33128,
+      "inputs": 43,
+      "total": 33171
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-10.",
+  "metadata": {
+    "month": "2026-10",
+    "dryRun": true,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-10-04/artifacts/topic-crawls/DAILY-2026-10-04/frozen-manifest.txt"
+  }
+}
