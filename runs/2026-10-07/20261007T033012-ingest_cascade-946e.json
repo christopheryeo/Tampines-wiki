@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "run-log.v1",
+  "runId": "20261007T033012-ingest_cascade-946e",
+  "operation": "ingest_cascade",
+  "status": "ok",
+  "trigger": "manual",
+  "startedAt": "2026-10-07T03:30:12+08:00",
+  "endedAt": "2026-10-07T03:32:39+08:00",
+  "durationSec": 146.449,
+  "articleMetrics": {
+    "inputCount": 3,
+    "processedCount": 3,
+    "createdCount": 3,
+    "updatedCount": 0,
+    "skippedCount": 0,
+    "duplicateCount": 0,
+    "failedCount": 0,
+    "avgSecPerArticle": 48.816333
+  },
+  "fileMetrics": {
+    "scannedCount": 5286,
+    "changedCount": 0,
+    "failedCount": 0,
+    "avgSecPerFile": 0.027705
+  },
+  "stageMetrics": [
+    {
+      "stage": "compile_cascade",
+      "startedAt": "2026-10-07T03:30:12+08:00",
+      "endedAt": "2026-10-07T03:30:19+08:00",
+      "durationSec": 6.153,
+      "articleCount": 3,
+      "avgSecPerArticle": 2.051,
+      "fileCount": 3,
+      "avgSecPerFile": 2.051,
+      "status": "ok"
+    },
+    {
+      "stage": "focused_validation",
+      "startedAt": "2026-10-07T03:32:35+08:00",
+      "endedAt": "2026-10-07T03:32:39+08:00",
+      "durationSec": 3.931,
+      "articleCount": 0,
+      "avgSecPerArticle": null,
+      "fileCount": 0,
+      "avgSecPerFile": null,
+      "status": "ok"
+    }
+  ],
+  "outputs": {
+    "catalogsRebuilt": [
+      "article",
+      "outlet",
+      "country",
+      "topic",
+      "tag",
+      "organisations",
+      "people",
+      "place"
+    ],
+    "focusedValidation": {
+      "notes_scanned": 5286,
+      "wikilinks_checked": 292650,
+      "errors": 0,
+      "error_samples": []
+    },
+    "entityUpdates": {
+      "outlets_created": 3,
+      "countries_updated": 7,
+      "topics_updated": 8,
+      "tags_updated": 21,
+      "organisations_updated": 5,
+      "places_updated": 8,
+      "processed": 3,
+      "outlets_updated": 4
+    },
+    "statusCounts": {
+      "cascaded": 33150,
+      "inputs": 35,
+      "total": 33185
+    }
+  },
+  "errors": [],
+  "notes": "Manifest-scoped cascade from Inputs/articles/2026-10.",
+  "metadata": {
+    "month": "2026-10",
+    "dryRun": false,
+    "scope": "manifest-scoped",
+    "manifest": "runs/2026-10-07/artifacts/topic-crawls/DAILY-2026-10-07/frozen-manifest.txt"
+  }
+}
