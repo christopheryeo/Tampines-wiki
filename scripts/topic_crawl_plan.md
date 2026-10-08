@@ -3,7 +3,7 @@ type: plan
 name: topic-crawl
 status: ready
 created: 2026-09-06
-updated: 2026-09-18
+updated: 2026-10-09
 owner: ChatGPT Codex
 ---
 
@@ -226,6 +226,26 @@ the most recent few days, and relevant items earlier in the window fall past the
 **not** trust the recent-N slice: add a Singapore/topic anchor to the SET A query (narrowing to the
 relevant sub-stream), and/or page by date buckets across the window. Record the provider total, the
 retrieved count, and the uncollected remainder in the manifest.
+
+**Singapore-institutional topics: never OR a generic global term into the SET A query (required).**
+A topic whose canonical definition names one specific Singapore institution (e.g. `mindef-governance`,
+`republic-of-singapore-navy`, `republic-of-singapore-air-force`, `singapore-us-defence`) has a per-topic
+relevance keyword list (`topics/canonical-topics.yaml`) that mixes genuinely Singapore-specific terms
+(`MINDEF`, `RSN`, `RSAF`, `Singapore Navy`) with generic global terms kept for *relevance classification*
+of already-fetched text (`naval`, `submarine`, `frigate`, `warship`, `air force`, `fighter jet`,
+`aircraft`, `defence minister`, `ministry of defence`). Reusing that full list verbatim as a SET A
+*discovery* query with `keywordOper: "or"` lets the generic terms alone push `totalResults` past the
+high-volume ceiling on an ordinary day — every country's navy mentions "frigate", every country's
+government has a "defence minister" — so the topic is marked high-volume and left **entirely
+untriaged**, silently discarding the real Singapore-specific coverage underneath the global noise.
+**Evidence (2026-10-07 and 2026-10-09 daily runs).** Both days' full keyword-array SET A query marked
+`mindef-governance`, `republic-of-singapore-navy`, `republic-of-singapore-air-force`, and
+`singapore-us-defence` high-volume and untriaged. On 2026-10-09, re-querying each topic with only its
+Singapore-specific terms (`MINDEF` alone; `RSAF` + `Singapore Air Force`; `RSN` + `Singapore Navy`)
+reduced `totalResults` from 792/4537/1415 to 12/1/13 — bringing all three back under the ceiling for
+full triage in the same run. For a Singapore-institutional topic, run the SET A pass that uses only its
+Singapore-specific terms first; only add the topic's generic/global terms afterward, and only if that
+narrow pass itself stays at or under `maxCandidates` with room to spare.
 
 **Gate:** a zero SET A result is valid only when the keyword search itself completed successfully — a
 zero is not proof that no coverage exists (SET B may still find articles).
