@@ -34,6 +34,17 @@ ACTION_RE = re.compile(
     r"^-?\s*(?P<ts>\S+)\s*\|\s*entity:\s*\[\[(?P<tid>[a-z0-9-]+)\|[^\]]*\]\]\s*\|\s*"
     r"action:\s*(?P<action>crawl[a-z ]*?)\s*\|(?P<rest>.*)$"
 )
+# scripts/end_topic_crawl.md's bulk-run exception (and update_topic_crawl_status.md)
+# write audit lines as "action: crawlStatus <From> -> <To>", not the older
+# "action: crawl <verb>" phrasing ACTION_RE expects -- ACTION_RE's action group is
+# restricted to lowercase letters/spaces right after "crawl", so it never matches
+# "crawlStatus" (capital S) at all and these lines were silently dropped entirely.
+TRANSITION_RE = re.compile(
+    r"^-?\s*(?P<ts>\S+)\s*\|\s*entity:\s*\[\[(?P<tid>[a-z0-9-]+)\|[^\]]*\]\]\s*\|\s*"
+    r"action:\s*crawlStatus\s+\S[A-Za-z ]*?\s*->\s*(?P<to>[A-Za-z]+(?:\s[A-Za-z]+)*)\s*\|(?P<rest>.*)$"
+)
+TRANSITION_ACTION = {"Queued": "crawl queued", "In progress": "crawl started",
+                      "Completed": "crawl completed", "Failed": "crawl failed"}
 COVER_RE = re.compile(
     r"^-?\s*(?P<date>\d{4}-\d{2}-\d{2})\b.*Added coverage\s*\[\[article/[^\]]*\]\]\s*to\s*\[\[(?P<tid>[a-z0-9-]+)\|"
 )
@@ -46,7 +57,7 @@ def parse_log():
     if not LOG.exists():
         return {}, {}
     for line in LOG.read_text(encoding="utf-8", errors="replace").splitlines():
-        m = ACTION_RE.match(line)
+        m = ACTION_RE.match(line) or TRANSITION_RE.match(line)
         if m:
             rest = m.group("rest")
             reason = ""
@@ -54,9 +65,13 @@ def parse_log():
             if rm:
                 reason = rm.group(1).strip()
             cp = re.search(r"checkpoint:\s*(\S+)", rest)
+            groups = m.groupdict()
+            action = groups["action"].strip() if groups.get("action") else TRANSITION_ACTION.get(groups.get("to"), "")
+            if not action:
+                continue
             raw_actions[m.group("tid")].append({
                 "ts": m.group("ts"),
-                "action": m.group("action").strip(),
+                "action": action,
                 "reason": reason,
                 "checkpoint": cp.group(1) if cp else "",
             })
